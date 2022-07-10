@@ -1,0 +1,13 @@
+.idea
+.vscode
+node_modules/
+npm-debug.log
+yarn-error.log
+/build
+/docs
+.env
+.env.local
+.eslintcache
+.next/
+public/docs
+next-env.d.ts
