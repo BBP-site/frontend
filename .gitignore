@@ -9,5 +9,7 @@ yarn-error.log
 .env.local
 .eslintcache
 .next/
+.DS_Store
 public/docs
 next-env.d.ts
+tsconfig.tsbuildinfo

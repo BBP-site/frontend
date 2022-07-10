@@ -124,7 +124,7 @@ export const pageWrap = (() => {
   };
 })();
 
-const getLinkStyle = (color: string | undefined, hoverColor: string | undefined): CSSObject => {
+const LinkStyle = (color: string | undefined, hoverColor: string | undefined): CSSObject => {
   const { tabletLgMin } = useMedia();
 
   return {
@@ -145,6 +145,6 @@ const getLinkStyle = (color: string | undefined, hoverColor: string | undefined)
 };
 
 export const links = {
-  white: getLinkStyle(colors?.white, colors?.blue),
-  blue: getLinkStyle(colors?.blue, colors?.blueDark),
+  white: LinkStyle(colors?.white, colors?.blue),
+  blue: LinkStyle(colors?.blue, colors?.blueDark),
 };

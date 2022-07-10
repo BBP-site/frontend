@@ -1,18 +1,17 @@
-import { ReactNode, FC } from 'react';
+import { ReactNode, FC, ButtonHTMLAttributes } from 'react';
 import { CSSObject } from '@emotion/react';
 
 import { colors, typography, time } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: 'fill' | 'empty';
   css?: CSSObject;
   children?: ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }) => {
   const { tabletLgMin } = useMedia();
-
   return (
     <button
       css={{
@@ -58,6 +57,7 @@ const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }: Bu
             }),
         ...css,
       }}
+      type="button"
       {...props}
     >
       {children}
