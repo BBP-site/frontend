@@ -1,19 +1,21 @@
-import { ReactNode, FC, ButtonHTMLAttributes } from 'react';
+import { ReactNode, FC, ButtonHTMLAttributes, Ref } from 'react';
 import { CSSObject } from '@emotion/react';
 
 import { colors, typography, time } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: 'fill' | 'empty';
   css?: CSSObject;
+  innerRef?: Ref<HTMLButtonElement>;
   children?: ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }) => {
+const Button: FC<IButtonProps> = ({ theme = 'fill', css, innerRef, children, ...props }) => {
   const { tabletLgMin } = useMedia();
   return (
     <button
+      ref={innerRef}
       css={{
         ...typography.txt,
         padding: '14px 56px',
@@ -34,10 +36,10 @@ const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }) =>
               backgroundColor: colors.blue,
               border: `2px solid transparent`,
               [tabletLgMin]: {
-                '&:hover': {
+                '&:enabled:hover': {
                   backgroundColor: colors.blueDark,
                 },
-                '&:focus': {
+                '&:focus-visible, &:enabled:active': {
                   border: `2px solid ${colors.cyan}`,
                 },
               },
@@ -47,10 +49,10 @@ const Button: FC<ButtonProps> = ({ theme = 'fill', css, children, ...props }) =>
               border: `1px solid ${colors.gray600}`,
               backgroundColor: colors.white,
               [tabletLgMin]: {
-                '&:hover': {
+                '&:enabled:hover': {
                   backgroundColor: colors.gray100,
                 },
-                '&:focus': {
+                '&:focus-visible, &:enabled:active': {
                   border: `1px solid ${colors.blue}`,
                 },
               },

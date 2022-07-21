@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 import Block from '@components/common/Block';
 
-import { links, typography } from '@scripts/theme';
+import { links } from '@scripts/theme';
 
 import ArrowIcon from '@icons/arrow.svg';
 
 const Contacts = () => (
   <main css={{ height: '100%', marginBottom: '32px' }}>
-    <h1 css={typography.h1}>Страница контактов</h1>
+    <h1>Страница контактов</h1>
     <span css={{ marginRight: '32px' }}>Я страница контактов 🙃</span>
     <Link href="/" passHref>
       <a css={{ ...links.blue, display: 'inline-flex', alignItems: 'center' }}>

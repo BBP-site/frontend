@@ -7,7 +7,7 @@ import { CommonProvider } from '@context/common';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 
-import { typography } from '@scripts/theme';
+import { typography, colors } from '@scripts/theme';
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -24,10 +24,17 @@ const App = ({ Component, pageProps }: AppProps) => (
           },
           body: {
             ...typography.txtMd,
+            color: colors.black,
           },
           a: {
             textDecoration: 'none',
           },
+          h1: typography.h1,
+          h2: typography.h2,
+          h3: typography.h3,
+          h4: typography.h4,
+          h5: typography.h5,
+          h6: typography.h6,
         },
         {
           '@font-face': {
