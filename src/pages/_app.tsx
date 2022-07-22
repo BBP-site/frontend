@@ -35,6 +35,31 @@ const App = ({ Component, pageProps }: AppProps) => (
           h4: typography.h4,
           h5: typography.h5,
           h6: typography.h6,
+          p: {
+            marginBottom: '25px',
+          },
+          'p:last-of-type': {
+            marginBottom: '0px',
+          },
+          ul: {
+            listStyle: 'none',
+            marginLeft: '5px',
+            marginBottom: '25px',
+          },
+          'ul li:before': {
+            content: '"-"',
+            position: 'relative',
+            left: '-5px',
+          },
+          '.line': {
+            marginTop: '5px',
+            height: '3px',
+            width: '63px',
+            backgroundColor: colors.blue
+          },
+          '.card-title': {
+            color: colors.gray700,
+          },
         },
         {
           '@font-face': {

@@ -26,6 +26,29 @@ export const shadows = {
   around: { boxShadow: `0px 0px 8px ${rgba(colors.black, 0.15)}` },
 };
 
+export const position = {
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  spaceBetween: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  end: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'end',
+  },
+  start: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'start',
+  },
+};
+
 export const typography = {
   h1: {
     fontFamily: "'PT Serif', serif",
@@ -34,6 +57,7 @@ export const typography = {
     fontSize: '72px',
     lineHeight: '86px',
     color: colors.gray900,
+    marginBottom: '20px',
   },
   h2: {
     fontFamily: "'PT Serif', serif",
@@ -42,6 +66,7 @@ export const typography = {
     fontSize: '54px',
     lineHeight: '65px',
     color: colors.gray900,
+    marginBottom: '20px',
   },
   h3: {
     fontFamily: "'PT Serif', serif",
@@ -50,6 +75,7 @@ export const typography = {
     fontSize: '48px',
     lineHeight: '58px',
     color: colors.gray900,
+    marginBottom: '20px',
   },
   h4: {
     fontFamily: "'PT Sans', sans-serif",
@@ -57,6 +83,7 @@ export const typography = {
     fontWeight: 700,
     fontSize: '42px',
     lineHeight: '50px',
+    marginBottom: '20px',
   },
   h5: {
     fontFamily: "'PT Sans', sans-serif",
@@ -64,13 +91,15 @@ export const typography = {
     fontWeight: 700,
     fontSize: '32px',
     lineHeight: '35px',
+    marginBottom: '20px',
   },
   h6: {
     fontFamily: "'PT Sans', sans-serif",
     fontStyle: 'normal',
     fontWeight: 700,
-    fontSize: '24px',
+    fontSize: '22px',
     lineHeight: '29px',
+    marginBottom: '20px',
   },
   txt: {
     fontFamily: "'PT Sans', sans-serif",
