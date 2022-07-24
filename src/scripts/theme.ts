@@ -24,6 +24,7 @@ export const colors = {
 
 export const shadows = {
   around: { boxShadow: `0px 0px 8px ${rgba(colors.black, 0.15)}` },
+  bottom: { boxShadow: `0px 8px 8px ${rgba(colors.black, 0.15)}` },
 };
 
 export const typography = {
