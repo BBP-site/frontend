@@ -53,9 +53,9 @@ const App = ({ Component, pageProps }: AppProps) => (
           },
           '.line': {
             marginTop: '5px',
-            height: '3px',
+            height: '2px',
             width: '63px',
-            backgroundColor: colors.blue
+            backgroundColor: colors.blue,
           },
           '.card-title': {
             color: colors.gray700,
