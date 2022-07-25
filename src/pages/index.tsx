@@ -9,7 +9,7 @@ import Block from '@components/common/Block';
 import ContentCard from '@components/common/ContentCard';
 import withConfigContentCard, { IContent } from '@components/hoc-helpers/withConfigContentCard';
 
-import ArrowIcon from '@icons/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 
 const practiceServerData: IContent = {
   contentHtml: (

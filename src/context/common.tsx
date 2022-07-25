@@ -1,6 +1,15 @@
 import { useContext, createContext, ReactNode, FC } from 'react';
 
-const CommonContext = createContext<Record<string, any> | null>(null);
+export interface IContactsData {
+  address: string;
+  phones: {
+    number: string;
+    desc: string;
+  }[];
+  email: string;
+}
+
+const CommonContext = createContext<Record<string, IContactsData> | null>(null);
 CommonContext.displayName = 'CommonContext';
 
 export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ children }) => {

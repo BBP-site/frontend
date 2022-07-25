@@ -34,6 +34,15 @@ const nextConfig = {
 module.exports = withPlugins(
   [
     withSvgr({
+      fileLoader: {
+        limit: 16384,
+        name() {
+          if (process.env.NODE_ENV === 'development') {
+            return '[path][name].[ext]';
+          }
+          return '[contenthash].[ext]';
+        }
+      },
       svgrOptions: {
         svgo: false,
         titleProp: true,
