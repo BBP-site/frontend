@@ -23,7 +23,7 @@ const Header: FC<{}> = () => {
         top: 0,
         zIndex: 100,
         backgroundColor: colors.white,
-        ...shadows.bottom2,
+        ...shadows.bottom,
       }}
     >
       <div

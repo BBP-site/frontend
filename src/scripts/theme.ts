@@ -24,7 +24,7 @@ export const colors = {
 
 export const shadows = {
   around: { boxShadow: `0px 0px 8px ${rgba(colors.black, 0.15)}` },
-  bottom2: { boxShadow: `0px 2px 10px ${rgba(colors.black, 0.1)}` },
+  bottom: { boxShadow: `0px 2px 10px ${rgba(colors.black, 0.1)}` },
 };
 
 export const position = {
