@@ -4,7 +4,7 @@ import Block from '@components/common/Block';
 
 import { links } from '@scripts/theme';
 
-import ArrowIcon from '@icons/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 
 const Contacts = () => (
   <main css={{ height: '100%', marginBottom: '32px' }}>

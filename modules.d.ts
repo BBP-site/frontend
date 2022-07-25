@@ -1,8 +1,10 @@
 declare module '*.svg' {
-  import { SVGRIcon } from '@customTypes/index';
+  import { FC, SVGProps } from 'react';
 
-  const SVG: SVGRIcon;
-  export default SVG;
+  export const ReactComponent: FC<SVGProps<SVGSVGElement>>;
+
+  const src: string;
+  export default src;
 }
 
 declare module 'react-loading-skeleton';

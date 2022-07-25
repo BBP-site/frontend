@@ -9,7 +9,7 @@ import { colors } from '@scripts/theme';
 
 import Button from '@components/common/Button';
 
-import ArrowIcon from '@icons/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 
 export interface ICarouselProps extends SwiperProps {
   css?: CSSObject;

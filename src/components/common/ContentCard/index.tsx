@@ -4,7 +4,7 @@ import { CSSObject } from '@emotion/react';
 
 import { colors, links, time, typography } from '@scripts/theme';
 
-import ArrowIcon from '@icons/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 
 export interface ICardBtn {
   isLink: boolean;
