@@ -11,6 +11,7 @@ export const colors = {
   blueLight: '#eef4fa',
   blueDark: '#353f87',
   cyan: '#14b2e4',
+  red: '#ff0000',
   gray900: '#162635',
   gray800: '#1e4060',
   gray700: '#4e4e4e',
@@ -123,6 +124,13 @@ export const typography = {
     fontSize: '16px',
     lineHeight: '22px',
   },
+  txtExtraSm: {
+    fontFamily: "'PT Sans', sans-serif",
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '20px',
+  },
   txtBold: {
     fontFamily: "'PT Sans', sans-serif",
     fontStyle: 'normal',
@@ -139,17 +147,24 @@ export const typography = {
   },
 };
 
+export const pageWrapS = {
+  margin: 'auto',
+  maxWidth: '1440px',
+};
+
 export const pageWrap = (() => {
   const { tabletLg, mobileLg } = useMedia();
   return {
-    margin: 'auto',
-    padding: '0 80px',
-    maxWidth: '1440px',
+    ...pageWrapS,
+    paddingLeft: '80px',
+    paddingRight: '80px',
     [tabletLg]: {
-      padding: '0 40px',
+      paddingLeft: '40px',
+      paddingRight: '40px',
     },
     [mobileLg]: {
-      padding: '0 16px',
+      paddingLeft: '16px',
+      paddingRight: '16px',
     },
   };
 })();
