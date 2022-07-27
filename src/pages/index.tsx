@@ -108,7 +108,7 @@ const Home = () => {
   const projectCard = withConfigContentCard(ContentCard, projectServerData, CARD_TYPE.PROJECTS);
 
   return (
-    <main css={{ marginBottom: '32px' }}>
+    <main>
       <h1>Заголовок главной страницы</h1>
       <h4>Заголовок 4 уровня</h4>
       <div css={pageWrap}>

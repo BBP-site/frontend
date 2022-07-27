@@ -23,7 +23,6 @@ const App = ({ Component, pageProps }: AppProps) => {
               '#__next': {
                 display: 'flex',
                 flexDirection: 'column',
-                height: '100%',
               },
             }),
           },
@@ -36,12 +35,21 @@ const App = ({ Component, pageProps }: AppProps) => {
             'html, body': {
               height: '100%',
             },
+            '#__next': {
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: '100%',
+            },
             body: {
               ...typography.txtMd,
               color: colors.black,
             },
+            main: {
+              flex: '1 1 auto',
+            },
             a: {
               textDecoration: 'none',
+              color: colors.black,
             },
             h1: typography.h1,
             h2: typography.h2,

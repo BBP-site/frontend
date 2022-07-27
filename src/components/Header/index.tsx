@@ -4,12 +4,13 @@ import Image from 'next/image';
 
 import { useCommon } from '@context/common';
 
-import { colors, pageWrap, typography, links, shadows } from '@scripts/theme';
+import { colors, pageWrap, typography, shadows } from '@scripts/theme';
 
 import Button from '@components/common/Button';
 
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
+import Menu, {MENU_TYPE} from "@components/Menu";
 
 const Header: FC<{}> = () => {
   const { contactsData } = useCommon();
@@ -90,27 +91,8 @@ const Header: FC<{}> = () => {
           </button>
         </div>
       </div>
-      <hr css={{ border: `0.5px solid ${colors.gray300}` }} />
-      <nav css={{ ...pageWrap, ...typography.txt, display: 'flex' }}>
-        <Link href="/about" passHref>
-          <a css={{ ...links.black, padding: '16px 30px 16px 0' }}>О Коллегии</a>
-        </Link>
-        <Link href="/practics" passHref>
-          <a css={{ ...links.black, padding: '16px 30px' }}>Практики</a>
-        </Link>
-        <Link href="/team" passHref>
-          <a css={{ ...links.black, padding: '16px 30px' }}>Команда</a>
-        </Link>
-        <Link href="/projects" passHref>
-          <a css={{ ...links.black, padding: '16px 30px' }}>Проекты</a>
-        </Link>
-        <Link href="/media" passHref>
-          <a css={{ ...links.black, padding: '16px 30px' }}>Медиа</a>
-        </Link>
-        <Link href="/contacts" passHref>
-          <a css={{ ...links.black, padding: '16px 0 16px 30px' }}>Контакты</a>
-        </Link>
-      </nav>
+
+      <Menu type={MENU_TYPE.HEADER} />
     </header>
   );
 };
