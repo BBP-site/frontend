@@ -28,7 +28,16 @@ const Contacts = () => {
           backgroundColor: colors.gray100,
         }}
       >
-        <div css={{ ...pageWrap, paddingTop: '64px', paddingBottom: '64px', ...position.spaceBetween }}>
+        <div
+          css={{
+            ...pageWrap,
+            paddingTop: '64px',
+            paddingBottom: '64px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+          }}
+        >
           <div css={{ display: 'flex' }}>
             <div
               css={{

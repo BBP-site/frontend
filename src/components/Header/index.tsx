@@ -10,7 +10,7 @@ import Button from '@components/common/Button';
 
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
-import Menu, {MENU_TYPE} from "@components/Menu";
+import Menu, { MENU_TYPE } from '@components/Menu';
 
 const Header: FC<{}> = () => {
   const { contactsData } = useCommon();
@@ -91,7 +91,7 @@ const Header: FC<{}> = () => {
           </button>
         </div>
       </div>
-
+      <hr css={{ border: `0.5px solid ${colors.gray300}` }} />
       <Menu type={MENU_TYPE.HEADER} />
     </header>
   );
