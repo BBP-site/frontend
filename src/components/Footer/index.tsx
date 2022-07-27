@@ -13,17 +13,25 @@ import emailURL from "@icons/email.svg";
 
 
 const footerCss: CSSObject = {
-    display: 'flex',
+    ...position.center,
+    ...typography.txt,
     height: '184px',
     backgroundColor: colors.blueDark,
     color: colors.white,
     width: '100%',
     flexDirection: 'column',
-    ...typography.txt,
 };
 
+const mainBlockCSS: CSSObject = {
+    ...position.spaceBetween,
+    ...pageWrap,
+    marginLeft: '0',
+    marginRight: '0',
+    width: '100%',
+}
+
 const rightsCSS: CSSObject = {
-    ...position.start,
+    ...position.center,
     ...typography.txtSm,
     width: '100%',
     height: '32px',
@@ -35,11 +43,11 @@ const Footer: FC = () => {
 
     return (
         <footer css={footerCss}>
-            <div css={{...pageWrap, margin: 'none'}}>
+            <div css={{...pageWrap, margin: 'none', width: '100%'}}>
                 <Menu type={MENU_TYPE.FOOTER} />
             </div>
 
-            <div css={{ ...position.spaceBetween, ...pageWrap, marginLeft: '0', marginRight: '0'}}>
+            <div css={mainBlockCSS}>
                 <div css={{ display: 'flex', alignItems: 'center' }}>
                     <Link href="/" passHref>
                         <a
@@ -61,8 +69,8 @@ const Footer: FC = () => {
                     </Link>
 
                     <span css={{ ...typography.txtSm, marginLeft: '16px' }}>
-                    Коллегия адвокатов города Москвы
-                </span>
+                Коллегия адвокатов города Москвы
+            </span>
                 </div>
 
                 <div css={{
@@ -94,7 +102,16 @@ const Footer: FC = () => {
             </div>
 
             <div css={rightsCSS}>
-                <span css={{...position.start, padding: '0 80px'}}>Все права защищены, Коллегия адвокатов города Москвы  «БАРЩЕВСКИЙ И ПАРТНЕРЫ»  2003—2022 ©</span>
+                <span
+                    css={{
+                        ...position.start,
+                        ...pageWrap,
+                        margin: 'none',
+                        padding: '0 80px',
+                        width: '100%'
+                }}
+                >Все права защищены, Коллегия адвокатов города Москвы  «БАРЩЕВСКИЙ И ПАРТНЕРЫ»  2003—2022 ©
+                </span>
             </div>
         </footer>
     );
