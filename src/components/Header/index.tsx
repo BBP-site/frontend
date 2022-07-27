@@ -34,7 +34,6 @@ const Header: FC<{}> = () => {
           alignItems: 'center',
           paddingTop: '12px',
           paddingBottom: '12px',
-          borderBottom: `1px solid ${colors.gray300}`,
         }}
       >
         <div css={{ display: 'flex', alignItems: 'center' }}>
@@ -91,6 +90,7 @@ const Header: FC<{}> = () => {
           </button>
         </div>
       </div>
+      <hr css={{ border: `0.5px solid ${colors.gray300}` }} />
       <nav css={{ ...pageWrap, ...typography.txt, display: 'flex' }}>
         <Link href="/about" passHref>
           <a css={{ ...links.black, padding: '16px 30px 16px 0' }}>О Коллегии</a>
