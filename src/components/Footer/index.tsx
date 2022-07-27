@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useCommon } from '@context/common';
 import {colors, pageWrap, position, typography} from '@scripts/theme';
 import {CSSObject} from "@emotion/react";
@@ -84,20 +84,28 @@ const Footer: FC = () => {
                         color: colors.white,
                     }
                 }}>
-                    <a href='https://yandex.ru/maps/-/CCURIXeRWC'>
-                        <Image src={locationURL} width="16px" height="16px" />
-                        <span css={{marginLeft: '8px'}}>{contactsData?.address}</span>
-                    </a>
+                    <Link href="/contacts" passHref>
+                        <a>
+                            <Image src={locationURL} width="16px" height="16px" />
+                            <span css={{marginLeft: '8px'}}>{contactsData?.address}</span>
+                        </a>
+                    </Link>
 
-                    <a href={`tel:${contactsData?.phones[0]?.number}`}>
-                        <Image src={phoneURL} width="16px" height="16px" />
-                        <span css={{marginLeft: '8px'}}>{contactsData?.phones[0]?.number}</span>
-                    </a>
 
-                    <a href={`mailto:${contactsData?.email}`}>
-                        <Image src={emailURL} width="16px" height="16px" />
-                        <span css={{marginLeft: '8px'}}>{contactsData?.email}</span>
-                    </a>
+                    <Link href={`tel:${contactsData?.phones[0]?.number}`} passHref>
+                        <a>
+                            <Image src={phoneURL} width="16px" height="16px" />
+                            <span css={{marginLeft: '8px'}}>{contactsData?.phones[0]?.number}</span>
+                        </a>
+                    </Link>
+
+                    <Link href={`mailto:${contactsData?.email}`} passHref>
+                        <a>
+                            <Image src={emailURL} width="16px" height="16px" />
+                            <span css={{marginLeft: '8px'}}>{contactsData?.email}</span>
+                        </a>
+                    </Link>
+
                 </div>
             </div>
 
