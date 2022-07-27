@@ -24,7 +24,7 @@ const Header: FC<{}> = () => {
         top: 0,
         zIndex: 100,
         backgroundColor: colors.white,
-        ...shadows.bottom2,
+        ...shadows.bottom,
       }}
     >
       <div
@@ -35,7 +35,6 @@ const Header: FC<{}> = () => {
           alignItems: 'center',
           paddingTop: '12px',
           paddingBottom: '12px',
-          borderBottom: `1px solid ${colors.gray300}`,
         }}
       >
         <div css={{ display: 'flex', alignItems: 'center' }}>
