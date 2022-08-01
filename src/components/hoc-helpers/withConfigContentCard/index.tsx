@@ -18,6 +18,7 @@ interface ICardConfig {
 }
 
 export interface IContent {
+  id?: string;
   contentHtml: React.ReactElement;
   img?: string;
   date?: string;

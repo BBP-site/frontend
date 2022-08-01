@@ -9,7 +9,6 @@ const Page404 = () => {
     <main
       css={{
         ...pageWrap,
-        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
