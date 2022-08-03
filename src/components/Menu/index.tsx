@@ -2,6 +2,7 @@ import React from 'react';
 import {CSSObject} from "@emotion/react";
 import {colors, links, pageWrap, typography} from "@scripts/theme";
 import Link from "next/link";
+import {useCommon} from "@context/common";
 
 export enum MENU_TYPE {
     HEADER = 'header',
@@ -13,6 +14,8 @@ interface IMenuProps {
 }
 
 const Menu = ({type}: IMenuProps) => {
+    const {data} = useCommon();
+    
     const menuCSS: CSSObject = {
         width: '100%',
         color: type === MENU_TYPE.FOOTER ? colors.white : 'none',
@@ -30,32 +33,32 @@ const Menu = ({type}: IMenuProps) => {
     const pageWrapCSS: CSSObject = type === MENU_TYPE.FOOTER ? {} : pageWrap;
 
     return (
-        <nav css={{ ...menuCSS, ...pageWrapCSS, display: 'flex' }}>
-            <Link href="/" passHref>
+        <nav css={{...menuCSS, ...pageWrapCSS, display: 'flex'}}>
+            <Link href={`${data.pages.home}`} passHref>
                 <a>Главная</a>
             </Link>
 
-            <Link href="/about" passHref>
+            <Link href={`${data.pages.collegium}`} passHref>
                 <a>О Коллегии</a>
             </Link>
 
-            <Link href="/practices" passHref>
+            <Link href={`${data.pages.practices}`} passHref>
                 <a>Практики</a>
             </Link>
 
-            <Link href="/team" passHref>
+            <Link href={`${data.pages.team}`} passHref>
                 <a>Команда</a>
             </Link>
 
-            <Link href="/projects" passHref>
+            <Link href={`${data.pages.projects}`} passHref>
                 <a>Проекты</a>
             </Link>
 
-            <Link href="/media" passHref>
+            <Link href={`${data.pages.media}`} passHref>
                 <a>Медиа</a>
             </Link>
 
-            <Link href="/contacts" passHref>
+            <Link href={`${data.pages.contacts}`} passHref>
                 <a>Контакты</a>
             </Link>
         </nav>

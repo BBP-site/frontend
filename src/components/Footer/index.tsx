@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
-import { useCommon } from '@context/common';
-import {colors, pageWrap, position, typography} from '@scripts/theme';
-import {CSSObject} from "@emotion/react";
-import Menu, {MENU_TYPE} from "@components/Menu";
+import React, {FC} from 'react';
 import Link from "next/link";
 import Image from "next/image";
+
+import {useCommon} from '@context/common';
+
+import {colors, pageWrap, position, typography} from '@scripts/theme';
+import {CSSObject} from "@emotion/react";
+
+import Menu, {MENU_TYPE} from "@components/Menu";
+
 import logoIconURL from "@icons/whiteLogo.svg";
 import logoTextIconURL from "@icons/whiteLogoText.svg";
 import locationURL from "@icons/location.svg";
@@ -39,16 +43,16 @@ const rightsCSS: CSSObject = {
 };
 
 const Footer: FC = () => {
-    const { contactsData } = useCommon();
+    const {data} = useCommon();
 
     return (
         <footer css={footerCss}>
             <div css={{...pageWrap, margin: 'none', width: '100%'}}>
-                <Menu type={MENU_TYPE.FOOTER} />
+                <Menu type={MENU_TYPE.FOOTER}/>
             </div>
 
             <div css={mainBlockCSS}>
-                <div css={{ display: 'flex', alignItems: 'center' }}>
+                <div css={{display: 'flex', alignItems: 'center'}}>
                     <Link href="/" passHref>
                         <a
                             css={{
@@ -58,17 +62,22 @@ const Footer: FC = () => {
                                 borderRight: `1px solid ${colors.gray400}`,
                             }}
                         >
-                            <div css={{ marginRight: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Image src={logoIconURL} width="44px" height="57px" />
+                            <div css={{
+                                marginRight: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <Image src={logoIconURL} width="44px" height="57px"/>
                             </div>
 
-                            <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Image src={logoTextIconURL} width="90px" height="25px" />
+                            <div css={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                <Image src={logoTextIconURL} width="90px" height="25px"/>
                             </div>
                         </a>
                     </Link>
 
-                    <span css={{ ...typography.txtSm, marginLeft: '16px' }}>
+                    <span css={{...typography.txtSm, marginLeft: '16px'}}>
                 Коллегия адвокатов города Москвы
             </span>
                 </div>
@@ -86,23 +95,23 @@ const Footer: FC = () => {
                 }}>
                     <Link href="/contacts" passHref>
                         <a>
-                            <Image src={locationURL} width="16px" height="16px" />
-                            <span css={{marginLeft: '8px'}}>{contactsData?.address}</span>
+                            <Image src={locationURL} width="16px" height="16px"/>
+                            <span css={{marginLeft: '8px'}}>{data.contactsData?.address}</span>
                         </a>
                     </Link>
 
 
-                    <Link href={`tel:${contactsData?.phones[0]?.number}`} passHref>
+                    <Link href={`tel:${data.contactsData?.phones[0]?.number}`} passHref>
                         <a>
-                            <Image src={phoneURL} width="16px" height="16px" />
-                            <span css={{marginLeft: '8px'}}>{contactsData?.phones[0]?.number}</span>
+                            <Image src={phoneURL} width="16px" height="16px"/>
+                            <span css={{marginLeft: '8px'}}>{data.contactsData?.phones[0]?.number}</span>
                         </a>
                     </Link>
 
-                    <Link href={`mailto:${contactsData?.email}`} passHref>
+                    <Link href={`mailto:${data.contactsData?.email}`} passHref>
                         <a>
-                            <Image src={emailURL} width="16px" height="16px" />
-                            <span css={{marginLeft: '8px'}}>{contactsData?.email}</span>
+                            <Image src={emailURL} width="16px" height="16px"/>
+                            <span css={{marginLeft: '8px'}}>{data.contactsData?.email}</span>
                         </a>
                     </Link>
 
@@ -117,7 +126,7 @@ const Footer: FC = () => {
                         margin: 'none',
                         padding: '0 80px',
                         width: '100%'
-                }}
+                    }}
                 >Все права защищены, Коллегия адвокатов города Москвы  «БАРЩЕВСКИЙ И ПАРТНЕРЫ»  2003—2022 ©
                 </span>
             </div>
