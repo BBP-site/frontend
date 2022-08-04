@@ -122,7 +122,7 @@ const Collegium = () => {
       height: '130px',
       minHeight: '130px',
     },
-    strong: {
+    span: {
       ...typography.txtBold,
       marginTop: '30px',
       height: '70px',
@@ -155,7 +155,7 @@ const Collegium = () => {
               <Image src={incorruptibilityURL} />
             </div>
 
-            <strong>Неподкупность</strong>
+            <span>Неподкупность</span>
           </div>
 
           <div css={{ ...contentSectionElementCSS, width: '144px' }}>
@@ -163,7 +163,7 @@ const Collegium = () => {
               <Image src={professionalismURL} />
             </div>
 
-            <strong>Профессионализм</strong>
+            <span>Профессионализм</span>
           </div>
 
           <div css={{ ...contentSectionElementCSS, width: '120px' }}>
@@ -171,7 +171,7 @@ const Collegium = () => {
               <Image src={honestyURL} />
             </div>
 
-            <strong>Честность</strong>
+            <span>Честность</span>
           </div>
 
           <div css={{ ...contentSectionElementCSS, width: '262px' }}>
@@ -179,7 +179,7 @@ const Collegium = () => {
               <Image src={secretURL} />
             </div>
 
-            <strong>Строжайшее сохранение адвокатской тайны</strong>
+            <span>Строжайшее сохранение адвокатской тайны</span>
           </div>
 
           <div css={{ ...contentSectionElementCSS, width: '260px' }}>
@@ -187,7 +187,7 @@ const Collegium = () => {
               <Image src={empathyURL} />
             </div>
 
-            <strong>Готовность сопереживать проблемам наших доверителей</strong>
+            <span>Готовность сопереживать проблемам наших доверителей</span>
           </div>
         </div>
       </ContentSection>
