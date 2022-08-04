@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTitle from '@components/PageTitle';
 import { CSSObject } from '@emotion/react';
-import { colors, pageWrap, position } from '@scripts/theme';
+import { colors, pageWrap, position, typography } from '@scripts/theme';
 
 import ContentSection from '@components/common/contentSection';
 
@@ -123,6 +123,7 @@ const Collegium = () => {
       minHeight: '130px',
     },
     strong: {
+      ...typography.txtBold,
       marginTop: '30px',
       height: '70px',
       minHeight: '70px',
