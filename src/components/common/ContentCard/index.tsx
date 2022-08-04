@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
 
@@ -10,6 +11,7 @@ export interface ICardBtn {
   isLink: boolean;
   text: string;
   transform: string;
+  url?: string;
 }
 
 export interface IContentCardProps {
@@ -36,6 +38,7 @@ const ContentCard: FC<IContentCardProps> = ({
   imageHeight,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { push } = useRouter();
   const cardCSS: CSSObject = {
     display: 'flex',
     alignItems: 'start',
@@ -50,6 +53,7 @@ const ContentCard: FC<IContentCardProps> = ({
 
   const onToggle = (): void => {
     if (!btn?.isLink) setIsOpen(!isOpen);
+    if (btn?.url) push(`${btn.url}`);
   };
 
   return (
@@ -60,6 +64,7 @@ const ContentCard: FC<IContentCardProps> = ({
         css={{
           display: 'flex',
           flexDirection: 'row',
+          width: '100%',
         }}
       >
         {cardImg && (

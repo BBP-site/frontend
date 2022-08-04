@@ -1,75 +1,36 @@
-import React, {FC, ReactNode} from 'react';
-import {CSSObject} from "@emotion/react";
-import {pageWrap, pageWrapS, position} from "@scripts/theme";
+import { FC, ReactNode, createElement } from 'react';
+import { CSSObject } from '@emotion/react';
+import { pageWrap, pageWrapS, position } from '@scripts/theme';
 
 interface IContentSectionProps {
-    title?: string;
-    children?: ReactNode;
-    padding?: string;
-    backgroundColor?: string;
-    titleLvl?: number;
-    isWrapS?: boolean;
+  title?: string;
+  cssTitle?: CSSObject;
+  children?: ReactNode;
+  css?: CSSObject;
+  className?: string;
+  titleLvl?: number;
+  isWrapS?: boolean;
 }
 
-const ContentSection: FC<IContentSectionProps> = (
-    {
-        title,
-        children,
-        padding,
-        backgroundColor,
-        titleLvl,
-        isWrapS,
-    }
-) => {
-    const ContentSectionCSS: CSSObject = {
-        ...position.start,
-        backgroundColor,
-        width: '100%',
-        padding,
-    }
+const ContentSection: FC<IContentSectionProps> = ({ title, cssTitle, children, css, className, titleLvl, isWrapS }) => {
+  const ContentSectionCSS: CSSObject = {
+    ...position.start,
+    width: '100%',
+    ...css,
+  };
 
-    const getTitle = (): React.ReactElement => {
-        switch (titleLvl) {
-            case 1:
-                return (
-                    <h1>{title}</h1>
-                )
-            case 2:
-                return (
-                    <h2>{title}</h2>
-                )
-            case 3:
-                return (
-                    <h3>{title}</h3>
-                )
-            case 4:
-                return (
-                    <h4>{title}</h4>
-                )
-            case 5:
-                return (
-                    <h5>{title}</h5>
-                )
-            case 6:
-                return (
-                    <h6>{title}</h6>
-                )
-            default:
-                return (
-                    <h3>{title}</h3>
-                );
-        }
-    }
+  const Title = (props: any) =>
+    createElement<HTMLHeadingElement>(`h${!titleLvl || titleLvl > 6 || titleLvl < 1 ? 3 : titleLvl}`, props, title);
 
-    return (
-        <section css={{...ContentSectionCSS}}>
-            <div css={isWrapS ? {...pageWrapS, width: '100%'} : {...pageWrap, width: '100%'}}>
-                {getTitle()}
+  return (
+    <section css={{ ...ContentSectionCSS }} className={className}>
+      <div css={{ width: '100%', ...(isWrapS ? pageWrapS : pageWrap) }}>
+        {title && <Title css={cssTitle} />}
 
-                {children}
-            </div>
-        </section>
-    )
-}
+        {children}
+      </div>
+    </section>
+  );
+};
 
 export default ContentSection;
