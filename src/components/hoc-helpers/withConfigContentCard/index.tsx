@@ -19,7 +19,9 @@ interface ICardConfig {
 
 export interface IContent {
   contentHtml: React.ReactElement;
+  id?: string;
   img?: string;
+  url?: string;
   date?: string;
   title?: string;
   titleIcon?: string;
@@ -103,6 +105,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
       cardConfig.imageHeight = '191px';
       cardConfig.btn = {
         isLink: true,
+        url: `team/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
@@ -112,6 +115,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: false,
+        url: `projects/${content.id}`,
         text: 'Показать полностью',
         transform: 'rotate(180deg)',
       };
@@ -122,6 +126,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
       cardConfig.title = projectMainTitle;
       cardConfig.btn = {
         isLink: true,
+        url: `projects/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
@@ -131,6 +136,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
+        url: `medias/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
