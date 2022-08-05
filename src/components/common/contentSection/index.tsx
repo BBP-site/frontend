@@ -1,36 +1,50 @@
-import { FC, ReactNode, createElement } from 'react';
-import { CSSObject } from '@emotion/react';
-import { pageWrap, pageWrapS, position } from '@scripts/theme';
+import {createElement, FC, ReactNode} from 'react';
+import {CSSObject} from '@emotion/react';
+import {pageWrap, pageWrapS, position} from '@scripts/theme';
 
 interface IContentSectionProps {
-  title?: string;
-  cssTitle?: CSSObject;
-  children?: ReactNode;
-  css?: CSSObject;
-  className?: string;
-  titleLvl?: number;
-  isWrapS?: boolean;
+    title?: string;
+    cssTitle?: CSSObject;
+    children?: ReactNode;
+    childrenCss?: CSSObject;
+    css?: CSSObject;
+    className?: string;
+    titleLvl?: number;
+    isWrapS?: boolean;
 }
 
-const ContentSection: FC<IContentSectionProps> = ({ title, cssTitle, children, css, className, titleLvl, isWrapS }) => {
-  const ContentSectionCSS: CSSObject = {
-    ...position.start,
-    width: '100%',
-    ...css,
-  };
+const ContentSection: FC<IContentSectionProps> = (
+    {
+        title,
+        cssTitle,
+        children,
+        childrenCss,
+        css,
+        className,
+        titleLvl,
+        isWrapS
+    }
+) => {
+    const ContentSectionCSS: CSSObject = {
+        ...position.start,
+        width: '100%',
+        ...css,
+    };
 
-  const Title = (props: any) =>
-    createElement<HTMLHeadingElement>(`h${!titleLvl || titleLvl > 6 || titleLvl < 1 ? 3 : titleLvl}`, props, title);
+    const Title = (props: any) =>
+        createElement<HTMLHeadingElement>(`h${!titleLvl || titleLvl > 6 || titleLvl < 1 ? 3 : titleLvl}`, props, title);
 
-  return (
-    <section css={{ ...ContentSectionCSS }} className={className}>
-      <div css={{ width: '100%', ...(isWrapS ? pageWrapS : pageWrap) }}>
-        {title && <Title css={cssTitle} />}
+    return (
+        <section css={{...ContentSectionCSS}} className={className}>
+            <div css={{width: '100%', ...(isWrapS ? pageWrapS : pageWrap)}}>
+                {title && <Title css={cssTitle}/>}
 
-        {children}
-      </div>
-    </section>
-  );
+                <div css={childrenCss}>
+                    {children}
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default ContentSection;
