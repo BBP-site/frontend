@@ -29,8 +29,6 @@ const Team: FC = () => {
             </PageTitle>
 
             <ContentSection
-                // title={"Партнеры"}
-                // titleLvl={5}
                 childrenCss={contentSectionCSS}
                 css={{padding: "48px 0 48px 0"}}
             >
