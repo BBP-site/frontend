@@ -6,15 +6,16 @@ import Map from '@components/Map';
 
 import { useCommon } from '@context/common';
 
-import { pageWrapS, colors, position, typography, pageWrap } from '@scripts/theme';
+import { colors, pageWrap, pageWrapS, position, typography } from '@scripts/theme';
 
 import pinURL from '@icons/pin.svg';
 import phoneCallURL from '@icons/phoneCall.svg';
 import mailURL from '@icons/mail.svg';
 import { useMedia } from '@scripts/hooks';
+import ContentSection from '@components/common/contentSection';
 
 const Contacts = () => {
-  const { contactsData } = useCommon();
+  const { data } = useCommon();
   const { tabletLg } = useMedia();
 
   return (
@@ -23,11 +24,7 @@ const Contacts = () => {
         <p>Свяжитесь с нами, если вам нужна помощь, консультация или у вас появились другие вопросы</p>
       </PageTitle>
 
-      <div
-        css={{
-          backgroundColor: colors.gray100,
-        }}
-      >
+      <ContentSection css={{ padding: 0, backgroundColor: colors.gray100 }}>
         <div
           css={{
             ...pageWrap,
@@ -53,7 +50,7 @@ const Contacts = () => {
             </div>
             <div css={{ marginRight: '32px' }}>
               <p css={{ ...typography.h6, marginBottom: '8px' }}>Адрес</p>
-              <p css={{ ...typography.txt, color: colors.gray700 }}>{contactsData.address}</p>
+              <p css={{ ...typography.txt, color: colors.gray700 }}>{data.contactsData.address}</p>
             </div>
           </div>
           <div css={{ display: 'flex' }}>
@@ -71,7 +68,7 @@ const Contacts = () => {
             </div>
             <div css={{ marginRight: '32px' }}>
               <p css={{ ...typography.h6, marginBottom: '8px' }}>Телефон</p>
-              {contactsData.phones.map(phone => (
+              {data.contactsData.phones.map(phone => (
                 <p key={phone.desc} css={{ ...typography.txt, color: colors.gray700, marginBottom: 0 }}>
                   {phone.number} <span css={{ whiteSpace: 'nowrap' }}>{phone.desc}</span>
                 </p>
@@ -93,11 +90,12 @@ const Contacts = () => {
             </div>
             <div>
               <p css={{ ...typography.h6, marginBottom: '8px' }}>E-mail</p>
-              <p css={{ ...typography.txt, color: colors.gray700 }}>{contactsData.email}</p>
+              <p css={{ ...typography.txt, color: colors.gray700 }}>{data.contactsData.email}</p>
             </div>
           </div>
         </div>
-      </div>
+      </ContentSection>
+
       <div css={{ ...pageWrapS, display: 'flex', [tabletLg]: { display: 'block' } }}>
         <FeedbackForm css={{ width: '40%', [tabletLg]: { width: 'auto' } }} />
         <Map css={{ width: '60%', [tabletLg]: { width: 'auto', height: '700px' } }} />

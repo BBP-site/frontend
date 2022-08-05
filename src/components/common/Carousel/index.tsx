@@ -1,8 +1,8 @@
-import { FC, ReactNode, useState, Children, isValidElement, cloneElement } from 'react';
+import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
 import { CSSObject } from '@emotion/react';
-import { Navigation, Pagination, A11y } from 'swiper';
+import { A11y, Navigation, Pagination } from 'swiper';
 // eslint-disable-next-line import/no-unresolved
-import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react';
+import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 
 import { useMedia } from '@scripts/hooks';
 import { colors } from '@scripts/theme';
@@ -13,11 +13,12 @@ import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 
 export interface ICarouselProps extends SwiperProps {
   css?: CSSObject;
+  className?: string;
   cssSwiper?: CSSObject;
   children?: ReactNode;
 }
 
-const Carousel: FC<ICarouselProps> = ({ css, cssSwiper, children, ...props }) => {
+const Carousel: FC<ICarouselProps> = ({ className, css, cssSwiper, children, ...props }) => {
   const { tabletLg } = useMedia();
   const [paginationEl, setPaginationEl] = useState<HTMLDivElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
@@ -103,7 +104,7 @@ const Carousel: FC<ICarouselProps> = ({ css, cssSwiper, children, ...props }) =>
   };
 
   return (
-    <div css={css}>
+    <div className={className} css={css}>
       <div css={{ position: 'relative' }}>
         <Swiper
           css={swiperCSS}

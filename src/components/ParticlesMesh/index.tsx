@@ -14,9 +14,10 @@ const ParticlesMesh: FC<IParticlesMeshProps> = ({ css, particlesCSS, width = 10,
   <div
     css={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(10, 10px)',
-      gridTemplateRows: 'repeat(4, 10px)',
-      gap: '16px',
+      gridTemplateColumns: `repeat(${width}, 10px)`,
+      gridTemplateRows: `repeat(${height}, 10px)`,
+      rowGap: '16px',
+      columnGap: '16px',
       ...css,
     }}
     {...props}

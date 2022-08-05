@@ -22,6 +22,7 @@ export const colors = {
   gray300: '#cccccc',
   gray200: '#e0e0e0',
   gray100: '#f4f5f5',
+  bannerContent: 'rgb(22,38,53, 0.8)',
 };
 
 export const shadows = {
