@@ -8,14 +8,14 @@ import {ICardBtn, IContentCardProps} from '@components/common/ContentCard';
 import {CSSObject} from "@emotion/react";
 
 interface ICardConfig {
-    title?: React.ReactElement;
-    borderRadius?: string;
-    boxShadow?: string;
-    btn?: ICardBtn;
-    ArrowTransform?: string;
-    height?: string;
-    imageWidth?: string;
-    imageHeight?: string;
+  title?: React.ReactElement;
+  borderRadius?: string;
+  boxShadow?: string;
+  btn?: ICardBtn;
+  ArrowTransform?: string;
+  height?: string;
+  imageWidth?: string;
+  imageHeight?: string;
 }
 
 export interface IContent {
