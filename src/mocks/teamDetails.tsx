@@ -16,7 +16,7 @@ import bestLawyer from '@images/bestLawyer.webp';
 import globalLawExperts from '@images/globalLawExperts.webp';
 
 interface ITeamDetail {
-  id: number;
+  id: string;
   img: string;
   name: string;
   position: string;
@@ -31,7 +31,7 @@ interface ITeamDetail {
 
 export const teamDetails: ITeamDetail[] = [
   {
-    id: 0,
+    id: 'barshevskiy',
     img: barshevskiyDetail.src,
     name: 'Барщевский Михаил Юрьевич',
     position: 'Основатель Коллегии',
@@ -48,7 +48,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 1,
+    id: 'karahanyan',
     img: sumvelDetail.src,
     name: 'Караханян Самвел Гургенович',
     position: 'Президент коллегии, адвокат',
@@ -110,7 +110,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 2,
+    id: 'barkalova',
     img: barkalovaDetail.src,
     name: 'Баркалова Ольга Имануиловна',
     position: 'Старший партнер, адвокат',
@@ -138,7 +138,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 3,
+    id: 'mihalevich',
     img: mihalevichDetail.src,
     name: 'Михалевич Елена Владимировна',
     position: 'Управляющий партнер, адвокат',
@@ -181,7 +181,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 4,
+    id: 'speranskaya',
     img: speranskayaDetail.src,
     name: 'Сперанская Татьяна Владимировна',
     position: 'Партнер, адвокат',
@@ -206,7 +206,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 5,
+    id: 'vdovina',
     img: vdovinaDetail.src,
     name: 'Вдовина Александра Олеговна',
     position: 'Адвокат, медиатор',
@@ -229,7 +229,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 6,
+    id: 'lapina',
     img: lapinaDetail.src,
     name: 'Лапина Ольга Владимировна',
     position: 'Адвокат',
@@ -247,7 +247,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 7,
+    id: 'puhova',
     img: puhovaDetail.src,
     name: 'Мария Михайловна Пухова',
     position: 'Старший юрист',
@@ -275,7 +275,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 8,
+    id: 'aparina',
     img: aparinaDetail.src,
     name: 'Апарина Ксения Васильевна',
     position: 'Юрист',
@@ -290,7 +290,7 @@ export const teamDetails: ITeamDetail[] = [
     ),
   },
   {
-    id: 9,
+    id: 'smirnov',
     img: smirnovDetail.src,
     name: 'Смирнов Владимир Евгеньевич',
     position: 'Юрист',

@@ -1,19 +1,19 @@
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
 
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
-import { teamDetails } from '@scripts/data';
+
+import { teamDetails } from '@mocks/index';
 
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import { ReactComponent as MailIcon } from '@icons/mail.svg';
-import Image from 'next/image';
 
 const TeamDetail = () => {
   const { query } = useRouter();
-  const id = (query && query.id && +query.id) || 0;
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === id) || undefined, [id]);
+  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
 
   const blockCSS: CSSObject = {
     marginBottom: '48px',
@@ -118,6 +118,25 @@ const TeamDetail = () => {
       )}
     </main>
   );
+};
+
+export const getStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+});
+
+export const getStaticProps = async (context: { params: { id: string } }) => {
+  const {
+    params: { id },
+  } = context;
+
+  const detailInfo = teamDetails.find(detail => detail.id === id);
+
+  return !detailInfo
+    ? { notFound: true }
+    : {
+        props: {},
+      };
 };
 
 export default TeamDetail;

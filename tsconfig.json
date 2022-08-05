@@ -3,11 +3,7 @@
     "target": "es6",
     "downlevelIteration": true,
     "importHelpers": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,36 +18,17 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@scripts/*": [
-        "src/scripts/*"
-      ],
-      "@hooks/*": [
-        "src/scripts/hooks/*"
-      ],
-      "@icons/*": [
-        "src/icons/*"
-      ],
-      "@context/*": [
-        "src/context/*"
-      ],
-      "@api/*": [
-        "src/api/*"
-      ],
-      "@images/*": [
-        "src/images/*"
-      ]
+      "@components/*": ["src/components/*"],
+      "@scripts/*": ["src/scripts/*"],
+      "@hooks/*": ["src/scripts/hooks/*"],
+      "@icons/*": ["src/icons/*"],
+      "@context/*": ["src/context/*"],
+      "@api/*": ["src/api/*"],
+      "@images/*": ["src/images/*"],
+      "@mocks/*": ["src/mocks/*"]
     },
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
