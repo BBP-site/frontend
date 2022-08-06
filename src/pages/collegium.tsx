@@ -12,11 +12,12 @@ import honestyURL from '@images/honesty.png';
 import empathyURL from '@images/empathy.png';
 import noteURL from '@icons/note.svg';
 import collegiumURL from '@images/collegium.jpg';
-import achievementsURL from '@images/achievements.jpg';
 
 import Image from 'next/image';
+import {achievements} from "@mocks/achievements";
 import Block from '../components/common/Block';
 import Carousel from '../components/common/Carousel';
+
 
 const firstText: React.ReactElement = (
     <>
@@ -250,8 +251,10 @@ const Collegium = () => {
 
             <ContentSection title="Достижения" css={{backgroundColor: colors.gray100, padding: '32px 0 50px 0'}}>
                 <Carousel css={{marginTop: '32px'}} slidesPerView={3}>
-                    {[1, 2, 3, 4, 5, 6, 7].map(i => (
-                        <Image key={i} src={achievementsURL}/>
+                    {achievements.map(el => (
+                        <div css={{...position.center, height: '440px'}}>
+                            <Image key={el.id} src={el.img}/>
+                        </div>
                     ))}
                 </Carousel>
             </ContentSection>

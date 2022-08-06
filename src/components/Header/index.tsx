@@ -11,8 +11,10 @@ import Button from '@components/common/Button';
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
 import Menu, {MENU_TYPE} from '@components/Menu';
+import {useRouter} from "next/router";
 
 const Header: FC<{}> = () => {
+    const {push} = useRouter();
     const {data} = useCommon();
     const [ruEn, setRuEn] = useState(false);
 
@@ -77,7 +79,8 @@ const Header: FC<{}> = () => {
                             </p>
                         ))}
                     </div>
-                    <Button css={{backgroundColor: colors.blueDark, width: '235px', paddingLeft: 0, paddingRight: 0}}>
+                    <Button onClick={() => push('/contacts')}
+                            css={{backgroundColor: colors.blueDark, width: '235px', paddingLeft: 0, paddingRight: 0}}>
                         Обратная связь
                     </Button>
                     <button

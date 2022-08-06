@@ -28,7 +28,7 @@ const App = ({Component, pageProps}: AppProps) => (
                         minHeight: '100%',
                     },
                     body: {
-                        ...typography.txtMd,
+                        ...typography.txt,
                         color: colors.black,
                     },
                     main: {
