@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTitle from '@components/PageTitle';
 import {CSSObject} from '@emotion/react';
-import {colors, pageWrap, position, typography} from '@scripts/theme';
+import {colors, links, pageWrap, position, typography} from '@scripts/theme';
 
 import ContentSection from '@components/common/contentSection';
 
@@ -17,7 +17,7 @@ import Image from 'next/image';
 import {achievements} from "@mocks/achievements";
 import Block from '../components/common/Block';
 import Carousel from '../components/common/Carousel';
-
+import {useCommon} from "../context/common";
 
 const firstText: React.ReactElement = (
     <>
@@ -133,6 +133,18 @@ const historyText = {
 };
 
 const Collegium = () => {
+    const {data} = useCommon();
+
+    const careerText: React.ReactElement = (
+        <p>
+            Если вы заинтересованы работать в Коллегии адвокатов «Барщевский и партнеры», пожалуйста,
+            пришлите свое резюме и сопроводительное письмо на наш адрес
+            <span css={{marginLeft: '5px'}}>
+                <a css={links.blue} href={`mailto:${data.contactsData?.email}`}>info1@bbp.ru</a>
+            </span>.
+            В теме письма обязательно укажите «Резюме».
+        </p>
+    )
     const contentSectionElementCSS: CSSObject = {
         ...position.center,
         flexDirection: 'column',
@@ -197,7 +209,7 @@ const Collegium = () => {
                         <span>Честность</span>
                     </div>
 
-                    <div css={{...contentSectionElementCSS, width: '262px'}}>
+                    <div css={{...contentSectionElementCSS, width: '200px'}}>
                         <div>
                             <Image src={secretURL}/>
                         </div>
@@ -218,6 +230,10 @@ const Collegium = () => {
             <div css={{padding: '34px 0 34px 0'}}>
                 <div css={{...pageWrap}}>{secondText}</div>
             </div>
+
+            <ContentSection title="Карьера">
+                {careerText}
+            </ContentSection>
 
             <div css={{marginTop: '40px'}}>
                 <ContentSection title="История">

@@ -44,7 +44,7 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({child
                     desc: 'пн-пт 10:00-19:00',
                 },
                 {
-                    number: '+ 7 (495) 755-93-63',
+                    number: '+ 7 (985) 099-93-63',
                     desc: 'круглосуточно',
                 },
             ],

@@ -10,6 +10,7 @@ import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 export interface ICardBtn {
     isLink: boolean;
     text: string;
+    textCLose?: string;
     transform: string;
     url?: string;
 }
@@ -107,7 +108,7 @@ const ContentCard: FC<IContentCardProps> = (
                         }}
                         onClick={onToggle}
                     >
-            {btn?.text}
+            {isOpen ? btn?.textCLose : btn?.text}
 
                         <ArrowIcon
                             css={{
