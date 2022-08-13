@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
-import {colors, links, pageWrap, pageWrapS, position, typography} from '@scripts/theme';
-import {CARD_TYPE} from '@scripts/enums/common/content-card.enum';
-import {useMedia} from '@scripts/hooks';
+import { colors, links, pageWrap, pageWrapS, position, typography } from '@scripts/theme';
+import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+import { useMedia } from '@scripts/hooks';
 
 import Banner from '@components/common/Banner';
 import Button from '@components/common/Button';
@@ -20,21 +20,22 @@ import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 
 import {achievements} from "@mocks/achievements";
-import React from "react";
-import {medias, practicesMain, projects, team} from '../mocks';
+import { medias, practicesMain, projects, team } from '../mocks';
 
 const Home = () => {
-    const {push} = useRouter();
-    const {tabletLg} = useMedia();
+  const { push } = useRouter();
+  const { tabletLg } = useMedia();
 
-    const practicesCards = practicesMain.map(practice => withConfigContentCard(ContentCard, practice, CARD_TYPE.PRACTICE));
-    const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
-    const projectsCards = projects.map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN));
-    const mediasCards = medias.map(media => withConfigContentCard(ContentCard, media, CARD_TYPE.MEDIA));
+  const practicesCards = practicesMain.map(practice =>
+    withConfigContentCard(ContentCard, practice, CARD_TYPE.PRACTICE)
+  );
+  const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
+  const projectsCards = projects.map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN));
+  const mediasCards = medias.map(media => withConfigContentCard(ContentCard, media, CARD_TYPE.MEDIA));
 
-    return (
-        <main>
-            <Banner css={{marginTop: '11px'}}/>
+  return (
+    <main>
+      <Banner css={{ marginTop: '11px' }} />
 
             <section
                 css={{
@@ -124,8 +125,9 @@ const Home = () => {
                 </p>
                 <Carousel
                     css={{marginTop: '32px'}}
-                    slidesPerView={1}
+                    slidesPerView="auto"
                     spaceBetween={16}
+                    loop
                     breakpoints={{
                         900: {
                             slidesPerView: 2,
@@ -148,8 +150,12 @@ const Home = () => {
                 css={{backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative'}}
             >
                 <p>Каждый год мы стремимся к прогрессу и к его достижению</p>
-                <div css={{
-                    marginTop: '40px', ...position.spaceBetween, alignItems: 'flex-start', 'div': {
+                <div
+                    css={{
+                    marginTop: '40px',
+                    ...position.spaceBetween,
+                    alignItems: 'flex-start',
+                    'div': {
                         maxWidth: '202px'
                     }
                 }}>
@@ -158,7 +164,6 @@ const Home = () => {
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
                         <p>года мы оказываем профессиональную юридическую помощь</p>
                     </div>
-
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>1000+</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
@@ -166,13 +171,11 @@ const Home = () => {
                             клиентов
                         </p>
                     </div>
-
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>50+</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
                         <p>абонентских клиентов, <br/> 7 из которых более 30 лет</p>
                     </div>
-
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>85%</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
@@ -366,13 +369,10 @@ const Home = () => {
                     ))}
                 </div>
             </ContentSection>
-            <section
-                id="consultation"
-                css={{...pageWrapS, display: 'flex', [tabletLg]: {display: 'block'}}}
-            >
-                <Map css={{width: '60%', [tabletLg]: {width: 'auto', height: '700px'}}} fullInfo/>
-                <FeedbackForm css={{width: '40%', [tabletLg]: {width: 'auto'}}}/>
-            </section>
+        <section id="consultation" css={{ ...pageWrapS, display: 'flex', [tabletLg]: { display: 'block' } }}>
+            <Map css={{ width: '60%', [tabletLg]: { width: 'auto', height: '700px' } }} fullInfo />
+            <FeedbackForm css={{ ...pageWrap, width: '40%', [tabletLg]: { width: 'auto' } }} />
+        </section>
         </main>
     );
 };

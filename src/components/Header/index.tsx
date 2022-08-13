@@ -1,22 +1,23 @@
-import {FC, useState} from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import {useCommon} from '@context/common';
+import { useCommon } from '@context/common';
 
-import {colors, pageWrap, shadows, typography} from '@scripts/theme';
+import { colors, pageWrap, shadows, typography } from '@scripts/theme';
 
 import Button from '@components/common/Button';
+import Modal from '@components/common/Modal';
+import FeedbackForm from '@components/FeedbackForm';
+import Menu, { MENU_TYPE } from '@components/Menu';
 
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
-import Menu, {MENU_TYPE} from '@components/Menu';
-import {useRouter} from "next/router";
 
 const Header: FC<{}> = () => {
-    const {push} = useRouter();
     const {data} = useCommon();
     const [ruEn, setRuEn] = useState(false);
+    const [openFeedback, setOpenFeedback] = useState(false);
 
     return (
         <header
@@ -71,16 +72,22 @@ const Header: FC<{}> = () => {
                         {data.contactsData.phones.map(phone => (
                             <p key={phone.desc} css={{...typography.txt, color: colors.black, marginBottom: '4px'}}>
                                 {phone.number}{' '}
-                                <span css={{
-                                    color: colors.gray700,
-                                    fontSize: '14px',
-                                    lineHeight: '16px'
-                                }}>{phone.desc}</span>
+                                <span
+                                    css={{
+                                        color: colors.gray700,
+                                        fontSize: '14px',
+                                        lineHeight: '16px'
+                                    }}
+                                >
+                                    {phone.desc}
+                                </span>
                             </p>
                         ))}
                     </div>
-                    <Button onClick={() => push('/contacts')}
-                            css={{backgroundColor: colors.blueDark, width: '235px', paddingLeft: 0, paddingRight: 0}}>
+                    <Button
+                        onClick={() => setOpenFeedback(true)}
+                        css={{backgroundColor: colors.blueDark, width: '235px', paddingLeft: 0, paddingRight: 0}}
+                    >
                         Связаться с нами
                     </Button>
                     <button
@@ -105,6 +112,14 @@ const Header: FC<{}> = () => {
             </div>
             <hr css={{border: `0.5px solid ${colors.gray300}`}}/>
             <Menu type={MENU_TYPE.HEADER}/>
+
+            <Modal
+                css={{ ...pageWrap, margin: 0, padding: '32px 48px' }}
+                isOpen={openFeedback}
+                onRequestClose={() => setOpenFeedback(false)}
+            >
+                <FeedbackForm css={{ padding: 0, maxWidth: '400px' }} />
+            </Modal>
         </header>
     );
 };
