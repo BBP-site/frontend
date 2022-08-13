@@ -44,18 +44,6 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
         </div>
     );
 
-    const projectMainTitle: React.ReactElement = (
-        <div
-            className="card-title"
-            css={{
-                ...position.start,
-                marginBottom: '20px',
-            }}
-        >
-            <span>{content.date}</span>
-        </div>
-    );
-
     const mediaTitle: React.ReactElement = (
         <div
             className="card-title"
@@ -127,7 +115,8 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
             cardConfig.height = '35px';
             break;
         case CARD_TYPE.PROJECTS_MAIN:
-            cardConfig.title = projectMainTitle;
+            cardConfig.borderRadius = '16px';
+            cardConfig.boxShadow = shadows.around.boxShadow;
             cardConfig.btn = {
                 isLink: true,
                 url: `projects/${content.id}`,

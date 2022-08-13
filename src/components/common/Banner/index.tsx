@@ -20,7 +20,7 @@ const Banner: FC<IBannerProps> = ({css, className}) => {
         ...pageWrapS,
         ...position.start,
         padding: '0',
-        height: '600px',
+        height: '500px',
         backgroundImage: `url(${bannerURL.src})`,
         ...css,
     };
@@ -47,13 +47,13 @@ const Banner: FC<IBannerProps> = ({css, className}) => {
                         height: '100%',
                     }}
                 >
-                    <p css={{fontSize: '32px', lineHeight: '48px', color: colors.white, margin: '0'}}>
+                    <p css={{fontSize: '28px', lineHeight: '48px', color: colors.white, margin: '0'}}>
                         Коллегия адвокатов города Москвы
                     </p>
 
                     <h1 css={{color: colors.white}}>БАРЩЕВСКИЙ И ПАРТНЕРЫ</h1>
 
-                    <p css={{marginTop: '32px', ...typography.txtMd}}>
+                    <p css={{fontSize: '20px'}}>
                         Наша задача - быть рядом, когда возникают правовые проблемы, всегда помогать и находить выход из
                         любых
                         ситуаций.
