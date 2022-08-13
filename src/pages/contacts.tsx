@@ -97,7 +97,7 @@ const Contacts = () => {
       </ContentSection>
 
       <div css={{ ...pageWrapS, display: 'flex', [tabletLg]: { display: 'block' } }}>
-        <FeedbackForm css={{ width: '40%', [tabletLg]: { width: 'auto' } }} />
+        <FeedbackForm css={{ ...pageWrap, width: '40%', [tabletLg]: { width: 'auto' } }} />
         <Map css={{ width: '60%', [tabletLg]: { width: 'auto', height: '700px' } }} />
       </div>
     </main>
