@@ -17,11 +17,10 @@ import FeedbackForm from '@components/FeedbackForm';
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 
 import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
-import rating1URL from '@images/rating1.webp';
-import rating2URL from '@images/rating2.webp';
-import rating3URL from '@images/rating3.webp';
 import barjevskyURL from '@images/barjevsky.webp';
 
+import {achievements} from "@mocks/achievements";
+import React from "react";
 import {medias, practicesMain, projects, team} from '../mocks';
 
 const Home = () => {
@@ -41,7 +40,7 @@ const Home = () => {
                 css={{
                     ...pageWrap,
                     paddingBottom: '48px',
-                    paddingTop: '88px',
+                    paddingTop: '15px',
                     paddingRight: 0,
                     display: 'flex',
                 }}
@@ -101,7 +100,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section css={{...pageWrap, paddingBottom: '48px', paddingTop: '88px'}}>
+            <section css={{...pageWrap, paddingBottom: '48px', paddingTop: '15px'}}>
                 <h2 css={{marginBottom: '8px', alignSelf: 'flex-start'}}>Команда</h2>
                 <Link href="/team" passHref>
                     <a
@@ -146,19 +145,20 @@ const Home = () => {
                 title="Наши результаты"
                 titleLvl={2}
                 cssTitle={{marginBottom: '8px', color: colors.white}}
-                css={{backgroundColor: colors.blueDark, padding: '88px 0', color: colors.white, position: 'relative'}}
+                css={{backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative'}}
             >
                 <p>Каждый год мы стремимся к прогрессу и к его достижению</p>
                 <div css={{
                     marginTop: '40px', ...position.spaceBetween, alignItems: 'flex-start', 'div': {
-                        maxWidth: '240px'
+                        maxWidth: '202px'
                     }
                 }}>
                     <div>
-                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>32</p>
+                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>32+</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
                         <p>года мы оказываем профессиональную юридическую помощь</p>
                     </div>
+
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>1000+</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
@@ -166,19 +166,13 @@ const Home = () => {
                             клиентов
                         </p>
                     </div>
-                    {/* <div> */}
-                    {/*    <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>500+</p> */}
-                    {/*    <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/> */}
-                    {/*    <p> */}
-                    {/*        более 500 */}
-                    {/*        <br/> дел ежегодно */}
-                    {/*    </p> */}
-                    {/* </div> */}
+
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>50+</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
-                        <p>абонентских клиентов, 7 из которых более 30 лет</p>
+                        <p>абонентских клиентов, <br/> 7 из которых более 30 лет</p>
                     </div>
+
                     <div>
                         <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>85%</p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
@@ -204,36 +198,27 @@ const Home = () => {
             </ContentSection>
 
             <ContentSection
-                title="Рейтинги"
+                title="Рейтинги и награды"
                 titleLvl={2}
                 cssTitle={{marginBottom: '4px'}}
-                css={{backgroundColor: colors.gray100, padding: '92px 0'}}
+                css={{backgroundColor: colors.gray100, padding: '20px 0'}}
             >
-                <p>Наш профессионализм ежегодно подтверждают международными и российскими рейтинговыми агентствами</p>
-                <div css={{...position.spaceBetween, alignItems: 'flex-start', marginTop: '40px'}}>
-                    <div css={{width: '368px', marginRight: '24px'}}>
-                        <Image src={rating1URL} width={368} height={192}/>
-                        <p css={{...typography.txt, marginTop: '16px'}}>
-                            Вошли в рейтинг лучших юридических компаний в номинациях &quot;Уголовное право и
-                            процесс&quot;,
-                            &quot;Арбитражное судопроизводство&quot;, &quot;Разрешение споров&quot;
-                        </p>
-                    </div>
-                    <div css={{width: '368px', marginRight: '24px'}}>
-                        <Image src={rating2URL} width={368} height={192}/>
-                        <p css={{...typography.txt, marginTop: '16px'}}>
-                            За эффективное взаимодействие с органами государственной власти
-                        </p>
-                    </div>
-                    <div css={{width: '368px'}}>
-                        <Image src={rating3URL} width={368} height={192}/>
-                        <p css={{...typography.txt, marginTop: '16px'}}>
-                            Адвокаты Коллегии признаны одними из лучших юристов по версии старейшего юридического
-                            агентства Best
-                            Lawyers.
-                        </p>
-                    </div>
-                </div>
+                <p>
+                    Наш профессионализм ежегодно подтверждается российскими и
+                    международными рейтинговыми агентствами, а также отмечается наградами в области
+                    права.
+                </p>
+                <Carousel slidesPerView={3}>
+                    {achievements.map(el => (
+                        <div css={{...position.center, height: '290px', width: '340px'}}>
+                            {el.isHaveSize ?
+                                <Image key={el.id} src={el.img.src} width={el.width} height={el.height}/>
+                                :
+                                <Image key={el.id} src={el.img}/>
+                            }
+                        </div>
+                    ))}
+                </Carousel>
             </ContentSection>
 
             <ContentSection isWrapS>
@@ -293,7 +278,7 @@ const Home = () => {
             <section css={{...pageWrapS, backgroundColor: colors.white}}>
                 <div css={{display: 'flex'}}>
                     <div css={{backgroundColor: colors.blueDark, width: '33.5%', position: 'relative'}}>
-                        <div css={{...pageWrap, paddingTop: '80px'}}>
+                        <div css={{...pageWrap, paddingTop: '30px'}}>
                             <h2 css={{color: colors.white}}>Проекты</h2>
                             <Link href="/projects" passHref>
                                 <a
@@ -315,7 +300,7 @@ const Home = () => {
                             <div
                                 css={{
                                     width: '24px',
-                                    height: '300px',
+                                    height: '250px',
                                     backgroundColor: colors.cyan,
                                 }}
                             />
@@ -337,7 +322,7 @@ const Home = () => {
                                 display: 'grid',
                                 gridTemplateRows: '1fr 1fr',
                                 gridTemplateColumns: 'auto auto',
-                                rowGap: '24px',
+                                gap: '24px',
                             }}
                         >
                             {projectsCards.map((card, index) => (
@@ -352,7 +337,7 @@ const Home = () => {
                 title="Медиа"
                 titleLvl={2}
                 cssTitle={{marginBottom: '8px'}}
-                css={{backgroundColor: colors.gray100, padding: '72px 0'}}
+                css={{backgroundColor: colors.gray100, padding: '15px 0'}}
             >
                 <Link href="/media" passHref>
                     <a

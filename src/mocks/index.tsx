@@ -31,9 +31,7 @@ export * from './teamDetails';
 
 const teamCSS: CSSObject = {
     p: {
-        height: '50px',
         overflow: 'hidden',
-        textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         width: '350px',
     },
@@ -44,11 +42,10 @@ export const team: IContent[] = [
         id: 'barshevskiy',
         contentHtml: (
             <>
-                <h5>Барщевский Михаил Юрьевич</h5>
+                <h6>Барщевский Михаил Юрьевич</h6>
                 <p>
                     Основатель Коллегии,
-                    <br/> Заслуженный юрист Российской Федерации,
-                    <br/> Доктор юридических наук, профессор
+                    <br/> Заслуженный юрист РФ, д.ю.н.
                 </p>
                 <div className="line"/>
             </>
@@ -60,10 +57,10 @@ export const team: IContent[] = [
         id: 'karahanyan',
         contentHtml: (
             <>
-                <h5>Караханян Самвел Гургенович</h5>
+                <h6>Караханян Самвел Гургенович</h6>
                 <p>
-                    Президент, адвокат,
-                    <br/> Доктор юридических наук
+                    Президент Коллегии, адвокат,
+                    <br/> доктор юридических наук
                 </p>
                 <div className="line"/>
             </>
@@ -75,10 +72,10 @@ export const team: IContent[] = [
         id: 'mihalevich',
         contentHtml: (
             <>
-                <h5>Михалевич Елена Владимировна</h5>
+                <h6>Михалевич Елена Владимировна</h6>
                 <p>
                     Управляющий партнер,
-                    <br/> Адвокат, медиатор
+                    <br/> адвокат, медиатор
                 </p>
                 <div className="line"/>
             </>
@@ -90,10 +87,10 @@ export const team: IContent[] = [
         id: 'barkalova',
         contentHtml: (
             <>
-                <h5>Баркалова Ольга Имануиловна</h5>
+                <h6>Баркалова Ольга Имануиловна</h6>
                 <p>
                     Старший партнер, адвокат, <br/>
-                    Кандидат филологических наук, доктор исторических наук, профессор РАН
+                    кандидат филологических наук
                 </p>
                 <div className="line"/>
             </>
@@ -105,7 +102,7 @@ export const team: IContent[] = [
         id: 'speranskaya',
         contentHtml: (
             <>
-                <h5>Сперанская Татьяна Владимировна</h5>
+                <h6>Сперанская Татьяна Владимировна</h6>
                 <p>Партнёр, адвокат</p>
                 <div className="line"/>
             </>
@@ -117,7 +114,7 @@ export const team: IContent[] = [
         id: 'vdovina',
         contentHtml: (
             <>
-                <h5>Вдовина Александра Олеговна</h5>
+                <h6>Вдовина Александра Олеговна</h6>
                 <p>Адвокат, медиатор</p>
                 <div className="line"/>
             </>
@@ -129,7 +126,7 @@ export const team: IContent[] = [
         id: 'lapina',
         contentHtml: (
             <>
-                <h5>Лапина Ольга Владимировна</h5>
+                <h6>Лапина Ольга Владимировна</h6>
                 <p>Адвокат</p>
                 <div className="line"/>
             </>
@@ -141,7 +138,7 @@ export const team: IContent[] = [
         id: 'puhova',
         contentHtml: (
             <>
-                <h5>Пухова Мария Михайловна </h5>
+                <h6>Пухова Мария Михайловна </h6>
                 <p>Старший юрист</p>
                 <div className="line"/>
             </>
@@ -153,7 +150,7 @@ export const team: IContent[] = [
         id: 'aparina',
         contentHtml: (
             <>
-                <h5>Апарина Ксения Васильевна</h5>
+                <h6>Апарина Ксения Васильевна</h6>
                 <p>Юрист</p>
                 <div className="line"/>
             </>
@@ -165,7 +162,7 @@ export const team: IContent[] = [
         id: 'smirnov',
         contentHtml: (
             <>
-                <h5>Смирнов Владимир Евгеньевич</h5>
+                <h6>Смирнов Владимир Евгеньевич</h6>
                 <p>Юрист</p>
                 <div className="line"/>
             </>
@@ -424,7 +421,7 @@ export const practices: IContent[] = [
                     <li>представление интересов работодателей и работников в суде.</li>
                 </ul>
 
-                <a href="#">Адвокаты нашей Коллегии являются авторами книг, связанных с трудовыми отношениями.</a>
+                Адвокаты нашей Коллегии являются авторами <a href="#">книг, связанных с трудовыми отношениями.</a>
             </>
         ),
         img: practice4URL,

@@ -30,6 +30,7 @@ const App = ({Component, pageProps}: AppProps) => (
                     body: {
                         ...typography.txt,
                         color: colors.black,
+                        scrollBehavior: 'smooth',
                     },
                     main: {
                         flex: '1 1 auto',
@@ -45,7 +46,7 @@ const App = ({Component, pageProps}: AppProps) => (
                     h5: typography.h5,
                     h6: typography.h6,
                     p: {
-                        marginBottom: '25px',
+                        marginBottom: '20px',
                     },
                     'p:last-of-type': {
                         marginBottom: '0px',
@@ -53,7 +54,7 @@ const App = ({Component, pageProps}: AppProps) => (
                     ul: {
                         listStyle: 'none',
                         marginLeft: '5px',
-                        marginBottom: '25px',
+                        marginBottom: '20px',
                     },
                     'ul li:before': {
                         content: '"-"',

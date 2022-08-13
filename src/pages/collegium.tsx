@@ -14,9 +14,7 @@ import noteURL from '@icons/note.svg';
 import collegiumURL from '@images/collegium.jpg';
 
 import Image from 'next/image';
-import {achievements} from "@mocks/achievements";
 import Block from '../components/common/Block';
-import Carousel from '../components/common/Carousel';
 import {useCommon} from "../context/common";
 
 const firstText: React.ReactElement = (
@@ -264,16 +262,6 @@ const Collegium = () => {
                     </div>
                 </ContentSection>
             </div>
-
-            <ContentSection title="Достижения" css={{backgroundColor: colors.gray100, padding: '32px 0 50px 0'}}>
-                <Carousel css={{marginTop: '32px'}} slidesPerView={3}>
-                    {achievements.map(el => (
-                        <div css={{...position.center, height: '440px'}}>
-                            <Image key={el.id} src={el.img}/>
-                        </div>
-                    ))}
-                </Carousel>
-            </ContentSection>
         </main>
     );
 };

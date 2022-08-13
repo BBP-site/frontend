@@ -73,7 +73,7 @@ const Header: FC<{}> = () => {
                                 {phone.number}{' '}
                                 <span css={{
                                     color: colors.gray700,
-                                    fontSize: '12px',
+                                    fontSize: '14px',
                                     lineHeight: '16px'
                                 }}>{phone.desc}</span>
                             </p>
@@ -81,7 +81,7 @@ const Header: FC<{}> = () => {
                     </div>
                     <Button onClick={() => push('/contacts')}
                             css={{backgroundColor: colors.blueDark, width: '235px', paddingLeft: 0, paddingRight: 0}}>
-                        Обратная связь
+                        Связаться с нами
                     </Button>
                     <button
                         type="button"

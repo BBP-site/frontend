@@ -4,10 +4,8 @@ import Image from "next/image";
 
 import {useCommon} from '@context/common';
 
-import {colors, pageWrap, position, typography} from '@scripts/theme';
+import {colors, links, pageWrap, position, typography} from '@scripts/theme';
 import {CSSObject} from "@emotion/react";
-
-import Menu, {MENU_TYPE} from "@components/Menu";
 
 import logoIconURL from "@icons/whiteLogo.svg";
 import logoTextIconURL from "@icons/whiteLogoText.svg";
@@ -19,7 +17,7 @@ import emailURL from "@icons/email.svg";
 const footerCss: CSSObject = {
     ...position.center,
     ...typography.txt,
-    height: '184px',
+    height: '120px',
     backgroundColor: colors.blueDark,
     color: colors.white,
     width: '100%',
@@ -36,7 +34,7 @@ const mainBlockCSS: CSSObject = {
 
 const rightsCSS: CSSObject = {
     ...position.center,
-    ...typography.txtSm,
+    ...typography.txt,
     width: '100%',
     height: '32px',
     backgroundColor: colors.blueSuperDark,
@@ -47,10 +45,6 @@ const Footer: FC = () => {
 
     return (
         <footer css={footerCss}>
-            <div css={{...pageWrap, margin: 'none', width: '100%'}}>
-                <Menu type={MENU_TYPE.FOOTER}/>
-            </div>
-
             <div css={mainBlockCSS}>
                 <div css={{display: 'flex', alignItems: 'center'}}>
                     <Link href="/" passHref>
@@ -77,20 +71,24 @@ const Footer: FC = () => {
                         </a>
                     </Link>
 
-                    <span css={{...typography.txtSm, marginLeft: '16px'}}>
-                Коллегия адвокатов города Москвы
-            </span>
+                    <span css={{marginLeft: '16px'}}>
+                        Коллегия адвокатов города Москвы
+                    </span>
                 </div>
 
                 <div css={{
                     ...position.end,
-                    ...typography.txtSm,
+                    ...typography.txt,
                     flexDirection: 'row',
                     'a': {
                         ...position.center,
                         marginRight: '25px',
                         cursor: 'pointer',
                         color: colors.white,
+                    },
+
+                    'a:last-of-type': {
+                        marginRight: '0px'
                     }
                 }}>
                     <Link href="/contacts" passHref>
@@ -100,11 +98,17 @@ const Footer: FC = () => {
                         </a>
                     </Link>
 
-
                     <Link href={`tel:${data.contactsData?.phones[0]?.number}`} passHref>
                         <a>
                             <Image src={phoneURL} width="16px" height="16px"/>
-                            <span css={{marginLeft: '8px'}}>{data.contactsData?.phones[0]?.number}</span>
+                            <div css={{marginLeft: '8px'}}>
+                                {data.contactsData.phones.map(phone => (
+                                    <p key={phone.desc}
+                                       css={{...typography.txt, marginBottom: '4px'}}>
+                                        {phone.number}
+                                    </p>
+                                ))}
+                            </div>
                         </a>
                     </Link>
 
@@ -114,20 +118,33 @@ const Footer: FC = () => {
                             <span css={{marginLeft: '8px'}}>{data.contactsData?.email}</span>
                         </a>
                     </Link>
-
                 </div>
             </div>
 
             <div css={rightsCSS}>
                 <span
                     css={{
-                        ...position.start,
+                        ...position.spaceBetween,
                         ...pageWrap,
                         margin: 'none',
                         padding: '0 80px',
                         width: '100%'
                     }}
-                >Все права защищены, Коллегия адвокатов города Москвы  «БАРЩЕВСКИЙ И ПАРТНЕРЫ»  2003—2022 ©
+                >
+                    Все права защищены, Коллегия адвокатов города Москвы  «БАРЩЕВСКИЙ И ПАРТНЕРЫ»  2003—2022 ©
+                    <Link href='#' passHref>
+                        <a>
+                            <span
+                                css={{
+                                    ...links.white,
+                                    marginLeft: '8px',
+                                    fontSize: '14px'
+                                }}
+                            >
+                                Политика обработки персональных данных
+                            </span>
+                        </a>
+                    </Link>
                 </span>
             </div>
         </footer>
