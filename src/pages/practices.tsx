@@ -24,7 +24,11 @@ const Practices = () => {
       </PageTitle>
       <div css={{ ...pageWrap, marginBottom: '48px' }}>
         {practiceCards.map((card, index) => (
-          <div key={practices[index].id} css={{ marginBottom: '24px', a: { ...links.blue } }}>
+          <div
+            key={practices[index].id}
+            css={{ paddingTop: '150px', marginTop: '-150px', marginBottom: '24px', a: { ...links.blue } }}
+            id={practices[index].id}
+          >
             {card()}
           </div>
         ))}

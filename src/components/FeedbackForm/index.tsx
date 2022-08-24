@@ -19,9 +19,11 @@ export interface IFeedbackFormProps {
 const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...props }) => {
   const labelCSS: CSSObject = {
     ...typography.txt,
-    marginBottom: '16px',
+    paddingBottom: '20px',
+    marginBottom: '8px',
     display: 'flex',
     flexDirection: 'column',
+    position: 'relative',
     '&::focus': {
       outline: 'none',
     },
@@ -62,6 +64,8 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
         span: {
           ...typography.txtExtraSm,
           color: colors.red,
+          position: 'absolute',
+          bottom: 0,
         },
       }}
       {...props}
@@ -118,20 +122,22 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               <Field name="question">{({ field }: FieldProps) => <textarea {...field} />}</Field>
               {errors.question && touched.question ? <span>{errors.question}</span> : null}
             </label>
-            <Field name="privacy">
-              {({ field }: FieldProps) => (
-                <Checkbox {...field} name={field.name} checked={field.value}>
-                  Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте
-                  bbp.ru, в соответствии с{' '}
-                  <Link href="/" passHref>
-                    <a css={{ ...links.blue }} target="_blank">
-                      Политикой обработки персональных данных
-                    </a>
-                  </Link>
-                </Checkbox>
-              )}
-            </Field>
-            {errors.privacy && touched.privacy ? <span>{errors.privacy}</span> : null}
+            <div css={{ position: 'relative', paddingBottom: '20px' }}>
+              <Field name="privacy">
+                {({ field }: FieldProps) => (
+                  <Checkbox {...field} name={field.name} checked={field.value}>
+                    Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте
+                    bbp.ru, в соответствии с{' '}
+                    <Link href="/" passHref>
+                      <a css={{ ...links.blue }} target="_blank">
+                        Политикой обработки персональных данных
+                      </a>
+                    </Link>
+                  </Checkbox>
+                )}
+              </Field>
+              {errors.privacy && touched.privacy ? <span>{errors.privacy}</span> : null}
+            </div>
             <Button
               type="submit"
               disabled={!values.privacy}
