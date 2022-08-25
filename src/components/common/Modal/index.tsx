@@ -26,12 +26,13 @@ const Modal: FC<IModal> = ({ isOpen, children, className, onRequestClose, ...pro
           contentRef={node => setContentRef(node)}
           className={{
             base: `${css({
-              maxHeight: '100%',
               background: colors.white,
               position: 'relative',
               transform: 'scale(0.9)',
               transition: 'transform ease 150ms',
               borderRadius: '8px',
+              height: '100%',
+              maxHeight: '859px',
               '&:focus-visible': {
                 outline: 'none',
               },
@@ -63,7 +64,7 @@ const Modal: FC<IModal> = ({ isOpen, children, className, onRequestClose, ...pro
           }}
           {...props}
         >
-          <div css={{ position: 'relative' }}>
+          <div css={{ position: 'relative', overflow: 'scroll', height: '100%' }}>
             <button
               type="button"
               css={{
