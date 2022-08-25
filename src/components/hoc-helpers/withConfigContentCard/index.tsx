@@ -16,6 +16,7 @@ interface ICardConfig {
   height?: string;
   imageWidth?: string;
   imageHeight?: string;
+  isOpen?: boolean;
 }
 
 export interface IContent {
@@ -35,7 +36,12 @@ export interface IContentPractice extends IContent {
   title: string;
 }
 
-const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content: IContent, cardType: CARD_TYPE) => {
+const withConfigContentCard = (
+  WrappedComponent: FC<IContentCardProps>,
+  content: IContent,
+  cardType: CARD_TYPE,
+  isOpen?: boolean
+) => {
   const cardConfig: ICardConfig = {};
 
   const projectTitle: React.ReactElement = (
@@ -86,6 +92,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
 
   switch (cardType) {
     case CARD_TYPE.PRACTICE:
+      cardConfig.isOpen = isOpen;
       cardConfig.borderRadius = '16px';
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
@@ -156,6 +163,7 @@ const withConfigContentCard = (WrappedComponent: FC<IContentCardProps>, content:
       height={cardConfig.height}
       imageWidth={cardConfig.imageWidth}
       imageHeight={cardConfig.imageHeight}
+      defaultOpen={cardConfig.isOpen}
     />
   );
 };

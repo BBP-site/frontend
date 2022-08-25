@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
@@ -26,6 +26,7 @@ export interface IContentCardProps {
   height?: string;
   imageWidth?: string;
   imageHeight?: string;
+  defaultOpen?: boolean;
 }
 
 const ContentCard: FC<IContentCardProps> = ({
@@ -39,9 +40,15 @@ const ContentCard: FC<IContentCardProps> = ({
   height,
   imageWidth,
   imageHeight,
+  defaultOpen = false,
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { push } = useRouter();
+  const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
+
+  useEffect(() => {
+    setIsOpen(defaultOpen);
+  }, [defaultOpen]);
+
   const cardCSS: CSSObject = {
     display: 'flex',
     alignItems: 'start',

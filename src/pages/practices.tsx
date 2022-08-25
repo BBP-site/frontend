@@ -1,13 +1,24 @@
+import { useRouter } from 'next/router';
+
 import PageTitle from '@components/PageTitle';
 import ContentCard from '@components/common/ContentCard';
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 
 import { links, pageWrap } from '@scripts/theme';
 import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+
 import { practices } from '@mocks/index';
+import { useEffect, useState } from 'react';
 
 const Practices = () => {
-  const practiceCards = practices.map(practice => withConfigContentCard(ContentCard, practice, CARD_TYPE.PRACTICE));
+  const { asPath } = useRouter();
+  const [curAnchor, setCurAnchor] = useState<string | null>();
+
+  useEffect(() => setCurAnchor(asPath.split('#')[1]), [asPath]);
+
+  const practiceCards = practices.map(practice =>
+    withConfigContentCard(ContentCard, practice, CARD_TYPE.PRACTICE, practice.id === curAnchor)
+  );
 
   return (
     <main css={{ height: '100%' }}>
