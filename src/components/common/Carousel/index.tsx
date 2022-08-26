@@ -15,10 +15,20 @@ export interface ICarouselProps extends SwiperProps {
   css?: CSSObject;
   className?: string;
   cssSwiper?: CSSObject;
+  pagination?: boolean;
+  smallArrows?: boolean;
   children?: ReactNode;
 }
 
-const Carousel: FC<ICarouselProps> = ({ className, css, cssSwiper, children, ...props }) => {
+const Carousel: FC<ICarouselProps> = ({
+  className,
+  css,
+  cssSwiper,
+  pagination = true,
+  smallArrows = false,
+  children,
+  ...props
+}) => {
   const { tabletLg } = useMedia();
   const [paginationEl, setPaginationEl] = useState<HTMLDivElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
@@ -69,7 +79,15 @@ const Carousel: FC<ICarouselProps> = ({ className, css, cssSwiper, children, ...
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '8px',
-    backgroundColor: colors.blue,
+    backgroundColor: !smallArrows ? colors.blue : 'transparent',
+    ...(smallArrows && {
+      '&:enabled:hover': {
+        backgroundColor: 'transparent',
+      },
+      '&:enabled:active': {
+        border: 'transparent',
+      },
+    }),
     ':disabled': {
       display: 'none',
     },
@@ -77,7 +95,7 @@ const Carousel: FC<ICarouselProps> = ({ className, css, cssSwiper, children, ...
 
   const btnIconCSS: CSSObject = {
     path: {
-      stroke: colors.white,
+      stroke: !smallArrows ? colors.white : colors.gray800,
     },
   };
 
@@ -112,7 +130,7 @@ const Carousel: FC<ICarouselProps> = ({ className, css, cssSwiper, children, ...
           spaceBetween={50}
           slidesPerView={3}
           navigation={{ prevEl, nextEl }}
-          pagination={{ clickable: true, el: paginationEl }}
+          pagination={pagination && { clickable: true, el: paginationEl }}
           {...props}
         >
           {Children.map(children, child => {
