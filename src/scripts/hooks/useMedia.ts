@@ -14,7 +14,7 @@ type dataProps = Record<Breakpoint, string>;
 
 export const useMedia = () => {
   const breakpoints = {
-    desktopSize: 1200,
+    desktop: 1200,
     tabletLg: 1024,
     tablet: 768,
     mobileLg: 640,

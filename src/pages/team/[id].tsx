@@ -1,142 +1,171 @@
-import { useMemo } from 'react';
-import { useRouter } from 'next/router';
+import React, {useMemo} from 'react';
+import {useRouter} from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CSSObject } from '@emotion/react';
+import {CSSObject} from '@emotion/react';
 
-import { colors, links, pageWrap, position, typography } from '@scripts/theme';
+import {colors, links, pageWrap, typography} from '@scripts/theme';
 
-import { teamDetails } from '@mocks/index';
+import {teamDetails} from '@mocks/index';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
-import { ReactComponent as MailIcon } from '@icons/mail.svg';
+import PageTitle from '@components/PageTitle';
+import Carousel from '@components/common/Carousel';
+
+import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
+import mailIconURL from '@icons/mail.svg';
 
 const TeamDetail = () => {
-  const { query } = useRouter();
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+    const {query} = useRouter();
+    const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
 
-  const blockCSS: CSSObject = {
-    marginBottom: '48px',
-    'p:first-of-type': {
-      ...typography.h5,
-      marginBottom: '24px',
-    },
-    'p:not(:first-of-type)': {
-      ...typography.txt,
-      color: colors.gray700,
-      marginBottom: '16px',
-    },
-    ul: {
-      margin: 0,
-      ...typography.txt,
-      color: colors.gray700,
-      li: {
-        marginBottom: '16px',
-        '&::before': {
-          content: 'none',
+    const blockCSS: CSSObject = {
+        marginBottom: '24px',
+        span: {
+            ...typography.h5,
+            display: 'inline-block',
+            marginBottom: '8px',
         },
-      },
-    },
-  };
+        p: {
+            ...typography.txt,
+            color: colors.gray700,
+            marginBottom: '8px',
+        },
+        ul: {
+            margin: 0,
+            ...typography.txt,
+            color: colors.gray700,
+            listStyle: 'disc',
+            marginLeft: '24px',
+            li: {
+                marginBottom: '8px',
+                '&::before': {
+                    display: 'none',
+                },
+            },
+        },
+    };
 
-  return (
-    <main css={{ ...pageWrap, width: '100%', marginTop: '24px', marginBottom: '72px' }}>
-      {detailInfo && (
-        <>
-          <Link href="/team" passHref>
-            <a
-              css={{
-                ...links.blue,
-                display: 'inline-flex',
-                alignItems: 'center',
-                alignSelf: 'flex-start',
-                marginBottom: '32px',
-              }}
-            >
-              <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
-            </a>
-          </Link>
-          <div css={{ display: 'flex' }}>
-            <div css={{ marginRight: '72px', minWidth: '400px' }}>
-              <Image src={detailInfo.img} width={400} height={578} objectFit="cover" />
-              <p css={{ ...typography.h5, marginBottom: '4px' }}>{detailInfo.name}</p>
-              <p css={{ ...typography.txtMd, color: colors.gray600, marginBottom: 0 }}>{detailInfo.position}</p>
-              {detailInfo.degree &&
-                detailInfo.degree.map(degree => (
-                  <p key={degree} css={{ ...typography.txtMd, color: colors.gray600, marginBottom: 0 }}>
-                    {degree}
-                  </p>
-                ))}
-              {detailInfo.email && (
-                <div css={{ display: 'flex', alignItems: 'center', marginTop: '32px' }}>
-                  <MailIcon css={{ marginRight: '14px' }} />
-                  <p css={{ ...typography.txt }}>{detailInfo.email}</p>
-                </div>
-              )}
-              {detailInfo.revardsIcons && (
-                <div css={{ marginTop: '48px', ...position.spaceBetween, flexWrap: 'wrap' }}>
-                  {detailInfo.revardsIcons.map(iconData => (
-                    <Image
-                      key={iconData.url}
-                      css={{ position: 'relative' }}
-                      src={iconData.url}
-                      width={iconData.width}
-                      height={iconData.height}
+    return (
+        <main css={{width: '100%', marginTop: '16px', marginBottom: '72px'}}>
+            {detailInfo && (
+                <>
+                    <div css={{...pageWrap, marginBottom: '16px'}}>
+                        <Link href="/team" passHref>
+                            <a
+                                css={{
+                                    ...links.blue,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    alignSelf: 'flex-start',
+                                }}
+                            >
+                                <ArrowIcon css={{marginRight: '10px', transform: 'rotate(-90deg)'}}/> Назад
+                            </a>
+                        </Link>
+                    </div>
+                    <PageTitle
+                        title={detailInfo.name}
+                        css={{marginBottom: '40px'}}
+                        cssInner={{paddingTop: '16px', paddingBottom: '16px', h1: {marginBottom: 0}}}
                     />
-                  ))}
-                </div>
-              )}
-            </div>
-            <div>
-              {detailInfo.experienceHTML && (
-                <div css={blockCSS}>
-                  <p>Стаж юридической практики</p>
-                  {detailInfo.experienceHTML}
-                </div>
-              )}
-              {detailInfo.revardsHTML && (
-                <div css={blockCSS}>
-                  <p>Награды</p>
-                  {detailInfo.revardsHTML}
-                </div>
-              )}
-              {detailInfo.practicesHTML && (
-                <div css={blockCSS}>
-                  <p>Специализация (практики)</p>
-                  {detailInfo.practicesHTML}
-                </div>
-              )}
-              {detailInfo.mediaHTML && (
-                <div css={blockCSS}>
-                  <p>Публикации</p>
-                  {detailInfo.mediaHTML}
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-    </main>
-  );
+                    <div css={{...pageWrap, display: 'flex'}}>
+                        <div css={{marginRight: '78px', minWidth: '224px', maxWidth: '224px'}}>
+                            <Image src={detailInfo.img} width={224} height={323} objectFit="cover"/>
+                            <div css={{marginTop: '16px', marginBottom: '16px'}}>
+                                <p css={{color: colors.gray700, marginBottom: 0}}>{detailInfo.position}</p>
+                                {detailInfo.degree &&
+                                    detailInfo.degree.map(degree => (
+                                        <p key={degree} css={{color: colors.gray700, marginBottom: 0}}>
+                                            {degree}
+                                        </p>
+                                    ))}
+                            </div>
+                            {detailInfo.email && (
+                                <Link href={`mailto:${detailInfo.email}`} passHref>
+                                    <a css={{
+                                        ...links.blue,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginBottom: '24px'
+                                    }}>
+                                        <div css={{width: '24px', height: '24px', marginRight: '14px'}}>
+                                            <Image src={mailIconURL} width="24px" height="24px"/>
+                                        </div>
+                                        {detailInfo.email}
+                                    </a>
+                                </Link>
+                            )}
+                            {detailInfo.revardsIcons && (
+                                <Carousel
+                                    css={{maxWidth: '224px'}}
+                                    smallArrows
+                                    pagination={false}
+                                    slidesPerView="auto"
+                                    spaceBetween={16}
+                                    breakpoints={{
+                                        900: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 16,
+                                        },
+                                    }}
+                                >
+                                    {detailInfo.revardsIcons.map(iconData => (
+                                        <Image
+                                            key={iconData.url}
+                                            css={{position: 'relative'}}
+                                            src={iconData.url}
+                                            width={iconData.width}
+                                            height={iconData.height}
+                                        />
+                                    ))}
+                                </Carousel>
+                            )}
+                        </div>
+                        <div>
+                            {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
+                            {detailInfo.revardsHTML && (
+                                <div css={blockCSS}>
+                                    <span>Награды</span>
+                                    {detailInfo.revardsHTML}
+                                </div>
+                            )}
+                            {detailInfo.practicesHTML && (
+                                <div css={blockCSS}>
+                                    <span>Специализация</span>
+                                    {detailInfo.practicesHTML}
+                                </div>
+                            )}
+                            {detailInfo.mediaHTML && (
+                                <div css={blockCSS}>
+                                    <span>Публикации</span>
+                                    {detailInfo.mediaHTML}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </>
+            )}
+        </main>
+    );
 };
 
 export const getStaticPaths = async () => ({
-  paths: [],
-  fallback: 'blocking',
+    paths: [],
+    fallback: 'blocking',
 });
 
 export const getStaticProps = async (context: { params: { id: string } }) => {
-  const {
-    params: { id },
-  } = context;
+    const {
+        params: {id},
+    } = context;
 
-  const detailInfo = teamDetails.find(detail => detail.id === id);
+    const detailInfo = teamDetails.find(detail => detail.id === id);
 
-  return !detailInfo
-    ? { notFound: true }
-    : {
-        props: {},
-      };
+    return !detailInfo
+        ? {notFound: true}
+        : {
+            props: {},
+        };
 };
 
 export default TeamDetail;
