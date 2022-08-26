@@ -15,12 +15,13 @@ import { ReactComponent as CrossIcon } from '@icons/cross.svg';
 
 export interface IMapProps {
   css?: CSSObject;
+  info?: boolean;
   fullInfo?: boolean;
 }
 
-const Map: FC<IMapProps> = ({ css, fullInfo = false, ...props }) => {
+const Map: FC<IMapProps> = ({ css, info = true, fullInfo = false, ...props }) => {
   const { data } = useCommon();
-  const [isBubble, setIsBubble] = useState(true);
+  const [isBubble, setIsBubble] = useState(info);
 
   return (
     <div
@@ -93,9 +94,14 @@ const Map: FC<IMapProps> = ({ css, fullInfo = false, ...props }) => {
           )}
         </div>
       )}
+
+      {/* CCURMVDTWD */}
+      {/* CCURz2tnWA */}
+      {/* CCURz-AHOA */}
+
       <iframe
         title="uniquer-map-id"
-        src="https://yandex.ru/map-widget/v1/-/CCURMVDTWD"
+        src="https://yandex.ru/map-widget/v1/-/CCURz-UIsA"
         frameBorder="none"
         allowFullScreen
         css={{ position: 'relative', width: '100%', height: '100%' }}
