@@ -6,12 +6,12 @@ import barshevskiyURL from '@images/barshevskiy.webp';
 import sumvelURL from '@images/sumvel.webp';
 import elenaURL from '@images/elena.webp';
 import tatyanaURL from '@images/tatyana.webp';
+import barkalovaURL from '@images/barkalova.webp';
 import alexandraURL from '@images/alexandra.webp';
 import olgaURL from '@images/olga.webp';
 import mariaURL from '@images/maria.webp';
 import kseniaURL from '@images/ksenia.webp';
 import smirnovURL from '@images/smirnov.webp';
-import barkalovaURL from '@images/barkalova.webp';
 
 import practice1URL, { ReactComponent as Practice1 } from '@icons/practice1.svg';
 import practice2URL, { ReactComponent as Practice2 } from '@icons/practice2.svg';
@@ -30,146 +30,146 @@ import playCircleURL from '@icons/playCircle.svg';
 export * from './teamDetails';
 
 const teamCSS: CSSObject = {
-  p: {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    width: '350px',
-  },
+    p: {
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        width: '350px',
+    },
 };
 
 export const team: IContent[] = [
-  {
-    id: 'barshevskiy',
-    contentHtml: (
-      <>
-        <h6>Барщевский Михаил Юрьевич</h6>
-        <p>
-          Основатель Коллегии,
-          <br /> Заслуженный юрист РФ, д.ю.н.
-        </p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: barshevskiyURL.src,
-  },
-  {
-    id: 'karahanyan',
-    contentHtml: (
-      <>
-        <h6>Караханян Самвел Гургенович</h6>
-        <p>
-          Президент Коллегии, адвокат,
-          <br /> доктор юридических наук
-        </p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: sumvelURL.src,
-  },
-  {
-    id: 'mihalevich',
-    contentHtml: (
-      <>
-        <h6>Михалевич Елена Владимировна</h6>
-        <p>
-          Управляющий партнер,
-          <br /> адвокат, медиатор
-        </p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: elenaURL.src,
-  },
-  {
-    id: 'barkalova',
-    contentHtml: (
-      <>
-        <h6>Баркалова Ольга Имануиловна</h6>
-        <p>
-          Старший партнер, адвокат, <br />
-          кандидат филологических наук
-        </p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: barkalovaURL.src,
-  },
-  {
-    id: 'speranskaya',
-    contentHtml: (
-      <>
-        <h6>Сперанская Татьяна Владимировна</h6>
-        <p>Партнёр, адвокат</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: tatyanaURL.src,
-  },
-  {
-    id: 'vdovina',
-    contentHtml: (
-      <>
-        <h6>Вдовина Александра Олеговна</h6>
-        <p>Адвокат, медиатор</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: alexandraURL.src,
-  },
-  {
-    id: 'lapina',
-    contentHtml: (
-      <>
-        <h6>Лапина Ольга Владимировна</h6>
-        <p>Адвокат</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: olgaURL.src,
-  },
-  {
-    id: 'puhova',
-    contentHtml: (
-      <>
-        <h6>Пухова Мария Михайловна </h6>
-        <p>Старший юрист</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: mariaURL.src,
-  },
-  {
-    id: 'aparina',
-    contentHtml: (
-      <>
-        <h6>Апарина Ксения Васильевна</h6>
-        <p>Юрист</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: kseniaURL.src,
-  },
-  {
-    id: 'smirnov',
-    contentHtml: (
-      <>
-        <h6>Смирнов Владимир Евгеньевич</h6>
-        <p>Юрист</p>
-        <div className="line" />
-      </>
-    ),
-    contentCSS: teamCSS,
-    img: smirnovURL.src,
-  },
+    {
+        id: 'barshevskiy',
+        contentHtml: (
+            <>
+                <h6>Барщевский Михаил Юрьевич</h6>
+                <p>
+                    Основатель Коллегии,
+                    <br/> Заслуженный юрист РФ, д.ю.н.
+                </p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: barshevskiyURL.src,
+    },
+    {
+        id: 'karahanyan',
+        contentHtml: (
+            <>
+                <h6>Караханян Самвел Гургенович</h6>
+                <p>
+                    Президент Коллегии,
+                    <br/>адвокат, д.ю.н.
+                </p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: sumvelURL.src,
+    },
+    {
+        id: 'mihalevich',
+        contentHtml: (
+            <>
+                <h6>Михалевич Елена Владимировна</h6>
+                <p>
+                    Управляющий партнер,
+                    <br/> адвокат, медиатор
+                </p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: elenaURL.src,
+    },
+    {
+        id: 'barkalova',
+        contentHtml: (
+            <>
+                <h6>Баркалова Ольга Имануиловна</h6>
+                <p>
+                    Старший партнер, адвокат, <br/>
+                    доктор исторических наук
+                </p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: barkalovaURL.src,
+    },
+    {
+        id: 'speranskaya',
+        contentHtml: (
+            <>
+                <h6>Сперанская Татьяна Владимировна</h6>
+                <p>Партнёр, адвокат</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: tatyanaURL.src,
+    },
+    {
+        id: 'vdovina',
+        contentHtml: (
+            <>
+                <h6>Вдовина Александра Олеговна</h6>
+                <p>Адвокат, медиатор</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: alexandraURL.src,
+    },
+    {
+        id: 'lapina',
+        contentHtml: (
+            <>
+                <h6>Лапина Ольга Владимировна</h6>
+                <p>Адвокат</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: olgaURL.src,
+    },
+    {
+        id: 'puhova',
+        contentHtml: (
+            <>
+                <h6>Пухова Мария Михайловна </h6>
+                <p>Старший юрист</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: mariaURL.src,
+    },
+    {
+        id: 'aparina',
+        contentHtml: (
+            <>
+                <h6>Апарина Ксения Васильевна</h6>
+                <p>Юрист</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: kseniaURL.src,
+    },
+    {
+        id: 'smirnov',
+        contentHtml: (
+            <>
+                <h6>Смирнов Владимир Евгеньевич</h6>
+                <p>Юрист</p>
+                <div className="line"/>
+            </>
+        ),
+        contentCSS: teamCSS,
+        img: smirnovURL.src,
+    },
 ];
 
 export const practicesMain: IContentPractice[] = [

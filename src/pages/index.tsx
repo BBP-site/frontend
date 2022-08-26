@@ -157,63 +157,62 @@ const Home = () => {
         </Carousel>
       </section>
 
-      <ContentSection
-        title="Наши результаты"
-        titleLvl={2}
-        cssTitle={{ marginBottom: '8px', color: colors.white }}
-        css={{ backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative' }}
-      >
-        <p>Каждый год мы стремимся к прогрессу и к его достижению</p>
-        <div
-          css={{
-            marginTop: '40px',
-            ...position.spaceBetween,
-            alignItems: 'flex-start',
-            div: {
-              maxWidth: '202px',
-            },
-          }}
-        >
-          <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>32+</p>
-            <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>года мы оказываем профессиональную юридическую помощь</p>
-          </div>
-          <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>1000+</p>
-            <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>клиентов</p>
-          </div>
-          <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>50+</p>
-            <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>
-              абонентских клиентов, <br /> 7 из которых более 30 лет
-            </p>
-          </div>
-          <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>85%</p>
-            <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>клиентов обращаются с новыми вопросами или рекомендуют Коллегию партнерам</p>
-          </div>
-        </div>
-        <div css={{ ...pageWrap, position: 'absolute', top: 0, left: 0, right: 0 }}>
-          <div
-            css={{
-              width: '254px',
-              height: '29px',
-              backgroundColor: colors.blueDark,
-              position: 'absolute',
-              right: 0,
-              top: '-28px',
-            }}
-          />
-          <div css={{ display: 'flex', position: 'absolute', top: 0, right: '48px' }}>
-            <div css={{ width: '550px', height: '28px', backgroundColor: colors.blue, marginRight: '45px' }} />
-            <ParticlesMesh width={4} height={2} css={{ marginTop: '6px' }} />
-          </div>
-        </div>
-      </ContentSection>
+            <ContentSection
+                title="Наши результаты"
+                titleLvl={2}
+                cssTitle={{marginBottom: '8px', color: colors.white}}
+                css={{backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative'}}
+            >
+                <p>Каждый год мы стремимся к прогрессу и к его достижению</p>
+                <div
+                    css={{
+                    marginTop: '40px',
+                    ...position.spaceBetween,
+                    alignItems: 'flex-start',
+                    'div': {
+                        maxWidth: '202px'
+                    }
+                }}>
+                    <div>
+                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>32+</p>
+                        <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
+                        <p>года мы оказываем профессиональную юридическую помощь</p>
+                    </div>
+                    <div>
+                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>1000+</p>
+                        <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
+                        <p>
+                            клиентов
+                        </p>
+                    </div>
+                    <div>
+                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>50+</p>
+                        <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
+                        <p>абонентских клиентов, <br/> 7 из которых более <br/> 30 лет</p>
+                    </div>
+                    <div>
+                        <p css={{fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px'}}>85%</p>
+                        <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
+                        <p>клиентов обращаются с новыми вопросами или рекомендуют Коллегию партнерам</p>
+                    </div>
+                </div>
+                <div css={{...pageWrap, position: 'absolute', top: 0, left: 0, right: 0}}>
+                    <div
+                        css={{
+                            width: '254px',
+                            height: '29px',
+                            backgroundColor: colors.blueDark,
+                            position: 'absolute',
+                            right: 0,
+                            top: '-28px',
+                        }}
+                    />
+                    <div css={{display: 'flex', position: 'absolute', top: 0, right: '48px'}}>
+                        <div css={{width: '550px', height: '28px', backgroundColor: colors.blue, marginRight: '45px'}}/>
+                        <ParticlesMesh width={4} height={2} css={{marginTop: '6px'}}/>
+                    </div>
+                </div>
+            </ContentSection>
 
       <ContentSection
         title="Рейтинги и награды"
