@@ -8,10 +8,11 @@ import ParticlesMesh from '@components/ParticlesMesh';
 export interface IPageTitleProps {
   title: string;
   css?: CSSObject;
+  cssInner?: CSSObject;
   children?: ReactNode;
 }
 
-const PageTitle: FC<IPageTitleProps> = ({ title, children, css, ...props }) => (
+const PageTitle: FC<IPageTitleProps> = ({ title, children, css, cssInner, ...props }) => (
   <section
     css={{
       backgroundColor: colors.blueDark,
@@ -19,7 +20,9 @@ const PageTitle: FC<IPageTitleProps> = ({ title, children, css, ...props }) => (
     }}
     {...props}
   >
-    <div css={{ ...pageWrapS, ...position.spaceBetween, padding: '48px 24px 48px 0', color: colors.white }}>
+    <div
+      css={{ ...pageWrapS, ...position.spaceBetween, padding: '48px 24px 48px 0', color: colors.white, ...cssInner }}
+    >
       <div css={{ display: 'flex' }}>
         <div css={{ backgroundColor: colors.blue, minWidth: '74px', height: '64px', marginRight: '16px' }} />
         <div>

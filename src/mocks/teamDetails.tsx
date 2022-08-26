@@ -35,7 +35,7 @@ export const teamDetails: ITeamDetail[] = [
     img: barshevskiyDetail.src,
     name: 'Барщевский Михаил Юрьевич',
     position: 'Основатель Коллегии',
-    degree: ['Заслуженный юрист Российской Федерации, ', 'доктор юридических наук, профессор'],
+    degree: ['Заслуженный юрист Российской Федерации', 'Доктор юридических наук', 'Профессор'],
     experienceHTML: (
       <>
         <p>
@@ -51,10 +51,14 @@ export const teamDetails: ITeamDetail[] = [
     id: 'karahanyan',
     img: sumvelDetail.src,
     name: 'Караханян Самвел Гургенович',
-    position: 'Президент коллегии, адвокат',
-    degree: ['Доктор юридических наук'],
+    position: 'Президент коллегии',
+    degree: ['Адвокат', 'Доктор юридических наук'],
     email: 'karakhanian@bbp.ru',
     revardsIcons: [
+      { url: bestLawyer.src, width: 96, height: 91 },
+      { url: bestLawyer.src, width: 96, height: 91 },
+      { url: bestLawyer.src, width: 96, height: 91 },
+      { url: bestLawyer.src, width: 96, height: 91 },
       { url: bestLawyer.src, width: 96, height: 91 },
       { url: globalLawExperts.src, width: 266, height: 37 },
     ],
@@ -113,8 +117,8 @@ export const teamDetails: ITeamDetail[] = [
     id: 'barkalova',
     img: barkalovaDetail.src,
     name: 'Баркалова Ольга Имануиловна',
-    position: 'Старший партнер, адвокат',
-    degree: ['Кандидат филологических наук, ', 'Доктор исторических наук, профессор РАН'],
+    position: 'Старший партнер',
+    degree: ['Адвокат', 'Кандидат филологических наук', 'Доктор исторических наук', 'Профессор РАН'],
     experienceHTML: (
       <>
         <p>Стаж юридической практики с 1983 года.</p>
@@ -141,8 +145,8 @@ export const teamDetails: ITeamDetail[] = [
     id: 'mihalevich',
     img: mihalevichDetail.src,
     name: 'Михалевич Елена Владимировна',
-    position: 'Управляющий партнер, адвокат',
-    degree: ['медиатор'],
+    position: 'Управляющий партнер',
+    degree: ['Адвокат', 'Медиатор'],
     email: 'mikhalevich@bbp.ru',
     experienceHTML: (
       <>
@@ -184,7 +188,8 @@ export const teamDetails: ITeamDetail[] = [
     id: 'speranskaya',
     img: speranskayaDetail.src,
     name: 'Сперанская Татьяна Владимировна',
-    position: 'Партнер, адвокат',
+    position: 'Партнер',
+    degree: ['Адвокат'],
     email: 'speranskaya@bbp.ru',
     experienceHTML: (
       <>
@@ -209,7 +214,8 @@ export const teamDetails: ITeamDetail[] = [
     id: 'vdovina',
     img: vdovinaDetail.src,
     name: 'Вдовина Александра Олеговна',
-    position: 'Адвокат, медиатор',
+    position: 'Адвокат',
+    degree: ['Медиатор'],
     email: 'vdovina@bbp.ru',
     experienceHTML: (
       <>
