@@ -12,8 +12,10 @@ import smirnovDetail from '@images/smirnovDetail.webp';
 import vdovinaDetail from '@images/vdovinaDetail.webp';
 import barkalovaDetail from '@images/barkalovaDetail.webp';
 
-import bestLawyer from '@images/bestLawyer.webp';
-import globalLawExperts from '@images/globalLawExperts.webp';
+import best18 from '@images/2018.webp';
+import best19 from '@images/2019.webp';
+import best22 from '@images/2022.webp';
+
 import {links} from "@scripts/theme";
 
 interface ITeamDetail {
@@ -36,13 +38,13 @@ export const teamDetails: ITeamDetail[] = [
         img: barshevskiyDetail.src,
         name: 'Барщевский Михаил Юрьевич',
         position: 'Основатель Коллегии',
-        degree: ['Заслуженный юрист РФ', 'действительный государственный советник 1 класса', 'доктор юридических наук, профессор'],
+        degree: ['Заслуженный юрист РФ', 'доктор юридических наук, профессор'],
         experienceHTML: (
             <>
                 <p>
-                    В настоящее время полномочный представитель Правительства Российской Федерации в
-                    Конституционном Суде Российской Федерации и Верховном Суде Российской
-                    Федерации.
+                    В настоящее время полномочный представитель Правительства Российской Федерации в Конституционном
+                    Суде Российской Федерации и Верховном Суде Российской Федерации, действительный государственный
+                    советник 1 класса.
                 </p>
 
                 <p>
@@ -57,16 +59,13 @@ export const teamDetails: ITeamDetail[] = [
         id: 'karahanyan',
         img: sumvelDetail.src,
         name: 'Караханян Самвел Гургенович',
-        position: 'Президент, адвокат',
-        degree: ['Доктор юридических наук'],
+        position: 'Президент Коллегии',
+        degree: ['адвокат, медиатор', 'доктор юридических наук'],
         email: 'karakhanian@bbp.ru',
         revardsIcons: [
-            {url: bestLawyer.src, width: 96, height: 91},
-            {url: bestLawyer.src, width: 96, height: 91},
-            {url: bestLawyer.src, width: 96, height: 91},
-            {url: bestLawyer.src, width: 96, height: 91},
-            {url: bestLawyer.src, width: 96, height: 91},
-            {url: globalLawExperts.src, width: 266, height: 37},
+            {url: best18.src, width: 76, height: 71},
+            {url: best19.src, width: 76, height: 71},
+            {url: best22.src, width: 76, height: 71},
         ],
         experienceHTML: (
             <>
@@ -117,7 +116,7 @@ export const teamDetails: ITeamDetail[] = [
 
                 <p>
                     и{' '}
-                    <Link href="/media" passHref>
+                    <Link href='/comingSoonMedia' passHref>
                         <a css={links.blue}>другие</a>
                     </Link>
                     .
@@ -130,7 +129,7 @@ export const teamDetails: ITeamDetail[] = [
         img: barkalovaDetail.src,
         name: 'Баркалова Ольга Имануиловна',
         position: 'Старший партнер, адвокат',
-        degree: ['Кандидат филологических наук', 'Доктор исторических наук, профессор РАН'],
+        degree: ['кандидат филологических наук', 'доктор исторических наук, профессор РАН'],
         experienceHTML: (
             <>
                 <p>Стаж юридической практики с 1983 года.</p>
@@ -165,6 +164,9 @@ export const teamDetails: ITeamDetail[] = [
             <>
                 <p>
                     Стаж юридической практики 17 лет. В Коллегии с 2015 года.
+                </p>
+
+                <p>
                     Отмечена в личном рейтинге Право.ру ТОП-300 как рекомендованные юристы в отрасли
                     «Разрешение споров в судах общей юрисдикции», «Семейное и наследственное право».
                 </p>
@@ -270,11 +272,11 @@ export const teamDetails: ITeamDetail[] = [
     {
         id: 'puhova',
         img: puhovaDetail.src,
-        name: 'Мария Михайловна Пухова',
+        name: 'Пухова Мария Михайловна',
         position: 'Старший юрист',
         experienceHTML: (
             <>
-                <p>Общий стаж юридической практики – 3 года.</p>
+                <p>Общий стаж юридической практики 3 года.</p>
             </>
         ),
         practicesHTML: (

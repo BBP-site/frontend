@@ -5,7 +5,8 @@ export enum E_PAGES {
     COLLEGIUM = '/collegium',
     PRACTICES = '/practices',
     TEAM = '/team',
-    PROJECTS = '/projects',
+    PROJECTS = '/comingSoonProjects',
+    MEDIA = '/comingSoonMedia',
     CONTACTS = '/contacts'
 }
 
@@ -34,6 +35,7 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({child
             practices: E_PAGES.PRACTICES,
             team: E_PAGES.TEAM,
             projects: E_PAGES.PROJECTS,
+            media: E_PAGES.MEDIA,
             contacts: E_PAGES.CONTACTS
         },
         contactsData: {

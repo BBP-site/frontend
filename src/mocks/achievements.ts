@@ -16,6 +16,9 @@ export const achievements: IAchievements[] = [
     {
         id: '1',
         img: rating1URL,
+        width: '140px',
+        height: '100px',
+        isHaveSize: true,
     },
     {
         id: '2',
@@ -29,11 +32,4 @@ export const achievements: IAchievements[] = [
         id: '4',
         img: globalURL,
     },
-    // {
-    //     id: '6',
-    //     img: bestURL,
-    //     isHaveSize: true,
-    //     height: '200px',
-    //     width: '200px',
-    // },
 ]

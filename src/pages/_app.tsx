@@ -56,7 +56,7 @@ const App = ({Component, pageProps}: AppProps) => (
                         marginLeft: '5px',
                         marginBottom: '20px',
                     },
-                    'ul li:before': {
+                    'li:before': {
                         content: '"-"',
                         position: 'relative',
                         left: '-5px',
