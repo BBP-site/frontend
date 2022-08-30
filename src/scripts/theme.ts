@@ -147,6 +147,16 @@ export const typography = {
         fontSize: '16px',
         lineHeight: '22px',
     },
+    ulDot: {
+        listStyle: 'disc',
+        marginLeft: '22px',
+        li: {
+            marginBottom: '8px',
+            '&::before': {
+                display: 'none',
+            },
+        },
+    }
 };
 
 export const pageWrapS = {

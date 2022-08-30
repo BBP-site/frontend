@@ -6,16 +6,14 @@ import Button from '@components/common/Button';
 import {colors, pageWrap, pageWrapS, position, typography} from '@scripts/theme';
 
 import bannerURL from '@images/banner.jpg';
-import {useRouter} from "next/router";
 
 interface IBannerProps {
     css?: CSSObject;
     className?: string;
+    setOpenFeedback: (value: boolean) => void;
 }
 
-const Banner: FC<IBannerProps> = ({css, className}) => {
-    const {push} = useRouter();
-
+const Banner: FC<IBannerProps> = ({css, className, setOpenFeedback}) => {
     const bannerCSS: CSSObject = {
         ...pageWrapS,
         ...position.start,
@@ -60,7 +58,7 @@ const Banner: FC<IBannerProps> = ({css, className}) => {
                     </p>
 
                     <Button
-                        onClick={() => push('#consultation')}
+                        onClick={() => setOpenFeedback(true)}
                         css={{marginTop: '32px', ...typography.txtBold, lineHeight: '22px'}}
                     >
                         Запись на консультацию

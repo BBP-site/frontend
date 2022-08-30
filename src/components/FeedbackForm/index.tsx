@@ -126,8 +126,12 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({css, className, onSubmit, ...prop
                         <div css={{position: 'relative', paddingBottom: '20px'}}>
                             <Field name="privacy">
                                 {({field}: FieldProps) => (
-                                    <Checkbox {...field} name={field.name} checked={field.value}
-                                              labelCSS={{fontSize: '16px', lineHeight: '20px'}}>
+                                    <Checkbox
+                                        {...field}
+                                        name={field.name}
+                                        checked={field.value}
+                                        labelCSS={{fontSize: '16px', lineHeight: '20px'}}
+                                    >
                                         Настоящим даю согласие на обработку моих персональных данных, указанных в
                                         заполненной форме на сайте
                                         bbp.ru, в соответствии с{' '}

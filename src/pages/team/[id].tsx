@@ -72,10 +72,15 @@ const TeamDetail = () => {
                         <div css={{marginRight: '78px', minWidth: '224px', maxWidth: '224px'}}>
                             <Image src={detailInfo.img} width={224} height={323} objectFit="cover"/>
                             <div css={{marginTop: '16px', marginBottom: '16px'}}>
-                                <p css={{color: colors.gray700, marginBottom: 0}}>{detailInfo.position}</p>
+                                <p css={{
+                                    color: colors.gray700,
+                                    marginBottom: 0,
+                                    fontWeight: 'bold'
+                                }}>{detailInfo.position}</p>
                                 {detailInfo.degree &&
                                     detailInfo.degree.map(degree => (
-                                        <p key={degree} css={{color: colors.gray700, marginBottom: 0}}>
+                                        <p key={degree}
+                                           css={{color: colors.gray700, marginBottom: 0, fontWeight: 'bold'}}>
                                             {degree}
                                         </p>
                                     ))}
@@ -97,7 +102,7 @@ const TeamDetail = () => {
                             )}
                             {detailInfo.revardsIcons && (
                                 <Carousel
-                                    css={{maxWidth: '224px'}}
+                                    css={{maxWidth: '200px'}}
                                     smallArrows
                                     pagination={false}
                                     slidesPerView="auto"
