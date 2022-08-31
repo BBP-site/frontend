@@ -32,6 +32,8 @@ const Modal: FC<IModal> = ({isOpen, children, className, onRequestClose, ...prop
                             transition: 'transform ease 150ms',
                             borderRadius: '8px',
                             height: '100%',
+                            paddingLeft: 0,
+                            paddingRight: 0,
                             maxHeight: '752px',
                             '&:focus-visible': {
                                 outline: 'none',
@@ -64,13 +66,21 @@ const Modal: FC<IModal> = ({isOpen, children, className, onRequestClose, ...prop
                     }}
                     {...props}
                 >
-                    <div css={{position: 'relative', height: '100%'}}>
+                    <div
+                        css={{
+                            position: 'relative',
+                            height: '100%',
+                            overflowY: 'scroll',
+                            paddingLeft: '40px',
+                            paddingRight: '40px',
+                        }}
+                    >
                         <button
                             type="button"
                             css={{
                                 position: 'absolute',
                                 top: 0,
-                                right: 0,
+                                right: '40px',
                                 background: 'transparent',
                                 border: 'none',
                                 cursor: 'pointer',
