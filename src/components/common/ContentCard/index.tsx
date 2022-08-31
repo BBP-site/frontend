@@ -88,7 +88,7 @@ const ContentCard: FC<IContentCardProps> = ({
               position: 'relative',
             }}
           >
-            <Image src={cardImg} layout="fill" objectFit="cover" alt="practice-icon" />
+            <Image src={cardImg} layout="fill" objectFit="cover" objectPosition="top" alt="practice-icon" />
           </div>
         )}
 

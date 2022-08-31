@@ -109,7 +109,7 @@ const Home = () => {
                 <Link href={`/practices/#${practice.id}`} passHref>
                   <a css={{ display: 'flex', padding: '24px' }}>
                     <Img css={{ minWidth: '64px', minHeight: '64px' }} />
-                    <p css={{ marginLeft: '34px', ...typography.h6 }}>{practice.title}</p>
+                    <p css={{ marginLeft: '34px', whiteSpace: 'pre-line', ...typography.h6 }}>{practice.title}</p>
                   </a>
                 </Link>
               </Block>
@@ -174,7 +174,7 @@ const Home = () => {
         cssTitle={{ marginBottom: '8px', color: colors.white }}
         css={{ backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative' }}
       >
-        <p>Каждый год мы стремимся к прогрессу и к его достижению</p>
+        <p>Каждый год мы стремимся к прогрессу и к его достижению.</p>
         <div
           css={{
             marginTop: '40px',
@@ -411,12 +411,13 @@ const Home = () => {
                 ...pageWrap,
                 paddingTop: '32px',
                 paddingBottom: '48px',
+                paddingLeft: '40px',
                 width: '50%',
                 [tabletLg]: { width: 'auto' },
               },
             ]}
           >
-            <div css={{ display: 'flex', marginBottom: '52px' }}>
+            <div css={{ display: 'flex' }}>
               <div
                 css={{
                   ...position.center,
@@ -425,6 +426,7 @@ const Home = () => {
                   width: '52px',
                   height: '52px',
                   marginRight: '24px',
+                  marginBottom: '72px',
                 }}
               >
                 <Image src={pinURL} width={32} height={32} />
@@ -434,7 +436,7 @@ const Home = () => {
                 <p css={{ ...typography.txt, color: colors.gray700 }}>{data.contactsData.address}</p>
               </div>
             </div>
-            <div css={{ display: 'flex', marginBottom: '52px' }}>
+            <div css={{ display: 'flex' }}>
               <div
                 css={{
                   ...position.center,
@@ -443,6 +445,7 @@ const Home = () => {
                   width: '52px',
                   height: '52px',
                   marginRight: '24px',
+                  marginBottom: '72px',
                 }}
               >
                 <Image src={phoneCallURL} width={32} height={32} />
@@ -456,7 +459,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <div css={{ display: 'flex', marginBottom: '52px' }}>
+            <div css={{ display: 'flex' }}>
               <div
                 css={{
                   ...position.center,
@@ -465,6 +468,7 @@ const Home = () => {
                   width: '52px',
                   height: '52px',
                   marginRight: '24px',
+                  marginBottom: '72px',
                 }}
               >
                 <Image src={mailURL} width={32} height={32} />
