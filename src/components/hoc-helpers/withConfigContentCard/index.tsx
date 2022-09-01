@@ -22,6 +22,7 @@ interface ICardConfig {
 export interface IContent {
     contentHtml: React.ReactElement;
     contentCSS?: CSSObject;
+    objectPosition?: string;
     id?: string;
     img?: string;
     url?: string;
@@ -164,6 +165,7 @@ const withConfigContentCard = (
             imageWidth={cardConfig.imageWidth}
             imageHeight={cardConfig.imageHeight}
             defaultOpen={cardConfig.isOpen}
+            objectPosition={content.objectPosition}
         />
     );
 };

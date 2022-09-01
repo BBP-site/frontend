@@ -1,133 +1,143 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, {FC, useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
 import Image from 'next/image';
-import { CSSObject } from '@emotion/react';
+import {CSSObject} from '@emotion/react';
 
-import { colors, links, time, typography } from '@scripts/theme';
+import {colors, links, time, typography} from '@scripts/theme';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 
 export interface ICardBtn {
-  isLink: boolean;
-  text: string;
-  textCLose?: string;
-  transform: string;
-  url?: string;
+    isLink: boolean;
+    text: string;
+    textCLose?: string;
+    transform: string;
+    url?: string;
 }
 
 export interface IContentCardProps {
-  content: React.ReactElement;
-  contentCSS?: CSSObject;
-  title?: React.ReactElement;
-  cardBorderRadius?: string;
-  cardImg?: string;
-  boxShadow?: string;
-  btn?: ICardBtn;
-  height?: string;
-  imageWidth?: string;
-  imageHeight?: string;
-  defaultOpen?: boolean;
+    content: React.ReactElement;
+    contentCSS?: CSSObject;
+    title?: React.ReactElement;
+    cardBorderRadius?: string;
+    cardImg?: string;
+    boxShadow?: string;
+    btn?: ICardBtn;
+    height?: string;
+    imageWidth?: string;
+    imageHeight?: string;
+    defaultOpen?: boolean;
+    objectPosition?: string;
 }
 
-const ContentCard: FC<IContentCardProps> = ({
-  content,
-  contentCSS,
-  title,
-  cardBorderRadius,
-  cardImg,
-  boxShadow,
-  btn,
-  height,
-  imageWidth,
-  imageHeight,
-  defaultOpen = false,
-}) => {
-  const { push } = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
+const ContentCard: FC<IContentCardProps> = (
+    {
+        content,
+        contentCSS,
+        title,
+        cardBorderRadius,
+        cardImg,
+        boxShadow,
+        btn,
+        height,
+        imageWidth,
+        imageHeight,
+        defaultOpen = false,
+        objectPosition,
+    }
+) => {
+    const {push} = useRouter();
+    const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
 
-  useEffect(() => {
-    setIsOpen(defaultOpen);
-  }, [defaultOpen]);
+    useEffect(() => {
+        setIsOpen(defaultOpen);
+    }, [defaultOpen]);
 
-  const cardCSS: CSSObject = {
-    display: 'flex',
-    alignItems: 'start',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    backgroundColor: colors.white,
-    padding: '24px',
-    boxShadow,
-    borderRadius: cardBorderRadius,
-    ...typography.txt,
-  };
+    const cardCSS: CSSObject = {
+        display: 'flex',
+        alignItems: 'start',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        backgroundColor: colors.white,
+        padding: '24px',
+        boxShadow,
+        borderRadius: cardBorderRadius,
+        ...typography.txt,
+    };
 
-  const onToggle = (): void => {
-    if (!btn?.isLink) setIsOpen(!isOpen);
-    if (btn?.url) push(`${btn.url}`);
-  };
+    const onToggle = (): void => {
+        if (!btn?.isLink) setIsOpen(!isOpen);
+        if (btn?.url) push(`${btn.url}`);
+    };
 
-  return (
-    <div css={cardCSS}>
-      {title}
+    return (
+        <div css={cardCSS}>
+            {title}
 
-      <div
-        css={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%',
-        }}
-      >
-        {cardImg && (
-          <div
-            css={{
-              marginRight: '20px',
-              width: '100%',
-              height: imageHeight || '64px',
-              maxWidth: imageWidth || '64px',
-              maxHeight: '191px',
-              position: 'relative',
-            }}
-          >
-            <Image src={cardImg} layout="fill" objectFit="cover" objectPosition="top" alt="practice-icon" />
-          </div>
-        )}
+            <div
+                css={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                }}
+            >
+                {cardImg && (
+                    <div
+                        css={{
+                            marginRight: '20px',
+                            width: '100%',
+                            height: imageHeight || '64px',
+                            maxWidth: imageWidth || '64px',
+                            maxHeight: '191px',
+                            position: 'relative',
+                        }}
+                    >
+                        <Image
+                            src={cardImg}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition={objectPosition || 'top'}
+                            alt="practice-icon"
+                        />
+                    </div>
+                )}
 
-        <div>
-          <div
-            css={{
-              flexGrow: '1',
-              height: !btn?.isLink ? (!isOpen ? height || '150px' : 'auto') : height || '150px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              marginBottom: '15px',
-              ...contentCSS,
-            }}
-          >
-            {content}
-          </div>
+                <div>
+                    <div
+                        css={{
+                            flexGrow: '1',
+                            height: !btn?.isLink ? (!isOpen ? height || '150px' : 'auto') : height || '150px',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            marginBottom: '15px',
+                            ...contentCSS,
+                        }}
+                    >
+                        {content}
+                    </div>
 
-          <span
-            css={{
-              ...links.blue,
-              alignItems: 'center',
-              cursor: 'pointer',
-            }}
-            onClick={onToggle}
-          >
+                    <span
+                        css={{
+                            ...links.blue,
+                            alignItems: 'center',
+                            cursor: 'pointer',
+                        }}
+                        onClick={onToggle}
+                    >
             {isOpen ? btn?.textCLose : btn?.text}
 
-            <ArrowIcon
-              css={{
-                marginLeft: '10px',
-                transition: `transform ${time}`,
-                transform: isOpen ? 'none' : btn?.transform,
-              }}
-            />
+                        <ArrowIcon
+                            css={{
+                                marginLeft: '10px',
+                                transition: `transform ${time}`,
+                                transform: isOpen ? 'none' : btn?.transform,
+                            }}
+                        />
           </span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ContentCard;
