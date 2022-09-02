@@ -131,7 +131,7 @@ const Footer: FC = () => {
                         width: '100%'
                     }}
                 >
-                    <Link href='#' passHref>
+                    <Link href={`${data.pages.politics}`} passHref>
                         <a>
                             <span
                                 css={{
