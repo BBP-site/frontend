@@ -1,0 +1,122 @@
+import React, { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+import { useMedia } from '@scripts/hooks';
+import { colors, links, pageWrap, typography } from '@scripts/theme';
+
+import Menu, { MENU_TYPE } from '@components/Menu';
+
+import { useCommon } from '@context/common';
+
+import logoIconURL from '@icons/whiteLogo.svg';
+import logoTextIconURL from '@icons/whiteLogoText.svg';
+import locationURL from '@icons/location.svg';
+import phoneURL from '@icons/phone.svg';
+import emailURL from '@icons/email.svg';
+
+const FooterMobile: FC<{}> = () => {
+  const { data } = useCommon();
+  const { tabletLgMin } = useMedia();
+
+  return (
+    <div
+      css={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        [tabletLgMin]: {
+          display: 'none',
+        },
+      }}
+    >
+      <div css={{ ...pageWrap, marginLeft: '0', marginRight: '0', width: '100%' }}>
+        <Menu
+          type={MENU_TYPE.FOOTER}
+          css={{ flexDirection: 'column', alignItems: 'flex-start', marginBottom: '16px' }}
+        />
+
+        <div css={{ display: 'flex', alignItems: 'center', marginBottom: '36px' }}>
+          <Link href="/" passHref>
+            <a
+              css={{
+                paddingRight: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                borderRight: `1px solid ${colors.gray400}`,
+              }}
+            >
+              <div
+                css={{
+                  marginRight: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Image src={logoIconURL} width="44px" height="57px" />
+              </div>
+              <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Image src={logoTextIconURL} width="90px" height="25px" />
+              </div>
+            </a>
+          </Link>
+          <span css={{ marginLeft: '16px', ...typography.txtSm }}>Коллегия адвокатов города Москвы</span>
+        </div>
+
+        <div css={{ marginBottom: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <Link href="/contacts" passHref>
+            <a css={{ marginBottom: '8px', color: colors.white, ...typography.txtSm }}>
+              <Image src={locationURL} width="16px" height="16px" />
+              <span css={{ marginLeft: '8px' }}>{data.contactsData?.address}</span>
+            </a>
+          </Link>
+          {data.contactsData.phones.map(phone => (
+            <Link href={`tel:${phone.number}`} passHref key={phone.number}>
+              <a css={{ marginBottom: '8px', color: colors.white, ...typography.txtSm }}>
+                <Image src={phoneURL} width="16px" height="16px" />
+                <span key={phone.desc} css={{ marginLeft: '8px' }}>
+                  {phone.number}
+                </span>
+              </a>
+            </Link>
+          ))}
+          <Link href={`mailto:${data.contactsData?.email}`} passHref>
+            <a css={{ marginBottom: '8px', color: colors.white, ...typography.txtSm }}>
+              <Image src={emailURL} width="16px" height="16px" />
+              <span css={{ marginLeft: '8px' }}>{data.contactsData?.email}</span>
+            </a>
+          </Link>
+        </div>
+      </div>
+
+      <div
+        css={{
+          ...pageWrap,
+          ...typography.txtExtraSm,
+          width: '100%',
+          backgroundColor: colors.blueSuperDark,
+          paddingTop: '8px',
+          paddingBottom: '8px',
+        }}
+      >
+        <Link href="#" passHref>
+          <a>
+            <span
+              css={{
+                ...links.white,
+              }}
+            >
+              Политика обработки персональных данных
+            </span>
+          </a>
+        </Link>
+        <p css={{ marginTop: '16px' }}>
+          © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default FooterMobile;
