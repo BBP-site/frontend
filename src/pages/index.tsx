@@ -27,9 +27,10 @@ import phoneCallURL from '@icons/phoneCall.svg';
 import mailURL from '@icons/mail.svg';
 import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
+import whatsappURL from '@icons/whatsapp.svg';
 
 const Home = () => {
-  const { tabletLg, desktop } = useMedia();
+  const { mobileLg, tablet, tabletLg, tabletLgMin, desktop } = useMedia();
   const { data } = useCommon();
 
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -43,13 +44,21 @@ const Home = () => {
       <Banner setOpenFeedback={setOpenFeedback} css={{ marginTop: '11px' }} />
 
       <section
-        css={{
-          ...pageWrap,
-          paddingBottom: '48px',
-          paddingTop: '15px',
-          display: 'flex',
-          position: 'relative',
-        }}
+        css={[
+          {
+            ...pageWrap,
+            paddingBottom: '48px',
+            paddingTop: '15px',
+            display: 'flex',
+            position: 'relative',
+          },
+          {
+            [tabletLg]: {
+              paddingTop: '32px',
+              paddingBottom: '24px',
+            },
+          },
+        ]}
       >
         <div
           css={{
@@ -58,7 +67,14 @@ const Home = () => {
             alignItems: 'flex-start',
           }}
         >
-          <h2 css={{ marginBottom: '8px' }}>Практики</h2>
+          <h2
+            css={{
+              marginBottom: '8px',
+              [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
+            }}
+          >
+            Практики
+          </h2>
           <Link href={`${data.pages.practices}`} passHref>
             <a
               css={{
@@ -66,16 +82,19 @@ const Home = () => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 marginBottom: '8px',
+                [tabletLg]: {
+                  ...typography.txtSm,
+                },
               }}
             >
               Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
             </a>
           </Link>
-          <p>
+          <p css={{ [tabletLg]: { ...typography.txtSm } }}>
             Вы можете обратиться к нам практически с любой правовой проблемой, т.к. наша Коллегия является универсальной
             и не ограничивается представленными в этом разделе направлениями.
           </p>
-          <p>
+          <p css={{ [tabletLg]: { ...typography.txtSm } }}>
             Мы придерживаемся командного подхода и в рассмотрении вопроса клиента, как правило, принимает участие
             несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд
             нет выхода.
@@ -88,9 +107,23 @@ const Home = () => {
               gridTemplateRows: 'auto auto',
               gridColumnGap: '16px',
               gridRowGap: '24px',
+              [tabletLg]: {
+                marginTop: '16px',
+                gridTemplateColumns: '1fr 1fr',
+                gridTemplateRows: 'auto auto auto',
+              },
+              [tablet]: {
+                gridRowGap: '16px',
+              },
+              [mobileLg]: {
+                width: '100%',
+                gridRowGap: '8px',
+                gridTemplateColumns: '1fr',
+                gridTemplateRows: 'auto auto auto auto auto auto',
+              },
             }}
           >
-            {practices.map(({ Img, ...practice }) => (
+            {practices.map(({ img, ...practice }) => (
               <Block
                 key={practice.id}
                 css={{
@@ -108,8 +141,25 @@ const Home = () => {
               >
                 <Link href={`/practices/#${practice.id}`} passHref>
                   <a css={{ display: 'flex', padding: '24px' }}>
-                    <Img css={{ minWidth: '64px', minHeight: '64px' }} />
-                    <p css={{ marginLeft: '34px', whiteSpace: 'pre-line', ...typography.h6 }}>{practice.title}</p>
+                    <div
+                      css={{
+                        minWidth: '64px',
+                        minHeight: '64px',
+                        [tabletLg]: { minWidth: '48px', minHeight: '48px', width: '48px', height: '48px' },
+                      }}
+                    >
+                      <Image src={img} width={64} height={64} />
+                    </div>
+                    <p
+                      css={{
+                        marginLeft: '34px',
+                        whiteSpace: 'pre-line',
+                        ...typography.h6,
+                        [tabletLg]: { ...typography.txtBold, marginLeft: '24px' },
+                      }}
+                    >
+                      {practice.title}
+                    </p>
                   </a>
                 </Link>
               </Block>
@@ -124,12 +174,34 @@ const Home = () => {
             width: '225px',
             height: '28px',
             backgroundColor: colors.cyan,
+            [tabletLg]: {
+              width: '125px',
+              height: '20px',
+              top: '26px',
+            },
           }}
         />
       </section>
 
-      <section css={{ ...pageWrap, paddingBottom: '48px', paddingTop: '15px' }}>
-        <h2 css={{ marginBottom: '8px', alignSelf: 'flex-start' }}>Команда</h2>
+      <section
+        css={[
+          {
+            ...pageWrap,
+            paddingBottom: '48px',
+            paddingTop: '15px',
+          },
+          { [tabletLg]: { paddingTop: '24px', marginBottom: '4px' } },
+        ]}
+      >
+        <h2
+          css={{
+            marginBottom: '8px',
+            alignSelf: 'flex-start',
+            [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '4px' },
+          }}
+        >
+          Команда
+        </h2>
         <Link href={`${data.pages.team}`} passHref>
           <a
             css={{
@@ -138,12 +210,15 @@ const Home = () => {
               alignItems: 'center',
               alignSelf: 'flex-start',
               marginBottom: '8px',
+              [tabletLg]: {
+                ...typography.txtSm,
+              },
             }}
           >
             Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
           </a>
         </Link>
-        <p>
+        <p css={{ [tabletLg]: { ...typography.txtSm } }}>
           Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет
           успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды
           Коллегии.
@@ -171,10 +246,21 @@ const Home = () => {
       <ContentSection
         title="Наши результаты"
         titleLvl={2}
-        cssTitle={{ marginBottom: '8px', color: colors.white }}
-        css={{ backgroundColor: colors.blueDark, padding: '37px 0', color: colors.white, position: 'relative' }}
+        cssTitle={{
+          marginBottom: '8px',
+          color: colors.white,
+          [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
+          [mobileLg]: { width: '250px' },
+        }}
+        css={{
+          backgroundColor: colors.blueDark,
+          padding: '37px 0',
+          color: colors.white,
+          position: 'relative',
+          [tabletLg]: { padding: '48px 0' },
+        }}
       >
-        <p>Каждый год мы стремимся к прогрессу и к его достижению.</p>
+        <p css={{ [tabletLg]: { ...typography.txtSm } }}>Каждый год мы стремимся к прогрессу и к его достижению.</p>
         <div
           css={{
             marginTop: '40px',
@@ -183,29 +269,78 @@ const Home = () => {
             div: {
               maxWidth: '202px',
             },
+            [tabletLg]: {
+              marginTop: '24px',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: 'auto auto',
+              gridRowGap: '32px',
+            },
           }}
         >
           <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>32+</p>
+            <p
+              css={{
+                fontWeight: 700,
+                fontSize: '72px',
+                lineHeight: '93px',
+                marginBottom: '4px',
+                [tabletLg]: { fontSize: '32px', lineHeight: '41px' },
+              }}
+            >
+              32+
+            </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>года мы оказываем профессиональную юридическую помощь</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>года мы оказываем профессиональную юридическую помощь</p>
           </div>
           <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>1000+</p>
+            <p
+              css={{
+                fontWeight: 700,
+                fontSize: '72px',
+                lineHeight: '93px',
+                marginBottom: '4px',
+                [tabletLg]: { fontSize: '32px', lineHeight: '41px' },
+              }}
+            >
+              1000+
+            </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>клиентов</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>клиентов</p>
           </div>
           <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>50+</p>
+            <p
+              css={{
+                fontWeight: 700,
+                fontSize: '72px',
+                lineHeight: '93px',
+                marginBottom: '4px',
+                [tabletLg]: { fontSize: '32px', lineHeight: '41px' },
+              }}
+            >
+              50+
+            </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>
               абонентских клиентов, <br /> 7 из которых более <br /> 30 лет
             </p>
           </div>
           <div>
-            <p css={{ fontWeight: 700, fontSize: '72px', lineHeight: '93px', marginBottom: '4px' }}>85%</p>
+            <p
+              css={{
+                fontWeight: 700,
+                fontSize: '72px',
+                lineHeight: '93px',
+                marginBottom: '4px',
+                [tabletLg]: { fontSize: '32px', lineHeight: '41px' },
+              }}
+            >
+              85%
+            </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p>клиентов обращаются с новыми вопросами или рекомендуют Коллегию партнерам</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>
+              клиентов обращаются с новыми вопросами или рекомендуют Коллегию партнерам
+            </p>
           </div>
         </div>
         <div css={{ ...pageWrap, position: 'absolute', top: 0, left: 0, right: 0 }}>
@@ -217,11 +352,29 @@ const Home = () => {
               position: 'absolute',
               right: 0,
               top: '-28px',
+              [tabletLg]: { display: 'none' },
             }}
           />
-          <div css={{ display: 'flex', position: 'absolute', top: 0, right: '48px' }}>
-            <div css={{ width: '550px', height: '28px', backgroundColor: colors.blue, marginRight: '45px' }} />
-            <ParticlesMesh width={4} height={2} css={{ marginTop: '6px' }} />
+          <div
+            css={{
+              display: 'flex',
+              position: 'absolute',
+              top: 0,
+              right: '48px',
+              [tabletLg]: { top: '20px', right: '16px', alignItems: 'center' },
+            }}
+          >
+            <div
+              css={{
+                width: '550px',
+                height: '28px',
+                backgroundColor: colors.blue,
+                marginRight: '45px',
+                [tabletLg]: { width: '134px' },
+              }}
+            />
+            <ParticlesMesh width={4} height={2} css={{ marginTop: '6px', [tabletLg]: { display: 'none' } }} />
+            <ParticlesMesh width={3} height={2} css={{ [tabletLgMin]: { display: 'none' } }} />
           </div>
         </div>
       </ContentSection>
@@ -229,21 +382,47 @@ const Home = () => {
       <ContentSection
         title="Рейтинги и награды"
         titleLvl={2}
-        cssTitle={{ marginBottom: '4px' }}
-        css={{ backgroundColor: colors.white, padding: '20px 0 0 0' }}
+        cssTitle={{
+          marginBottom: '4px',
+          [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '4px' },
+        }}
+        css={{
+          backgroundColor: colors.white,
+          padding: '20px 0 48px 0',
+          [tabletLg]: { paddingBottom: '24px' },
+        }}
       >
-        <p>
+        <p css={{ ...typography.txtSm }}>
           Наш профессионализм ежегодно подтверждается российскими и международными рейтинговыми агентствами, а также
           отмечается наградами в области права.
         </p>
 
-        <Carousel slidesPerView={4} pagination={false}>
+        <div
+          css={{
+            display: 'flex',
+            [tablet]: {
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: 'auto auto',
+              gridColumnGap: '24px',
+              gridRowGap: '4px',
+            },
+          }}
+        >
           {achievements.map(el => (
-            <div key={el.id} css={{ ...position.center, height: '190px', width: '240px' }}>
+            <div
+              key={el.id}
+              css={{
+                ...position.center,
+                height: '190px',
+                width: '240px',
+                [tablet]: { margin: 'auto', width: '152px', height: '118px' },
+              }}
+            >
               {el.isHaveSize ? <Image src={el.img.src} width={el.width} height={el.height} /> : <Image src={el.img} />}
             </div>
           ))}
-        </Carousel>
+        </div>
       </ContentSection>
 
       <ContentSection isWrapS>
@@ -269,6 +448,9 @@ const Home = () => {
                 bottom: 0,
                 backgroundColor: 'rgba(32, 32, 32, 0.5)',
               },
+              [mobileLg]: {
+                backgroundPosition: '42%',
+              },
             }}
           />
           <div
@@ -289,6 +471,10 @@ const Home = () => {
                 padding: '0 16px',
                 color: colors.white,
                 textAlign: 'center',
+                [tabletLg]: {
+                  ...typography.h3,
+                  color: colors.white,
+                },
               }}
             >
               “Вы найдете дешевле,
@@ -301,26 +487,78 @@ const Home = () => {
       </ContentSection>
 
       <section css={{ ...pageWrapS, backgroundColor: colors.white }}>
-        <div css={{ display: 'flex' }}>
-          <div css={{ backgroundColor: colors.blueDark, width: '33.5%', position: 'relative' }}>
+        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column' } }}>
+          <div
+            css={{
+              backgroundColor: colors.blueDark,
+              width: '33.5%',
+              position: 'relative',
+              [tabletLg]: { width: '100%' },
+            }}
+          >
             <div css={{ ...pageWrap, paddingTop: '30px' }}>
-              <h2 css={{ color: colors.white }}>Проекты</h2>
-              <Link href={`${data.pages.projects}`} passHref>
-                <a
+              <div
+                css={{
+                  [tabletLgMin]: { display: 'none' },
+                  width: '9px',
+                  height: '102px',
+                  backgroundColor: colors.cyan,
+                  position: 'absolute',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  left: 0,
+                }}
+              />
+              <div>
+                <h2
                   css={{
-                    ...links.white,
-                    whiteSpace: 'nowrap',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    alignSelf: 'flex-start',
-                    marginBottom: '32px',
+                    color: colors.white,
+                    [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
                   }}
                 >
-                  Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
-                </a>
-              </Link>
+                  Проекты
+                </h2>
+                <Link href={`${data.pages.projects}`} passHref>
+                  <a
+                    css={{
+                      ...links.white,
+                      whiteSpace: 'nowrap',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      alignSelf: 'flex-start',
+                      marginBottom: '32px',
+                      [tabletLg]: {
+                        ...typography.txtSm,
+                        marginBottom: '25px',
+                      },
+                    }}
+                  >
+                    Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
+                  </a>
+                </Link>
+              </div>
+              <ParticlesMesh
+                width={3}
+                height={3}
+                css={{
+                  [tabletLgMin]: { display: 'none' },
+                  position: 'absolute',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  right: '4px',
+                }}
+              />
             </div>
-            <div css={{ position: 'absolute', left: 0, top: '72px', pointerEvents: 'none' }}>
+
+            <div
+              css={{
+                position: 'absolute',
+                left: 0,
+                top: '72px',
+                pointerEvents: 'none',
+                [tabletLg]: { display: 'none' },
+              }}
+            >
               <div
                 css={{
                   width: '24px',
@@ -339,6 +577,7 @@ const Home = () => {
               paddingRight: pageWrap.paddingRight,
               paddingLeft: '24px',
               width: '66.5%',
+              [tabletLg]: { width: '100%', paddingTop: '34px', ...pageWrap },
             }}
           >
             <div
@@ -347,6 +586,14 @@ const Home = () => {
                 gridTemplateRows: '1fr 1fr',
                 gridTemplateColumns: 'auto auto',
                 gap: '24px',
+                [tabletLg]: {
+                  gap: '16px',
+                },
+                [mobileLg]: {
+                  gridRowGap: '16px',
+                  gridTemplateColumns: '1fr',
+                  gridTemplateRows: 'auto auto auto auto',
+                },
               }}
             >
               {projectsCards.map((card, index) => (
@@ -360,8 +607,15 @@ const Home = () => {
       <ContentSection
         title="Медиа"
         titleLvl={2}
-        cssTitle={{ marginBottom: '8px' }}
-        css={{ backgroundColor: colors.gray100, padding: '32px 0 16px' }}
+        cssTitle={{
+          marginBottom: '8px',
+          [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
+        }}
+        css={{
+          backgroundColor: colors.gray100,
+          padding: '32px 0 16px',
+          [tabletLg]: { paddingTop: '24px', paddingBottom: '24px' },
+        }}
       >
         <Link href={`${data.pages.media}`} passHref>
           <a
@@ -371,6 +625,10 @@ const Home = () => {
               alignItems: 'center',
               alignSelf: 'flex-start',
               marginBottom: '32px',
+              [tabletLg]: {
+                ...typography.txtSm,
+                marginBottom: '24px',
+              },
             }}
           >
             Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
@@ -398,10 +656,30 @@ const Home = () => {
         </Carousel>
       </ContentSection>
 
-      <section id="consultation" css={{ ...pageWrapS, position: 'relative', paddingTop: '32px' }}>
-        <h2 css={{ ...pageWrap, marginBottom: '32px', alignSelf: 'flex-start' }}>Контакты</h2>
-        <div css={{ display: 'flex', [tabletLg]: { display: 'block' } }}>
-          <Map css={{ width: '50%', [tabletLg]: { width: 'auto', height: '700px' } }} info={false} />
+      <section
+        id="consultation"
+        css={{ ...pageWrapS, position: 'relative', paddingTop: '32px', [tabletLg]: { paddingTop: '64px' } }}
+      >
+        <h2
+          css={[
+            {
+              ...pageWrap,
+              marginBottom: '32px',
+              alignSelf: 'flex-start',
+            },
+            { [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '16px' } },
+          ]}
+        >
+          Контакты
+        </h2>
+        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column-reverse' } }}>
+          <Map
+            css={{
+              width: '50%',
+              [tabletLg]: { width: 'auto', height: '700px', [tabletLg]: { height: '334px', marginBottom: '36px' } },
+            }}
+            info={false}
+          />
           <div
             css={[
               {
@@ -413,7 +691,7 @@ const Home = () => {
                 paddingBottom: '48px',
                 paddingLeft: '40px',
                 width: '50%',
-                [tabletLg]: { width: 'auto' },
+                [tabletLg]: { width: 'auto', paddingTop: '24px', paddingBottom: '24px' },
               },
             ]}
           >
@@ -427,13 +705,25 @@ const Home = () => {
                   height: '52px',
                   marginRight: '24px',
                   marginBottom: '72px',
+                  [tabletLg]: {
+                    width: '32px',
+                    height: '32px',
+                    marginRight: '16px',
+                    marginBottom: '60px',
+                    img: {
+                      maxWidth: '16px',
+                      maxHeight: '16px',
+                    },
+                  },
                 }}
               >
                 <Image src={pinURL} width={32} height={32} />
               </div>
-              <div css={{ marginRight: '32px' }}>
-                <p css={{ ...typography.h6, marginBottom: '8px' }}>Адрес</p>
-                <p css={{ ...typography.txt, color: colors.gray700 }}>{data.contactsData.address}</p>
+              <div css={{ [tabletLgMin]: { marginRight: '32px' } }}>
+                <p css={{ ...typography.h6, marginBottom: '8px', [tabletLg]: { ...typography.txtBold } }}>Адрес</p>
+                <p css={{ ...typography.txt, color: colors.gray700, [tabletLg]: { ...typography.txtSm } }}>
+                  {data.contactsData.address}
+                </p>
               </div>
             </div>
             <div css={{ display: 'flex' }}>
@@ -446,14 +736,32 @@ const Home = () => {
                   height: '52px',
                   marginRight: '24px',
                   marginBottom: '72px',
+                  [tabletLg]: {
+                    width: '32px',
+                    height: '32px',
+                    marginRight: '16px',
+                    marginBottom: '60px',
+                    img: {
+                      maxWidth: '16px',
+                      maxHeight: '16px',
+                    },
+                  },
                 }}
               >
                 <Image src={phoneCallURL} width={32} height={32} />
               </div>
-              <div css={{ marginRight: '32px' }}>
-                <p css={{ ...typography.h6, marginBottom: '8px' }}>Телефон</p>
+              <div css={{ [tabletLgMin]: { marginRight: '32px' } }}>
+                <p css={{ ...typography.h6, marginBottom: '8px', [tabletLg]: { ...typography.txtBold } }}>Телефон</p>
                 {data.contactsData.phones.map(phone => (
-                  <p key={phone.desc} css={{ ...typography.txt, color: colors.gray700, marginBottom: 0 }}>
+                  <p
+                    key={phone.desc}
+                    css={{
+                      ...typography.txt,
+                      color: colors.gray700,
+                      marginBottom: 0,
+                      [tabletLg]: { ...typography.txtSm },
+                    }}
+                  >
                     {phone.number} <span css={{ whiteSpace: 'nowrap' }}>{phone.desc}</span>
                   </p>
                 ))}
@@ -469,17 +777,62 @@ const Home = () => {
                   height: '52px',
                   marginRight: '24px',
                   marginBottom: '72px',
+                  [tabletLg]: {
+                    width: '32px',
+                    height: '32px',
+                    marginRight: '16px',
+                    marginBottom: '60px',
+                    img: {
+                      maxWidth: '16px',
+                      maxHeight: '16px',
+                    },
+                  },
                 }}
               >
                 <Image src={mailURL} width={32} height={32} />
               </div>
               <div>
-                <p css={{ ...typography.h6, marginBottom: '8px' }}>E-mail</p>
-                <p css={{ ...typography.txt, color: colors.gray700 }}>{data.contactsData.email}</p>
+                <p css={{ ...typography.h6, marginBottom: '8px', [tabletLg]: { ...typography.txtBold } }}>E-mail</p>
+                <p css={{ ...typography.txt, color: colors.gray700, [tabletLg]: { ...typography.txtSm } }}>
+                  {data.contactsData.email}
+                </p>
+              </div>
+            </div>
+            <div css={{ display: 'flex' }}>
+              <div
+                css={{
+                  ...position.center,
+                  backgroundColor: colors.blueLight,
+                  borderRadius: '50%',
+                  width: '52px',
+                  height: '52px',
+                  marginRight: '24px',
+                  marginBottom: '72px',
+                  [tabletLg]: {
+                    width: '32px',
+                    height: '32px',
+                    marginRight: '16px',
+                    marginBottom: '24px',
+                    img: {
+                      maxWidth: '20px',
+                      maxHeight: '20px',
+                    },
+                  },
+                }}
+              >
+                <Image src={whatsappURL} width={32} height={32} />
+              </div>
+              <div>
+                <a
+                  href={data.contactsData.whatsapp}
+                  css={{ ...typography.h6, ...links.blue, [tabletLg]: { ...typography.txtBold } }}
+                >
+                  WhatsApp
+                </a>
               </div>
             </div>
 
-            <p css={{ padding: '12px 16px', backgroundColor: colors.blueLight }}>
+            <p css={{ padding: '12px 16px', backgroundColor: colors.blueLight, [tabletLg]: { ...typography.txtSm } }}>
               Если Вы заинтересованы стать частью нашей команды, направьте свое резюме на электронную почту{' '}
               <span css={{ marginLeft: '5px' }}>
                 <a css={links.blue} href={`mailto:${data.contactsData?.email}`}>
@@ -490,9 +843,31 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <div css={{ display: 'flex', alignItems: 'center', position: 'absolute', top: '66px', right: 0 }}>
-          <ParticlesMesh width={7} height={2} particlesCSS={{ backgroundColor: colors.blueDark }} />
-          <div css={{ width: '26px', height: '58px', backgroundColor: colors.blue, marginLeft: '43px' }} />
+        <div
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            position: 'absolute',
+            top: '66px',
+            right: 0,
+            [tabletLg]: { top: 0 },
+          }}
+        >
+          <ParticlesMesh
+            width={7}
+            height={2}
+            particlesCSS={{ backgroundColor: colors.blueDark }}
+            css={{ [tabletLg]: { gridRowGap: '8px' } }}
+          />
+          <div
+            css={{
+              width: '26px',
+              height: '58px',
+              backgroundColor: colors.blue,
+              marginLeft: '43px',
+              [tabletLg]: { marginLeft: '20px' },
+            }}
+          />
         </div>
       </section>
 
