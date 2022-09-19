@@ -83,19 +83,20 @@ const ContentCard: FC<IContentCardProps> = (
 
             <div
                 css={{
-                    display: 'flex',
-                    flexDirection: 'row',
+                    display: 'grid',
+                    gridTemplate: '1fr / auto 1fr',
                     width: '100%',
-                    [desktop]: {flexDirection: 'column', rowGap: '20px'},
+                    [desktop]: {gridTemplate: 'auto 1fr / 1fr', rowGap: '20px'},
                 }}
             >
                 {cardImg && (
                     <div css={{
                         width: '100%',
-                        display: 'flex',
+                        display: 'grid',
                         justifyContent: 'start',
                         [mobile]: {
-                            justifyContent: 'center'
+                            width: '76vw',
+                            justifyContent: mobileImageWidth ? 'center' : 'start',
                         }
                     }}>
                         <div
@@ -107,6 +108,7 @@ const ContentCard: FC<IContentCardProps> = (
                                 maxHeight: '299px',
                                 position: 'relative',
                                 [desktop]: {
+                                    margin: '0',
                                     width: mobileImageWidth || '64px',
                                     height: mobileImageHeight || '64px',
                                 }
@@ -134,7 +136,7 @@ const ContentCard: FC<IContentCardProps> = (
                             marginBottom: '15px',
                             ...contentCSS,
                             [desktop]: {
-                                height: '140px'
+                                height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto') : height || '140px',
                             }
                         }}
                     >

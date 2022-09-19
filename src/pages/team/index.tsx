@@ -38,7 +38,7 @@ const Team: FC = () => {
 
             <ContentSection childrenCss={contentSectionCSS} css={{padding: '48px 0 48px 0'}}>
                 {teamCards.map((card, index) => (
-                    <div key={team[index].id} css={{marginBottom: '24px', [mobile]: {width: '92vw'}}}>
+                    <div key={team[index].id} css={{marginBottom: '24px', [mobile]: {width: '88vw'}}}>
                         {card()}
                     </div>
                 ))}
