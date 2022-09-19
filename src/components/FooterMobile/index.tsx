@@ -100,7 +100,7 @@ const FooterMobile: FC<{}> = () => {
           paddingBottom: '8px',
         }}
       >
-        <Link href="#" passHref>
+        <Link href={`${data.pages.politics}`} passHref>
           <a>
             <span
               css={{
