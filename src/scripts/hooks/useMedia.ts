@@ -1,4 +1,5 @@
 type Breakpoint =
+    | 'desktopLg'
     | 'desktop'
     | 'desktopMin'
     | 'tabletLg'
@@ -14,7 +15,8 @@ type dataProps = Record<Breakpoint, string>;
 
 export const useMedia = () => {
     const breakpoints = {
-        desktop: 1350,
+        desktopLg: 1350,
+        desktop: 1200,
         tabletLg: 1024,
         tablet: 920,
         mobileLg: 640,
@@ -28,6 +30,7 @@ export const useMedia = () => {
             [`${name}Min`]: `@media (min-width: ${value}px)`,
         }),
         {
+            desktopLg: '',
             desktop: '',
             desktopMin: '',
             tabletLg: '',

@@ -53,7 +53,7 @@ const ContentCard: FC<IContentCardProps> = (
 ) => {
     const {push} = useRouter();
     const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
-    const {desktop, mobile} = useMedia();
+    const {desktopLg, mobile} = useMedia();
 
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const ContentCard: FC<IContentCardProps> = (
                     display: 'grid',
                     gridTemplate: '1fr / auto 1fr',
                     width: '100%',
-                    [desktop]: {gridTemplate: 'auto 1fr / 1fr', rowGap: '20px'},
+                    [desktopLg]: {gridTemplate: 'auto 1fr / 1fr', rowGap: '20px'},
                 }}
             >
                 {cardImg && (
@@ -107,7 +107,7 @@ const ContentCard: FC<IContentCardProps> = (
                                 maxWidth: '266px',
                                 maxHeight: '299px',
                                 position: 'relative',
-                                [desktop]: {
+                                [desktopLg]: {
                                     margin: '0',
                                     width: mobileImageWidth || '64px',
                                     height: mobileImageHeight || '64px',
@@ -135,7 +135,7 @@ const ContentCard: FC<IContentCardProps> = (
                             textOverflow: 'ellipsis',
                             marginBottom: '15px',
                             ...contentCSS,
-                            [desktop]: {
+                            [desktopLg]: {
                                 height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto') : height || '140px',
                             }
                         }}
