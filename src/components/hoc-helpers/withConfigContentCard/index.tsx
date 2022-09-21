@@ -16,6 +16,8 @@ interface ICardConfig {
     height?: string;
     imageWidth?: string;
     imageHeight?: string;
+    mobileImageWidth?: string;
+    mobileImageHeight?: string;
     isOpen?: boolean;
 }
 
@@ -108,6 +110,8 @@ const withConfigContentCard = (
             cardConfig.boxShadow = shadows.around.boxShadow;
             cardConfig.imageWidth = '170px';
             cardConfig.imageHeight = '191px';
+            cardConfig.mobileImageWidth = '266px';
+            cardConfig.mobileImageHeight = '299px';
             cardConfig.btn = {
                 isLink: true,
                 url: `team/${content.id}`,
@@ -164,6 +168,8 @@ const withConfigContentCard = (
             height={cardConfig.height}
             imageWidth={cardConfig.imageWidth}
             imageHeight={cardConfig.imageHeight}
+            mobileImageWidth={cardConfig.mobileImageWidth}
+            mobileImageHeight={cardConfig.mobileImageHeight}
             defaultOpen={cardConfig.isOpen}
             objectPosition={content.objectPosition}
         />

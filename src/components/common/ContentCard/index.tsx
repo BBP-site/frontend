@@ -6,6 +6,7 @@ import {CSSObject} from '@emotion/react';
 import {colors, links, time, typography} from '@scripts/theme';
 
 import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
+import {useMedia} from "@scripts/hooks";
 
 export interface ICardBtn {
     isLink: boolean;
@@ -26,6 +27,8 @@ export interface IContentCardProps {
     height?: string;
     imageWidth?: string;
     imageHeight?: string;
+    mobileImageWidth?: string;
+    mobileImageHeight?: string;
     defaultOpen?: boolean;
     objectPosition?: string;
 }
@@ -42,12 +45,16 @@ const ContentCard: FC<IContentCardProps> = (
         height,
         imageWidth,
         imageHeight,
+        mobileImageWidth,
+        mobileImageHeight,
         defaultOpen = false,
         objectPosition,
     }
 ) => {
     const {push} = useRouter();
     const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
+    const {desktopLg, mobile} = useMedia();
+
 
     useEffect(() => {
         setIsOpen(defaultOpen);
@@ -76,30 +83,47 @@ const ContentCard: FC<IContentCardProps> = (
 
             <div
                 css={{
-                    display: 'flex',
-                    flexDirection: 'row',
+                    display: 'grid',
+                    gridTemplate: '1fr / auto 1fr',
                     width: '100%',
+                    [desktopLg]: {gridTemplate: 'auto 1fr / 1fr', rowGap: '20px'},
                 }}
             >
                 {cardImg && (
-                    <div
-                        css={{
-                            marginRight: '20px',
-                            width: '100%',
-                            height: imageHeight || '64px',
-                            maxWidth: imageWidth || '64px',
-                            maxHeight: '191px',
-                            position: 'relative',
-                        }}
-                    >
-                        <Image
-                            src={cardImg}
-                            layout="fill"
-                            objectFit="cover"
-                            objectPosition={objectPosition || 'top'}
-                            alt="practice-icon"
-                        />
+                    <div css={{
+                        width: '100%',
+                        display: 'grid',
+                        justifyContent: 'start',
+                        [mobile]: {
+                            width: '76vw',
+                            justifyContent: mobileImageWidth ? 'center' : 'start',
+                        }
+                    }}>
+                        <div
+                            css={{
+                                marginRight: '20px',
+                                width: imageWidth || '64px',
+                                height: imageHeight || '64px',
+                                maxWidth: '266px',
+                                maxHeight: '299px',
+                                position: 'relative',
+                                [desktopLg]: {
+                                    margin: '0',
+                                    width: mobileImageWidth || '64px',
+                                    height: mobileImageHeight || '64px',
+                                }
+                            }}
+                        >
+                            <Image
+                                src={cardImg}
+                                layout="fill"
+                                objectFit="cover"
+                                objectPosition={objectPosition || 'top'}
+                                alt="practice-icon"
+                            />
+                        </div>
                     </div>
+
                 )}
 
                 <div>
@@ -111,6 +135,9 @@ const ContentCard: FC<IContentCardProps> = (
                             textOverflow: 'ellipsis',
                             marginBottom: '15px',
                             ...contentCSS,
+                            [desktopLg]: {
+                                height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto') : height || '140px',
+                            }
                         }}
                     >
                         {content}
@@ -126,13 +153,15 @@ const ContentCard: FC<IContentCardProps> = (
                     >
             {isOpen ? btn?.textCLose : btn?.text}
 
-                        <ArrowIcon
-                            css={{
-                                marginLeft: '10px',
-                                transition: `transform ${time}`,
-                                transform: isOpen ? 'none' : btn?.transform,
-                            }}
-                        />
+                        {!btn?.isLink &&
+                            <ArrowIcon
+                                css={{
+                                    marginLeft: '10px',
+                                    transition: `transform ${time}`,
+                                    transform: isOpen ? 'none' : btn?.transform,
+                                }}
+                            />
+                        }
           </span>
                 </div>
             </div>

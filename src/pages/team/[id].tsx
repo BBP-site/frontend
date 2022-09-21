@@ -13,10 +13,12 @@ import Carousel from '@components/common/Carousel';
 
 import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 import mailIconURL from '@icons/mail.svg';
+import {useMedia} from "@scripts/hooks";
 
 const TeamDetail = () => {
     const {query} = useRouter();
     const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+    const {tablet, mobile} = useMedia();
 
     const blockCSS: CSSObject = {
         marginBottom: '24px',
@@ -68,64 +70,79 @@ const TeamDetail = () => {
                         css={{marginBottom: '40px'}}
                         cssInner={{paddingTop: '16px', paddingBottom: '16px', h1: {marginBottom: 0}}}
                     />
-                    <div css={{...pageWrap, display: 'flex'}}>
-                        <div css={{marginRight: '78px', minWidth: '224px', maxWidth: '224px'}}>
-                            <Image src={detailInfo.img} width={224} height={323} objectFit="cover"/>
-                            <div css={{marginTop: '16px', marginBottom: '16px'}}>
-                                <p css={{
-                                    color: colors.gray700,
-                                    marginBottom: 0,
-                                    fontWeight: 'bold'
-                                }}>{detailInfo.position}</p>
-                                {detailInfo.degree &&
-                                    detailInfo.degree.map(degree => (
-                                        <p key={degree}
-                                           css={{color: colors.gray700, marginBottom: 0, fontWeight: 'bold'}}>
-                                            {degree}
-                                        </p>
-                                    ))}
+                    <div css={{
+                        ...pageWrap,
+                        display: 'grid',
+                        gridTemplate: 'auto / 302px 1fr',
+                        marginTop: '24px',
+                        [tablet]: {
+                            gridTemplate: 'auto / 1fr',
+                        }
+                    }}>
+                        <div css={{
+                            width: '100%', display: 'grid', [mobile]: {
+                                placeItems: 'center'
+                            }
+                        }}>
+                            <div>
+                                <Image src={detailInfo.img} width={224} height={323} objectFit="cover"/>
+                                <div css={{marginTop: '16px', marginBottom: '16px'}}>
+                                    <p css={{
+                                        color: colors.gray700,
+                                        marginBottom: 0,
+                                        fontWeight: 'bold'
+                                    }}>{detailInfo.position}</p>
+                                    {detailInfo.degree &&
+                                        detailInfo.degree.map(degree => (
+                                            <p key={degree}
+                                               css={{color: colors.gray700, marginBottom: 0, fontWeight: 'bold'}}>
+                                                {degree}
+                                            </p>
+                                        ))}
+                                </div>
+                                {detailInfo.email && (
+                                    <Link href={`mailto:${detailInfo.email}`} passHref>
+                                        <a css={{
+                                            ...links.blue,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            marginBottom: '24px'
+                                        }}>
+                                            <div css={{width: '24px', height: '24px', marginRight: '14px'}}>
+                                                <Image src={mailIconURL} width="24px" height="24px"/>
+                                            </div>
+                                            {detailInfo.email}
+                                        </a>
+                                    </Link>
+                                )}
+                                {detailInfo.revardsIcons && (
+                                    <Carousel
+                                        css={{maxWidth: '200px'}}
+                                        smallArrows
+                                        pagination={false}
+                                        slidesPerView="auto"
+                                        spaceBetween={16}
+                                        breakpoints={{
+                                            900: {
+                                                slidesPerView: 2,
+                                                spaceBetween: 16,
+                                            },
+                                        }}
+                                    >
+                                        {detailInfo.revardsIcons.map(iconData => (
+                                            <Image
+                                                key={iconData.url}
+                                                css={{position: 'relative'}}
+                                                src={iconData.url}
+                                                width={iconData.width}
+                                                height={iconData.height}
+                                            />
+                                        ))}
+                                    </Carousel>
+                                )}
                             </div>
-                            {detailInfo.email && (
-                                <Link href={`mailto:${detailInfo.email}`} passHref>
-                                    <a css={{
-                                        ...links.blue,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        marginBottom: '24px'
-                                    }}>
-                                        <div css={{width: '24px', height: '24px', marginRight: '14px'}}>
-                                            <Image src={mailIconURL} width="24px" height="24px"/>
-                                        </div>
-                                        {detailInfo.email}
-                                    </a>
-                                </Link>
-                            )}
-                            {detailInfo.revardsIcons && (
-                                <Carousel
-                                    css={{maxWidth: '200px'}}
-                                    smallArrows
-                                    pagination={false}
-                                    slidesPerView="auto"
-                                    spaceBetween={16}
-                                    breakpoints={{
-                                        900: {
-                                            slidesPerView: 2,
-                                            spaceBetween: 16,
-                                        },
-                                    }}
-                                >
-                                    {detailInfo.revardsIcons.map(iconData => (
-                                        <Image
-                                            key={iconData.url}
-                                            css={{position: 'relative'}}
-                                            src={iconData.url}
-                                            width={iconData.width}
-                                            height={iconData.height}
-                                        />
-                                    ))}
-                                </Carousel>
-                            )}
                         </div>
+
                         <div>
                             {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
                             {detailInfo.revardsHTML && (
