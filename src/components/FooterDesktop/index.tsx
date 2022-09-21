@@ -16,7 +16,6 @@ import emailURL from '@icons/email.svg';
 
 const footerCss: CSSObject = {
   width: '100%',
-  height: '120px',
   display: 'flex',
   flexDirection: 'column',
 };
@@ -24,6 +23,7 @@ const footerCss: CSSObject = {
 const mainBlockCSS: CSSObject = {
   ...position.spaceBetween,
   ...pageWrap,
+  height: '84px',
   marginLeft: '0',
   marginRight: '0',
   width: '100%',
@@ -33,7 +33,8 @@ const rightsCSS: CSSObject = {
   ...position.center,
   ...typography.txt,
   width: '100%',
-  height: '32px',
+  padding: '5px 0px',
+  height: 'auto',
   backgroundColor: colors.blueSuperDark,
 };
 
@@ -84,7 +85,7 @@ const FooterDesktop: FC = () => {
         <div
           css={{
             ...position.end,
-            ...typography.txt,
+            ...typography.txtSm,
             flexDirection: 'row',
             a: {
               ...position.center,
@@ -100,17 +101,20 @@ const FooterDesktop: FC = () => {
         >
           <Link href="/contacts" passHref>
             <a>
-              <Image src={locationURL} width="16px" height="16px" />
+              <div css={{ minWidth: '16px' }}>
+                <Image src={locationURL} width="16px" height="16px" />
+              </div>
+
               <span css={{ marginLeft: '8px' }}>{data.contactsData?.address}</span>
             </a>
           </Link>
 
           <Link href={`tel:${data.contactsData?.phones[0]?.number}`} passHref>
-            <a>
+            <a css={{ minWidth: '161px' }}>
               <Image src={phoneURL} width="16px" height="16px" />
               <div css={{ marginLeft: '8px' }}>
                 {data.contactsData.phones.map(phone => (
-                  <p key={phone.desc} css={{ ...typography.txt, marginBottom: '4px' }}>
+                  <p key={phone.desc} css={{ ...typography.txtSm, marginBottom: '4px' }}>
                     {phone.number}
                   </p>
                 ))}
@@ -119,7 +123,7 @@ const FooterDesktop: FC = () => {
           </Link>
 
           <Link href={`mailto:${data.contactsData?.email}`} passHref>
-            <a>
+            <a css={{ minWidth: '120px' }}>
               <Image src={emailURL} width="16px" height="16px" />
               <span css={{ marginLeft: '8px' }}>{data.contactsData?.email}</span>
             </a>
@@ -137,7 +141,7 @@ const FooterDesktop: FC = () => {
             width: '100%',
           }}
         >
-          <Link href="#" passHref>
+          <Link href={`${data.pages.politics}`} passHref>
             <a>
               <span
                 css={{

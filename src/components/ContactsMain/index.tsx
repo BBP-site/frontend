@@ -16,7 +16,8 @@ const ContactsMain = () => {
     return (
         <section id="consultation" css={{...pageWrapS, position: 'relative'}}>
             <div css={{display: 'flex', [tabletLg]: {flexDirection: 'column-reverse'}}}>
-                <Map css={{width: '50%', [tabletLg]: {width: 'auto', height: '700px'}}} info={false}/>
+                <Map css={{width: '50%', [tabletLg]: {margin: 'auto', width: '92%', height: '700px'}}}
+                     info={false}/>
                 <div
                     css={[
                         {
@@ -46,7 +47,6 @@ const ContactsMain = () => {
                                         width: '32px',
                                         height: '32px',
                                         marginRight: '16px',
-                                        marginBottom: '60px',
                                         img: {
                                             maxWidth: '16px',
                                             maxHeight: '16px',
@@ -83,7 +83,6 @@ const ContactsMain = () => {
                                         width: '32px',
                                         height: '32px',
                                         marginRight: '16px',
-                                        marginBottom: '60px',
                                         img: {
                                             maxWidth: '16px',
                                             maxHeight: '16px',
@@ -130,7 +129,6 @@ const ContactsMain = () => {
                                         width: '32px',
                                         height: '32px',
                                         marginRight: '16px',
-                                        marginBottom: '60px',
                                         img: {
                                             maxWidth: '16px',
                                             maxHeight: '16px',
@@ -167,7 +165,6 @@ const ContactsMain = () => {
                                         width: '32px',
                                         height: '32px',
                                         marginRight: '16px',
-                                        marginBottom: '24px',
                                         img: {
                                             maxWidth: '20px',
                                             maxHeight: '20px',
