@@ -1,10 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ReactModal from 'react-modal';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { ClassNames } from '@emotion/react';
 
-import { colors } from '@scripts/theme';
+import { colors, shadows } from '@scripts/theme';
 
 import Menu, { MENU_TYPE } from '@components/Menu';
 
@@ -15,11 +14,6 @@ const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function;
   openFeedback,
 }) => {
   const router = useRouter();
-  const [contentRef, setContentRef] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (contentRef && !open) enableBodyScroll(contentRef);
-  }, [contentRef, open]);
 
   useEffect(() => {
     const handleRouteChange = () => onClose();
@@ -33,9 +27,9 @@ const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function;
     <ClassNames>
       {({ css }) => (
         <ReactModal
-          contentRef={node => setContentRef(node)}
           className={{
             base: `${css({
+              ...shadows.bottom,
               background: colors.white,
               position: 'relative',
               transition: 'top ease 200ms',
@@ -60,7 +54,7 @@ const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function;
               bottom: 0,
               right: 0,
               padding: 0,
-              background: 'rgba(46, 62, 81, 0.5)',
+              background: 'transparent',
               opacity: 0,
               transition: 'opacity ease 150ms',
             }),
@@ -75,9 +69,6 @@ const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function;
           closeTimeoutMS={200}
           isOpen={open}
           onRequestClose={() => onClose()}
-          onAfterOpen={() => {
-            if (contentRef) disableBodyScroll(contentRef);
-          }}
         >
           <div
             css={{

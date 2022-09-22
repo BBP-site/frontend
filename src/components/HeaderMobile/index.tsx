@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { colors, links, pageWrap, position, shadows, typography } from '@scripts/theme';
+import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { useCommon } from '@context/common';
@@ -68,7 +68,6 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
       <div
         ref={node => setHeaderRef(node)}
         css={{
-          ...shadows.bottom,
           [tabletLgMin]: {
             display: 'none',
           },

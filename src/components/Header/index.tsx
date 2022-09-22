@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 
-import { colors, pageWrap } from '@scripts/theme';
+import { colors, pageWrap, shadows } from '@scripts/theme';
 
 import HeaderMobile from '@components/HeaderMobile';
 import HeaderDesktop from '@components/HeaderDesktop';
@@ -19,6 +19,7 @@ const Header: FC<{}> = () => {
           top: 0,
           zIndex: 100,
           backgroundColor: colors.white,
+          ...shadows.bottom,
         }}
       >
         <HeaderMobile openFeedback={() => setOpenFeedback(true)} />
