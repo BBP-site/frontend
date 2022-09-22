@@ -63,9 +63,9 @@ export const teamDetails: ITeamDetail[] = [
         degree: ['адвокат, медиатор', 'доктор юридических наук'],
         email: 'karakhanian@bbp.ru',
         revardsIcons: [
-            {url: best18.src, width: 76, height: 71},
-            {url: best19.src, width: 76, height: 71},
-            {url: best22.src, width: 76, height: 71},
+            {url: best18.src, width: 56, height: 51},
+            {url: best19.src, width: 56, height: 51},
+            {url: best22.src, width: 56, height: 51},
         ],
         experienceHTML: (
             <>

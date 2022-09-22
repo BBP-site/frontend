@@ -8,6 +8,7 @@ import whatsappURL from "@icons/whatsapp.svg";
 import React from "react";
 import {useCommon} from "@context/common";
 import {useMedia} from "@scripts/hooks";
+import Button from "@components/common/Button";
 
 const ContactsMain = () => {
     const {data} = useCommon();
@@ -16,7 +17,7 @@ const ContactsMain = () => {
     return (
         <section id="consultation" css={{...pageWrapS, position: 'relative'}}>
             <div css={{display: 'flex', [tabletLg]: {flexDirection: 'column-reverse'}}}>
-                <Map css={{width: '50%', [tabletLg]: {margin: 'auto', width: '92%', height: '700px'}}}
+                <Map css={{width: '50%', [tabletLg]: {margin: 'auto', width: '92%', height: '400px'}}}
                      info={false}/>
                 <div
                     css={[
@@ -152,7 +153,7 @@ const ContactsMain = () => {
 
                     </div>
                     <div css={{display: 'flex'}}>
-                        <div css={{...position.center, height: '52px', marginBottom: '72px'}}>
+                        <div css={{...position.center, height: '52px', marginBottom: '30px'}}>
                             <div
                                 css={{
                                     ...position.center,
@@ -185,6 +186,20 @@ const ContactsMain = () => {
                                 WhatsApp
                             </a>
                         </div>
+                    </div>
+
+                    <div css={{...pageWrap, marginBottom: '40px'}}>
+                        <Button
+                            css={{
+                                backgroundColor: colors.blueDark,
+                                fontWeight: 700,
+                                width: '100%',
+                                paddingLeft: 0,
+                                paddingRight: 0,
+                            }}
+                        >
+                            Связаться с нами
+                        </Button>
                     </div>
 
                     <p css={{

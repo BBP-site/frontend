@@ -121,18 +121,18 @@ const TeamDetail = () => {
                                         smallArrows
                                         pagination={false}
                                         slidesPerView="auto"
-                                        spaceBetween={16}
+                                        spaceBetween={1}
                                         breakpoints={{
                                             900: {
-                                                slidesPerView: 2,
-                                                spaceBetween: 16,
+                                                slidesPerView: 4,
+                                                spaceBetween: 1,
                                             },
                                         }}
                                     >
                                         {detailInfo.revardsIcons.map(iconData => (
                                             <Image
                                                 key={iconData.url}
-                                                css={{position: 'relative'}}
+                                                css={{position: 'relative', width: '50px'}}
                                                 src={iconData.url}
                                                 width={iconData.width}
                                                 height={iconData.height}
