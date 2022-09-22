@@ -5,14 +5,14 @@ import pinURL from "@icons/pin.svg";
 import phoneCallURL from "@icons/phoneCall.svg";
 import mailURL from "@icons/mail.svg";
 import whatsappURL from "@icons/whatsapp.svg";
-import React from "react";
+import React, {FC} from "react";
 import {useCommon} from "@context/common";
 import {useMedia} from "@scripts/hooks";
 import Button from "@components/common/Button";
 
-const ContactsMain = () => {
+const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedback}) => {
     const {data} = useCommon();
-    const {tabletLg, tabletLgMin, desktop} = useMedia();
+    const {tabletLg, tabletLgMin, desktop, mobile} = useMedia();
 
     return (
         <section id="consultation" css={{...pageWrapS, position: 'relative'}}>
@@ -188,8 +188,9 @@ const ContactsMain = () => {
                         </div>
                     </div>
 
-                    <div css={{...pageWrap, marginBottom: '40px'}}>
+                    <div css={{...pageWrap, marginBottom: '40px', display: 'none', [mobile]: {display: 'block'}}}>
                         <Button
+                            onClick={() => openFeedback(true)}
                             css={{
                                 backgroundColor: colors.blueDark,
                                 fontWeight: 700,

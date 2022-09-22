@@ -17,7 +17,7 @@ import ContentCard from '@components/common/ContentCard';
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 
 import {achievements} from '@mocks/achievements';
-import {medias, practices, projects, team} from '@mocks/index';
+import {medias, practices, projects, projectsMobile, team} from '@mocks/index';
 
 import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 import barjevskyURL from '@images/barjevsky.webp';
@@ -34,7 +34,8 @@ const Home = () => {
     const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
     const projectsCards = projects
         .map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN))
-        .filter((_, index) => index < 3);
+    const projectsCardsMobile = projectsMobile
+        .map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN))
     const mediasCards = medias.map(media => withConfigContentCard(ContentCard, media, CARD_TYPE.MEDIA));
 
     return (
@@ -611,13 +612,30 @@ const Home = () => {
                                     gap: '16px',
                                 },
                                 [mobileLg]: {
+                                    display: 'none',
+                                },
+                            }}
+                        >
+                            {projectsCards.map((card, index) => (
+                                <div key={projects[index].id}>{card()}</div>
+                            ))}
+                        </div>
+
+                        <div
+                            css={{
+                                display: 'none',
+                                gridTemplateRows: '1fr 1fr',
+                                gridTemplateColumns: 'auto auto',
+                                gap: '24px',
+                                [mobileLg]: {
+                                    display: 'grid',
                                     gridRowGap: '16px',
                                     gridTemplateColumns: '1fr',
                                     gridTemplateRows: 'auto auto auto auto',
                                 },
                             }}
                         >
-                            {projectsCards.map((card, index) => (
+                            {projectsCardsMobile.map((card, index) => (
                                 <div key={projects[index].id}>{card()}</div>
                             ))}
                         </div>
@@ -694,7 +712,7 @@ const Home = () => {
                     Контакты
                 </h2>
 
-                <ContactsMain/>
+                <ContactsMain openFeedback={setOpenFeedback}/>
 
                 <div
                     css={{

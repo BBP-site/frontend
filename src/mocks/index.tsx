@@ -534,6 +534,36 @@ export const projects: IContent[] = [
     },
 ];
 
+export const projectsMobile: IContent[] = [
+    {
+        id: '1',
+        contentHtml: (
+            <>
+                <h5>Об установлении порядка общения родителя с ребенком</h5>
+            </>
+        ),
+        date: '20.12.21',
+    },
+    {
+        id: '2',
+        contentHtml: (
+            <>
+                <h5>О добровольном оформлении отцовства</h5>
+            </>
+        ),
+        date: '20.12.21',
+    },
+    {
+        id: '3',
+        contentHtml: (
+            <>
+                <h5>Об одновременном инициировании расторжения брака в двух странах</h5>
+            </>
+        ),
+        date: '20.12.21',
+    },
+];
+
 export const medias: IContent[] = [
     {
         id: '1',

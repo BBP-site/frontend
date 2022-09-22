@@ -120,11 +120,11 @@ const TeamDetail = () => {
                                         css={{maxWidth: '200px'}}
                                         smallArrows
                                         pagination={false}
-                                        slidesPerView="auto"
+                                        slidesPerView={3}
                                         spaceBetween={1}
                                         breakpoints={{
                                             900: {
-                                                slidesPerView: 4,
+                                                slidesPerView: 3,
                                                 spaceBetween: 1,
                                             },
                                         }}

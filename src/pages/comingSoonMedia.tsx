@@ -21,7 +21,7 @@ const ComingSoonProjects = () => {
             <p>
                 Раздел в разработке.
             </p>
-            <p css={{paddingBottom: '24px'}}>
+            <p css={{paddingBottom: '24px', textAlign: 'center'}}>
                 Скоро здесь Вы сможете узнать новости о нашей Коллегии.
             </p>
             <Button onClick={() => push('/')}>Перейти на главную</Button>
