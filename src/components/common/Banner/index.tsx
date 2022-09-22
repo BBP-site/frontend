@@ -1,72 +1,103 @@
-import {FC} from 'react';
-import {CSSObject} from '@emotion/react';
+import { FC } from 'react';
+import { CSSObject } from '@emotion/react';
 
 import Button from '@components/common/Button';
 
-import {colors, pageWrap, pageWrapS, position, typography} from '@scripts/theme';
+import { colors, pageWrap, pageWrapS, position, typography } from '@scripts/theme';
+import { useMedia } from '@scripts/hooks';
 
 import bannerURL from '@images/banner.jpg';
 
 interface IBannerProps {
-    css?: CSSObject;
-    className?: string;
-    setOpenFeedback: (value: boolean) => void;
+  css?: CSSObject;
+  className?: string;
+  setOpenFeedback: (value: boolean) => void;
 }
 
-const Banner: FC<IBannerProps> = ({css, className, setOpenFeedback}) => {
-    const bannerCSS: CSSObject = {
-        ...pageWrapS,
-        ...position.start,
-        padding: '0',
-        height: '500px',
-        backgroundImage: `url(${bannerURL.src})`,
-        ...css,
-    };
+const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
+  const { mobile, tablet, tabletLg } = useMedia();
 
-    const bannerContentCSS: CSSObject = {
-        width: '50%',
-        minWidth: '510px',
-        height: '100%',
-        padding: '50px 0 50px 0',
-        backgroundColor: colors.bannerContent,
-        color: colors.white,
-    };
+  const bannerCSS: CSSObject = {
+    ...pageWrapS,
+    ...position.start,
+    padding: '0',
+    height: '500px',
+    backgroundImage: `url(${bannerURL.src})`,
+    [tabletLg]: {
+      height: '423px',
+    },
+    [tablet]: {
+      backgroundPosition: '42% 0',
+    },
+    ...css,
+  };
 
-    return (
-        <div css={bannerCSS} className={className}>
-            <div css={bannerContentCSS}>
-                <div
-                    css={{
-                        ...pageWrap,
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'start',
-                        flexDirection: 'column',
-                        height: '100%',
-                    }}
-                >
-                    <p css={{fontSize: '28px', lineHeight: '48px', color: colors.white, margin: '0'}}>
-                        Коллегия адвокатов города Москвы
-                    </p>
+  const bannerContentCSS: CSSObject = {
+    width: '50%',
+    minWidth: '510px',
+    height: '100%',
+    padding: '50px 0 50px 0',
+    backgroundColor: colors.bannerContent,
+    color: colors.white,
+    [tabletLg]: {
+      width: '60%',
+      minWidth: 'auto',
+    },
+    [tablet]: {
+      width: '100%',
+    },
+  };
 
-                    <h1 css={{color: colors.white}}>БАРЩЕВСКИЙ И ПАРТНЕРЫ</h1>
+  return (
+    <div css={bannerCSS} className={className}>
+      <div css={bannerContentCSS}>
+        <div
+          css={{
+            ...pageWrap,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'start',
+            flexDirection: 'column',
+            height: '100%',
+          }}
+        >
+          <p
+            css={{
+              fontSize: '28px',
+              lineHeight: '48px',
+              color: colors.white,
+              margin: '0',
+              [tabletLg]: { ...typography.txt },
+            }}
+          >
+            Коллегия адвокатов города Москвы
+          </p>
 
-                    <p css={{fontSize: '20px'}}>
-                        Наша задача - быть рядом, когда возникают правовые проблемы, всегда помогать и находить выход из
-                        любых
-                        ситуаций.
-                    </p>
+          <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, color: colors.white } }}>
+            БАРЩЕВСКИЙ И ПАРТНЕРЫ
+          </h1>
 
-                    <Button
-                        onClick={() => setOpenFeedback(true)}
-                        css={{marginTop: '32px', ...typography.txtBold, lineHeight: '22px'}}
-                    >
-                        Запись на консультацию
-                    </Button>
-                </div>
-            </div>
+          <p css={{ fontSize: '20px', [tabletLg]: { ...typography.txtSm, marginBottom: '24px' } }}>
+            Наша задача - быть рядом, когда возникают правовые проблемы, всегда помогать и находить выход из любых
+            ситуаций.
+          </p>
+
+          <Button
+            onClick={() => setOpenFeedback(true)}
+            css={{
+              marginTop: '32px',
+              ...typography.txtBold,
+              lineHeight: '22px',
+              [tabletLg]: { marginTop: '24px' },
+              [mobile]: { width: '100%' },
+            }}
+          >
+            Запись на консультацию
+          </Button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Banner;

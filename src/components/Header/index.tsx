@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import { colors, pageWrap } from '@scripts/theme';
 
-import HeaderMobile, { HeaderMobileTop } from '@components/HeaderMobile';
+import HeaderMobile from '@components/HeaderMobile';
 import HeaderDesktop from '@components/HeaderDesktop';
 import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
@@ -12,7 +12,6 @@ const Header: FC<{}> = () => {
 
   return (
     <>
-      <HeaderMobileTop />
       <header
         css={{
           width: '100%',
