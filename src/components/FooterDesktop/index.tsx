@@ -18,6 +18,7 @@ const footerCss: CSSObject = {
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
 };
 
 const mainBlockCSS: CSSObject = {
