@@ -21,6 +21,7 @@ import {medias, practices, projects, projectsMobile, team} from '@mocks/index';
 
 import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 import barjevskyURL from '@images/barjevsky.webp';
+import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
 import ContactsMain from '@components/ContactsMain';
@@ -184,7 +185,6 @@ const Home = () => {
                         [tabletLg]: {
                             width: '125px',
                             height: '20px',
-                            top: '26px',
                         },
                     }}
                 />
@@ -332,7 +332,8 @@ const Home = () => {
                         </p>
                         <div css={{width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px'}}/>
                         <p css={{[tabletLg]: {...typography.txtSm}}}>
-                            абонентских доверителей, <br/> 7 из которых более <br/> 30 лет
+                            доверителей на абонентском
+                            обслуживании, <br/> 7 из которых более <br/> 30 лет
                         </p>
                     </div>
                     <div>
@@ -367,25 +368,29 @@ const Home = () => {
                     />
                     <div
                         css={{
-                            display: 'flex',
                             position: 'absolute',
                             top: 0,
                             right: '48px',
-                            [tabletLg]: {top: '20px', right: '16px', alignItems: 'center'},
+                            width: '550px',
+                            height: '28px',
+                            backgroundColor: colors.blue,
+                            marginRight: '45px',
+                            [tabletLg]: {width: '134px'},
                         }}
-                    >
-                        <div
-                            css={{
-                                width: '550px',
-                                height: '28px',
-                                backgroundColor: colors.blue,
-                                marginRight: '45px',
-                                [tabletLg]: {width: '134px'},
-                            }}
-                        />
-                        <ParticlesMesh width={4} height={2} css={{marginTop: '6px', [tabletLg]: {display: 'none'}}}/>
-                        <ParticlesMesh width={3} height={2} css={{[tabletLgMin]: {display: 'none'}}}/>
-                    </div>
+                    />
+                    <ParticlesMesh width={4} height={2} css={{
+                        marginTop: '6px',
+                        position: 'absolute',
+                        top: '20px',
+                        right: '18px',
+                        [tabletLg]: {display: 'none'}
+                    }}/>
+                    <ParticlesMesh width={3} height={2} css={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '18px',
+                        [tabletLgMin]: {display: 'none'},
+                    }}/>
                 </div>
             </ContentSection>
 
@@ -466,6 +471,8 @@ const Home = () => {
                                 backgroundColor: 'rgba(32, 32, 32, 0.5)',
                             },
                             [mobileLg]: {
+                                background: `url(${mobileBarjevskyURL.src}) center no-repeat`,
+                                backgroundSize: 'auto 150%',
                                 backgroundPosition: '42%',
                             },
                         }}

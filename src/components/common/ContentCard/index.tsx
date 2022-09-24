@@ -25,6 +25,7 @@ export interface IContentCardProps {
     boxShadow?: string;
     btn?: ICardBtn;
     height?: string;
+    heightMobile?: string;
     imageWidth?: string;
     imageHeight?: string;
     mobileImageWidth?: string;
@@ -43,6 +44,7 @@ const ContentCard: FC<IContentCardProps> = (
         boxShadow,
         btn,
         height,
+        heightMobile,
         imageWidth,
         imageHeight,
         mobileImageWidth,
@@ -136,7 +138,7 @@ const ContentCard: FC<IContentCardProps> = (
                             marginBottom: '15px',
                             ...contentCSS,
                             [desktopLg]: {
-                                height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto') : height || '140px',
+                                height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto') : height || heightMobile || '140px',
                             }
                         }}
                     >
