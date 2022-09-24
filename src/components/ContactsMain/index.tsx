@@ -9,10 +9,17 @@ import React, {FC} from "react";
 import {useCommon} from "@context/common";
 import {useMedia} from "@scripts/hooks";
 import Button from "@components/common/Button";
+import {CSSObject} from "@emotion/react";
 
 const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedback}) => {
     const {data} = useCommon();
     const {tabletLg, tabletLgMin, desktop, mobile} = useMedia();
+
+    const infoCSS: CSSObject = {
+        ...position.center, height: '52px', marginBottom: '72px', [tabletLg]: {
+            marginBottom: '50px'
+        }
+    };
 
     return (
         <section id="consultation" css={{...pageWrapS, position: 'relative'}}>
@@ -35,7 +42,7 @@ const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedb
                     ]}
                 >
                     <div css={{display: 'flex'}}>
-                        <div css={{...position.center, height: '52px', marginBottom: '72px'}}>
+                        <div css={infoCSS}>
                             <div
                                 css={{
                                     ...position.center,
@@ -71,7 +78,7 @@ const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedb
 
                     </div>
                     <div css={{display: 'flex'}}>
-                        <div css={{...position.center, height: '52px', marginBottom: '72px'}}>
+                        <div css={infoCSS}>
                             <div
                                 css={{
                                     ...position.center,
@@ -117,7 +124,7 @@ const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedb
 
                     </div>
                     <div css={{display: 'flex'}}>
-                        <div css={{...position.center, height: '52px', marginBottom: '72px'}}>
+                        <div css={infoCSS}>
                             <div
                                 css={{
                                     ...position.center,
@@ -153,7 +160,7 @@ const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedb
 
                     </div>
                     <div css={{display: 'flex'}}>
-                        <div css={{...position.center, height: '52px', marginBottom: '30px'}}>
+                        <div css={{...infoCSS, marginBottom: '30px'}}>
                             <div
                                 css={{
                                     ...position.center,

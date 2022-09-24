@@ -30,7 +30,7 @@ const teamCSS: CSSObject = {
     p: {
         overflow: 'hidden',
         whiteSpace: 'nowrap',
-        width: '350px',
+        maxWidth: '350px',
     },
 };
 
@@ -539,7 +539,7 @@ export const projectsMobile: IContent[] = [
         id: '1',
         contentHtml: (
             <>
-                <h5>Об установлении порядка общения родителя с ребенком</h5>
+                <h6>Об установлении порядка общения родителя с ребенком</h6>
             </>
         ),
         date: '20.12.21',
@@ -548,7 +548,7 @@ export const projectsMobile: IContent[] = [
         id: '2',
         contentHtml: (
             <>
-                <h5>О добровольном оформлении отцовства</h5>
+                <h6>О добровольном оформлении отцовства</h6>
             </>
         ),
         date: '20.12.21',
@@ -557,7 +557,7 @@ export const projectsMobile: IContent[] = [
         id: '3',
         contentHtml: (
             <>
-                <h5>Об одновременном инициировании расторжения брака в двух странах</h5>
+                <h6>Об одновременном инициировании расторжения брака в двух странах</h6>
             </>
         ),
         date: '20.12.21',

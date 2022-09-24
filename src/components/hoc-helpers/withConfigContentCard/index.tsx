@@ -15,6 +15,7 @@ interface ICardConfig {
   btn?: ICardBtn;
   ArrowTransform?: string;
   height?: string;
+  heightMobile?: string;
   imageWidth?: string;
   imageHeight?: string;
   mobileImageWidth?: string;
@@ -151,6 +152,7 @@ const withConfigContentCard = (
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
+      cardConfig.heightMobile = '100px';
       break;
     case CARD_TYPE.MEDIA:
       cardConfig.title = mediaTitle;
@@ -176,7 +178,7 @@ const withConfigContentCard = (
       contentCSS={content.contentCSS}
       btn={cardConfig.btn}
       height={cardConfig.height}
-      imageWidth={cardConfig.imageWidth}
+      heightMobile={cardConfig.heightMobile}imageWidth={cardConfig.imageWidth}
       imageHeight={cardConfig.imageHeight}
       mobileImageWidth={cardConfig.mobileImageWidth}
       mobileImageHeight={cardConfig.mobileImageHeight}

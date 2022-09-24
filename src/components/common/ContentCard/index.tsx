@@ -25,6 +25,7 @@ export interface IContentCardProps {
   boxShadow?: string;
   btn?: ICardBtn;
   height?: string;
+  heightMobile?: string;
   imageWidth?: string;
   imageHeight?: string;
   mobileImageWidth?: string;
@@ -43,6 +44,7 @@ const ContentCard: FC<IContentCardProps> = ({
   boxShadow,
   btn,
   height,
+  heightMobile,
   imageWidth,
   imageHeight,
   mobileImageWidth,
@@ -133,12 +135,12 @@ const ContentCard: FC<IContentCardProps> = ({
             css={[
               {
                 flexGrow: '1',
-                height: !btn?.isLink ? (!isOpen ? height || '150px' : 'auto') : height || '150px',
+                height: !btn?.isLink ? (!isOpen ? height || '150px' : 'auto !important') : height || '150px',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 marginBottom: '15px',
                 [desktopLg]: {
-                  height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto !important') : height || '140px',
+                  height: !btn?.isLink ? (!isOpen ? height || '140px' : 'auto !important') : height || heightMobile || '140px',
                 },
               },
               {
