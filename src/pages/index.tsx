@@ -370,12 +370,14 @@ const Home = () => {
                         css={{
                             position: 'absolute',
                             top: 0,
-                            right: '48px',
+                            right: '145px',
                             width: '550px',
                             height: '28px',
                             backgroundColor: colors.blue,
-                            marginRight: '45px',
-                            [tabletLg]: {width: '134px'},
+                            [tabletLg]: {
+                                width: '134px',
+                                right: 'calc(50% - 67px)'
+                            },
                         }}
                     />
                     <ParticlesMesh width={4} height={2} css={{

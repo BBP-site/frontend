@@ -17,7 +17,7 @@ const ContactsMain: FC<{ openFeedback: (value: boolean) => void }> = ({openFeedb
 
     const infoCSS: CSSObject = {
         ...position.center, height: '52px', marginBottom: '72px', [tabletLg]: {
-            marginBottom: '50px'
+            marginBottom: '40px'
         }
     };
 

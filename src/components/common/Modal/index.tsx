@@ -6,6 +6,7 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 import {colors, position} from '@scripts/theme';
 
 import {ReactComponent as CrossIcon} from '@icons/cross.svg';
+import {useMedia} from "@scripts/hooks";
 
 interface IModal extends ReactModalProps {
     children?: ReactNode | ReactNode[];
@@ -14,6 +15,7 @@ interface IModal extends ReactModalProps {
 
 const Modal: FC<IModal> = ({isOpen, children, className, onRequestClose, ...props}) => {
     const [contentRef, setContentRef] = useState<HTMLElement | null>(null);
+    const {mobile} = useMedia();
 
     useEffect(() => {
         if (contentRef && !isOpen) enableBodyScroll(contentRef);
@@ -38,6 +40,11 @@ const Modal: FC<IModal> = ({isOpen, children, className, onRequestClose, ...prop
                             '&:focus-visible': {
                                 outline: 'none',
                             },
+                            [mobile]: {
+                                maxHeight: '100%',
+                                height: '100%',
+                                borderRadius: '0px'
+                            }
                         })} ${className}`,
                         beforeClose: css({transform: 'scale(0.9)', transition: 'transform ease 300ms'}),
                         afterOpen: css({transform: 'scale(1)'}),
@@ -55,6 +62,7 @@ const Modal: FC<IModal> = ({isOpen, children, className, onRequestClose, ...prop
                             background: 'rgba(46, 62, 81, 0.5)',
                             opacity: 0,
                             transition: 'opacity ease 150ms',
+                            [mobile]: {padding: '0'}
                         }),
                         beforeClose: css({opacity: 0, transition: 'opacity ease 300ms'}),
                         afterOpen: css({opacity: 1}),

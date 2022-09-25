@@ -7,12 +7,14 @@ import {colors, shadows} from '@scripts/theme';
 
 import Menu, {MENU_TYPE} from '@components/Menu';
 
-const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function; topOffset: number | null }> = ({
-                                                                                                                    open,
-                                                                                                                    onClose,
-                                                                                                                    topOffset,
-                                                                                                                    openFeedback,
-                                                                                                                }) => {
+const MenuMobile: FC<{ open: boolean; onClose: Function; openFeedback: Function; topOffset: number | null }> = (
+    {
+        open,
+        onClose,
+        topOffset,
+        openFeedback,
+    }
+) => {
     const router = useRouter();
 
     useEffect(() => {
