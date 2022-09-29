@@ -1,213 +1,219 @@
-import React, { useMemo } from 'react';
-import { useRouter } from 'next/router';
+import React, {useMemo} from 'react';
+import {useRouter} from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CSSObject } from '@emotion/react';
+import {CSSObject} from '@emotion/react';
 
-import { colors, links, pageWrap, typography } from '@scripts/theme';
+import {colors, links, pageWrap, typography} from '@scripts/theme';
 
-import { teamDetails } from '@mocks/index';
+import {teamDetails} from '@mocks/index';
 
 import PageTitle from '@components/PageTitle';
 import Carousel from '@components/common/Carousel';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import {ReactComponent as ArrowIcon} from '@icons/arrow.svg';
 import mailIconURL from '@icons/mail.svg';
-import { useMedia } from '@scripts/hooks';
+import {useMedia} from '@scripts/hooks';
 
 const TeamDetail = () => {
-  const { query } = useRouter();
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
-  const { mobile, tablet, tabletLg } = useMedia();
+    const {query} = useRouter();
+    const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+    const {mobile, tablet, tabletLg} = useMedia();
 
-  const blockCSS: CSSObject = {
-    marginBottom: '24px',
-    span: {
-      ...typography.h5,
-      display: 'inline-block',
-      marginBottom: '8px',
-    },
-    p: {
-      ...typography.txt,
-      color: colors.gray700,
-      marginBottom: '8px',
-    },
-    ul: {
-      margin: 0,
-      ...typography.txt,
-      color: colors.gray700,
-      listStyle: 'disc',
-      marginLeft: '24px',
-      li: {
-        marginBottom: '8px',
-        '&::before': {
-          display: 'none',
+    const blockCSS: CSSObject = {
+        marginBottom: '24px',
+        span: {
+            ...typography.h5,
+            display: 'inline-block',
+            marginBottom: '8px',
         },
-      },
-    },
-  };
-
-  return (
-    <main css={{ width: '100%', marginTop: '16px', marginBottom: '72px' }}>
-      {detailInfo && (
-        <>
-          <div css={{ ...pageWrap, marginBottom: '16px' }}>
-            <Link href={`/team#${detailInfo.id}`} passHref>
-              <a
-                css={{
-                  ...links.blue,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  alignSelf: 'flex-start',
-                }}
-              >
-                <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
-              </a>
-            </Link>
-          </div>
-          <PageTitle
-            title={detailInfo.name}
-            css={{ marginBottom: '40px' }}
-            cssInner={{ paddingTop: '16px', paddingBottom: '16px', h1: { marginBottom: 0 } }}
-            cssTitle={{ [tabletLg]: { fontSize: '32px', lineHeight: '44px' } }}
-          />
-          <div
-            css={{
-              ...pageWrap,
-              display: 'grid',
-              gridTemplate: 'auto / 302px 1fr',
-              marginTop: '24px',
-              [tablet]: {
-                gridTemplate: 'auto / 1fr',
-              },
-            }}
-          >
-            <div
-              css={{
-                width: '100%',
-                display: 'grid',
-                [mobile]: {
-                  placeItems: 'center',
+        p: {
+            ...typography.txt,
+            color: colors.gray700,
+            marginBottom: '8px',
+        },
+        ul: {
+            margin: 0,
+            ...typography.txt,
+            color: colors.gray700,
+            listStyle: 'disc',
+            marginLeft: '24px',
+            li: {
+                marginBottom: '8px',
+                '&::before': {
+                    display: 'none',
                 },
-              }}
-            >
-              <div>
-                <div
-                  css={{
-                    ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
-                      [tabletLg]: { display: 'flex', justifyContent: 'center' },
-                    }),
-                  }}
-                >
-                  <Image src={detailInfo.img} width={224} height={323} objectFit="cover" />
-                </div>
-                <div css={{ marginTop: '16px', marginBottom: '16px' }}>
-                  <p
-                    css={{
-                      color: colors.gray700,
-                      marginBottom: 0,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {detailInfo.position}
-                  </p>
-                  {detailInfo.degree &&
-                    detailInfo.degree.map(degree => (
-                      <p key={degree} css={{ color: colors.gray700, marginBottom: 0, fontWeight: 'bold' }}>
-                        {degree}
-                      </p>
-                    ))}
-                </div>
-                {detailInfo.email && (
-                  <Link href={`mailto:${detailInfo.email}`} passHref>
-                    <a
-                      css={{
-                        ...links.blue,
-                        display: 'flex',
-                        alignItems: 'center',
-                        marginBottom: '24px',
-                      }}
-                    >
-                      <div css={{ width: '24px', height: '24px', marginRight: '14px' }}>
-                        <Image src={mailIconURL} width="24px" height="24px" />
-                      </div>
-                      {detailInfo.email}
-                    </a>
-                  </Link>
-                )}
-                {detailInfo.revardsIcons && (
-                  <Carousel
-                    css={{ maxWidth: '200px' }}
-                    smallArrows
-                    pagination={false}
-                    slidesPerView={3}
-                    spaceBetween={1}
-                    breakpoints={{
-                      900: {
-                        slidesPerView: 3,
-                        spaceBetween: 1,
-                      },
-                    }}
-                  >
-                    {detailInfo.revardsIcons.map(iconData => (
-                      <Image
-                        key={iconData.url}
-                        css={{ position: 'relative', width: '50px' }}
-                        src={iconData.url}
-                        width={iconData.width}
-                        height={iconData.height}
-                      />
-                    ))}
-                  </Carousel>
-                )}
-              </div>
-            </div>
+            },
+        },
+    };
 
-            <div>
-              {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
-              {detailInfo.revardsHTML && (
-                <div css={blockCSS}>
-                  <span>Награды</span>
-                  {detailInfo.revardsHTML}
-                </div>
-              )}
-              {detailInfo.practicesHTML && (
-                <div css={blockCSS}>
-                  <span>Специализация</span>
-                  {detailInfo.practicesHTML}
-                </div>
-              )}
-              {detailInfo.mediaHTML && (
-                <div css={blockCSS}>
-                  <span>Публикации</span>
-                  {detailInfo.mediaHTML}
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-    </main>
-  );
+    return (
+        <main css={{width: '100%', marginTop: '16px', marginBottom: '72px'}}>
+            {detailInfo && (
+                <>
+                    <div css={{...pageWrap, marginBottom: '16px'}}>
+                        <Link href={`/team#${detailInfo.id}`} passHref>
+                            <a
+                                css={{
+                                    ...links.blue,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    alignSelf: 'flex-start',
+                                }}
+                            >
+                                <ArrowIcon css={{marginRight: '10px', transform: 'rotate(-90deg)'}}/> Назад
+                            </a>
+                        </Link>
+                    </div>
+                    <PageTitle
+                        title={detailInfo.name}
+                        css={{marginBottom: '40px'}}
+                        cssInner={{paddingTop: '16px', paddingBottom: '16px', h1: {marginBottom: 0}}}
+                        cssTitle={{[tabletLg]: {fontSize: '32px', lineHeight: '44px'}}}
+                    />
+                    <div
+                        css={{
+                            ...pageWrap,
+                            display: 'grid',
+                            gridTemplate: 'auto / 302px 1fr',
+                            marginTop: '24px',
+                            [tablet]: {
+                                gridTemplate: 'auto / 1fr',
+                            },
+                        }}
+                    >
+                        <div
+                            css={{
+                                width: '100%',
+                                display: 'grid',
+                                [mobile]: {
+                                    placeItems: 'center',
+                                },
+                            }}
+                        >
+                            <div>
+                                <div
+                                    css={{
+                                        ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
+                                            [tabletLg]: {display: 'flex', justifyContent: 'center'},
+                                        })
+                                    }}
+                                >
+                                    <Image src={detailInfo.img} width={224} height={323} objectFit="cover"/>
+                                </div>
+                                <div css={{
+                                    marginTop: '16px', marginBottom: '16px', ...detailInfo.degreeCSS
+                                }}>
+                                    <p
+                                        css={{
+                                            color: colors.gray700,
+                                            marginBottom: 0,
+                                            fontWeight: 'bold'
+                                        }}
+                                    >
+                                        {detailInfo.position}
+                                    </p>
+                                    {detailInfo.degree &&
+                                        detailInfo.degree.map(degree => (
+                                            <p key={degree} css={{
+                                                color: colors.gray700,
+                                                marginBottom: 0,
+                                                fontWeight: 'bold'
+                                            }}>
+                                                {degree}
+                                            </p>
+                                        ))}
+                                </div>
+                                {detailInfo.email && (
+                                    <Link href={`mailto:${detailInfo.email}`} passHref>
+                                        <a
+                                            css={{
+                                                ...links.blue,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                marginBottom: '24px',
+                                            }}
+                                        >
+                                            <div css={{width: '24px', height: '24px', marginRight: '14px'}}>
+                                                <Image src={mailIconURL} width="24px" height="24px"/>
+                                            </div>
+                                            {detailInfo.email}
+                                        </a>
+                                    </Link>
+                                )}
+                                {detailInfo.revardsIcons && (
+                                    <Carousel
+                                        css={{maxWidth: '200px'}}
+                                        smallArrows
+                                        pagination={false}
+                                        slidesPerView={3}
+                                        spaceBetween={1}
+                                        breakpoints={{
+                                            900: {
+                                                slidesPerView: 3,
+                                                spaceBetween: 1,
+                                            },
+                                        }}
+                                    >
+                                        {detailInfo.revardsIcons.map(iconData => (
+                                            <Image
+                                                key={iconData.url}
+                                                css={{position: 'relative', width: '50px'}}
+                                                src={iconData.url}
+                                                width={iconData.width}
+                                                height={iconData.height}
+                                            />
+                                        ))}
+                                    </Carousel>
+                                )}
+                            </div>
+                        </div>
+
+                        <div>
+                            {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
+                            {detailInfo.revardsHTML && (
+                                <div css={blockCSS}>
+                                    <span>Награды</span>
+                                    {detailInfo.revardsHTML}
+                                </div>
+                            )}
+                            {detailInfo.practicesHTML && (
+                                <div css={blockCSS}>
+                                    <span>Специализация</span>
+                                    {detailInfo.practicesHTML}
+                                </div>
+                            )}
+                            {detailInfo.mediaHTML && (
+                                <div css={blockCSS}>
+                                    <span>Публикации</span>
+                                    {detailInfo.mediaHTML}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </>
+            )}
+        </main>
+    );
 };
 
 export const getStaticPaths = async () => ({
-  paths: [],
-  fallback: 'blocking',
+    paths: [],
+    fallback: 'blocking',
 });
 
 export const getStaticProps = async (context: { params: { id: string } }) => {
-  const {
-    params: { id },
-  } = context;
+    const {
+        params: {id},
+    } = context;
 
-  const detailInfo = teamDetails.find(detail => detail.id === id);
+    const detailInfo = teamDetails.find(detail => detail.id === id);
 
-  return !detailInfo
-    ? { notFound: true }
-    : {
-        props: {},
-      };
+    return !detailInfo
+        ? {notFound: true}
+        : {
+            props: {},
+        };
 };
 
 export default TeamDetail;

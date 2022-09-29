@@ -534,6 +534,17 @@ export const projects: IContent[] = [
     },
 ];
 
+const projectsMobileCSS: CSSObject = {
+    h6: {
+        display: '-webkit-box',
+        width: '78vw',
+        height: '58px',
+        WebkitLineClamp: '2',
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+    }
+}
+
 export const projectsMobile: IContent[] = [
     {
         id: '1',
@@ -542,6 +553,7 @@ export const projectsMobile: IContent[] = [
                 <h6>Об установлении порядка общения родителя с ребенком</h6>
             </>
         ),
+        contentCSS: projectsMobileCSS,
         date: '20.12.21',
     },
     {
@@ -551,6 +563,7 @@ export const projectsMobile: IContent[] = [
                 <h6>О добровольном оформлении отцовства</h6>
             </>
         ),
+        contentCSS: projectsMobileCSS,
         date: '20.12.21',
     },
     {
@@ -560,6 +573,7 @@ export const projectsMobile: IContent[] = [
                 <h6>Об одновременном инициировании расторжения брака в двух странах</h6>
             </>
         ),
+        contentCSS: projectsMobileCSS,
         date: '20.12.21',
     },
 ];
