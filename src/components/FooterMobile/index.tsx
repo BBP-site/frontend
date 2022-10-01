@@ -40,10 +40,12 @@ const FooterMobile: FC<{}> = () => {
           <Link href="/" passHref>
             <a
               css={{
-                paddingRight: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 borderRight: `1px solid ${colors.gray400}`,
+                minWidth: '159px',
+                minHeight: '57px',
+                boxSizing: 'content-box',
               }}
             >
               <div
@@ -104,6 +106,7 @@ const FooterMobile: FC<{}> = () => {
           <a>
             <span
               css={{
+                ...typography.txtExtraSm,
                 ...links.white,
               }}
             >
@@ -111,7 +114,7 @@ const FooterMobile: FC<{}> = () => {
             </span>
           </a>
         </Link>
-        <p css={{ marginTop: '16px' }}>
+        <p css={{ ...typography.txtExtraSm, marginTop: '16px' }}>
           © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.
         </p>
       </div>

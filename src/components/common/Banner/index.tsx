@@ -73,7 +73,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
             Коллегия адвокатов города Москвы
           </p>
 
-          <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, color: colors.white } }}>
+          <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, fontSize: '47px', color: colors.white } }}>
             БАРЩЕВСКИЙ И ПАРТНЕРЫ
           </h1>
 

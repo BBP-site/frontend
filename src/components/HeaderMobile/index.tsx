@@ -131,6 +131,7 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
                 fontWeight: 700,
                 border: 'none',
                 backgroundColor: 'transparent',
+                color: colors.black,
                 cursor: 'pointer',
                 '&:focus-visible': {
                   outline: `2px solid ${colors.cyan}`,
