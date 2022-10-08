@@ -8,7 +8,6 @@ import lapinaDetail from '@images/lapinaDetail.webp';
 import puhovaDetail from '@images/puhovaDetail.webp';
 import speranskayaDetail from '@images/speranskayaDetail.webp';
 import mihalevichDetail from '@images/mihalevichDetail.webp';
-import smirnovDetail from '@images/smirnovDetail.webp';
 import vdovinaDetail from '@images/vdovinaDetail.webp';
 import barkalovaDetail from '@images/barkalovaDetail.webp';
 
@@ -293,27 +292,27 @@ export const teamDetails: ITeamDetail[] = [
       </>
     ),
   },
-  {
-    id: 'smirnov',
-    img: smirnovDetail.src,
-    name: 'Смирнов Владимир Евгеньевич',
-    position: 'Юрист',
-    practicesHTML: (
-      <>
-        <ul>
-          <li>Уголовное право</li>
-          <li>Уголовное судопроизводство</li>
-          <li>Административное право</li>
-        </ul>
-      </>
-    ),
-    mediaHTML: (
-      <>
-        <p>
-          Автор ряда научных статей, посвященных уголовным и уголовно-процессуальным аспектам выявления и расследования
-          преступлений в сфере информационно-телекоммуникационных технологий.
-        </p>
-      </>
-    ),
-  },
+  // {
+  //   id: 'smirnov',
+  //   img: smirnovDetail.src,
+  //   name: 'Смирнов Владимир Евгеньевич',
+  //   position: 'Юрист',
+  //   practicesHTML: (
+  //     <>
+  //       <ul>
+  //         <li>Уголовное право</li>
+  //         <li>Уголовное судопроизводство</li>
+  //         <li>Административное право</li>
+  //       </ul>
+  //     </>
+  //   ),
+  //   mediaHTML: (
+  //     <>
+  //       <p>
+  //         Автор ряда научных статей, посвященных уголовным и уголовно-процессуальным аспектам выявления и расследования
+  //         преступлений в сфере информационно-телекоммуникационных технологий.
+  //       </p>
+  //     </>
+  //   ),
+  // },
 ];

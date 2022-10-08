@@ -13,6 +13,9 @@ import logoTextIconURL from '@icons/whiteLogoText.svg';
 import locationURL from '@icons/location.svg';
 import phoneURL from '@icons/phone.svg';
 import emailURL from '@icons/email.svg';
+import fpaURL from '@images/fpa.webp';
+import agURL from '@images/ag.webp';
+import ofURL from '@images/of.webp';
 
 const footerCss: CSSObject = {
   width: '100%',
@@ -23,7 +26,6 @@ const footerCss: CSSObject = {
 
 const mainBlockCSS: CSSObject = {
   ...position.spaceBetween,
-  ...pageWrap,
   height: '84px',
   marginLeft: '0',
   marginRight: '0',
@@ -52,83 +54,118 @@ const FooterDesktop: FC = () => {
         },
       }}
     >
-      <div css={mainBlockCSS}>
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <Link href="/" passHref>
-            <a
-              css={{
-                paddingRight: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                borderRight: `1px solid ${colors.gray400}`,
-              }}
-            >
-              <div
+      <div
+        css={{
+          ...pageWrap,
+          margin: '0',
+          width: '100%',
+        }}
+      >
+        <div css={mainBlockCSS}>
+          <div css={{ display: 'flex', alignItems: 'center' }}>
+            <Link href="/" passHref>
+              <a
                 css={{
-                  marginRight: '8px',
+                  paddingRight: '16px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  borderRight: `1px solid ${colors.gray400}`,
                 }}
               >
-                <Image src={logoIconURL} width="44px" height="57px" />
-              </div>
+                <div
+                  css={{
+                    marginRight: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Image src={logoIconURL} width="44px" height="57px" />
+                </div>
 
-              <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src={logoTextIconURL} width="90px" height="25px" />
-              </div>
-            </a>
-          </Link>
+                <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Image src={logoTextIconURL} width="90px" height="25px" />
+                </div>
+              </a>
+            </Link>
 
-          <span css={{ marginLeft: '16px' }}>Коллегия адвокатов города Москвы</span>
+            <span css={{ marginLeft: '16px' }}>Коллегия адвокатов города Москвы</span>
+          </div>
+
+          <div
+            css={{
+              ...position.end,
+              ...typography.txtSm,
+              flexDirection: 'row',
+              a: {
+                ...position.center,
+                marginRight: '25px',
+                cursor: 'pointer',
+                color: colors.white,
+              },
+
+              'a:last-of-type': {
+                marginRight: '0px',
+              },
+            }}
+          >
+            <Link href="/contacts" passHref>
+              <a>
+                <div css={{ minWidth: '16px' }}>
+                  <Image src={locationURL} width="16px" height="16px" />
+                </div>
+
+                <span css={{ marginLeft: '8px' }}>{data.contactsData?.address}</span>
+              </a>
+            </Link>
+
+            <Link href={`tel:${data.contactsData?.phones[0]?.number}`} passHref>
+              <a css={{ minWidth: '161px' }}>
+                <Image src={phoneURL} width="16px" height="16px" />
+                <div css={{ marginLeft: '8px' }}>
+                  {data.contactsData.phones.map(phone => (
+                    <p key={phone.desc} css={{ ...typography.txtSm, marginBottom: '4px' }}>
+                      {phone.number}
+                    </p>
+                  ))}
+                </div>
+              </a>
+            </Link>
+
+            <Link href={`mailto:${data.contactsData?.email}`} passHref>
+              <a css={{ minWidth: '120px' }}>
+                <Image src={emailURL} width="16px" height="16px" />
+                <span css={{ marginLeft: '8px' }}>{data.contactsData?.email}</span>
+              </a>
+            </Link>
+          </div>
         </div>
 
-        <div
-          css={{
-            ...position.end,
-            ...typography.txtSm,
-            flexDirection: 'row',
-            a: {
-              ...position.center,
-              marginRight: '25px',
-              cursor: 'pointer',
-              color: colors.white,
-            },
+        <div css={{ margin: '30px 0' }}>
+          <div
+            css={{
+              ...position.start,
+              gridColumnGap: '50px',
+            }}
+          >
+            <Link href="https://fparf.ru/">
+              <a target="_blank">
+                <Image src={fpaURL} />
+              </a>
+            </Link>
 
-            'a:last-of-type': {
-              marginRight: '0px',
-            },
-          }}
-        >
-          <Link href="/contacts" passHref>
-            <a>
-              <div css={{ minWidth: '16px' }}>
-                <Image src={locationURL} width="16px" height="16px" />
-              </div>
+            <Link href="https://www.advgazeta.ru/" passHref>
+              <a target="_blank">
+                <Image src={agURL} />
+              </a>
+            </Link>
 
-              <span css={{ marginLeft: '8px' }}>{data.contactsData?.address}</span>
-            </a>
-          </Link>
-
-          <Link href={`tel:${data.contactsData?.phones[0]?.number}`} passHref>
-            <a css={{ minWidth: '161px' }}>
-              <Image src={phoneURL} width="16px" height="16px" />
-              <div css={{ marginLeft: '8px' }}>
-                {data.contactsData.phones.map(phone => (
-                  <p key={phone.desc} css={{ ...typography.txtSm, marginBottom: '4px' }}>
-                    {phone.number}
-                  </p>
-                ))}
-              </div>
-            </a>
-          </Link>
-
-          <Link href={`mailto:${data.contactsData?.email}`} passHref>
-            <a css={{ minWidth: '120px' }}>
-              <Image src={emailURL} width="16px" height="16px" />
-              <span css={{ marginLeft: '8px' }}>{data.contactsData?.email}</span>
-            </a>
-          </Link>
+            <Link href="https://www.advokatymoscow.ru/" passHref>
+              <a target="_blank">
+                <Image src={ofURL} />
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
 

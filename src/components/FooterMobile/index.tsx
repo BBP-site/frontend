@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useMedia } from '@scripts/hooks';
-import { colors, links, pageWrap, typography } from '@scripts/theme';
+import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 
 import Menu, { MENU_TYPE } from '@components/Menu';
 
@@ -14,6 +14,9 @@ import logoTextIconURL from '@icons/whiteLogoText.svg';
 import locationURL from '@icons/location.svg';
 import phoneURL from '@icons/phone.svg';
 import emailURL from '@icons/email.svg';
+import fpaURL from '@images/fpa.webp';
+import agURL from '@images/ag.webp';
+import ofURL from '@images/of.webp';
 
 const FooterMobile: FC<{}> = () => {
   const { data } = useCommon();
@@ -87,6 +90,33 @@ const FooterMobile: FC<{}> = () => {
             <a css={{ marginBottom: '8px', color: colors.white, ...typography.txtSm }}>
               <Image src={emailURL} width="16px" height="16px" />
               <span css={{ marginLeft: '8px' }}>{data.contactsData?.email}</span>
+            </a>
+          </Link>
+        </div>
+      </div>
+
+      <div css={{ ...pageWrap, margin: '30px 0' }}>
+        <div
+          css={{
+            ...position.start,
+            gridColumnGap: '50px',
+          }}
+        >
+          <Link href="https://fparf.ru/">
+            <a target="_blank">
+              <Image src={fpaURL} />
+            </a>
+          </Link>
+
+          <Link href="https://www.advgazeta.ru/" passHref>
+            <a target="_blank">
+              <Image src={agURL} />
+            </a>
+          </Link>
+
+          <Link href="https://www.advokatymoscow.ru/" passHref>
+            <a target="_blank">
+              <Image src={ofURL} />
             </a>
           </Link>
         </div>
