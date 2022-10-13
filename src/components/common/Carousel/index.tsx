@@ -1,6 +1,7 @@
 import { Children, cloneElement, FC, isValidElement, ReactNode, useState } from 'react';
 import { CSSObject } from '@emotion/react';
 import { A11y, Navigation, Pagination } from 'swiper';
+import Image from 'next/image';
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 
@@ -9,7 +10,7 @@ import { colors } from '@scripts/theme';
 
 import Button from '@components/common/Button';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import arrowIconURL from '@icons/arrowWhite.svg';
 
 export interface ICarouselProps extends SwiperProps {
   css?: CSSObject;
@@ -150,16 +151,12 @@ const Carousel: FC<ICarouselProps> = ({
             <Button
               innerRef={node => setPrevEl(node)}
               type="button"
-              css={{ ...btnCSS, left: '-60px', transform: 'rotate(-90deg)' }}
+              css={{ ...btnCSS, left: '-60px', transform: 'rotate(180deg)' }}
             >
-              <ArrowIcon css={btnIconCSS} />
+              <Image src={arrowIconURL} width={8} height={14} css={btnIconCSS} />
             </Button>
-            <Button
-              innerRef={node => setNextEl(node)}
-              type="button"
-              css={{ ...btnCSS, right: '-60px', transform: 'rotate(90deg)' }}
-            >
-              <ArrowIcon css={btnIconCSS} />
+            <Button innerRef={node => setNextEl(node)} type="button" css={{ ...btnCSS, right: '-60px' }}>
+              <Image src={arrowIconURL} width={8} height={14} css={btnIconCSS} />
             </Button>
           </div>
         )}

@@ -11,7 +11,7 @@ import pinURL from '@icons/pin.svg';
 import clockURL from '@icons/clock.svg';
 import mailURL from '@icons/mail.svg';
 import phoneURL from '@icons/phoneBlue.svg';
-import { ReactComponent as CrossIcon } from '@icons/cross.svg';
+import crossIconURL from '@icons/cross.svg';
 
 export interface IMapProps {
   css?: CSSObject;
@@ -61,7 +61,7 @@ const Map: FC<IMapProps> = ({ css, info = true, fullInfo = false, ...props }) =>
             }}
             onClick={() => setIsBubble(!isBubble)}
           >
-            <CrossIcon />
+            <Image src={crossIconURL} width={24} height={24} />
           </button>
           <div css={{ display: 'flex', marginBottom: '24px' }}>
             <div css={{ marginRight: '12px' }}>

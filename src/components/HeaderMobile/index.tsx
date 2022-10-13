@@ -6,9 +6,9 @@ import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { useCommon } from '@context/common';
-import { ReactComponent as PhoneIcon } from '@icons/phone.svg';
-import { ReactComponent as CrossIcon } from '@icons/cross.svg';
-import { ReactComponent as MenuIcon } from '@icons/menu.svg';
+import phoneIconURL from '@icons/phoneBlueDark.svg';
+import crossIconURL from '@icons/cross.svg';
+import menuIconURL from '@icons/menu.svg';
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
 import MenuMobile from '@components/MenuMobile';
@@ -40,7 +40,7 @@ export const HeaderMobileDataRow: FC<{}> = () => {
                 ...links.blueDark,
               }}
             >
-              <PhoneIcon />
+              <Image src={phoneIconURL} width={16} height={16} />
               <span css={{ ...typography.txtExtraSm, marginLeft: '8px' }}>{phone.number}</span>
             </a>
           </Link>
@@ -78,6 +78,7 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
             css={{
               textAlign: 'left',
               width: '50%',
+              height: '25px',
             }}
           >
             <button
@@ -92,7 +93,11 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
                 },
               }}
             >
-              {!menuOpen ? <MenuIcon /> : <CrossIcon />}
+              {!menuOpen ? (
+                <Image src={menuIconURL} width={24} height={24} />
+              ) : (
+                <Image src={crossIconURL} width={24} height={24} />
+              )}
             </button>
           </div>
           <Link href="/" passHref>
