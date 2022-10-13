@@ -19,7 +19,8 @@ import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard
 import { achievements } from '@mocks/achievements';
 import { medias, practices, projects, projectsMobile, team } from '@mocks/index';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import arrowIconURL from '@icons/arrowBlue.svg';
+import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
@@ -81,13 +82,17 @@ const Home = () => {
                 ...links.blue,
                 display: 'inline-flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 marginBottom: '8px',
                 [tabletLg]: {
                   ...typography.txtSm,
                 },
               }}
             >
-              Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
+              Перейти к разделу
+              <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
+                <Image src={arrowIconURL} width={12} height={12} />
+              </div>
             </a>
           </Link>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
@@ -219,7 +224,10 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
+            Перейти к разделу
+            <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
+              <Image src={arrowIconURL} width={12} height={12} />
+            </div>
           </a>
         </Link>
         <p css={{ [tabletLg]: { ...typography.txtSm } }}>
@@ -585,7 +593,10 @@ const Home = () => {
                       },
                     }}
                   >
-                    Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
+                    Перейти к разделу
+                    <div css={{ ...position.center, marginLeft: '10px' }}>
+                      <Image src={arrowIconWhiteURL} width={12} height={12} />
+                    </div>
                   </a>
                 </Link>
               </div>
@@ -700,7 +711,10 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу <ArrowIcon css={{ marginLeft: '10px', transform: 'rotate(90deg)' }} />
+            Перейти к разделу
+            <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
+              <Image src={arrowIconURL} width={12} height={12} />
+            </div>
           </a>
         </Link>
         <Carousel

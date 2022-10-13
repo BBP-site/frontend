@@ -1,11 +1,12 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 import ReactModal, { Props as ReactModalProps } from 'react-modal';
+import Image from 'next/image';
 import { ClassNames } from '@emotion/react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { colors, position } from '@scripts/theme';
 
-import { ReactComponent as CrossIcon } from '@icons/cross.svg';
+import crossIconURL from '@icons/cross.svg';
 import { useMedia } from '@scripts/hooks';
 
 interface IModal extends ReactModalProps {
@@ -96,7 +97,7 @@ const Modal: FC<IModal> = ({ isOpen, children, className, onRequestClose, ...pro
               }}
               onClick={onRequestClose}
             >
-              <CrossIcon />
+              <Image src={crossIconURL} width={24} height={24} />
             </button>
             {children}
           </div>

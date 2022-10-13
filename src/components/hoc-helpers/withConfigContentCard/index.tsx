@@ -1,192 +1,193 @@
-import React, {FC, SVGProps} from 'react';
-import {CSSObject} from '@emotion/react';
+import React, { FC, SVGProps } from 'react';
+import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
-import {CARD_TYPE} from '@scripts/enums/common/content-card.enum';
-import {position, shadows} from '@scripts/theme';
-import {useMedia} from '@scripts/hooks';
+import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+import { position, shadows } from '@scripts/theme';
+import { useMedia } from '@scripts/hooks';
 
-import {ICardBtn, IContentCardProps} from '@components/common/ContentCard';
+import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
 
 interface ICardConfig {
-    title?: React.ReactElement;
-    borderRadius?: string;
-    boxShadow?: string;
-    btn?: ICardBtn;
-    ArrowTransform?: string;
-    height?: string;
-    heightMobile?: string;
-    imageWidth?: string;
-    imageHeight?: string;
-    mobileImageWidth?: string;
-    mobileImageHeight?: string;
-    isOpen?: boolean;
-    cssCard?: CSSObject;
+  title?: React.ReactElement;
+  borderRadius?: string;
+  boxShadow?: string;
+  btn?: ICardBtn;
+  ArrowTransform?: string;
+  height?: string;
+  heightMobile?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  mobileImageWidth?: string;
+  mobileImageHeight?: string;
+  isOpen?: boolean;
+  cssCard?: CSSObject;
 }
 
 export interface IContent {
-    contentHtml: React.ReactElement;
-    contentCSS?: CSSObject;
-    objectPosition?: string;
-    id?: string;
-    img?: string;
-    url?: string;
-    date?: string;
-    title?: string;
-    titleIcon?: string;
+  contentHtml: React.ReactElement;
+  contentCSS?: CSSObject;
+  objectPosition?: string;
+  id?: string;
+  img?: string;
+  url?: string;
+  date?: string;
+  title?: string;
+  titleIcon?: string;
 }
 
 export interface IContentPractice extends IContent {
-    img: string;
-    Img: FC<SVGProps<SVGSVGElement>>;
-    title: string;
+  img: string;
+  Img: FC<SVGProps<SVGSVGElement>>;
+  title: string;
 }
 
 const withConfigContentCard = (
-    WrappedComponent: FC<IContentCardProps>,
-    content: IContent,
-    cardType: CARD_TYPE,
-    isOpen?: boolean
+  WrappedComponent: FC<IContentCardProps>,
+  content: IContent,
+  cardType: CARD_TYPE,
+  isOpen?: boolean
 ) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {tabletLg} = useMedia();
-    const cardConfig: ICardConfig = {};
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { tabletLg } = useMedia();
+  const cardConfig: ICardConfig = {};
 
-    const projectTitle: React.ReactElement = (
-        <div
-            className="card-title"
-            css={{
-                ...position.start,
-                marginBottom: '20px',
-            }}
-        >
-            <span>{content.title}</span>
-        </div>
-    );
+  const projectTitle: React.ReactElement = (
+    <div
+      className="card-title"
+      css={{
+        ...position.start,
+        marginBottom: '20px',
+      }}
+    >
+      <span>{content.title}</span>
+    </div>
+  );
 
-    const mediaTitle: React.ReactElement = (
-        <div
-            className="card-title"
-            css={{
-                ...position.spaceBetween,
-                width: '100%',
-                marginBottom: '20px',
-            }}
-        >
-            <div
-                css={{
-                    ...position.center,
-                }}
-            >
-                {content.titleIcon && (
-                    <div css={{width: '24px', height: '24px', position: 'relative', marginRight: '8px'}}>
-                        <Image
-                            css={{
-                                marginRight: '10px',
-                            }}
-                            layout="fill"
-                            src={content.titleIcon}
-                            alt="titleIcon"
-                        />
-                    </div>
-                )}
+  const mediaTitle: React.ReactElement = (
+    <div
+      className="card-title"
+      css={{
+        ...position.spaceBetween,
+        width: '100%',
+        marginBottom: '20px',
+      }}
+    >
+      <div
+        css={{
+          ...position.center,
+        }}
+      >
+        {content.titleIcon && (
+          <div css={{ width: '24px', height: '24px', position: 'relative', marginRight: '8px' }}>
+            <Image
+              css={{
+                marginRight: '10px',
+              }}
+              layout="fill"
+              src={content.titleIcon}
+              alt="titleIcon"
+            />
+          </div>
+        )}
 
-                <span>{content.title}</span>
-            </div>
+        <span>{content.title}</span>
+      </div>
 
-            <span>{content.date}</span>
-        </div>
-    );
+      <span>{content.date}</span>
+    </div>
+  );
 
-    switch (cardType) {
-        case CARD_TYPE.PRACTICE:
-            cardConfig.isOpen = isOpen;
-            cardConfig.borderRadius = '16px';
-            cardConfig.boxShadow = shadows.around.boxShadow;
-            cardConfig.btn = {
-                isLink: false,
-                text: 'Показать полностью',
-                textCLose: 'Скрыть',
-                transform: 'rotate(180deg)',
-            };
-            cardConfig.cssCard = {
-                [tabletLg]: {
-                    paddingLeft: '12px',
-                    paddingRight: '12px',
-                },
-            };
-            break;
-        case CARD_TYPE.TEAM:
-            cardConfig.borderRadius = '4px';
-            cardConfig.boxShadow = shadows.around.boxShadow;
-            cardConfig.imageWidth = '170px';
-            cardConfig.imageHeight = '191px';
-            cardConfig.mobileImageWidth = '266px';
-            cardConfig.mobileImageHeight = '299px';
-            cardConfig.btn = {
-                isLink: true,
-                url: `team/${content.id}`,
-                text: 'Подробнее',
-                transform: 'rotate(90deg)',
-            };
-            break;
-        case CARD_TYPE.PROJECTS:
-            cardConfig.borderRadius = '8px';
-            cardConfig.boxShadow = shadows.around.boxShadow;
-            cardConfig.btn = {
-                isLink: false,
-                url: '/comingSoonProjects',
-                text: 'Показать полностью',
-                textCLose: 'Скрыть',
-                transform: 'rotate(180deg)',
-            };
-            cardConfig.title = projectTitle;
-            cardConfig.height = '35px';
-            break;
-        case CARD_TYPE.PROJECTS_MAIN:
-            cardConfig.borderRadius = '16px';
-            cardConfig.boxShadow = shadows.around.boxShadow;
-            cardConfig.btn = {
-                isLink: true,
-                url: '/comingSoonProjects',
-                text: 'Подробнее',
-                transform: 'rotate(90deg)',
-            };
-            cardConfig.heightMobile = '60px';
-            break;
-        case CARD_TYPE.MEDIA:
-            cardConfig.title = mediaTitle;
-            cardConfig.borderRadius = '8px';
-            cardConfig.btn = {
-                isLink: true,
-                url: '/comingSoonMedia',
-                text: 'Подробнее',
-                transform: 'rotate(90deg)',
-            };
-            cardConfig.height = '100px';
-            break;
-        default:
-    }
+  switch (cardType) {
+    case CARD_TYPE.PRACTICE:
+      cardConfig.isOpen = isOpen;
+      cardConfig.borderRadius = '16px';
+      cardConfig.boxShadow = shadows.around.boxShadow;
+      cardConfig.btn = {
+        isLink: false,
+        text: 'Показать полностью',
+        textCLose: 'Скрыть',
+        transform: 'rotate(180deg)',
+      };
+      cardConfig.cssCard = {
+        [tabletLg]: {
+          paddingLeft: '12px',
+          paddingRight: '12px',
+        },
+      };
+      break;
+    case CARD_TYPE.TEAM:
+      cardConfig.borderRadius = '4px';
+      cardConfig.boxShadow = shadows.around.boxShadow;
+      cardConfig.imageWidth = '170px';
+      cardConfig.imageHeight = '191px';
+      cardConfig.mobileImageWidth = '266px';
+      cardConfig.mobileImageHeight = '299px';
+      cardConfig.btn = {
+        isLink: true,
+        url: `team/${content.id}`,
+        text: 'Подробнее',
+        transform: 'rotate(90deg)',
+      };
+      break;
+    case CARD_TYPE.PROJECTS:
+      cardConfig.borderRadius = '8px';
+      cardConfig.boxShadow = shadows.around.boxShadow;
+      cardConfig.btn = {
+        isLink: false,
+        url: '/comingSoonProjects',
+        text: 'Показать полностью',
+        textCLose: 'Скрыть',
+        transform: 'rotate(180deg)',
+      };
+      cardConfig.title = projectTitle;
+      cardConfig.height = '35px';
+      break;
+    case CARD_TYPE.PROJECTS_MAIN:
+      cardConfig.borderRadius = '16px';
+      cardConfig.boxShadow = shadows.around.boxShadow;
+      cardConfig.btn = {
+        isLink: true,
+        url: '/comingSoonProjects',
+        text: 'Подробнее',
+        transform: 'rotate(90deg)',
+      };
+      cardConfig.heightMobile = '60px';
+      break;
+    case CARD_TYPE.MEDIA:
+      cardConfig.title = mediaTitle;
+      cardConfig.borderRadius = '8px';
+      cardConfig.btn = {
+        isLink: true,
+        url: '/comingSoonMedia',
+        text: 'Подробнее',
+        transform: 'rotate(90deg)',
+      };
+      cardConfig.height = '100px';
+      break;
+    default:
+  }
 
-    return () => (
-        <WrappedComponent
-            title={cardConfig.title}
-            cardBorderRadius={cardConfig.borderRadius}
-            boxShadow={cardConfig.boxShadow}
-            cardImg={content.img}
-            content={content.contentHtml}
-            contentCSS={content.contentCSS}
-            btn={cardConfig.btn}
-            height={cardConfig.height}
-            heightMobile={cardConfig.heightMobile} imageWidth={cardConfig.imageWidth}
-            imageHeight={cardConfig.imageHeight}
-            mobileImageWidth={cardConfig.mobileImageWidth}
-            mobileImageHeight={cardConfig.mobileImageHeight}
-            defaultOpen={cardConfig.isOpen}
-            objectPosition={content.objectPosition}
-            cssCard={cardConfig.cssCard}
-        />
-    );
+  return () => (
+    <WrappedComponent
+      title={cardConfig.title}
+      cardBorderRadius={cardConfig.borderRadius}
+      boxShadow={cardConfig.boxShadow}
+      cardImg={content.img}
+      content={content.contentHtml}
+      contentCSS={content.contentCSS}
+      btn={cardConfig.btn}
+      height={cardConfig.height}
+      heightMobile={cardConfig.heightMobile}
+      imageWidth={cardConfig.imageWidth}
+      imageHeight={cardConfig.imageHeight}
+      mobileImageWidth={cardConfig.mobileImageWidth}
+      mobileImageHeight={cardConfig.mobileImageHeight}
+      defaultOpen={cardConfig.isOpen}
+      objectPosition={content.objectPosition}
+      cssCard={cardConfig.cssCard}
+    />
+  );
 };
 
 export default withConfigContentCard;

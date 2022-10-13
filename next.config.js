@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     domains: [''],
   },
+  output: 'standalone',
   async rewrites() {
     const rewrites = [];
     if (process.env.API_HOST)
@@ -41,7 +42,7 @@ module.exports = withPlugins(
             return '[path][name].[ext]';
           }
           return '[contenthash].[ext]';
-        }
+        },
       },
       svgrOptions: {
         svgo: false,

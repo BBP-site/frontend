@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
 import { CSSObject } from '@emotion/react';
 import { useSelect } from 'downshift';
+import Image from 'next/image';
 
 import { colors, typography, shadows, time } from '@scripts/theme';
 
-import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import arrowIconURL from '@icons/arrowBlue.svg';
 
 export interface ISelectItem {
   label: string;
@@ -53,7 +54,10 @@ const Select: FC<ISelectProps> = ({ items, onChange, placeholder = '', css, ...p
         <span css={{ ...typography.txt, color: colors.gray600, ...(selectedItem && { color: colors.black }) }}>
           {selectedItem ? selectedItem.label : placeholder}
         </span>
-        <ArrowIcon
+        <Image
+          src={arrowIconURL}
+          width={14}
+          height={8}
           css={{
             path: {
               stroke: colors.gray700,
