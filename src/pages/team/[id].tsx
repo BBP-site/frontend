@@ -91,9 +91,7 @@ const TeamDetail = () => {
               <div>
                 <div
                   css={{
-                    ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
-                      [tabletLg]: { display: 'flex', justifyContent: 'center' },
-                    }),
+                    [tabletLg]: { display: 'flex', justifyContent: 'center' },
                   }}
                 >
                   <Image src={detailInfo.img} width={224} height={323} objectFit="cover" />
@@ -103,6 +101,9 @@ const TeamDetail = () => {
                     marginTop: '16px',
                     marginBottom: '16px',
                     ...detailInfo.degreeCSS,
+                    ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
+                      [tabletLg]: { textAlign: 'center' },
+                    }),
                   }}
                 >
                   <p
