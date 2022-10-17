@@ -109,7 +109,7 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
           Связаться с нами
         </a>
 
-        <Link href="#" passHref>
+        <Link href={data.contactsData.whatsapp} passHref>
           <a css={position.start}>
             <span css={{ marginRight: '5px' }}>WhatsApp</span>
             <Image src={whatsappURL} width={16} height={16} />
