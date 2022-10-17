@@ -11,10 +11,17 @@ import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import { useCommon } from '@context/common';
 
+export interface Values {
+  name: string;
+  phone: string;
+  email: string;
+  question: string;
+}
+
 export interface IFeedbackFormProps {
   css?: CSSObject;
   className?: string;
-  onSubmit?: () => void;
+  onSubmit?: (values: Values) => void;
 }
 
 const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...props }) => {
@@ -93,8 +100,8 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
           question: Yup.string().required('Обязательное поле'),
           privacy: Yup.boolean().not([false], 'Обязательное поле'),
         })}
-        onSubmit={() => {
-          if (onSubmit) onSubmit();
+        onSubmit={(values: Values) => {
+          if (onSubmit) onSubmit(values);
         }}
       >
         {({ errors, touched, values }) => (
@@ -108,6 +115,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               <Field name="name" type="text" placeholder="Представьтесь, пожалуйста" />
               {errors.name && touched.name ? <span>{errors.name}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Телефон*
               <Field name="phone" type="phone">
@@ -117,16 +125,19 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               </Field>
               {errors.phone && touched.phone ? <span>{errors.phone}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Email*
               <Field name="email" type="text" placeholder="mail@mail.com" />
               {errors.email && touched.email ? <span>{errors.email}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Ваш вопрос*
               <Field name="question">{({ field }: FieldProps) => <textarea {...field} />}</Field>
               {errors.question && touched.question ? <span>{errors.question}</span> : null}
             </label>
+
             <div css={{ position: 'relative', paddingBottom: '20px' }}>
               <Field name="privacy">
                 {({ field }: FieldProps) => (
@@ -148,6 +159,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               </Field>
               {errors.privacy && touched.privacy ? <span>{errors.privacy}</span> : null}
             </div>
+
             <Button
               type="submit"
               disabled={!values.privacy}
