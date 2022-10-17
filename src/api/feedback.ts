@@ -7,7 +7,7 @@ export interface Values {
 
 export const sendFeedback = async (body: Values): Promise<Boolean | undefined> => {
   try {
-    const res = await fetch('/v1/feedback', {
+    const res = await fetch('/v1/feedback/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
