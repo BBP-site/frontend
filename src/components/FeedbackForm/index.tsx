@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import { IMaskInput } from 'react-imask';
 import { Field, FieldProps, Form, Formik } from 'formik';
@@ -6,26 +6,24 @@ import * as Yup from 'yup';
 import { CSSObject } from '@emotion/react';
 
 import { colors, links, typography } from '@scripts/theme';
+import { useMedia } from '@scripts/hooks';
+
+import { Values, sendFeedback } from '@api/feedback';
 
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import { useCommon } from '@context/common';
 
-export interface Values {
-  name: string;
-  phone: string;
-  email: string;
-  question: string;
-}
-
 export interface IFeedbackFormProps {
   css?: CSSObject;
   className?: string;
-  onSubmit?: (values: Values) => void;
+  onSuccess: () => void;
 }
 
-const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...props }) => {
+const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...props }) => {
   const { data } = useCommon();
+  const { mobile } = useMedia();
+  const [error, setError] = useState(false);
 
   const labelCSS: CSSObject = {
     ...typography.txt,
@@ -100,14 +98,19 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
           question: Yup.string().required('Обязательное поле'),
           privacy: Yup.boolean().not([false], 'Обязательное поле'),
         })}
-        onSubmit={(values: Values) => {
-          if (onSubmit) onSubmit(values);
+        onSubmit={async (values: Values) => {
+          const isSuccess = await sendFeedback(values);
+          if (isSuccess) {
+            setError(false);
+            if (onSuccess) onSuccess();
+          } else setError(true);
         }}
       >
         {({ errors, touched, values }) => (
           <Form
             css={{
               marginBottom: '8px',
+              position: 'relative',
             }}
           >
             <label css={labelCSS}>
@@ -160,13 +163,21 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               {errors.privacy && touched.privacy ? <span>{errors.privacy}</span> : null}
             </div>
 
-            <Button
-              type="submit"
-              disabled={!values.privacy}
-              css={{ marginTop: '8px', width: '100%', ...typography.txtBold }}
-            >
-              Отправить
-            </Button>
+            <div css={{ position: 'relative', span: { marginBottom: 0, left: 0, right: 0, top: '-11px' } }}>
+              {error && <span>При отправлении формы возникла ошибка, попробуйте позже</span>}
+              <Button
+                type="submit"
+                disabled={!values.privacy}
+                css={{
+                  marginTop: '8px',
+                  width: '100%',
+                  ...typography.txtBold,
+                  ...(error && { [mobile]: { marginTop: '30px' } }),
+                }}
+              >
+                Отправить
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>
