@@ -144,7 +144,7 @@ const FooterDesktop: FC = () => {
         <div css={{ margin: '30px 0' }}>
           <div
             css={{
-              ...position.start,
+              ...position.end,
               gridColumnGap: '50px',
             }}
           >
@@ -154,15 +154,15 @@ const FooterDesktop: FC = () => {
               </a>
             </Link>
 
-            <Link href="https://www.advgazeta.ru/" passHref>
-              <a target="_blank">
-                <Image src={agURL} />
-              </a>
-            </Link>
-
             <Link href="https://www.advokatymoscow.ru/" passHref>
               <a target="_blank">
                 <Image src={ofURL} />
+              </a>
+            </Link>
+
+            <Link href="https://www.advgazeta.ru/" passHref>
+              <a target="_blank">
+                <Image src={agURL} />
               </a>
             </Link>
           </div>

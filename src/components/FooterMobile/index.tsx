@@ -108,15 +108,15 @@ const FooterMobile: FC<{}> = () => {
             </a>
           </Link>
 
-          <Link href="https://www.advgazeta.ru/" passHref>
-            <a target="_blank">
-              <Image src={agURL} />
-            </a>
-          </Link>
-
           <Link href="https://www.advokatymoscow.ru/" passHref>
             <a target="_blank">
               <Image src={ofURL} />
+            </a>
+          </Link>
+
+          <Link href="https://www.advgazeta.ru/" passHref>
+            <a target="_blank">
+              <Image src={agURL} />
             </a>
           </Link>
         </div>

@@ -101,6 +101,7 @@ const ContentCard: FC<IContentCardProps> = ({
               width: '100%',
               display: 'grid',
               justifyContent: 'start',
+              marginBottom: '20px',
               [mobile]: {
                 width: '76vw',
                 justifyContent: mobileImageWidth ? 'center' : 'start',

@@ -10,7 +10,7 @@ const Politics = () => {
   return (
     <main>
       <PageTitle
-        title="Политика конфиденциальности (обработка персональных данных)"
+        title="Политика конфиденциальности (обработки персональных данных)"
         cssTitle={{
           [tabletLg]: {
             fontSize: '30px',

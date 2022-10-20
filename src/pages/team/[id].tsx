@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
 
-import { colors, links, pageWrap, typography } from '@scripts/theme';
+import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 
 import { teamDetails } from '@mocks/index';
 
@@ -88,89 +88,96 @@ const TeamDetail = () => {
                 display: 'grid',
               }}
             >
-              <div>
+              <div css={{ ...position.center, flexDirection: 'column' }}>
                 <div
                   css={{
+                    ...position.center,
+                    flexDirection: 'column',
                     [tabletLg]: { display: 'flex', justifyContent: 'center' },
                   }}
                 >
                   <Image src={detailInfo.img} width={224} height={323} objectFit="cover" />
-                </div>
-                <div
-                  css={{
-                    marginTop: '16px',
-                    marginBottom: '16px',
-                    ...detailInfo.degreeCSS,
-                    ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
-                      [tabletLg]: { textAlign: 'center' },
-                    }),
-                  }}
-                >
-                  <p
+
+                  <div
                     css={{
-                      color: colors.gray700,
-                      marginBottom: 0,
-                      fontWeight: 'bold',
+                      marginTop: '16px',
+                      marginBottom: '16px',
+                      width: '100%',
+                      ...detailInfo.degreeCSS,
+                      ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
+                        [tabletLg]: { textAlign: 'center' },
+                      }),
                     }}
                   >
-                    {detailInfo.position}
-                  </p>
-                  {detailInfo.degree &&
-                    detailInfo.degree.map(degree => (
-                      <p
-                        key={degree}
-                        css={{
-                          color: colors.gray700,
-                          marginBottom: 0,
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        {degree}
-                      </p>
-                    ))}
-                </div>
-                {detailInfo.email && (
-                  <Link href={`mailto:${detailInfo.email}`} passHref>
-                    <a
+                    <p
                       css={{
-                        ...links.blue,
-                        display: 'flex',
-                        alignItems: 'center',
-                        marginBottom: '24px',
+                        color: colors.gray700,
+                        marginBottom: 0,
+                        fontWeight: 'bold',
                       }}
                     >
-                      <div css={{ width: '24px', height: '24px', marginRight: '14px' }}>
-                        <Image src={mailIconURL} width="24px" height="24px" />
-                      </div>
-                      {detailInfo.email}
-                    </a>
-                  </Link>
-                )}
-                {detailInfo.revardsIcons && (
-                  <Carousel
-                    css={{ maxWidth: '200px' }}
-                    smallArrows
-                    pagination={false}
-                    slidesPerView={3}
-                    spaceBetween={1}
-                    breakpoints={{
-                      900: {
-                        slidesPerView: 3,
-                        spaceBetween: 1,
-                      },
-                    }}
-                  >
-                    {detailInfo.revardsIcons.map(iconData => (
-                      <Image
-                        key={iconData.url}
-                        css={{ position: 'relative', width: '50px' }}
-                        src={iconData.url}
-                        width={iconData.width}
-                        height={iconData.height}
-                      />
-                    ))}
-                  </Carousel>
-                )}
+                      {detailInfo.position}
+                    </p>
+                    {detailInfo.degree &&
+                      detailInfo.degree.map(degree => (
+                        <p
+                          key={degree}
+                          css={{
+                            color: colors.gray700,
+                            marginBottom: 0,
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {degree}
+                        </p>
+                      ))}
+                  </div>
+
+                  {detailInfo.email && (
+                    <Link href={`mailto:${detailInfo.email}`} passHref>
+                      <a
+                        css={{
+                          ...links.blue,
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginBottom: '24px',
+                          width: '100%',
+                        }}
+                      >
+                        <div css={{ width: '24px', height: '24px', marginRight: '14px' }}>
+                          <Image src={mailIconURL} width="24px" height="24px" />
+                        </div>
+                        {detailInfo.email}
+                      </a>
+                    </Link>
+                  )}
+
+                  {detailInfo.revardsIcons && (
+                    <Carousel
+                      css={{ maxWidth: '200px', width: '100%' }}
+                      smallArrows
+                      pagination={false}
+                      slidesPerView={3}
+                      spaceBetween={1}
+                      breakpoints={{
+                        900: {
+                          slidesPerView: 3,
+                          spaceBetween: 1,
+                        },
+                      }}
+                    >
+                      {detailInfo.revardsIcons.map(iconData => (
+                        <Image
+                          key={iconData.url}
+                          css={{ position: 'relative', width: '50px' }}
+                          src={iconData.url}
+                          width={iconData.width}
+                          height={iconData.height}
+                        />
+                      ))}
+                    </Carousel>
+                  )}
+                </div>
               </div>
             </div>
 
