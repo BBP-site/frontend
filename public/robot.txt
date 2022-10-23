@@ -20,3 +20,5 @@ Allow: /team/aparina
 Allow: /contacts
 
 Host: www.bbp.ru
+
+Sitemap: https://bbp.ru/sitemap.xml
