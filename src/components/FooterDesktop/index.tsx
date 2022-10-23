@@ -144,7 +144,7 @@ const FooterDesktop: FC = () => {
         <div css={{ margin: '30px 0' }}>
           <div
             css={{
-              ...position.end,
+              ...position.start,
               gridColumnGap: '50px',
             }}
           >
@@ -192,7 +192,10 @@ const FooterDesktop: FC = () => {
               </span>
             </a>
           </Link>
-          © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.
+          <div css={{ ...position.start, alignItems: 'start', flexDirection: 'column' }}>
+            <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
+            <span>Официальный сайт.</span>
+          </div>
         </span>
       </div>
     </div>

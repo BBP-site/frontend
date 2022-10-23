@@ -92,7 +92,8 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
         validationSchema={Yup.object().shape({
           name: Yup.string().required('Обязательное поле'),
           phone: Yup.string()
-            .matches(/^\+7\(\d{3}\) \d{3}(?:-\d{2}){2}$/, 'Неверный формат телефонного номера')
+            .min(12, 'Неверный формат телефонного номера')
+            .matches(/[0-9]/g, 'Неверный формат телефонного номера')
             .required('Обязательное поле'),
           email: Yup.string().email('Неверный формат электронной почты').required('Обязательное поле'),
           question: Yup.string().required('Обязательное поле'),
@@ -123,7 +124,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
               Телефон*
               <Field name="phone" type="phone">
                 {({ field }: FieldProps) => (
-                  <IMaskInput mask="+7(000) 000-00-00" {...field} placeholder="+7 (999) 999-99-99" />
+                  <IMaskInput mask="+000000000000000000000000000" {...field} placeholder="+7 (999) 999-99-99" />
                 )}
               </Field>
               {errors.phone && touched.phone ? <span>{errors.phone}</span> : null}
