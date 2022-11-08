@@ -20,6 +20,7 @@ export interface IContentCardProps {
   content: React.ReactElement;
   contentCSS?: CSSObject;
   title?: React.ReactElement;
+  header?: string;
   cardBorderRadius?: string;
   cardImg?: string;
   boxShadow?: string;
@@ -39,6 +40,7 @@ const ContentCard: FC<IContentCardProps> = ({
   content,
   contentCSS,
   title,
+  header,
   cardBorderRadius,
   cardImg,
   boxShadow,
@@ -82,14 +84,14 @@ const ContentCard: FC<IContentCardProps> = ({
   return (
     <div css={cardCSS}>
       {title}
-
+      {header && <h2>{header}</h2>}
       <div
         css={{
           zIndex: 1,
           display: 'grid',
           gridTemplate: '1fr / auto 1fr',
           width: '100%',
-          [desktopLg]: { gridTemplate: 'auto 1fr / 1fr', rowGap: '20px' },
+          [desktopLg]: { gridTemplate: 'auto 1fr / 1fr', ...(!header && { rowGap: '20px' }) },
           [mobile]: {
             display: 'block',
           },
@@ -142,7 +144,7 @@ const ContentCard: FC<IContentCardProps> = ({
                 height: !btn?.isLink ? (!isOpen ? height || '150px' : 'auto !important') : height || '150px',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                marginBottom: '15px',
+                ...(!header && { marginBottom: '15px' }),
                 [mobileLg]: {
                   height: !btn?.isLink
                     ? !isOpen
@@ -164,6 +166,7 @@ const ContentCard: FC<IContentCardProps> = ({
               ...links.blue,
               cursor: 'pointer',
               ...position.start,
+              ...(isOpen && header && { marginTop: '15px' }),
             }}
             onClick={onToggle}
           >

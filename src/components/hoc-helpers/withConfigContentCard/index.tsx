@@ -3,10 +3,21 @@ import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
 import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
-import { position, shadows } from '@scripts/theme';
+import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
+
+export enum PROJECT_INDUSTRY {
+  FAMILY = 1,
+  HERITAGE,
+  HOUSING,
+  CIVIL,
+  CORPORATE,
+  CRIMINAL,
+  BANKRUPTCY,
+  ARBITRATION,
+}
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -21,6 +32,7 @@ interface ICardConfig {
   mobileImageWidth?: string;
   mobileImageHeight?: string;
   isOpen?: boolean;
+  header?: string;
   cssCard?: CSSObject;
 }
 
@@ -42,11 +54,17 @@ export interface IContentPractice extends IContent {
   title: string;
 }
 
+export interface IContentProject extends IContent {
+  industry: PROJECT_INDUSTRY;
+  header: string;
+}
+
 const withConfigContentCard = (
   WrappedComponent: FC<IContentCardProps>,
   content: IContent,
   cardType: CARD_TYPE,
-  isOpen?: boolean
+  isOpen?: boolean,
+  header?: string
 ) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { tabletLg } = useMedia();
@@ -131,24 +149,44 @@ const withConfigContentCard = (
       };
       break;
     case CARD_TYPE.PROJECTS:
+      cardConfig.isOpen = isOpen;
       cardConfig.borderRadius = '8px';
-      cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: false,
-        url: '/comingSoonProjects',
         text: 'Показать полностью',
         textCLose: 'Скрыть',
         transform: 'rotate(180deg)',
       };
       cardConfig.title = projectTitle;
-      cardConfig.height = '35px';
+      cardConfig.height = '0';
+      cardConfig.header = header;
+      cardConfig.cssCard = {
+        [tabletLg]: {
+          p: {
+            fontSize: '16px',
+          },
+          '& > div': {
+            marginBottom: '8px',
+            fontSize: '18px',
+          },
+          h3: {
+            fontSize: '16px',
+            lineHeight: '22px',
+            marginBottom: '8px',
+          },
+        },
+        h2: {
+          ...typography.h5,
+          [tabletLg]: { fontSize: '18px', lineHeight: '27px', marginBottom: '16px' },
+        },
+      };
       break;
     case CARD_TYPE.PROJECTS_MAIN:
       cardConfig.borderRadius = '16px';
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: true,
-        url: '/comingSoonProjects',
+        url: `/projects#${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
@@ -171,6 +209,7 @@ const withConfigContentCard = (
   return () => (
     <WrappedComponent
       title={cardConfig.title}
+      header={cardConfig.header}
       cardBorderRadius={cardConfig.borderRadius}
       boxShadow={cardConfig.boxShadow}
       cardImg={content.img}

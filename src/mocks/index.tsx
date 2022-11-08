@@ -450,7 +450,7 @@ export const practices: IContentPractice[] = [
 
 export const projects: IContent[] = [
   {
-    id: '1',
+    id: 'ob_ustanovlenii_poryadka_obshcheniya_roditelya_s_rebenkom',
     contentHtml: (
       <>
         <h5>Об установлении порядка общения родителя с ребенком</h5>
@@ -459,7 +459,7 @@ export const projects: IContent[] = [
     date: '20.12.21',
   },
   {
-    id: '2',
+    id: 'o_dobrovolnom_oformlenii_ottsovstva',
     contentHtml: (
       <>
         <h5>О добровольном оформлении отцовства</h5>
@@ -468,7 +468,7 @@ export const projects: IContent[] = [
     date: '20.12.21',
   },
   {
-    id: '3',
+    id: 'ob_odnovremennom_initsiirovanii_rastorzheniya_braka_v_dvukh_stranakh',
     contentHtml: (
       <>
         <h5>Об одновременном инициировании расторжения брака в двух странах</h5>
@@ -477,7 +477,7 @@ export const projects: IContent[] = [
     date: '20.12.21',
   },
   {
-    id: '4',
+    id: 'o_razdele_nasledstva',
     contentHtml: (
       <>
         <h5>О разделе наследства</h5>
