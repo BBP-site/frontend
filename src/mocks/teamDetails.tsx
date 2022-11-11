@@ -107,7 +107,7 @@ export const teamDetails: ITeamDetail[] = [
 
         <p>
           и{' '}
-          <Link href="/comingSoonMedia" passHref>
+          <Link href="/media" passHref>
             <a css={links.blue}>другие</a>
           </Link>
           .

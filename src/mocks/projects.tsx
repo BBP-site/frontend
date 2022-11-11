@@ -1,5 +1,6 @@
-import { IContentProject, PROJECT_INDUSTRY } from '@components/hoc-helpers/withConfigContentCard';
+import { IContentProject } from '@components/hoc-helpers/withConfigContentCard';
 import { colors, typography } from '@scripts/theme';
+import { PROJECT_INDUSTRY } from '@scripts/enums/common/content-card.enum';
 
 export const projects: IContentProject[] = [
   {

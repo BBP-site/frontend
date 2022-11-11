@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react';
 
-import { IContent, IContentPractice } from '@components/hoc-helpers/withConfigContentCard';
+import { IContent, IContentMedia, IContentPractice } from '@components/hoc-helpers/withConfigContentCard';
 
 import barshevskiyURL from '@images/barshevskiy.webp';
 import sumvelURL from '@images/sumvel.webp';
@@ -19,9 +19,12 @@ import practice4URL, { ReactComponent as Practice4 } from '@icons/practice4.svg'
 import practice5URL, { ReactComponent as Practice5 } from '@icons/practice5.svg';
 import practice6URL, { ReactComponent as Practice6 } from '@icons/practice6.svg';
 
-import penToolURL from '@icons/penTool.svg';
+// import penToolURL from '@icons/penTool.svg';
+// import archiveURL from '@icons/archive.svg';
+import globeURL from '@icons/globe.svg';
+import bookOpenURL from '@icons/bookOpen.svg';
 import editURL from '@icons/edit.svg';
-import archiveURL from '@icons/archive.svg';
+import { MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
 
 export * from './teamDetails';
 
@@ -531,71 +534,280 @@ export const projectsMobile: IContent[] = [
   },
 ];
 
-export const medias: IContent[] = [
+export const medias: IContentMedia[] = [
+  // {
+  //   id: '1',
+  //   contentHtml: (
+  //     <>
+  //       <p>Публикация Управляющего партнера, адвоката Коллегии Елены Михалевич в апрельском номере журнала «Судья».</p>
+  //     </>
+  //   ),
+  //   titleIcon: penToolURL,
+  //   title: 'Публикации',
+  //   date: '11.05.21',
+  // },
+  // {
+  //   id: '2',
+  //   contentHtml: (
+  //     <>
+  //       <p>Комментарий адвоката Коллегии Александры Вдовиной в РИА «Новый день».</p>
+  //     </>
+  //   ),
+  //   titleIcon: editURL,
+  //   title: 'Комментарии в СМИ',
+  //   date: '01.04.21',
+  // },
+  // {
+  //   id: '3',
+  //   contentHtml: (
+  //     <>
+  //       <p>Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич для газеты «Ведомости».</p>
+  //     </>
+  //   ),
+  //   titleIcon: editURL,
+  //   title: 'Комментарии в СМИ',
+  //   date: '18.11.21',
+  // },
+  // {
+  //   id: '4',
+  //   contentHtml: (
+  //     <>
+  //       <p>Коллегия запустила подкасты: «Барщевский и Партнеры. Адвокатские истории».</p>
+  //     </>
+  //   ),
+  //   titleIcon: archiveURL,
+  //   title: 'Новости и события',
+  //   date: '31.03.21',
+  // },
+  // {
+  //   id: '5',
+  //   contentHtml: (
+  //     <>
+  //       <p>Управляющий партнер и адвокат Коллегии Елена Михалевич в рейтинге Право-300.</p>
+  //     </>
+  //   ),
+  //   titleIcon: archiveURL,
+  //   title: 'Новости и события',
+  //   date: '14.02.22',
+  // },
+  // {
+  //   id: '6',
+  //   contentHtml: (
+  //     <>
+  //       <p>Коллегия в очередном рейтинге Право-300.</p>
+  //     </>
+  //   ),
+  //   titleIcon: archiveURL,
+  //   title: 'Новости и события',
+  //   date: '03.12.21',
+  // },
   {
-    id: '1',
+    id: '19',
     contentHtml: (
       <>
-        <p>Публикация Управляющего партнера, адвоката Коллегии Елены Михалевич в апрельском номере журнала «Судья».</p>
+        <p>С международным женским днем!</p>
       </>
     ),
-    titleIcon: penToolURL,
-    title: 'Публикации',
-    date: '11.05.21',
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '08.03.22',
   },
   {
-    id: '2',
+    id: '18',
     contentHtml: (
       <>
-        <p>Комментарий адвоката Коллегии Александры Вдовиной в РИА «Новый день».</p>
+        <p>С Днем защитника Отечества!</p>
       </>
     ),
-    titleIcon: editURL,
-    title: 'Комментарии в СМИ',
-    date: '01.04.21',
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '23.02.22',
   },
   {
-    id: '3',
-    contentHtml: (
-      <>
-        <p>Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич для газеты «Ведомости».</p>
-      </>
-    ),
-    titleIcon: editURL,
-    title: 'Комментарии в СМИ',
-    date: '18.11.21',
-  },
-  {
-    id: '4',
-    contentHtml: (
-      <>
-        <p>Коллегия запустила подкасты: «Барщевский и Партнеры. Адвокатские истории».</p>
-      </>
-    ),
-    titleIcon: archiveURL,
-    title: 'Новости и события',
-    date: '31.03.21',
-  },
-  {
-    id: '5',
+    id: '17',
     contentHtml: (
       <>
         <p>Управляющий партнер и адвокат Коллегии Елена Михалевич в рейтинге Право-300.</p>
       </>
     ),
-    titleIcon: archiveURL,
-    title: 'Новости и события',
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
     date: '14.02.22',
   },
   {
-    id: '6',
+    id: '16',
+    contentHtml: (
+      <>
+        <p>Поздравляем с новым 2022 годом!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '31.12.21',
+  },
+  {
+    id: '15',
     contentHtml: (
       <>
         <p>Коллегия в очередном рейтинге Право-300.</p>
       </>
     ),
-    titleIcon: archiveURL,
-    title: 'Новости и события',
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
     date: '03.12.21',
+  },
+  {
+    id: '14',
+    contentHtml: (
+      <>
+        <p>Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич.</p>
+      </>
+    ),
+    titleIcon: editURL,
+    type: MEDIA_TYPE.COMMENT_MEDIA,
+    date: '18.11.21',
+  },
+  {
+    id: '13',
+    contentHtml: (
+      <>
+        <p>Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич.</p>
+      </>
+    ),
+    titleIcon: editURL,
+    type: MEDIA_TYPE.COMMENT_MEDIA,
+    date: '19.03.21',
+  },
+  {
+    id: '12',
+    contentHtml: (
+      <>
+        <p>Президент и адвокат Коллегии Самвел Караханян в международном рейтинге Best Lawyers.</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '11.06.21',
+  },
+  {
+    id: '11',
+    contentHtml: (
+      <>
+        <p>Публикация Управляющего партнера, адвоката Коллегии Елены Михалевич.</p>
+      </>
+    ),
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '11.05.21',
+  },
+  {
+    id: '10',
+    contentHtml: (
+      <>
+        <p>Коллегия запустила подкасты.</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '31.03.21',
+  },
+  {
+    id: '9',
+    contentHtml: (
+      <>
+        <p>Комментарий адвоката Коллегии Александры Вдовиной.</p>
+      </>
+    ),
+    titleIcon: editURL,
+    type: MEDIA_TYPE.COMMENT_MEDIA,
+    date: '19.03.21',
+  },
+  {
+    id: '8',
+    contentHtml: (
+      <>
+        <p>Поздравляем с 23 февраля!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '23.02.21',
+  },
+  {
+    id: '7',
+    contentHtml: (
+      <>
+        <p>Публикация адвоката Коллегии Александра Гетманова в Адвокатской газете.</p>
+      </>
+    ),
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '05.02.21',
+  },
+  {
+    id: '6',
+    contentHtml: (
+      <>
+        <p>Коллегия поздравляет с наступающим 2021 годом!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '31.12.20',
+  },
+  {
+    id: '5',
+    contentHtml: (
+      <>
+        <p>Михаил Юрьевич, с Днем Рождения!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '27.12.20',
+  },
+  {
+    id: '4',
+    contentHtml: (
+      <>
+        <p>Коллегия в рейтинге Право-300</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '14.12.20',
+  },
+  {
+    id: '3',
+    contentHtml: (
+      <>
+        <p>С Днем Конституции!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '12.12.20',
+  },
+  {
+    id: '2',
+    contentHtml: (
+      <>
+        <p>Поздравляем с днем юриста!</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '03.12.20',
+  },
+  {
+    id: '1',
+    contentHtml: (
+      <>
+        <p>Коллегии адвокатов «Барщевский и Партнеры» - 30 лет.</p>
+      </>
+    ),
+    titleIcon: globeURL,
+    type: MEDIA_TYPE.NEWS_EVENT,
+    date: '02.12.20',
   },
 ];

@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Select from '@components/common/Select';
-import withConfigContentCard, { PROJECT_INDUSTRY } from '@components/hoc-helpers/withConfigContentCard';
+import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
+import PageTitle from '@components/PageTitle';
 
 import { colors, pageWrap, typography } from '@scripts/theme';
 import { useDebounce, useMedia } from '@scripts/hooks';
-import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+import { CARD_TYPE, PROJECT_INDUSTRY } from '@scripts/enums/common/content-card.enum';
 
 import { projects } from '@mocks/projects';
 
@@ -85,10 +86,10 @@ const Projects = () => {
       css={{
         height: '100%',
         backgroundColor: colors.gray100,
-        paddingTop: '24px',
         width: '100%',
       }}
     >
+      <PageTitle title="Проекты" css={{ marginBottom: '24px' }} />
       <div css={{ ...pageWrap }}>
         <section
           css={{

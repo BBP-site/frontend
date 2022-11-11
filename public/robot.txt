@@ -1,6 +1,5 @@
 User-agent: *
 
-Disallow: /comingSoonMedia
 Disallow: *.html
 
 Allow: /
@@ -17,6 +16,7 @@ Allow: /team/lapina
 Allow: /team/puhova
 Allow: /team/aparina
 Allow: /projects
+Allow: /media
 Allow: /contacts
 
 Host: www.bbp.ru

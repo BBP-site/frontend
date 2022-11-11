@@ -2,22 +2,11 @@ import React, { FC, SVGProps } from 'react';
 import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
-import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+import { CARD_TYPE, PROJECT_INDUSTRY, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
 import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
-
-export enum PROJECT_INDUSTRY {
-  FAMILY = 1,
-  HERITAGE,
-  HOUSING,
-  CIVIL,
-  CORPORATE,
-  CRIMINAL,
-  BANKRUPTCY,
-  ARBITRATION,
-}
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -57,6 +46,12 @@ export interface IContentPractice extends IContent {
 export interface IContentProject extends IContent {
   industry: PROJECT_INDUSTRY;
   header: string;
+}
+
+export interface IContentMedia extends IContent {
+  id: string;
+  date: string;
+  type: MEDIA_TYPE;
 }
 
 const withConfigContentCard = (
@@ -197,7 +192,7 @@ const withConfigContentCard = (
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
-        url: '/comingSoonMedia',
+        url: '/media',
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
