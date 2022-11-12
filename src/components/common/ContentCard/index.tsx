@@ -34,6 +34,7 @@ export interface IContentCardProps {
   defaultOpen?: boolean;
   objectPosition?: string;
   cssCard?: CSSObject;
+  rmRowGap?: boolean;
 }
 
 const ContentCard: FC<IContentCardProps> = ({
@@ -54,6 +55,7 @@ const ContentCard: FC<IContentCardProps> = ({
   defaultOpen = false,
   objectPosition,
   cssCard,
+  rmRowGap = false,
 }) => {
   const { push } = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
@@ -91,7 +93,7 @@ const ContentCard: FC<IContentCardProps> = ({
           display: 'grid',
           gridTemplate: '1fr / auto 1fr',
           width: '100%',
-          [desktopLg]: { gridTemplate: 'auto 1fr / 1fr', ...(!header && { rowGap: '20px' }) },
+          [desktopLg]: { gridTemplate: 'auto 1fr / 1fr', ...(!header && !rmRowGap && { rowGap: '20px' }) },
           [mobile]: {
             display: 'block',
           },
@@ -150,7 +152,7 @@ const ContentCard: FC<IContentCardProps> = ({
                     ? !isOpen
                       ? height || '140px'
                       : 'auto !important'
-                    : height || heightMobile || '140px',
+                    : heightMobile || height || '140px',
                 },
               },
               {

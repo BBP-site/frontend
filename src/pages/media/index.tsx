@@ -3,30 +3,17 @@ import React, { useMemo, useState } from 'react';
 import { useMedia } from '@scripts/hooks';
 import { colors, pageWrap, time } from '@scripts/theme';
 import { CARD_TYPE, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
+import { parseMediaType } from '@scripts/helpers';
 
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
+import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
 
 import { medias } from '@mocks/index';
 
-const parseMediaType = (mediaType: MEDIA_TYPE) => {
-  switch (mediaType) {
-    case MEDIA_TYPE.COMMENT_MEDIA:
-      return 'Комментарии в СМИ';
-    case MEDIA_TYPE.PUBLICATION:
-      return 'Публикации';
-    case MEDIA_TYPE.NEWS_EVENT:
-      return 'Новости и события';
-    case MEDIA_TYPE.PODCAST:
-      return 'Подкасты';
-    default:
-      return 'Все';
-  }
-};
-
 const Media = () => {
-  const { tablet, mobileLg } = useMedia();
+  const { tabletLgMin, tabletLg, tablet, mobileLg } = useMedia();
   const [typeFilter, setTypeFilter] = useState(MEDIA_TYPE.ALL);
   const [yearFilter, setYearFilter] = useState('all');
 
@@ -73,69 +60,106 @@ const Media = () => {
           }}
         >
           <div
-            css={{ display: 'flex', width: '100%', borderBottom: `1px solid ${colors.gray400}`, marginBottom: '32px' }}
+            css={{
+              [tabletLgMin]: { display: 'none' },
+              display: 'flex',
+              justifyContent: 'space-between',
+              [tablet]: { flexDirection: 'column' },
+            }}
           >
-            {mediaTypes.map(type => (
-              <div
-                key={type}
-                css={{
-                  label: {
-                    cursor: 'pointer',
-                    marginRight: '32px',
-                    fontSize: '22px',
-                    lineHeight: '22px',
-                    fontWeight: 600,
-                    color: colors.gray600,
-                    transition: `color ${time}`,
-                  },
-                  input: {
-                    display: 'none',
-                    '&:checked + label': { color: colors.blue, borderBottom: `1px solid ${colors.blue}` },
-                  },
-                }}
-              >
-                <input
-                  type="radio"
-                  name="media-type-filter"
-                  value={type}
-                  id={`media-type-filter-${type}`}
-                  checked={typeFilter === type}
-                  onChange={event => setTypeFilter(Number(event.target.value))}
-                />
-                <label htmlFor={`media-type-filter-${type}`}>{parseMediaType(type)}</label>
-              </div>
-            ))}
+            <div
+              css={{
+                flexGrow: 1,
+                width: '100%',
+                marginRight: '32px',
+                [tablet]: { marginRight: 0, marginBottom: '32px' },
+              }}
+            >
+              <Select
+                placeholder="Все типы медиа"
+                onChange={value => setTypeFilter(Number(value))}
+                items={mediaTypes.map(type => ({ label: parseMediaType(type), value: type }))}
+              />
+            </div>
+            <div css={{ flexGrow: 1, width: '100%' }}>
+              <Select
+                placeholder="Период"
+                onChange={value => setYearFilter(`${value}`)}
+                items={years.map(year => ({ label: year !== 'all' ? `20${year}` : 'Все время', value: year }))}
+              />
+            </div>
           </div>
-          <div css={{ width: '100%', display: 'flex' }}>
-            <span css={{ marginRight: '16px', color: colors.gray700 }}>Смотреть за период: </span>
-            <div css={{ display: 'flex' }}>
-              {years.map(year => (
+          <div css={{ [tabletLg]: { display: 'none' } }}>
+            <div
+              css={{
+                display: 'flex',
+                width: '100%',
+                borderBottom: `1px solid ${colors.gray400}`,
+                marginBottom: '32px',
+              }}
+            >
+              {mediaTypes.map(type => (
                 <div
-                  key={year}
+                  key={type}
                   css={{
                     label: {
                       cursor: 'pointer',
-                      marginRight: '24px',
+                      marginRight: '32px',
+                      fontSize: '22px',
+                      lineHeight: '22px',
+                      fontWeight: 600,
                       color: colors.gray600,
                       transition: `color ${time}`,
                     },
                     input: {
                       display: 'none',
-                      '&:checked + label': { color: colors.blue },
+                      '&:checked + label': { color: colors.blue, borderBottom: `1px solid ${colors.blue}` },
                     },
                   }}
                 >
                   <input
                     type="radio"
-                    name="media-year-filter"
-                    value={year}
-                    id={`media-year-filter-${year}`}
-                    checked={yearFilter === year}
-                    onChange={event => setYearFilter(event.target.value)}
+                    name="media-type-filter"
+                    value={type}
+                    id={`media-type-filter-${type}`}
+                    checked={typeFilter === type}
+                    onChange={event => setTypeFilter(Number(event.target.value))}
                   />
-                  <label htmlFor={`media-year-filter-${year}`}>{year !== 'all' ? `20${year}` : 'Все время'}</label>
+                  <label htmlFor={`media-type-filter-${type}`}>{parseMediaType(type)}</label>
                 </div>
               ))}
+            </div>
+            <div css={{ width: '100%', display: 'flex' }}>
+              <span css={{ marginRight: '16px', color: colors.gray700 }}>Смотреть за период: </span>
+              <div css={{ display: 'flex' }}>
+                {years.map(year => (
+                  <div
+                    key={year}
+                    css={{
+                      label: {
+                        cursor: 'pointer',
+                        marginRight: '24px',
+                        color: colors.gray600,
+                        transition: `color ${time}`,
+                      },
+                      input: {
+                        display: 'none',
+                        '&:checked + label': { color: colors.blue },
+                      },
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="media-year-filter"
+                      value={year}
+                      id={`media-year-filter-${year}`}
+                      checked={yearFilter === year}
+                      onChange={event => setYearFilter(event.target.value)}
+                    />
+                    <label htmlFor={`media-year-filter-${year}`}>{year !== 'all' ? `20${year}` : 'Все время'}</label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -146,6 +170,12 @@ const Media = () => {
             gridTemplateRows: 'auto',
             gridColumnGap: '25px',
             gridRowGap: '16px',
+            [tabletLg]: {
+              gridTemplateColumns: '1fr 1fr',
+            },
+            [mobileLg]: {
+              gridTemplateColumns: '1fr',
+            },
           }}
         >
           {mediasCards.map((card, index) => (

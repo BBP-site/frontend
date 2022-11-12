@@ -3,6 +3,7 @@ export enum CARD_TYPE {
   TEAM = 'team',
   PROJECTS_MAIN = 'projects-main',
   PROJECTS = 'projects',
+  MEDIA_MAIN = 'media-main',
   MEDIA = 'media',
 }
 

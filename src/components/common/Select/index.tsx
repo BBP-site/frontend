@@ -15,11 +15,13 @@ interface ISelectProps {
   items: ISelectItem[];
   placeholder: string;
   onChange: (value: string | number | null) => void;
+  defaultSelected?: number | null;
   css?: CSSObject;
 }
 
-const Select: FC<ISelectProps> = ({ items, onChange, placeholder = '', css, ...props }) => {
-  const [selectedItem, setSelectedItem] = useState<ISelectItem | null>(null);
+const Select: FC<ISelectProps> = ({ items, onChange, defaultSelected = null, placeholder = '', css, ...props }) => {
+  const defaultSelectedItem = items.find(item => item.value === defaultSelected);
+  const [selectedItem, setSelectedItem] = useState<ISelectItem | null>(defaultSelectedItem || null);
   const { isOpen, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({
     items,
     selectedItem,

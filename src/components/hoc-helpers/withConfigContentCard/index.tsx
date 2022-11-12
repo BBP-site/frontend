@@ -2,7 +2,7 @@ import React, { FC, SVGProps } from 'react';
 import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
-import { CARD_TYPE, PROJECT_INDUSTRY, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
+import { CARD_TYPE, MEDIA_TYPE, PROJECT_INDUSTRY } from '@scripts/enums/common/content-card.enum';
 import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
@@ -23,6 +23,7 @@ interface ICardConfig {
   isOpen?: boolean;
   header?: string;
   cssCard?: CSSObject;
+  rmRowGap?: boolean;
 }
 
 export interface IContent {
@@ -62,7 +63,7 @@ const withConfigContentCard = (
   header?: string
 ) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { tabletLg } = useMedia();
+  const { tabletLg, mobileLg } = useMedia();
   const cardConfig: ICardConfig = {};
 
   const projectTitle: React.ReactElement = (
@@ -82,6 +83,7 @@ const withConfigContentCard = (
       className="card-title"
       css={{
         ...position.spaceBetween,
+        ...(cardType !== CARD_TYPE.MEDIA_MAIN && { flexWrap: 'wrap' }),
         width: '100%',
         marginBottom: '20px',
       }}
@@ -92,7 +94,7 @@ const withConfigContentCard = (
         }}
       >
         {content.titleIcon && (
-          <div css={{ width: '24px', height: '24px', position: 'relative', marginRight: '8px' }}>
+          <div css={{ minWidth: '24px', width: '24px', height: '24px', position: 'relative', marginRight: '8px' }}>
             <Image
               css={{
                 marginRight: '10px',
@@ -104,10 +106,12 @@ const withConfigContentCard = (
           </div>
         )}
 
-        <span>{content.title}</span>
+        <span css={{ marginRight: '8px' }}>{content.title}</span>
       </div>
 
-      <span>{content.date}</span>
+      <span css={{ ...(cardType !== CARD_TYPE.MEDIA_MAIN && { marginLeft: '32px' }), [mobileLg]: { marginLeft: 0 } }}>
+        {content.date}
+      </span>
     </div>
   );
 
@@ -186,17 +190,24 @@ const withConfigContentCard = (
         transform: 'rotate(90deg)',
       };
       cardConfig.heightMobile = '60px';
+      cardConfig.rmRowGap = true;
       break;
     case CARD_TYPE.MEDIA:
+    case CARD_TYPE.MEDIA_MAIN:
       cardConfig.title = mediaTitle;
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
-        url: '/media',
+        url: `/media/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
       cardConfig.height = '100px';
+      cardConfig.heightMobile = cardType !== CARD_TYPE.MEDIA_MAIN ? 'auto' : '';
+      cardConfig.rmRowGap = true;
+      cardConfig.cssCard = {
+        height: '100%',
+      };
       break;
     default:
   }
@@ -220,6 +231,7 @@ const withConfigContentCard = (
       defaultOpen={cardConfig.isOpen}
       objectPosition={content.objectPosition}
       cssCard={cardConfig.cssCard}
+      rmRowGap={cardConfig.rmRowGap}
     />
   );
 };
