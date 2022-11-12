@@ -31,7 +31,11 @@ const Media = () => {
             (typeFilter === MEDIA_TYPE.ALL && new RegExp(`${yearFilter}$`).test(media.date))
         )
         .map(media =>
-          withConfigContentCard(ContentCard, { ...media, title: parseMediaType(media.type) }, CARD_TYPE.MEDIA)
+          withConfigContentCard(
+            ContentCard,
+            { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
+            CARD_TYPE.MEDIA
+          )
         ),
     [typeFilter, yearFilter]
   );

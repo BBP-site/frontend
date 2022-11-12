@@ -50,7 +50,11 @@ const Home = () => {
         media.id === '15'
     )
     .map(media =>
-      withConfigContentCard(ContentCard, { ...media, title: parseMediaType(media.type) }, CARD_TYPE.MEDIA_MAIN)
+      withConfigContentCard(
+        ContentCard,
+        { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
+        CARD_TYPE.MEDIA_MAIN
+      )
     );
 
   return (

@@ -53,6 +53,8 @@ export interface IContentMedia extends IContent {
   id: string;
   date: string;
   type: MEDIA_TYPE;
+  name: string;
+  titleIcon: string;
 }
 
 const withConfigContentCard = (
