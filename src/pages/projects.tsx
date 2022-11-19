@@ -44,10 +44,16 @@ const Projects = () => {
 
   useEffect(() => setCurAnchor(asPath.split('#')[1]), [asPath]);
 
-  const industries = Array.from(new Set(projects.map(project => project.industry))).map(industry => ({
-    label: parseIndustry(industry),
-    value: industry,
-  }));
+  const industries = Array.from(new Set(projects.map(project => project.industry)))
+    .map(industry => ({
+      label: parseIndustry(industry),
+      value: industry,
+    }))
+    .sort((a, b) => {
+      if (a.label > b.label) return 1;
+      if (a.label < b.label) return -1;
+      return 0;
+    });
   const [filterSearch, setFilterSearch] = useState('');
   const debouncedSearch = useDebounce<string>(filterSearch, 500);
   const [filterIndustry, setFilterIndustry] = useState<PROJECT_INDUSTRY | null>(null);
