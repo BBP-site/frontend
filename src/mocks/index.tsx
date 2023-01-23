@@ -536,7 +536,7 @@ export const projectsMobile: IContent[] = [
 
 export const medias: IContentMedia[] = [
   {
-    id: '19',
+    id: '30',
     name: 'С международным женским днем!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -544,7 +544,7 @@ export const medias: IContentMedia[] = [
     date: '08.03.22',
   },
   {
-    id: '18',
+    id: '29',
     name: 'С Днем защитника Отечества!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -552,7 +552,7 @@ export const medias: IContentMedia[] = [
     date: '23.02.22',
   },
   {
-    id: '17',
+    id: '28',
     name: 'Управляющий партнер и адвокат Коллегии Елена Михалевич в рейтинге Право-300.',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -560,7 +560,7 @@ export const medias: IContentMedia[] = [
     date: '14.02.22',
   },
   {
-    id: '16',
+    id: '27',
     name: 'Поздравляем с новым 2022 годом!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -568,7 +568,7 @@ export const medias: IContentMedia[] = [
     date: '31.12.21',
   },
   {
-    id: '15',
+    id: '26',
     name: 'Коллегия в очередном рейтинге Право-300.',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -576,7 +576,7 @@ export const medias: IContentMedia[] = [
     date: '03.12.21',
   },
   {
-    id: '14',
+    id: '25',
     name: 'Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич.',
     contentHtml: <></>,
     titleIcon: editURL,
@@ -584,7 +584,7 @@ export const medias: IContentMedia[] = [
     date: '18.11.21',
   },
   {
-    id: '13',
+    id: '24',
     name: 'Комментарий Управляющего партнера, адвоката Коллегии Елены Михалевич.',
     contentHtml: <></>,
     titleIcon: editURL,
@@ -592,7 +592,7 @@ export const medias: IContentMedia[] = [
     date: '19.03.21',
   },
   {
-    id: '12',
+    id: '23',
     name: 'Президент и адвокат Коллегии Самвел Караханян в международном рейтинге Best Lawyers.',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -600,7 +600,7 @@ export const medias: IContentMedia[] = [
     date: '11.06.21',
   },
   {
-    id: '11',
+    id: '22',
     name: 'Публикация Управляющего партнера, адвоката Коллегии Елены Михалевич.',
     contentHtml: <></>,
     titleIcon: bookOpenURL,
@@ -608,7 +608,7 @@ export const medias: IContentMedia[] = [
     date: '11.05.21',
   },
   {
-    id: '10',
+    id: '21',
     name: 'Коллегия запустила подкасты.',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -616,7 +616,7 @@ export const medias: IContentMedia[] = [
     date: '31.03.21',
   },
   {
-    id: '9',
+    id: '20',
     name: 'Комментарий адвоката Коллегии Александры Вдовиной.',
     contentHtml: <></>,
     titleIcon: editURL,
@@ -624,7 +624,7 @@ export const medias: IContentMedia[] = [
     date: '19.03.21',
   },
   {
-    id: '8',
+    id: '19',
     name: 'Поздравляем с 23 февраля!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -632,7 +632,7 @@ export const medias: IContentMedia[] = [
     date: '23.02.21',
   },
   {
-    id: '7',
+    id: '18',
     name: 'Публикация адвоката Коллегии Александра Гетманова в Адвокатской газете.',
     contentHtml: <></>,
     titleIcon: bookOpenURL,
@@ -640,7 +640,7 @@ export const medias: IContentMedia[] = [
     date: '05.02.21',
   },
   {
-    id: '6',
+    id: '17',
     name: 'Коллегия поздравляет с наступающим 2021 годом!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -648,7 +648,7 @@ export const medias: IContentMedia[] = [
     date: '31.12.20',
   },
   {
-    id: '5',
+    id: '16',
     name: 'Михаил Юрьевич, с Днем Рождения!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -656,7 +656,7 @@ export const medias: IContentMedia[] = [
     date: '27.12.20',
   },
   {
-    id: '4',
+    id: '15',
     name: 'Коллегия в рейтинге Право-300',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -664,7 +664,7 @@ export const medias: IContentMedia[] = [
     date: '14.12.20',
   },
   {
-    id: '3',
+    id: '14',
     name: 'С Днем Конституции!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -672,7 +672,7 @@ export const medias: IContentMedia[] = [
     date: '12.12.20',
   },
   {
-    id: '2',
+    id: '13',
     name: 'Поздравляем с днем юриста!',
     contentHtml: <></>,
     titleIcon: globeURL,
@@ -680,11 +680,99 @@ export const medias: IContentMedia[] = [
     date: '03.12.20',
   },
   {
-    id: '1',
+    id: '12',
     name: 'Коллегии адвокатов «Барщевский и Партнеры» - 30 лет.',
     contentHtml: <></>,
     titleIcon: globeURL,
     type: MEDIA_TYPE.NEWS_EVENT,
     date: '02.12.20',
+  },
+  {
+    id: '11',
+    name: 'Вышла в свет вторая книга партнера Коллегии Елены Михалевич «Как сохранить коммерческую тайну: анализ законодательства и практические рекомендации».',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '11.08.20',
+  },
+  {
+    id: '10',
+    name: 'В свет вышла первая книга адвоката Коллегии адвокатов города Москвы "Барщевский и Партнеры" Елены Михалевич. «Обработка персональных данных: анализ законодательства и судебной практики»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '27.09.19',
+  },
+  {
+    id: '9',
+    name: '«Уволили сотрудника за прогулы и запои? Не дайте ему вернуться». Статья адвоката Елены Михалевич для журнала «Генеральный директор»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '22.02.17',
+  },
+  {
+    id: '8',
+    name: '«Чем заемщику грозит нотариус. Какие подводные камни таит новая внесудебная процедура взыскания банками долгов с граждан». Статья президента Самвела Караханяна для газеты «Ведомости»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '23.12.16',
+  },
+  {
+    id: '7',
+    name: 'Интервью президента Самвела Караханяна Национальному банковскому журналу (NBJ)',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.COMMENT_MEDIA,
+    date: '15.06.16',
+  },
+  {
+    id: '6',
+    name: 'Интервью президента Коллегии Самвела Караханяна журналу «АЭРОФЛОТ PREMIUM»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '07.03.16',
+  },
+  {
+    id: '5',
+    name: 'В январе 2016 года в свет вышла книга «Психологическая пытка в России и за рубежом»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '13.01.16',
+  },
+  {
+    id: '4',
+    name: '«Взаимодействие с ФАС: современные правовые реалии». Статья президента Самвела Караханяна для журнала «Рынок ценных бумаг»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '10.11.08',
+  },
+  {
+    id: '3',
+    name: '«Картельные соглашения в условиях российского рынка». Статья президента Самвела Караханяна для журнала «Рынок ценных бумаг»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '01.10.08',
+  },
+  {
+    id: '2',
+    name: '«Трансфертное ценообразование и современные налоговые реалии». Статья президента Самвела Караханяна для журнала «Рынок ценных бумаг»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '01.10.08',
+  },
+  {
+    id: '1',
+    name: '«Инициатива государства по организации биржевой торговли газом: текущая ситуация, проблемы и перспективы». Статья президента Самвела Караханяна для журнала «Рынок ценных бумаг»',
+    contentHtml: <></>,
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '01.09.08',
   },
 ];
