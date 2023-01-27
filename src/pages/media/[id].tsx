@@ -12,22 +12,31 @@ import { medias } from '@mocks/index';
 import { IMediaDetail, mediasDetails } from '@mocks/mediasDetail';
 
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
+import PageTitle from '@components/PageTitle';
 
 interface IMediaDetailItem extends IContentMedia, IMediaDetail {}
 
 const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
-  const { tablet } = useMedia();
+  const { tablet, tabletLg } = useMedia();
 
   return (
     <main
       css={{
+        display: 'grid',
+        gridTemplate: 'auto auto 1fr / 1fr',
         height: '100%',
-        paddingTop: '16px',
         paddingBottom: '40px',
         width: '100%',
       }}
     >
-      <div css={{ ...pageWrap, marginBottom: '16px' }}>
+      <PageTitle
+        title="Медиа"
+        css={{ marginBottom: '24px', width: '100%' }}
+        cssInner={{ paddingTop: '16px', paddingBottom: '16px', h1: { marginBottom: 0 } }}
+        cssTitle={{ [tabletLg]: { fontSize: '32px', lineHeight: '44px' } }}
+      />
+
+      <div css={{ ...pageWrap, marginBottom: '16px', width: '100%' }}>
         <Link href="/media" passHref>
           <a
             css={{
@@ -42,43 +51,45 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
         </Link>
       </div>
 
-      <section css={{ ...pageWrap, maxWidth: '842px', width: '100%' }}>
-        <div css={{ ...position.spaceBetween, marginBottom: '8px' }}>
-          <div css={{ ...position.center }}>
-            <div
+      <div css={{ ...position.center, height: '100%', padding: '60px 0' }}>
+        <section css={{ ...pageWrap, maxWidth: '842px', width: '100%' }}>
+          <div css={{ ...position.spaceBetween, marginBottom: '8px' }}>
+            <div css={{ ...position.center }}>
+              <div
+                css={{
+                  marginRight: '8px',
+                  width: '24px',
+                  height: '24px',
+                }}
+              >
+                <Image src={media.titleIcon} width="24px" height="24px" alt="media-icon" />
+              </div>
+              <span>{parseMediaType(media.type)}</span>
+            </div>
+            <span>{media.date}</span>
+          </div>
+          <div>
+            <h1
               css={{
-                marginRight: '8px',
-                width: '24px',
-                height: '24px',
+                ...typography.h1,
+                fontSize: '32px',
+                lineHeight: '35px',
+                marginBottom: '24px',
+                [tablet]: { fontSize: '24px', lineHeight: '28px', marginBottom: '16px' },
               }}
             >
-              <Image src={media.titleIcon} width="24px" height="24px" alt="media-icon" />
-            </div>
-            <span>{parseMediaType(media.type)}</span>
+              {media.name}
+            </h1>
           </div>
-          <span>{media.date}</span>
-        </div>
-        <div>
-          <h1
+          <div
+            dangerouslySetInnerHTML={{ __html: media.content }}
             css={{
-              ...typography.h1,
-              fontSize: '32px',
-              lineHeight: '35px',
-              marginBottom: '24px',
-              [tablet]: { fontSize: '24px', lineHeight: '28px', marginBottom: '16px' },
+              a: { ...links.blue },
+              [tablet]: { ...typography.txtSm, 'p:not(:last-of-type)': { marginBottom: '16px' } },
             }}
-          >
-            {media.name}
-          </h1>
-        </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: media.content }}
-          css={{
-            a: { ...links.blue },
-            [tablet]: { ...typography.txtSm, 'p:not(:last-of-type)': { marginBottom: '16px' } },
-          }}
-        />
-      </section>
+          />
+        </section>
+      </div>
     </main>
   );
 };
