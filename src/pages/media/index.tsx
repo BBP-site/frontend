@@ -5,24 +5,43 @@ import { colors, pageWrap, time } from '@scripts/theme';
 import { CARD_TYPE, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
 import { parseMediaType } from '@scripts/helpers';
 
-import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
+import withConfigContentCard, { IContentMedia } from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
 import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
 
 import { medias } from '@mocks/index';
 
+const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
+  const mediaADaysArr = [...mediaA.date.split('.')];
+  const mediaBDaysArr = [...mediaB.date.split('.')];
+
+  const mediaADays = `${parseInt(mediaADaysArr[2], 10) * 365}${parseInt(mediaADaysArr[1], 10) * 60}${parseInt(
+    mediaADaysArr[0],
+    10
+  )}`;
+  const mediaBDays = `${parseInt(mediaBDaysArr[2], 10) * 365}${parseInt(mediaBDaysArr[1], 10) * 60}${parseInt(
+    mediaBDaysArr[0],
+    10
+  )}`;
+
+  if (mediaADays > mediaBDays) return 1;
+  if (mediaADays < mediaBDays) return -1;
+  return 0;
+};
+
+const newMedias = [...medias].sort(compareAB);
+const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
+const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort())];
+
 const Media = () => {
   const { tabletLgMin, tabletLg, tablet, mobileLg } = useMedia();
   const [typeFilter, setTypeFilter] = useState(MEDIA_TYPE.ALL);
   const [yearFilter, setYearFilter] = useState('all');
 
-  const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
-  const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`))];
-
   const mediasCards = useMemo(
     () =>
-      medias
+      newMedias
         .filter(
           media =>
             (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||

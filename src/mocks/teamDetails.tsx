@@ -4,7 +4,6 @@ import Link from 'next/link';
 import sumvelDetail from '@images/sumvelDetail.webp';
 import aparinaDetail from '@images/aparinaDetail.webp';
 import barshevskiyDetail from '@images/barshevskiyDetail.webp';
-import lapinaDetail from '@images/lapinaDetail.webp';
 import puhovaDetail from '@images/puhovaDetail.webp';
 import speranskayaDetail from '@images/speranskayaDetail.webp';
 import mihalevichDetail from '@images/mihalevichDetail.webp';
@@ -230,25 +229,6 @@ export const teamDetails: ITeamDetail[] = [
           <li>Защита интеллектуальной собственности</li>
           <li>Земельное право</li>
           <li>Семейное право</li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    id: 'lapina',
-    img: lapinaDetail.src,
-    name: 'Лапина Ольга Владимировна',
-    position: 'Адвокат',
-    experienceHTML: (
-      <>
-        <p>Стаж юридической практики 12 лет. Имеет опыт преподавательской деятельности.</p>
-      </>
-    ),
-    practicesHTML: (
-      <>
-        <ul>
-          <li>Защита по уголовным делам на всех стадиях уголовного преследования</li>
-          <li>Представление интересов потерпевших в уголовном процессе</li>
         </ul>
       </>
     ),
