@@ -153,8 +153,10 @@ const Media = () => {
               ))}
             </div>
             <div css={{ width: '100%', display: 'flex' }}>
-              <span css={{ marginRight: '16px', color: colors.gray700 }}>Смотреть за период: </span>
-              <div css={{ display: 'flex' }}>
+              <span css={{ marginRight: '16px', color: colors.gray700, whiteSpace: 'nowrap' }}>
+                Смотреть за период:{' '}
+              </span>
+              <div css={{ display: 'flex', overflowX: 'scroll' }}>
                 {years.map(year => (
                   <div
                     key={year}
@@ -179,7 +181,9 @@ const Media = () => {
                       checked={yearFilter === year}
                       onChange={event => setYearFilter(event.target.value)}
                     />
-                    <label htmlFor={`media-year-filter-${year}`}>{year !== 'all' ? `20${year}` : 'Все время'}</label>
+                    <label htmlFor={`media-year-filter-${year}`} css={{ whiteSpace: 'nowrap' }}>
+                      {year !== 'all' ? `20${year}` : 'Все время'}
+                    </label>
                   </div>
                 ))}
               </div>
