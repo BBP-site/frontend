@@ -32,6 +32,16 @@ const App = ({ Component, pageProps }: AppProps) => (
             color: colors.black,
             scrollBehavior: 'smooth',
           },
+          table: {
+            border: '1px solid black'
+          },
+          tr: {
+            border: '1px solid black'
+          },
+          td: {
+            border: '1px solid black',
+            padding: '5px'
+          },
           main: {
             flex: '1 1 auto',
           },
