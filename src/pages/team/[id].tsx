@@ -14,6 +14,7 @@ import Carousel from '@components/common/Carousel';
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import mailIconURL from '@icons/mail.svg';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const TeamDetail = () => {
   const { query } = useRouter();
@@ -214,9 +215,10 @@ export const getStaticPaths = async () => ({
   fallback: 'blocking',
 });
 
-export const getStaticProps = async (context: { params: { id: string } }) => {
+export const getStaticProps = async (context: { params: { id: string }; locale: string }) => {
   const {
     params: { id },
+    locale,
   } = context;
 
   const detailInfo = teamDetails.find(detail => detail.id === id);
@@ -224,7 +226,9 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   return !detailInfo
     ? { notFound: true }
     : {
-        props: {},
+        props: {
+          ...(await serverSideTranslations(locale, ['common'])),
+        },
       };
 };
 

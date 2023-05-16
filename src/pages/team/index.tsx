@@ -11,6 +11,7 @@ import ContentCard from '@components/common/ContentCard';
 
 import { team } from '@mocks/index';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Team: FC = () => {
   const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
@@ -60,3 +61,11 @@ const Team: FC = () => {
 };
 
 export default Team;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

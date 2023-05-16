@@ -3,6 +3,7 @@ import PageTitle from '@components/PageTitle';
 import ContentSection from '@components/common/contentSection';
 
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Politics = () => {
   const { tabletLg } = useMedia();
@@ -256,3 +257,11 @@ const Politics = () => {
 };
 
 export default Politics;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

@@ -1,6 +1,7 @@
 import Button from '@components/common/Button';
 import { colors, pageWrap, typography } from '@scripts/theme';
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Page404 = () => {
   const { push } = useRouter();
@@ -27,3 +28,11 @@ const Page404 = () => {
 };
 
 export default Page404;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

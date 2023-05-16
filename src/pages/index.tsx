@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { colors, links, pageWrap, pageWrapS, position, shadows, typography } from '@scripts/theme';
 import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
@@ -815,3 +816,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

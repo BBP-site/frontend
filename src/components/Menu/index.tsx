@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSObject } from '@emotion/react';
+import { useTranslation } from 'next-i18next';
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 import Link from 'next/link';
 import { useCommon } from '@context/common';
@@ -23,6 +24,7 @@ interface IMenuProps {
 const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   const { data } = useCommon();
   const { tabletLg, tabletLgMin } = useMedia();
+  const { t } = useTranslation('');
 
   const menuCSS: CSSObject = {
     width: '100%',
@@ -63,11 +65,11 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   return (
     <nav css={{ ...menuCSS, display: 'flex', [tabletLgMin]: { ...pageWrapCSS } }} className={className}>
       <Link href={`${data.pages.home}`} passHref>
-        <a>Главная</a>
+        <a>{t('menu.home')}</a>
       </Link>
 
       <Link href={`${data.pages.collegium}`} passHref>
-        <a>О Коллегии</a>
+        <a>{t('О Коллегии')}</a>
       </Link>
 
       <Link href={`${data.pages.practices}`} passHref>
