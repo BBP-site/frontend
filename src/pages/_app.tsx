@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Global } from '@emotion/react';
+import { appWithTranslation } from 'next-i18next';
 
 import { CommonProvider } from '@context/common';
 
@@ -33,14 +34,14 @@ const App = ({ Component, pageProps }: AppProps) => (
             scrollBehavior: 'smooth',
           },
           table: {
-            border: '1px solid black'
+            border: '1px solid black',
           },
           tr: {
-            border: '1px solid black'
+            border: '1px solid black',
           },
           td: {
             border: '1px solid black',
-            padding: '5px'
+            padding: '5px',
           },
           main: {
             flex: '1 1 auto',
@@ -141,4 +142,4 @@ const App = ({ Component, pageProps }: AppProps) => (
   </>
 );
 
-export default App;
+export default appWithTranslation(App);

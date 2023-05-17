@@ -4,6 +4,7 @@ import ContactsMain from '@components/ContactsMain';
 import { pageWrap } from '@scripts/theme';
 import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Contacts = () => {
   const [openFeedback, setOpenFeedback] = useState(false);
@@ -27,3 +28,11 @@ const Contacts = () => {
   );
 };
 export default Contacts;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

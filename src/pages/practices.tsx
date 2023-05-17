@@ -10,6 +10,7 @@ import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
 import { practices } from '@mocks/index';
 import { useEffect, useState } from 'react';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Practices = () => {
   const { asPath } = useRouter();
@@ -70,3 +71,11 @@ const Practices = () => {
 };
 
 export default Practices;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

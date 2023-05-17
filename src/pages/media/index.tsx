@@ -11,6 +11,7 @@ import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
 
 import { medias } from '@mocks/index';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
   const mediaADaysArr = [...mediaA.date.split('.')];
@@ -210,3 +211,11 @@ const Media = () => {
 };
 
 export default Media;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

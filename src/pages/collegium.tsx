@@ -6,6 +6,7 @@ import ContentSection from '@components/common/contentSection';
 import Link from 'next/link';
 import ParticlesMesh from '@components/ParticlesMesh';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Collegium = () => {
   const { tabletLg, tabletLgMin } = useMedia();
@@ -199,3 +200,11 @@ const Collegium = () => {
 };
 
 export default Collegium;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

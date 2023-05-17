@@ -13,6 +13,7 @@ import { IMediaDetail, mediasDetails } from '@mocks/mediasDetail';
 
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import PageTitle from '@components/PageTitle';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 interface IMediaDetailItem extends IContentMedia, IMediaDetail {}
 
@@ -99,9 +100,10 @@ export const getStaticPaths = async () => ({
   fallback: 'blocking',
 });
 
-export const getStaticProps = async (context: { params: { id: string } }) => {
+export const getStaticProps = async (context: { params: { id: string }; locale: string }) => {
   const {
     params: { id },
+    locale,
   } = context;
 
   const detailInfo = medias.find(media => media.id === id);
@@ -113,7 +115,7 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   return !detailInfo
     ? { notFound: true }
     : {
-        props: { media: JSON.parse(JSON.stringify(media)) },
+        props: { ...(await serverSideTranslations(locale, ['common'])), media: JSON.parse(JSON.stringify(media)) },
       };
 };
 

@@ -1,9 +1,11 @@
 const withPlugins = require('next-compose-plugins');
 const withSvgr = require('next-plugin-svgr');
+const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
   webpack5: true,
   swcMinify: true,
+  i18n,
   images: {
     domains: [''],
   },

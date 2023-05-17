@@ -13,6 +13,7 @@ import { CARD_TYPE, PROJECT_INDUSTRY } from '@scripts/enums/common/content-card.
 import { projects } from '@mocks/projects';
 
 import { ReactComponent as SearchIcon } from '@icons/search.svg';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const parseIndustry = (industry: PROJECT_INDUSTRY) => {
   switch (industry) {
@@ -172,3 +173,11 @@ const Projects = () => {
 };
 
 export default Projects;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
