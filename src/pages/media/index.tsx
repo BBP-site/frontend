@@ -16,23 +16,18 @@ const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
   const mediaADaysArr = [...mediaA.date.split('.')];
   const mediaBDaysArr = [...mediaB.date.split('.')];
 
-  const mediaADays = `${parseInt(mediaADaysArr[2], 10) * 365}${parseInt(mediaADaysArr[1], 10) * 60}${parseInt(
-    mediaADaysArr[0],
-    10
-  )}`;
-  const mediaBDays = `${parseInt(mediaBDaysArr[2], 10) * 365}${parseInt(mediaBDaysArr[1], 10) * 60}${parseInt(
-    mediaBDaysArr[0],
-    10
-  )}`;
+  const [, , mediaADays] = mediaADaysArr
 
-  if (mediaADays > mediaBDays) return 1;
-  if (mediaADays < mediaBDays) return -1;
+  const [, , mediaBDays] = mediaBDaysArr
+
+  if (+mediaADays > +mediaBDays) return -1;
+  if (+mediaADays < +mediaBDays) return 1;
   return 0;
 };
 
 const newMedias = [...medias].sort(compareAB);
 const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
-const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort())];
+const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort().reverse())];
 
 const Media = () => {
   const { tabletLgMin, tabletLg, tablet, mobileLg } = useMedia();
