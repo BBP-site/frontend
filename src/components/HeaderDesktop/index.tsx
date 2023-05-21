@@ -13,10 +13,12 @@ import Menu, { MENU_TYPE } from '@components/Menu';
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
   const { tabletLg } = useMedia();
   const { pathname, query, asPath, push, locales, locale: activeLocale } = useRouter();
+  const { t } = useTranslation();
 
   const { data } = useCommon();
   const [ruEn, setRuEn] = useState(activeLocale !== locales?.[0]);
@@ -65,7 +67,7 @@ const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
             </a>
           </Link>
           <span css={{ ...typography.txt, color: colors.black, marginLeft: '16px' }}>
-            Коллегия адвокатов города Москвы
+            {t('Коллегия адвокатов города Москвы')}
           </span>
         </div>
         <div css={{ display: 'flex', alignItems: 'center' }}>
@@ -89,7 +91,7 @@ const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
             onClick={() => openFeedback()}
             css={{ backgroundColor: colors.blueDark, width: '190px', paddingLeft: 0, paddingRight: 0 }}
           >
-            Связаться с нами
+            {t('Связаться с нами')}
           </Button>
           <button
             type="button"

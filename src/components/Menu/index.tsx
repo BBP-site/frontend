@@ -24,7 +24,7 @@ interface IMenuProps {
 const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   const { data } = useCommon();
   const { tabletLg, tabletLgMin } = useMedia();
-  const { t } = useTranslation('');
+  const { t } = useTranslation();
 
   const menuCSS: CSSObject = {
     width: '100%',
@@ -65,7 +65,7 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   return (
     <nav css={{ ...menuCSS, display: 'flex', [tabletLgMin]: { ...pageWrapCSS } }} className={className}>
       <Link href={`${data.pages.home}`} passHref>
-        <a>{t('menu.home')}</a>
+        <a>{t('Главная')}</a>
       </Link>
 
       <Link href={`${data.pages.collegium}`} passHref>
@@ -73,23 +73,23 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
       </Link>
 
       <Link href={`${data.pages.practices}`} passHref>
-        <a>Практики</a>
+        <a>{t('Практики')}</a>
       </Link>
 
       <Link href={`${data.pages.team}`} passHref>
-        <a>Команда</a>
+        <a>{t('Команда')}</a>
       </Link>
 
       <Link href={`${data.pages.projects}`} passHref>
-        <a>Проекты</a>
+        <a>{t('Проекты')}</a>
       </Link>
 
       <Link href={`${data.pages.media}`} passHref>
-        <a>Медиа</a>
+        <a>{t('Медиа')}</a>
       </Link>
 
       <Link href={`${data.pages.contacts}`} passHref>
-        <a>Контакты</a>
+        <a>{t('Контакты')}</a>
       </Link>
 
       <div
