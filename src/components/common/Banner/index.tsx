@@ -76,7 +76,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
           </p>
 
           <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, fontSize: '47px', color: colors.white } }}>
-            БАРЩЕВСКИЙ И ПАРТНЕРЫ
+              {t('БАРЩЕВСКИЙ И ПАРТНЕРЫ')}
           </h1>
 
           <p css={{ fontSize: '20px', [tabletLg]: { ...typography.txtSm, marginBottom: '24px' } }}>
@@ -95,7 +95,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
               [mobile]: { width: '100%' },
             }}
           >
-            Запись на консультацию
+              {t('Запись на консультацию')}
           </Button>
         </div>
       </div>

@@ -11,9 +11,11 @@ import { practices } from '@mocks/index';
 import { useEffect, useState } from 'react';
 import { useMedia } from '@scripts/hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import {useTranslation} from "next-i18next";
 
 const Practices = () => {
   const { asPath } = useRouter();
+  const { t } = useTranslation();
   const [curAnchor, setCurAnchor] = useState<string | null>();
   const { tabletLg, desktop, desktopLg } = useMedia();
 
@@ -38,15 +40,12 @@ const Practices = () => {
 
   return (
     <main css={{ height: '100%' }}>
-      <PageTitle title="Практики" css={{ marginBottom: '32px' }}>
+      <PageTitle title={t('Практики')} css={{ marginBottom: '32px' }}>
         <p>
-          Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является
-          универсальной и не ограничивается представленными в этом разделе направлениями.
+            {t('Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.')}
         </p>
         <p>
-          Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие
-          несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд
-          нет выхода.
+            {t('Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд нет выхода.')}
         </p>
       </PageTitle>
       <div css={{ ...pageWrap, marginBottom: '48px', [tabletLg]: { marginTop: '32px' } }}>

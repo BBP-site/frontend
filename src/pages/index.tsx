@@ -28,10 +28,12 @@ import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
+import {useTranslation} from "next-i18next";
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
   const { data } = useCommon();
+    const { t } = useTranslation();
 
   const [openFeedback, setOpenFeedback] = useState(false);
 
@@ -92,7 +94,7 @@ const Home = () => {
               [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
             }}
           >
-            Практики
+            {t('Практики')}
           </h2>
           <Link href={`${data.pages.practices}`} passHref>
             <a
@@ -107,15 +109,14 @@ const Home = () => {
                 },
               }}
             >
-              Перейти к разделу
+                {t('Перейти к разделу')}
               <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
                 <Image src={arrowIconURL} width={12} height={12} />
               </div>
             </a>
           </Link>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-            Вы можете обратиться к нам практически с любой правовой проблемой, т.к. наша Коллегия является универсальной
-            и не ограничивается представленными в этом разделе направлениями.
+              {t('Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.')}
           </p>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
             Мы придерживаемся командного подхода и в рассмотрении вопроса доверителя, как правило, принимает участие
