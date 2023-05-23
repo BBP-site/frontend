@@ -11,16 +11,23 @@ import { useCommon } from '@context/common';
 
 import logoIconURL from '@icons/whiteLogo.svg';
 import logoTextIconURL from '@icons/whiteLogoText.svg';
+import logoIconEnURL from '@icons/whiteLogoEn.svg';
+import logoTextIconEnURL from '@icons/whiteLogoTextEn.svg';
 import locationURL from '@icons/location.svg';
 import phoneURL from '@icons/phone.svg';
 import emailURL from '@icons/email.svg';
 import fpaURL from '@images/fpa.webp';
 import agURL from '@images/ag.webp';
 import ofURL from '@images/of.webp';
+import {LOCALES} from "@scripts/enums/indext";
+import {useRouter} from "next/router";
+import {useTranslation} from "next-i18next";
 
 const FooterMobile: FC<{}> = () => {
   const { data } = useCommon();
   const { tabletLgMin } = useMedia();
+  const { t } = useTranslation();
+  const { locale: activeLocale } = useRouter();
 
   return (
     <div
@@ -59,14 +66,24 @@ const FooterMobile: FC<{}> = () => {
                   justifyContent: 'center',
                 }}
               >
-                <Image src={logoIconURL} width="44px" height="57px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoIconURL} width="44px" height="57px" />
+                          :
+                          <Image src={logoIconEnURL} width="44px" height="57px" />
+                  }
               </div>
               <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src={logoTextIconURL} width="90px" height="25px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoTextIconURL} width="90px" height="25px" />
+                          :
+                          <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                  }
               </div>
             </a>
           </Link>
-          <span css={{ marginLeft: '16px', ...typography.txtSm }}>Коллегия адвокатов города Москвы</span>
+          <span css={{ marginLeft: '16px', ...typography.txtSm }}>{t('Коллегия адвокатов города Москвы')}</span>
         </div>
 
         <div css={{ marginBottom: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>

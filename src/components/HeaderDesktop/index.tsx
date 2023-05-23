@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -12,8 +12,11 @@ import Menu, { MENU_TYPE } from '@components/Menu';
 
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
+import logoIconEnURL from '@icons/logoEn.svg';
+import logoTextIconEnURL from '@icons/logoTextEn.svg';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import {LOCALES} from "@scripts/enums/indext";
 
 const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
   const { tabletLg } = useMedia();
@@ -59,10 +62,20 @@ const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
                   justifyContent: 'center',
                 }}
               >
-                <Image src={logoIconURL} width="44px" height="57px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoIconURL} width="44px" height="57px" />
+                          :
+                          <Image src={logoIconEnURL} width="44px" height="57px" />
+                  }
               </div>
               <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src={logoTextIconURL} width="90px" height="25px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoTextIconURL} width="90px" height="25px" />
+                          :
+                          <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                  }
               </div>
             </a>
           </Link>
