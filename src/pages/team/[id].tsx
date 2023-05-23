@@ -18,7 +18,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const TeamDetail = () => {
   const { query } = useRouter();
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+  const detailInfo = useMemo(() => teamDetails().find(detail => detail.id === query.id), [query.id]);
   const { tablet, tabletLg } = useMedia();
 
   const blockCSS: CSSObject = {
@@ -221,7 +221,7 @@ export const getStaticProps = async (context: { params: { id: string }; locale: 
     locale,
   } = context;
 
-  const detailInfo = teamDetails.find(detail => detail.id === id);
+  const detailInfo = teamDetails().find(detail => detail.id === id);
 
   return !detailInfo
     ? { notFound: true }
