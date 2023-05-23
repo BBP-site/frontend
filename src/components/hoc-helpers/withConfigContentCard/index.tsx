@@ -203,7 +203,7 @@ const withConfigContentCard = (
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
-        url: `/media/${content.id}`,
+        url: `comingSoonMedia`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };

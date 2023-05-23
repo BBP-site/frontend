@@ -7,7 +7,7 @@ export enum E_PAGES {
   PRACTICES = '/practices',
   TEAM = '/team',
   PROJECTS = '/projects',
-  MEDIA = '/media',
+  MEDIA = '/comingSoonMedia',
   CONTACTS = '/contacts',
   POLITICS = '/politics',
 }

@@ -8,6 +8,7 @@ import elenaURL from '@images/elena.webp';
 import tatyanaURL from '@images/tatyana.webp';
 import barkalovaURL from '@images/barkalova.webp';
 import alexandraURL from '@images/alexandra.webp';
+// import olgaURL from '@images/olga.webp';
 import mariaURL from '@images/maria.webp';
 import kseniaURL from '@images/ksenia.webp';
 
@@ -122,12 +123,25 @@ export const team: IContent[] = [
     img: alexandraURL.src,
     objectPosition: '0px -5px',
   },
+  // ушла из Коллегии
+  // {
+  //   id: 'lapina',
+  //   contentHtml: (
+  //     <>
+  //       <h6>Лапина Ольга Владимировна</h6>
+  //       <p>Адвокат</p>
+  //       <div className="line" />
+  //     </>
+  //   ),
+  //   contentCSS: teamCSS,
+  //   img: olgaURL.src,
+  // },
   {
     id: 'puhova',
     contentHtml: (
       <>
         <h6>Пухова Мария Михайловна </h6>
-        <p>Старший юрист</p>
+        <p>Адвокат</p>
         <div className="line" />
       </>
     ),
