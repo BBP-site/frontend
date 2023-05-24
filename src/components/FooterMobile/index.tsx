@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import { useMedia } from '@scripts/hooks';
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
@@ -19,6 +20,7 @@ import agURL from '@images/ag.webp';
 import ofURL from '@images/of.webp';
 
 const FooterMobile: FC<{}> = () => {
+  const { t } = useTranslation();
   const { data } = useCommon();
   const { tabletLgMin } = useMedia();
 
@@ -66,7 +68,7 @@ const FooterMobile: FC<{}> = () => {
               </div>
             </a>
           </Link>
-          <span css={{ marginLeft: '16px', ...typography.txtSm }}>Коллегия адвокатов города Москвы</span>
+          <span css={{ marginLeft: '16px', ...typography.txtSm }}>{t('Коллегия адвокатов города Москвы')}</span>
         </div>
 
         <div css={{ marginBottom: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
@@ -140,7 +142,7 @@ const FooterMobile: FC<{}> = () => {
                 ...links.white,
               }}
             >
-              Политика обработки персональных данных
+              {t('Политика обработки персональных данных')}
             </span>
           </a>
         </Link>
@@ -153,8 +155,8 @@ const FooterMobile: FC<{}> = () => {
             marginTop: '16px',
           }}
         >
-          <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
-          <span>Официальный сайт.</span>
+          <span> © 2003—2022 {t('Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.')}</span>
+          <span>{t('Официальный сайт.')}</span>
         </p>
       </div>
     </div>

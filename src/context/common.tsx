@@ -45,7 +45,7 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ chil
       politics: E_PAGES.POLITICS,
     },
     contactsData: {
-      address: '119121, г. Москва, Ружейный пер., д. 3',
+      address: `${t('119121, г. Москва, Ружейный пер., д. 3')}`,
       phones: [
         {
           number: '+ 7 (495) 755-93-63',

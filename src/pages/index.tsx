@@ -28,16 +28,16 @@ import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
-import {useTranslation} from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
   const { data } = useCommon();
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const [openFeedback, setOpenFeedback] = useState(false);
 
-  const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
+  const teamCards = team().map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
   const projectsCards = projects.map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN));
   const projectsCardsMobile = projectsMobile.map(project =>
     withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN)
@@ -109,14 +109,16 @@ const Home = () => {
                 },
               }}
             >
-                {t('Перейти к разделу')}
+              {t('Перейти к разделу')}
               <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
                 <Image src={arrowIconURL} width={12} height={12} />
               </div>
             </a>
           </Link>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-              {t('Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.')}
+            {t(
+              'Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.'
+            )}
           </p>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
             Мы придерживаемся командного подхода и в рассмотрении вопроса доверителя, как правило, принимает участие
@@ -147,7 +149,7 @@ const Home = () => {
               },
             }}
           >
-            {practices.map(({ img, ...practice }) => (
+            {practices().map(({ img, ...practice }) => (
               <Block
                 key={practice.id}
                 css={{
@@ -228,7 +230,7 @@ const Home = () => {
             [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '4px' },
           }}
         >
-          Команда
+          {t('Команда')}
         </h2>
         <Link href={`${data.pages.team}`} passHref>
           <a
@@ -243,16 +245,16 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу
+            {t('Перейти к разделу')}
             <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
               <Image src={arrowIconURL} width={12} height={12} />
             </div>
           </a>
         </Link>
         <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-          Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет
-          успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды
-          Коллегии.
+          {t(
+            'Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды Коллегии.'
+          )}
         </p>
         <Carousel
           css={{ marginTop: '32px' }}
@@ -267,7 +269,7 @@ const Home = () => {
           }}
         >
           {teamCards.map((card, index) => (
-            <div key={team[index].id} css={{ marginBottom: '24px' }}>
+            <div key={team()[index].id} css={{ marginBottom: '24px' }}>
               {card()}
             </div>
           ))}
@@ -275,7 +277,7 @@ const Home = () => {
       </section>
 
       <ContentSection
-        title="Наши результаты"
+        title={t('Наши результаты') as string}
         titleLvl={2}
         cssTitle={{
           marginBottom: '8px',
@@ -291,7 +293,9 @@ const Home = () => {
           [tabletLg]: { padding: '48px 0' },
         }}
       >
-        <p css={{ [tabletLg]: { ...typography.txtSm } }}>Каждый год мы стремимся к прогрессу и к его достижению.</p>
+        <p css={{ [tabletLg]: { ...typography.txtSm } }}>
+          {t('Каждый год мы стремимся к прогрессу и к его достижению.')}
+        </p>
         <div
           css={{
             marginTop: '40px',
@@ -322,7 +326,9 @@ const Home = () => {
               32+
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p css={{ [tabletLg]: { ...typography.txtSm } }}>года мы оказываем профессиональную юридическую помощь</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>
+              {t('года мы оказываем профессиональную юридическую помощь')}
+            </p>
           </div>
           <div>
             <p
@@ -337,7 +343,7 @@ const Home = () => {
               1000+
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p css={{ [tabletLg]: { ...typography.txtSm } }}>доверителей</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>{t('доверителей')}</p>
           </div>
           <div>
             <p
@@ -353,7 +359,7 @@ const Home = () => {
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
             <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-              доверителей на абонентском обслуживании, <br /> 7 из которых более <br /> 30 лет
+              {t('доверителей на абонентском обслуживании,')} <br /> {t('7 из которых более')} <br /> {t('30 лет')}
             </p>
           </div>
           <div>
@@ -370,7 +376,7 @@ const Home = () => {
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
             <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-              доверителей обращаются с новыми вопросами или рекомендуют Коллегию партнерам
+              {t('доверителей обращаются с новыми вопросами или рекомендуют Коллегию партнерам')}
             </p>
           </div>
         </div>
@@ -425,7 +431,7 @@ const Home = () => {
       </ContentSection>
 
       <ContentSection
-        title="Рейтинги и награды"
+        title={t('Рейтинги и награды') as string}
         titleLvl={2}
         cssTitle={{
           marginBottom: '4px',
@@ -438,8 +444,9 @@ const Home = () => {
         }}
       >
         <p css={{ ...typography.txtSm }}>
-          Наш профессионализм ежегодно подтверждается российскими и международными рейтинговыми агентствами, а также
-          отмечается наградами в области права.
+          {t(
+            'Наш профессионализм ежегодно подтверждается российскими и международными рейтинговыми агентствами, а также отмечается наградами в области права.'
+          )}
         </p>
 
         <div
@@ -552,11 +559,11 @@ const Home = () => {
                 },
               }}
             >
-              “Вы найдете дешевле,
+              “{t('Вы найдете дешевле,')}
               <br />
-              но Вы не найдете лучше”
+              {t('но Вы не найдете лучше')}”
             </h2>
-            <p css={{ ...typography.h5 }}>М. Барщевский</p>
+            <p css={{ ...typography.h5 }}>{t('М.Барщевский')}</p>
           </div>
         </div>
       </ContentSection>
@@ -595,7 +602,7 @@ const Home = () => {
                     },
                   }}
                 >
-                  Проекты
+                  {t('Проекты')}
                 </h2>
                 <Link href={`${data.pages.projects}`} passHref>
                   <a
@@ -612,7 +619,7 @@ const Home = () => {
                       },
                     }}
                   >
-                    Перейти к разделу
+                    {t('Перейти к разделу')}
                     <div css={{ ...position.center, marginLeft: '10px' }}>
                       <Image src={arrowIconWhiteURL} width={12} height={12} />
                     </div>
@@ -704,7 +711,7 @@ const Home = () => {
       </section>
 
       <ContentSection
-        title="Медиа"
+        title={t('Медиа') as string}
         titleLvl={2}
         cssTitle={{
           marginBottom: '8px',
@@ -730,7 +737,7 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу
+            {t('Перейти к разделу')}
             <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
               <Image src={arrowIconURL} width={12} height={12} />
             </div>
@@ -772,7 +779,7 @@ const Home = () => {
             { [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '16px' } },
           ]}
         >
-          Контакты
+          {t('Контакты')}
         </h2>
 
         <ContactsMain openFeedback={setOpenFeedback} />

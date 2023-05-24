@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
+import { useTranslation } from 'next-i18next';
 
 import { useCommon } from '@context/common';
 
@@ -42,6 +43,7 @@ const rightsCSS: CSSObject = {
 };
 
 const FooterDesktop: FC = () => {
+  const { t } = useTranslation();
   const { data } = useCommon();
   const { tabletLg } = useMedia();
 
@@ -89,7 +91,7 @@ const FooterDesktop: FC = () => {
               </a>
             </Link>
 
-            <span css={{ marginLeft: '16px' }}>Коллегия адвокатов города Москвы</span>
+            <span css={{ marginLeft: '16px' }}>{t('Коллегия адвокатов города Москвы')}</span>
           </div>
 
           <div
@@ -188,13 +190,16 @@ const FooterDesktop: FC = () => {
                   fontSize: '18px',
                 }}
               >
-                Политика обработки персональных данных
+                {t('Политика обработки персональных данных')}
               </span>
             </a>
           </Link>
           <div css={{ ...position.start, alignItems: 'start', flexDirection: 'column' }}>
-            <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
-            <span>Официальный сайт.</span>
+            <span>
+              {' '}
+              © 2003—2022 {t('Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.')}
+            </span>
+            <span>{t('Официальный сайт.')}</span>
           </div>
         </span>
       </div>
