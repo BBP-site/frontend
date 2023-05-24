@@ -13,7 +13,7 @@ import { Values, sendFeedback } from '@api/feedback';
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import { useCommon } from '@context/common';
-import {useTranslation} from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 export interface IFeedbackFormProps {
   css?: CSSObject;
@@ -92,14 +92,16 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
           privacy: false,
         }}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required('Обязательное поле'),
+          name: Yup.string().required(t('Обязательное поле') || ''),
           phone: Yup.string()
-            .min(12, 'Неверный формат телефонного номера')
-            .matches(/[0-9]/g, 'Неверный формат телефонного номера')
-            .required('Обязательное поле'),
-          email: Yup.string().email('Неверный формат электронной почты').required('Обязательное поле'),
-          question: Yup.string().required('Обязательное поле'),
-          privacy: Yup.boolean().not([false], 'Обязательное поле'),
+            .min(12, t('Неверный формат телефонного номера') || '')
+            .matches(/[0-9]/g, t('Неверный формат телефонного номера') || '')
+            .required(t('Обязательное поле') || ''),
+          email: Yup.string()
+            .email(t('Неверный формат электронной почты') || '')
+            .required(t('Обязательное поле') || ''),
+          question: Yup.string().required(t('Обязательное поле') || ''),
+          privacy: Yup.boolean().not([false], t('Обязательное поле') || ''),
         })}
         onSubmit={async (values: Values) => {
           const isSuccess = await sendFeedback(values);
@@ -153,8 +155,9 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
                     checked={field.value}
                     labelCSS={{ fontSize: '16px', lineHeight: '20px' }}
                   >
-                    {t('Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте bbp.ru, в соответствии с')}
-                    {' '}
+                    {t(
+                      'Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте bbp.ru, в соответствии с'
+                    )}{' '}
                     <Link href={`${data.pages.politics}`} passHref>
                       <a css={{ ...links.blue }} target="_blank">
                         {t('Политикой обработки персональных данных')}

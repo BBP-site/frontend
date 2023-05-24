@@ -20,15 +20,13 @@ import emailURL from '@icons/email.svg';
 import fpaURL from '@images/fpa.webp';
 import agURL from '@images/ag.webp';
 import ofURL from '@images/of.webp';
-import {LOCALES} from "@scripts/enums/indext";
-import {useRouter} from "next/router";
-import {useTranslation} from "next-i18next";
+import { LOCALES } from '@scripts/enums/indext';
+import { useRouter } from 'next/router';
 
 const FooterMobile: FC<{}> = () => {
   const { t } = useTranslation();
   const { data } = useCommon();
   const { tabletLgMin } = useMedia();
-  const { t } = useTranslation();
   const { locale: activeLocale } = useRouter();
 
   return (
@@ -68,20 +66,18 @@ const FooterMobile: FC<{}> = () => {
                   justifyContent: 'center',
                 }}
               >
-                  {
-                      activeLocale === LOCALES.DEFAULT ?
-                          <Image src={logoIconURL} width="44px" height="57px" />
-                          :
-                          <Image src={logoIconEnURL} width="44px" height="57px" />
-                  }
+                {activeLocale === LOCALES.DEFAULT ? (
+                  <Image src={logoIconURL} width="44px" height="57px" />
+                ) : (
+                  <Image src={logoIconEnURL} width="44px" height="57px" />
+                )}
               </div>
               <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {
-                      activeLocale === LOCALES.DEFAULT ?
-                          <Image src={logoTextIconURL} width="90px" height="25px" />
-                          :
-                          <Image src={logoTextIconEnURL} width="100px" height="30px" />
-                  }
+                {activeLocale === LOCALES.DEFAULT ? (
+                  <Image src={logoTextIconURL} width="90px" height="25px" />
+                ) : (
+                  <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                )}
               </div>
             </a>
           </Link>

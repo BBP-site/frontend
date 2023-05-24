@@ -5,14 +5,16 @@ import { pageWrap } from '@scripts/theme';
 import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const Contacts = () => {
+  const { t } = useTranslation();
   const [openFeedback, setOpenFeedback] = useState(false);
 
   return (
     <main css={{ height: '100%' }}>
-      <PageTitle title="Контакты">
-        <p>Свяжитесь с нами, если Вам нужна помощь, консультация или у Вас появились другие вопросы.</p>
+      <PageTitle title={t('Контакты')}>
+        <p>{t('Свяжитесь с нами, если Вам нужна помощь, консультация или у Вас появились другие вопросы.')}</p>
       </PageTitle>
 
       <ContactsMain openFeedback={setOpenFeedback} />
