@@ -21,7 +21,7 @@ const Practices = () => {
 
   useEffect(() => setCurAnchor(asPath.split('#')[1]), [asPath]);
 
-  const practiceCards = practices.map(practice =>
+  const practiceCards = practices().map(practice =>
     withConfigContentCard(
       ContentCard,
       {
@@ -51,7 +51,7 @@ const Practices = () => {
       <div css={{ ...pageWrap, marginBottom: '48px', [tabletLg]: { marginTop: '32px' } }}>
         {practiceCards.map((card, index) => (
           <div
-            key={practices[index].id}
+            key={practices()[index].id}
             css={{
               paddingTop: '150px',
               marginTop: '-150px',
@@ -59,7 +59,7 @@ const Practices = () => {
               a: { ...links.blue },
               [tabletLg]: { paddingTop: '126px', marginTop: '-126px' },
             }}
-            id={practices[index].id}
+            id={practices()[index].id}
           >
             {card()}
           </div>

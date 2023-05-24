@@ -39,7 +39,7 @@ const Home = () => {
 
   const [openFeedback, setOpenFeedback] = useState(false);
 
-  const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
+  const teamCards = team().map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
   const projectsCards = projects.map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN));
   const projectsCardsMobile = projectsMobile.map(project =>
     withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN)
@@ -147,7 +147,7 @@ const Home = () => {
               },
             }}
           >
-            {practices.map(({ img, ...practice }) => (
+            {practices().map(({ img, ...practice }) => (
               <Block
                 key={practice.id}
                 css={{
@@ -243,7 +243,7 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу
+            {t('Перейти к разделу')}
             <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
               <Image src={arrowIconURL} width={12} height={12} />
             </div>
@@ -267,7 +267,7 @@ const Home = () => {
           }}
         >
           {teamCards.map((card, index) => (
-            <div key={team[index].id} css={{ marginBottom: '24px' }}>
+            <div key={team()[index].id} css={{ marginBottom: '24px' }}>
               {card()}
             </div>
           ))}
@@ -615,7 +615,7 @@ const Home = () => {
                                                     },
                                                 }}
                                             >
-                                                Перейти к разделу
+                                                {t('Перейти к разделу')}
                                                 <div css={{ ...position.center, marginLeft: '10px' }}>
                                                     <Image src={arrowIconWhiteURL} width={12} height={12} />
                                                 </div>
@@ -733,7 +733,7 @@ const Home = () => {
                                     },
                                 }}
                             >
-                                Перейти к разделу
+                                {t('Перейти к разделу')}
                                 <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
                                     <Image src={arrowIconURL} width={12} height={12} />
                                 </div>
