@@ -28,12 +28,14 @@ import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
-import { useTranslation } from 'next-i18next';
+import {useTranslation} from "next-i18next";
+import {useRouter} from "next/router";
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
   const { data } = useCommon();
   const { t } = useTranslation();
+  const { locale: activeLocale } = useRouter();
 
   const [openFeedback, setOpenFeedback] = useState(false);
 
@@ -121,9 +123,7 @@ const Home = () => {
             )}
           </p>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-            Мы придерживаемся командного подхода и в рассмотрении вопроса доверителя, как правило, принимает участие
-            несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд
-            нет выхода.
+              {t('Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд нет выхода.')}
           </p>
           <div
             css={{
@@ -568,202 +568,208 @@ const Home = () => {
         </div>
       </ContentSection>
 
-      <section css={{ ...pageWrapS, backgroundColor: colors.white }}>
-        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column' } }}>
-          <div
-            css={{
-              backgroundColor: colors.blueDark,
-              width: '33.5%',
-              position: 'relative',
-              [tabletLg]: { width: '100%' },
-            }}
-          >
-            <div css={{ ...pageWrap, paddingTop: '30px' }}>
-              <div
-                css={{
-                  [tabletLgMin]: { display: 'none' },
-                  width: '9px',
-                  height: '102px',
-                  backgroundColor: colors.cyan,
-                  position: 'absolute',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  left: 0,
-                }}
-              />
-              <div>
-                <h2
-                  css={{
-                    color: colors.white,
-                    [tabletLg]: {
-                      ...typography.h4,
-                      fontFamily: "'PT Serif', serif",
-                      marginBottom: '8px',
-                    },
-                  }}
-                >
-                  {t('Проекты')}
-                </h2>
-                <Link href={`${data.pages.projects}`} passHref>
-                  <a
-                    css={{
-                      ...links.white,
-                      whiteSpace: 'nowrap',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      alignSelf: 'flex-start',
-                      marginBottom: '32px',
-                      [tabletLg]: {
-                        ...typography.txtSm,
-                        marginBottom: '25px',
-                      },
-                    }}
-                  >
-                    {t('Перейти к разделу')}
-                    <div css={{ ...position.center, marginLeft: '10px' }}>
-                      <Image src={arrowIconWhiteURL} width={12} height={12} />
-                    </div>
-                  </a>
-                </Link>
-              </div>
-              <ParticlesMesh
-                width={3}
-                height={3}
-                css={{
-                  [tabletLgMin]: { display: 'none' },
-                  position: 'absolute',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  right: '4px',
-                }}
-              />
-            </div>
+        {
+            activeLocale === "default" && (
+                <>
+                    <section css={{ ...pageWrapS, backgroundColor: colors.white }}>
+                        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column' } }}>
+                            <div
+                                css={{
+                                    backgroundColor: colors.blueDark,
+                                    width: '33.5%',
+                                    position: 'relative',
+                                    [tabletLg]: { width: '100%' },
+                                }}
+                            >
+                                <div css={{ ...pageWrap, paddingTop: '30px' }}>
+                                    <div
+                                        css={{
+                                            [tabletLgMin]: { display: 'none' },
+                                            width: '9px',
+                                            height: '102px',
+                                            backgroundColor: colors.cyan,
+                                            position: 'absolute',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            left: 0,
+                                        }}
+                                    />
+                                    <div>
+                                        <h2
+                                            css={{
+                                                color: colors.white,
+                                                [tabletLg]: {
+                                                    ...typography.h4,
+                                                    fontFamily: "'PT Serif', serif",
+                                                    marginBottom: '8px',
+                                                },
+                                            }}
+                                        >
+                                            Проекты
+                                        </h2>
+                                        <Link href={`${data.pages.projects}`} passHref>
+                                            <a
+                                                css={{
+                                                    ...links.white,
+                                                    whiteSpace: 'nowrap',
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    alignSelf: 'flex-start',
+                                                    marginBottom: '32px',
+                                                    [tabletLg]: {
+                                                        ...typography.txtSm,
+                                                        marginBottom: '25px',
+                                                    },
+                                                }}
+                                            >
+                                                {t('Перейти к разделу')}
+                                                <div css={{ ...position.center, marginLeft: '10px' }}>
+                                                    <Image src={arrowIconWhiteURL} width={12} height={12} />
+                                                </div>
+                                            </a>
+                                        </Link>
+                                    </div>
+                                    <ParticlesMesh
+                                        width={3}
+                                        height={3}
+                                        css={{
+                                            [tabletLgMin]: { display: 'none' },
+                                            position: 'absolute',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            right: '4px',
+                                        }}
+                                    />
+                                </div>
 
-            <div
-              css={{
-                position: 'absolute',
-                left: 0,
-                top: '72px',
-                pointerEvents: 'none',
-                [tabletLg]: { display: 'none' },
-              }}
-            >
-              <div
-                css={{
-                  width: '24px',
-                  height: '250px',
-                  backgroundColor: colors.cyan,
-                }}
-              />
-              <ParticlesMesh width={10} height={6} css={{ marginTop: '48px' }} />
-            </div>
-          </div>
-          <div
-            css={{
-              backgroundColor: colors.white,
-              paddingTop: '48px',
-              paddingBottom: '48px',
-              paddingRight: pageWrap.paddingRight,
-              paddingLeft: '24px',
-              width: '66.5%',
-              [tabletLg]: { width: '100%', paddingTop: '34px', ...pageWrap },
-            }}
-          >
-            <div
-              css={{
-                display: 'grid',
-                gridTemplateRows: '1fr 1fr',
-                gridTemplateColumns: 'auto auto',
-                gap: '24px',
-                [tabletLg]: {
-                  gap: '16px',
-                },
-                [mobileLg]: {
-                  display: 'none',
-                },
-              }}
-            >
-              {projectsCards.map((card, index) => (
-                <div key={projects[index].id}>{card()}</div>
-              ))}
-            </div>
+                                <div
+                                    css={{
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: '72px',
+                                        pointerEvents: 'none',
+                                        [tabletLg]: { display: 'none' },
+                                    }}
+                                >
+                                    <div
+                                        css={{
+                                            width: '24px',
+                                            height: '250px',
+                                            backgroundColor: colors.cyan,
+                                        }}
+                                    />
+                                    <ParticlesMesh width={10} height={6} css={{ marginTop: '48px' }} />
+                                </div>
+                            </div>
+                            <div
+                                css={{
+                                    backgroundColor: colors.white,
+                                    paddingTop: '48px',
+                                    paddingBottom: '48px',
+                                    paddingRight: pageWrap.paddingRight,
+                                    paddingLeft: '24px',
+                                    width: '66.5%',
+                                    [tabletLg]: { width: '100%', paddingTop: '34px', ...pageWrap },
+                                }}
+                            >
+                                <div
+                                    css={{
+                                        display: 'grid',
+                                        gridTemplateRows: '1fr 1fr',
+                                        gridTemplateColumns: 'auto auto',
+                                        gap: '24px',
+                                        [tabletLg]: {
+                                            gap: '16px',
+                                        },
+                                        [mobileLg]: {
+                                            display: 'none',
+                                        },
+                                    }}
+                                >
+                                    {projectsCards.map((card, index) => (
+                                        <div key={projects[index].id}>{card()}</div>
+                                    ))}
+                                </div>
 
-            <div
-              css={{
-                display: 'none',
-                gridTemplateRows: '1fr 1fr',
-                gridTemplateColumns: 'auto auto',
-                gap: '24px',
-                [mobileLg]: {
-                  display: 'grid',
-                  gridRowGap: '16px',
-                  gridTemplateColumns: '1fr',
-                  gridTemplateRows: 'auto auto auto auto',
-                },
-              }}
-            >
-              {projectsCardsMobile.map((card, index) => (
-                <div key={projects[index].id}>{card()}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                                <div
+                                    css={{
+                                        display: 'none',
+                                        gridTemplateRows: '1fr 1fr',
+                                        gridTemplateColumns: 'auto auto',
+                                        gap: '24px',
+                                        [mobileLg]: {
+                                            display: 'grid',
+                                            gridRowGap: '16px',
+                                            gridTemplateColumns: '1fr',
+                                            gridTemplateRows: 'auto auto auto auto',
+                                        },
+                                    }}
+                                >
+                                    {projectsCardsMobile.map((card, index) => (
+                                        <div key={projects[index].id}>{card()}</div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-      <ContentSection
-        title={t('Медиа') as string}
-        titleLvl={2}
-        cssTitle={{
-          marginBottom: '8px',
-          [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
-        }}
-        css={{
-          backgroundColor: colors.gray100,
-          padding: '32px 0 16px',
-          [tabletLg]: { paddingTop: '24px', paddingBottom: '24px' },
-        }}
-      >
-        <Link href={`${data.pages.media}`} passHref>
-          <a
-            css={{
-              ...links.blue,
-              display: 'inline-flex',
-              alignItems: 'center',
-              alignSelf: 'flex-start',
-              marginBottom: '32px',
-              [tabletLg]: {
-                ...typography.txtSm,
-                marginBottom: '24px',
-              },
-            }}
-          >
-            {t('Перейти к разделу')}
-            <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
-              <Image src={arrowIconURL} width={12} height={12} />
-            </div>
-          </a>
-        </Link>
-        <Carousel
-          slidesPerView="auto"
-          spaceBetween={16}
-          breakpoints={{
-            1200: {
-              slidesPerView: 3,
-            },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          {mediasCards.map((card, index) => (
-            <div key={medias[index].id}>{card()}</div>
-          ))}
-        </Carousel>
-      </ContentSection>
+                    <ContentSection
+                        title={t('Медиа') as string}
+                        titleLvl={2}
+                        cssTitle={{
+                            marginBottom: '8px',
+                            [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
+                        }}
+                        css={{
+                            backgroundColor: colors.gray100,
+                            padding: '32px 0 16px',
+                            [tabletLg]: { paddingTop: '24px', paddingBottom: '24px' },
+                        }}
+                    >
+                        <Link href={`${data.pages.media}`} passHref>
+                            <a
+                                css={{
+                                    ...links.blue,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    alignSelf: 'flex-start',
+                                    marginBottom: '32px',
+                                    [tabletLg]: {
+                                        ...typography.txtSm,
+                                        marginBottom: '24px',
+                                    },
+                                }}
+                            >
+                                {t('Перейти к разделу')}
+                                <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
+                                    <Image src={arrowIconURL} width={12} height={12} />
+                                </div>
+                            </a>
+                        </Link>
+                        <Carousel
+                            slidesPerView="auto"
+                            spaceBetween={16}
+                            breakpoints={{
+                                1200: {
+                                    slidesPerView: 3,
+                                },
+                                1024: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 16,
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                },
+                            }}
+                        >
+                            {mediasCards.map((card, index) => (
+                                <div key={medias[index].id}>{card()}</div>
+                            ))}
+                        </Carousel>
+                    </ContentSection>
+                </>
+            )
+        }
 
       <section
         id="consultation"
