@@ -7,7 +7,7 @@ import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
-import {useTranslation} from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -148,7 +148,7 @@ const withConfigContentCard = (
       cardConfig.btn = {
         isLink: true,
         url: `team/${content.id}`,
-        text: 'Подробнее',
+        text: t('Подробнее'),
         transform: 'rotate(90deg)',
       };
       break;
