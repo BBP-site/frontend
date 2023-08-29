@@ -154,15 +154,15 @@ const FooterDesktop: FC = () => {
               </a>
             </Link>
 
-            <Link href="https://www.advgazeta.ru/" passHref>
-              <a target="_blank">
-                <Image src={agURL} />
-              </a>
-            </Link>
-
             <Link href="https://www.advokatymoscow.ru/" passHref>
               <a target="_blank">
                 <Image src={ofURL} />
+              </a>
+            </Link>
+
+            <Link href="https://www.advgazeta.ru/" passHref>
+              <a target="_blank">
+                <Image src={agURL} />
               </a>
             </Link>
           </div>
@@ -192,7 +192,10 @@ const FooterDesktop: FC = () => {
               </span>
             </a>
           </Link>
-          © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.
+          <div css={{ ...position.start, alignItems: 'start', flexDirection: 'column' }}>
+            <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
+            <span>Официальный сайт.</span>
+          </div>
         </span>
       </div>
     </div>

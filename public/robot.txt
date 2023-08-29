@@ -1,0 +1,24 @@
+User-agent: *
+
+Disallow: *.html
+
+Allow: /
+Allow: /collegium
+Allow: /practices
+Allow: /team
+Allow: /team/barshevskiy
+Allow: /team/karahanyan
+Allow: /team/mihalevich
+Allow: /team/barkalova
+Allow: /team/speranskaya
+Allow: /team/vdovina
+Allow: /team/lapina
+Allow: /team/puhova
+Allow: /team/aparina
+Allow: /projects
+Allow: /media
+Allow: /contacts
+
+Host: www.bbp.ru
+
+Sitemap: https://bbp.ru/sitemap.xml

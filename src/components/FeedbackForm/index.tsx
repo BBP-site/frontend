@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import { IMaskInput } from 'react-imask';
 import { Field, FieldProps, Form, Formik } from 'formik';
@@ -6,6 +6,9 @@ import * as Yup from 'yup';
 import { CSSObject } from '@emotion/react';
 
 import { colors, links, typography } from '@scripts/theme';
+import { useMedia } from '@scripts/hooks';
+
+import { Values, sendFeedback } from '@api/feedback';
 
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
@@ -14,11 +17,13 @@ import { useCommon } from '@context/common';
 export interface IFeedbackFormProps {
   css?: CSSObject;
   className?: string;
-  onSubmit?: () => void;
+  onSuccess: () => void;
 }
 
-const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...props }) => {
+const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...props }) => {
   const { data } = useCommon();
+  const { mobile } = useMedia();
+  const [error, setError] = useState(false);
 
   const labelCSS: CSSObject = {
     ...typography.txt,
@@ -87,20 +92,26 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
         validationSchema={Yup.object().shape({
           name: Yup.string().required('Обязательное поле'),
           phone: Yup.string()
-            .matches(/^\+7\(\d{3}\) \d{3}(?:-\d{2}){2}$/, 'Неверный формат телефонного номера')
+            .min(12, 'Неверный формат телефонного номера')
+            .matches(/[0-9]/g, 'Неверный формат телефонного номера')
             .required('Обязательное поле'),
           email: Yup.string().email('Неверный формат электронной почты').required('Обязательное поле'),
           question: Yup.string().required('Обязательное поле'),
           privacy: Yup.boolean().not([false], 'Обязательное поле'),
         })}
-        onSubmit={() => {
-          if (onSubmit) onSubmit();
+        onSubmit={async (values: Values) => {
+          const isSuccess = await sendFeedback(values);
+          if (isSuccess) {
+            setError(false);
+            if (onSuccess) onSuccess();
+          } else setError(true);
         }}
       >
         {({ errors, touched, values }) => (
           <Form
             css={{
               marginBottom: '8px',
+              position: 'relative',
             }}
           >
             <label css={labelCSS}>
@@ -108,25 +119,29 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               <Field name="name" type="text" placeholder="Представьтесь, пожалуйста" />
               {errors.name && touched.name ? <span>{errors.name}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Телефон*
               <Field name="phone" type="phone">
                 {({ field }: FieldProps) => (
-                  <IMaskInput mask="+7(000) 000-00-00" {...field} placeholder="+7 (999) 999-99-99" />
+                  <IMaskInput mask="+000000000000000000000000000" {...field} placeholder="+7 (999) 999-99-99" />
                 )}
               </Field>
               {errors.phone && touched.phone ? <span>{errors.phone}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Email*
               <Field name="email" type="text" placeholder="mail@mail.com" />
               {errors.email && touched.email ? <span>{errors.email}</span> : null}
             </label>
+
             <label css={labelCSS}>
               Ваш вопрос*
               <Field name="question">{({ field }: FieldProps) => <textarea {...field} />}</Field>
               {errors.question && touched.question ? <span>{errors.question}</span> : null}
             </label>
+
             <div css={{ position: 'relative', paddingBottom: '20px' }}>
               <Field name="privacy">
                 {({ field }: FieldProps) => (
@@ -148,13 +163,22 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSubmit, ...pro
               </Field>
               {errors.privacy && touched.privacy ? <span>{errors.privacy}</span> : null}
             </div>
-            <Button
-              type="submit"
-              disabled={!values.privacy}
-              css={{ marginTop: '8px', width: '100%', ...typography.txtBold }}
-            >
-              Отправить
-            </Button>
+
+            <div css={{ position: 'relative', span: { marginBottom: 0, left: 0, right: 0, top: '-11px' } }}>
+              {error && <span>При отправлении формы возникла ошибка, попробуйте позже</span>}
+              <Button
+                type="submit"
+                disabled={!values.privacy}
+                css={{
+                  marginTop: '8px',
+                  width: '100%',
+                  ...typography.txtBold,
+                  ...(error && { [mobile]: { marginTop: '30px' } }),
+                }}
+              >
+                Отправить
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>

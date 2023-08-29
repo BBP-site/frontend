@@ -1,11 +1,10 @@
 import { FC, useState } from 'react';
 import { CSSObject } from '@emotion/react';
 import { useSelect } from 'downshift';
-import Image from 'next/image';
 
 import { colors, typography, shadows, time } from '@scripts/theme';
 
-import arrowIconURL from '@icons/arrowBlue.svg';
+import { ReactComponent as ArrowIcon } from '@icons/arrowBlue.svg';
 
 export interface ISelectItem {
   label: string;
@@ -16,11 +15,13 @@ interface ISelectProps {
   items: ISelectItem[];
   placeholder: string;
   onChange: (value: string | number | null) => void;
+  defaultSelected?: number | null;
   css?: CSSObject;
 }
 
-const Select: FC<ISelectProps> = ({ items, onChange, placeholder = '', css, ...props }) => {
-  const [selectedItem, setSelectedItem] = useState<ISelectItem | null>(null);
+const Select: FC<ISelectProps> = ({ items, onChange, defaultSelected = null, placeholder = '', css, ...props }) => {
+  const defaultSelectedItem = items.find(item => item.value === defaultSelected);
+  const [selectedItem, setSelectedItem] = useState<ISelectItem | null>(defaultSelectedItem || null);
   const { isOpen, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({
     items,
     selectedItem,
@@ -37,6 +38,7 @@ const Select: FC<ISelectProps> = ({ items, onChange, placeholder = '', css, ...p
         type="button"
         css={{
           width: '100%',
+          height: '49px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -54,8 +56,7 @@ const Select: FC<ISelectProps> = ({ items, onChange, placeholder = '', css, ...p
         <span css={{ ...typography.txt, color: colors.gray600, ...(selectedItem && { color: colors.black }) }}>
           {selectedItem ? selectedItem.label : placeholder}
         </span>
-        <Image
-          src={arrowIconURL}
+        <ArrowIcon
           width={14}
           height={8}
           css={{

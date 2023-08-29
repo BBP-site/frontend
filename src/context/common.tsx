@@ -1,14 +1,14 @@
 import { createContext, FC, ReactNode, useContext } from 'react';
 
 export enum E_PAGES {
-    HOME = '/',
-    COLLEGIUM = '/collegium',
-    PRACTICES = '/practices',
-    TEAM = '/team',
-    PROJECTS = '/comingSoonProjects',
-    MEDIA = '/comingSoonMedia',
-    CONTACTS = '/contacts',
-    POLITICS = '/politics',
+  HOME = '/',
+  COLLEGIUM = '/collegium',
+  PRACTICES = '/practices',
+  TEAM = '/team',
+  PROJECTS = '/projects',
+  MEDIA = '/media',
+  CONTACTS = '/contacts',
+  POLITICS = '/politics',
 }
 
 export interface IData {
@@ -54,7 +54,7 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ chil
         },
       ],
       email: 'info1@bbp.ru',
-      whatsapp: '/',
+      whatsapp: 'https://wa.me/79850999363',
     },
   };
 

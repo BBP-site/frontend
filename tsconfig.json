@@ -20,6 +20,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@scripts/*": ["src/scripts/*"],
+      "@api/*": ["src/api/*"],
       "@hooks/*": ["src/scripts/hooks/*"],
       "@icons/*": ["src/icons/*"],
       "@context/*": ["src/context/*"],

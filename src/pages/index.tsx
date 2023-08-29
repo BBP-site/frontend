@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { colors, links, pageWrap, pageWrapS, position, shadows, typography } from '@scripts/theme';
 import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
+import { parseMediaType } from '@scripts/helpers';
 import { useMedia } from '@scripts/hooks';
 
 import { useCommon } from '@context/common';
@@ -14,6 +15,8 @@ import ContentSection from '@components/common/contentSection';
 import Block from '@components/common/Block';
 import ParticlesMesh from '@components/ParticlesMesh';
 import ContentCard from '@components/common/ContentCard';
+import Modal from '@components/common/Modal';
+import ContactsMain from '@components/ContactsMain';
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 
 import { achievements } from '@mocks/achievements';
@@ -24,8 +27,6 @@ import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
-import Modal from '@components/common/Modal';
-import ContactsMain from '@components/ContactsMain';
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
@@ -38,7 +39,23 @@ const Home = () => {
   const projectsCardsMobile = projectsMobile.map(project =>
     withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN)
   );
-  const mediasCards = medias.map(media => withConfigContentCard(ContentCard, media, CARD_TYPE.MEDIA));
+  const mediasCards = medias
+    .filter(
+      media =>
+        media.id === '11' ||
+        media.id === '9' ||
+        media.id === '14' ||
+        media.id === '10' ||
+        media.id === '17' ||
+        media.id === '15'
+    )
+    .map(media =>
+      withConfigContentCard(
+        ContentCard,
+        { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
+        CARD_TYPE.MEDIA_MAIN
+      )
+    );
 
   return (
     <main>
@@ -791,7 +808,7 @@ const Home = () => {
         isOpen={openFeedback}
         onRequestClose={() => setOpenFeedback(false)}
       >
-        <FeedbackForm css={{ padding: 0, maxWidth: '400px' }} />
+        <FeedbackForm css={{ padding: 0, maxWidth: '400px' }} onSuccess={() => setOpenFeedback(false)} />
       </Modal>
     </main>
   );

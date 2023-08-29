@@ -30,7 +30,7 @@ const Header: FC<{}> = () => {
         isOpen={openFeedback}
         onRequestClose={() => setOpenFeedback(false)}
       >
-        <FeedbackForm css={{ padding: 0, maxWidth: '400px' }} />
+        <FeedbackForm css={{ padding: 0, maxWidth: '400px' }} onSuccess={() => setOpenFeedback(false)} />
       </Modal>
     </>
   );

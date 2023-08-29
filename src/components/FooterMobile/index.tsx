@@ -108,15 +108,15 @@ const FooterMobile: FC<{}> = () => {
             </a>
           </Link>
 
-          <Link href="https://www.advgazeta.ru/" passHref>
-            <a target="_blank">
-              <Image src={agURL} />
-            </a>
-          </Link>
-
           <Link href="https://www.advokatymoscow.ru/" passHref>
             <a target="_blank">
               <Image src={ofURL} />
+            </a>
+          </Link>
+
+          <Link href="https://www.advgazeta.ru/" passHref>
+            <a target="_blank">
+              <Image src={agURL} />
             </a>
           </Link>
         </div>
@@ -144,8 +144,17 @@ const FooterMobile: FC<{}> = () => {
             </span>
           </a>
         </Link>
-        <p css={{ ...typography.txtExtraSm, marginTop: '16px' }}>
-          © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.
+        <p
+          css={{
+            ...typography.txtExtraSm,
+            ...position.start,
+            alignItems: 'start',
+            flexDirection: 'column',
+            marginTop: '16px',
+          }}
+        >
+          <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
+          <span>Официальный сайт.</span>
         </p>
       </div>
     </div>
