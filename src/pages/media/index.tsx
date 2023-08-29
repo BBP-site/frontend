@@ -25,14 +25,14 @@ const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
     10
   )}`;
 
-  if (mediaADays > mediaBDays) return 1;
-  if (mediaADays < mediaBDays) return -1;
+  if (mediaADays < mediaBDays) return 1;
+  if (mediaADays > mediaBDays) return -1;
   return 0;
 };
 
 const newMedias = [...medias].sort(compareAB);
 const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
-const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort())];
+const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort().reverse())];
 
 const Media = () => {
   const { tabletLgMin, tabletLg, tablet, mobileLg } = useMedia();
@@ -152,7 +152,7 @@ const Media = () => {
                 </div>
               ))}
             </div>
-            <div css={{ width: '100%', display: 'flex' }}>
+            <div css={{ width: '100%', display: 'flex', height: 35 }}>
               <span css={{ marginRight: '16px', color: colors.gray700, whiteSpace: 'nowrap' }}>
                 Смотреть за период:{' '}
               </span>

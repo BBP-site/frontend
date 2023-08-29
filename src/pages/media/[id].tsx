@@ -51,7 +51,7 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
         </Link>
       </div>
 
-      <div css={{ ...position.center, height: '100%', padding: '60px 0' }}>
+      <div css={{ ...position.center, alignItems: 'start', height: '100%', padding: '60px 0' }}>
         <section css={{ ...pageWrap, maxWidth: '842px', width: '100%' }}>
           <div css={{ ...position.spaceBetween, marginBottom: '8px' }}>
             <div css={{ ...position.center }}>
