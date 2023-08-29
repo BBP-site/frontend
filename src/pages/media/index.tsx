@@ -1,20 +1,23 @@
-import React, { useMemo, useState } from 'react';
+import React, {useMemo, useState} from 'react';
 
-import { useMedia } from '@scripts/hooks';
-import { colors, pageWrap, time } from '@scripts/theme';
-import { CARD_TYPE, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
-import { parseMediaType } from '@scripts/helpers';
+import {useMedia} from '@scripts/hooks';
+import {colors, pageWrap, time} from '@scripts/theme';
+import {CARD_TYPE, MEDIA_TYPE} from '@scripts/enums/common/content-card.enum';
+import {parseMediaType} from '@scripts/helpers';
 
-import withConfigContentCard, { IContentMedia } from '@components/hoc-helpers/withConfigContentCard';
+import withConfigContentCard, {IContentMedia} from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
 import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
 
-import { medias } from '@mocks/index';
+import {medias} from '@mocks/index';
 
 const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
   const mediaADaysArr = [...mediaA.date.split('.')];
   const mediaBDaysArr = [...mediaB.date.split('.')];
+
+    console.log('mediaADaysArr ', mediaADaysArr);
+    console.log('mediaBDaysArr ', mediaBDaysArr)
 
   const mediaADays = `${parseInt(mediaADaysArr[2], 10) * 365}${parseInt(mediaADaysArr[1], 10) * 60}${parseInt(
     mediaADaysArr[0],
@@ -40,23 +43,26 @@ const Media = () => {
   const [yearFilter, setYearFilter] = useState('all');
 
   const mediasCards = useMemo(
-    () =>
-      newMedias
-        .filter(
-          media =>
-            (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||
-            (media.type === typeFilter && new RegExp(`${yearFilter}$`).test(media.date)) ||
-            (media.type === typeFilter && yearFilter === 'all') ||
-            (typeFilter === MEDIA_TYPE.ALL && new RegExp(`${yearFilter}$`).test(media.date))
-        )
-        .map(media =>
-          withConfigContentCard(
-            ContentCard,
-            { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
-            CARD_TYPE.MEDIA
-          )
-        ),
-    [typeFilter, yearFilter]
+    () => {
+        let medias = newMedias.slice();
+        if (typeFilter === MEDIA_TYPE.PODCAST) medias = medias.reverse();
+        return medias
+            .filter(
+                media =>
+                    (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||
+                    (media.type === typeFilter && new RegExp(`${yearFilter}$`).test(media.date)) ||
+                    (media.type === typeFilter && yearFilter === 'all') ||
+                    (typeFilter === MEDIA_TYPE.ALL && new RegExp(`${yearFilter}$`).test(media.date))
+            )
+            .map(media =>
+                withConfigContentCard(
+                    ContentCard,
+                    { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
+                    CARD_TYPE.MEDIA
+                )
+            )
+    },
+      [typeFilter, yearFilter]
   );
 
   return (
