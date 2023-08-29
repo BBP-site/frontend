@@ -13,6 +13,7 @@ import { Values, sendFeedback } from '@api/feedback';
 import Button from '@components/common/Button';
 import Checkbox from '@components/common/Checkbox';
 import { useCommon } from '@context/common';
+import { useTranslation } from 'next-i18next';
 
 export interface IFeedbackFormProps {
   css?: CSSObject;
@@ -22,6 +23,7 @@ export interface IFeedbackFormProps {
 
 const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...props }) => {
   const { data } = useCommon();
+  const { t } = useTranslation();
   const { mobile } = useMedia();
   const [error, setError] = useState(false);
 
@@ -79,7 +81,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
       {...props}
     >
       <h2 css={{ ...typography.h5, marginBottom: '8px', lineHeight: '27px', maxWidth: '85%' }}>
-        Заполните форму, и мы с Вами свяжемся
+        {t('Заполните форму, и мы с Вами свяжемся')}
       </h2>
       <Formik
         initialValues={{
@@ -90,14 +92,16 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
           privacy: false,
         }}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required('Обязательное поле'),
+          name: Yup.string().required(t('Обязательное поле') || ''),
           phone: Yup.string()
-            .min(12, 'Неверный формат телефонного номера')
-            .matches(/[0-9]/g, 'Неверный формат телефонного номера')
-            .required('Обязательное поле'),
-          email: Yup.string().email('Неверный формат электронной почты').required('Обязательное поле'),
-          question: Yup.string().required('Обязательное поле'),
-          privacy: Yup.boolean().not([false], 'Обязательное поле'),
+            .min(12, t('Неверный формат телефонного номера') || '')
+            .matches(/[0-9]/g, t('Неверный формат телефонного номера') || '')
+            .required(t('Обязательное поле') || ''),
+          email: Yup.string()
+            .email(t('Неверный формат электронной почты') || '')
+            .required(t('Обязательное поле') || ''),
+          question: Yup.string().required(t('Обязательное поле') || ''),
+          privacy: Yup.boolean().not([false], t('Обязательное поле') || ''),
         })}
         onSubmit={async (values: Values) => {
           const isSuccess = await sendFeedback(values);
@@ -115,13 +119,13 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
             }}
           >
             <label css={labelCSS}>
-              Ваше имя*
-              <Field name="name" type="text" placeholder="Представьтесь, пожалуйста" />
+              {t('Ваше имя*')}
+              <Field name="name" type="text" placeholder={t('Представьтесь, пожалуйста')} />
               {errors.name && touched.name ? <span>{errors.name}</span> : null}
             </label>
 
             <label css={labelCSS}>
-              Телефон*
+              {t('Телефон*')}
               <Field name="phone" type="phone">
                 {({ field }: FieldProps) => (
                   <IMaskInput mask="+000000000000000000000000000" {...field} placeholder="+7 (999) 999-99-99" />
@@ -137,7 +141,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
             </label>
 
             <label css={labelCSS}>
-              Ваш вопрос*
+              {t('Ваш вопрос*')}
               <Field name="question">{({ field }: FieldProps) => <textarea {...field} />}</Field>
               {errors.question && touched.question ? <span>{errors.question}</span> : null}
             </label>
@@ -151,11 +155,12 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
                     checked={field.value}
                     labelCSS={{ fontSize: '16px', lineHeight: '20px' }}
                   >
-                    Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте
-                    bbp.ru, в соответствии с{' '}
+                    {t(
+                      'Настоящим даю согласие на обработку моих персональных данных, указанных в заполненной форме на сайте bbp.ru, в соответствии с'
+                    )}{' '}
                     <Link href={`${data.pages.politics}`} passHref>
                       <a css={{ ...links.blue }} target="_blank">
-                        Политикой обработки персональных данных
+                        {t('Политикой обработки персональных данных')}
                       </a>
                     </Link>
                   </Checkbox>
@@ -176,7 +181,7 @@ const FeedbackForm: FC<IFeedbackFormProps> = ({ css, className, onSuccess, ...pr
                   ...(error && { [mobile]: { marginTop: '30px' } }),
                 }}
               >
-                Отправить
+                {t('Отправить')}
               </Button>
             </div>
           </Form>

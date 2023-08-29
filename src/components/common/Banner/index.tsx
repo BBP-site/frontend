@@ -7,6 +7,7 @@ import { colors, pageWrap, pageWrapS, position, typography } from '@scripts/them
 import { useMedia } from '@scripts/hooks';
 
 import bannerURL from '@images/banner.jpg';
+import { useTranslation } from 'next-i18next';
 
 interface IBannerProps {
   css?: CSSObject;
@@ -15,6 +16,7 @@ interface IBannerProps {
 }
 
 const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
+  const { t } = useTranslation();
   const { mobile, tablet, tabletLg } = useMedia();
 
   const bannerCSS: CSSObject = {
@@ -70,16 +72,17 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
               [tabletLg]: { ...typography.txt },
             }}
           >
-            Коллегия адвокатов города Москвы
+            {t('Коллегия адвокатов города Москвы')}
           </p>
 
           <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, fontSize: '47px', color: colors.white } }}>
-            БАРЩЕВСКИЙ И ПАРТНЕРЫ
+              {t('БАРЩЕВСКИЙ И ПАРТНЕРЫ')}
           </h1>
 
           <p css={{ fontSize: '20px', [tabletLg]: { ...typography.txtSm, marginBottom: '24px' } }}>
-            Наша задача - быть рядом, когда возникают правовые проблемы, всегда помогать и находить выход из любых
-            ситуаций.
+            {t(
+              'Наша задача - быть рядом, когда возникают правовые проблемы, всегда помогать и находить выход из любых ситуаций.'
+            )}
           </p>
 
           <Button
@@ -92,7 +95,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
               [mobile]: { width: '100%' },
             }}
           >
-            Запись на консультацию
+              {t('Запись на консультацию')}
           </Button>
         </div>
       </div>

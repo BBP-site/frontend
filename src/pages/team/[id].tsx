@@ -6,7 +6,7 @@ import { CSSObject } from '@emotion/react';
 
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 
-import { teamDetails } from '@mocks/index';
+import { teamDetails, teamDetailsEn } from '@mocks/index';
 
 import PageTitle from '@components/PageTitle';
 import Carousel from '@components/common/Carousel';
@@ -14,10 +14,16 @@ import Carousel from '@components/common/Carousel';
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import mailIconURL from '@icons/mail.svg';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const TeamDetail = () => {
-  const { query } = useRouter();
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+  const { query, locale, locales } = useRouter();
+  const { t } = useTranslation();
+  const detailInfo = useMemo(
+    () => (locale === locales?.[0] ? teamDetails : teamDetailsEn).find(detail => detail.id === query.id),
+    [locale, locales, query.id]
+  );
   const { tablet, tabletLg } = useMedia();
 
   const blockCSS: CSSObject = {
@@ -61,7 +67,7 @@ const TeamDetail = () => {
                   alignSelf: 'flex-start',
                 }}
               >
-                <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
+                <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> {t('Назад')}
               </a>
             </Link>
           </div>
@@ -185,19 +191,19 @@ const TeamDetail = () => {
               {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
               {detailInfo.revardsHTML && (
                 <div css={blockCSS}>
-                  <span>Награды</span>
+                  <span>{t('Награды')}</span>
                   {detailInfo.revardsHTML}
                 </div>
               )}
               {detailInfo.practicesHTML && (
                 <div css={blockCSS}>
-                  <span>Специализация</span>
+                  <span>{t('Специализация')}</span>
                   {detailInfo.practicesHTML}
                 </div>
               )}
               {detailInfo.mediaHTML && (
                 <div css={blockCSS}>
-                  <span>Публикации</span>
+                  <span>{t('Публикации')}</span>
                   {detailInfo.mediaHTML}
                 </div>
               )}
@@ -214,9 +220,10 @@ export const getStaticPaths = async () => ({
   fallback: 'blocking',
 });
 
-export const getStaticProps = async (context: { params: { id: string } }) => {
+export const getStaticProps = async (context: { params: { id: string }; locale: string }) => {
   const {
     params: { id },
+    locale,
   } = context;
 
   const detailInfo = teamDetails.find(detail => detail.id === id);
@@ -224,7 +231,9 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   return !detailInfo
     ? { notFound: true }
     : {
-        props: {},
+        props: {
+          ...(await serverSideTranslations(locale, ['common'])),
+        },
       };
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { colors, links, pageWrap, pageWrapS, position, shadows, typography } from '@scripts/theme';
 import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
@@ -27,14 +28,18 @@ import arrowIconWhiteURL from '@icons/arrowWhite.svg';
 import barjevskyURL from '@images/barjevsky.webp';
 import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
+import {useTranslation} from "next-i18next";
+import {useRouter} from "next/router";
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
   const { data } = useCommon();
+  const { t } = useTranslation();
+  const { locale: activeLocale } = useRouter();
 
   const [openFeedback, setOpenFeedback] = useState(false);
 
-  const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
+  const teamCards = team().map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
   const projectsCards = projects.map(project => withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN));
   const projectsCardsMobile = projectsMobile.map(project =>
     withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN)
@@ -91,7 +96,7 @@ const Home = () => {
               [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
             }}
           >
-            Практики
+            {t('Практики')}
           </h2>
           <Link href={`${data.pages.practices}`} passHref>
             <a
@@ -106,20 +111,19 @@ const Home = () => {
                 },
               }}
             >
-              Перейти к разделу
+              {t('Перейти к разделу')}
               <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
                 <Image src={arrowIconURL} width={12} height={12} />
               </div>
             </a>
           </Link>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-            Вы можете обратиться к нам практически с любой правовой проблемой, т.к. наша Коллегия является универсальной
-            и не ограничивается представленными в этом разделе направлениями.
+            {t(
+              'Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.'
+            )}
           </p>
           <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-            Мы придерживаемся командного подхода и в рассмотрении вопроса доверителя, как правило, принимает участие
-            несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд
-            нет выхода.
+              {t('Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд нет выхода.')}
           </p>
           <div
             css={{
@@ -145,7 +149,7 @@ const Home = () => {
               },
             }}
           >
-            {practices.map(({ img, ...practice }) => (
+            {practices().map(({ img, ...practice }) => (
               <Block
                 key={practice.id}
                 css={{
@@ -226,7 +230,7 @@ const Home = () => {
             [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '4px' },
           }}
         >
-          Команда
+          {t('Команда')}
         </h2>
         <Link href={`${data.pages.team}`} passHref>
           <a
@@ -241,16 +245,16 @@ const Home = () => {
               },
             }}
           >
-            Перейти к разделу
+            {t('Перейти к разделу')}
             <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
               <Image src={arrowIconURL} width={12} height={12} />
             </div>
           </a>
         </Link>
         <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-          Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет
-          успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды
-          Коллегии.
+          {t(
+            'Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды Коллегии.'
+          )}
         </p>
         <Carousel
           css={{ marginTop: '32px' }}
@@ -265,7 +269,7 @@ const Home = () => {
           }}
         >
           {teamCards.map((card, index) => (
-            <div key={team[index].id} css={{ marginBottom: '24px' }}>
+            <div key={team()[index].id} css={{ marginBottom: '24px' }}>
               {card()}
             </div>
           ))}
@@ -273,7 +277,7 @@ const Home = () => {
       </section>
 
       <ContentSection
-        title="Наши результаты"
+        title={t('Наши результаты') as string}
         titleLvl={2}
         cssTitle={{
           marginBottom: '8px',
@@ -289,7 +293,9 @@ const Home = () => {
           [tabletLg]: { padding: '48px 0' },
         }}
       >
-        <p css={{ [tabletLg]: { ...typography.txtSm } }}>Каждый год мы стремимся к прогрессу и к его достижению.</p>
+        <p css={{ [tabletLg]: { ...typography.txtSm } }}>
+          {t('Каждый год мы стремимся к прогрессу и к его достижению.')}
+        </p>
         <div
           css={{
             marginTop: '40px',
@@ -320,7 +326,9 @@ const Home = () => {
               32+
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p css={{ [tabletLg]: { ...typography.txtSm } }}>года мы оказываем профессиональную юридическую помощь</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>
+              {t('года мы оказываем профессиональную юридическую помощь')}
+            </p>
           </div>
           <div>
             <p
@@ -335,7 +343,7 @@ const Home = () => {
               1000+
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
-            <p css={{ [tabletLg]: { ...typography.txtSm } }}>доверителей</p>
+            <p css={{ [tabletLg]: { ...typography.txtSm } }}>{t('доверителей')}</p>
           </div>
           <div>
             <p
@@ -351,7 +359,7 @@ const Home = () => {
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
             <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-              доверителей на абонентском обслуживании, <br /> 7 из которых более <br /> 30 лет
+              {t('доверителей на абонентском обслуживании,')} <br /> {t('7 из которых более')} <br /> {t('30 лет')}
             </p>
           </div>
           <div>
@@ -368,7 +376,7 @@ const Home = () => {
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
             <p css={{ [tabletLg]: { ...typography.txtSm } }}>
-              доверителей обращаются с новыми вопросами или рекомендуют Коллегию партнерам
+              {t('доверителей обращаются с новыми вопросами или рекомендуют Коллегию партнерам')}
             </p>
           </div>
         </div>
@@ -423,7 +431,7 @@ const Home = () => {
       </ContentSection>
 
       <ContentSection
-        title="Рейтинги и награды"
+        title={t('Рейтинги и награды') as string}
         titleLvl={2}
         cssTitle={{
           marginBottom: '4px',
@@ -436,8 +444,9 @@ const Home = () => {
         }}
       >
         <p css={{ ...typography.txtSm }}>
-          Наш профессионализм ежегодно подтверждается российскими и международными рейтинговыми агентствами, а также
-          отмечается наградами в области права.
+          {t(
+            'Наш профессионализм ежегодно подтверждается российскими и международными рейтинговыми агентствами, а также отмечается наградами в области права.'
+          )}
         </p>
 
         <div
@@ -550,211 +559,217 @@ const Home = () => {
                 },
               }}
             >
-              “Вы найдете дешевле,
+              “{t('Вы найдете дешевле,')}
               <br />
-              но Вы не найдете лучше”
+              {t('но Вы не найдете лучше')}”
             </h2>
-            <p css={{ ...typography.h5 }}>М. Барщевский</p>
+            <p css={{ ...typography.h5 }}>{t('М.Барщевский')}</p>
           </div>
         </div>
       </ContentSection>
 
-      <section css={{ ...pageWrapS, backgroundColor: colors.white }}>
-        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column' } }}>
-          <div
-            css={{
-              backgroundColor: colors.blueDark,
-              width: '33.5%',
-              position: 'relative',
-              [tabletLg]: { width: '100%' },
-            }}
-          >
-            <div css={{ ...pageWrap, paddingTop: '30px' }}>
-              <div
-                css={{
-                  [tabletLgMin]: { display: 'none' },
-                  width: '9px',
-                  height: '102px',
-                  backgroundColor: colors.cyan,
-                  position: 'absolute',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  left: 0,
-                }}
-              />
-              <div>
-                <h2
-                  css={{
-                    color: colors.white,
-                    [tabletLg]: {
-                      ...typography.h4,
-                      fontFamily: "'PT Serif', serif",
-                      marginBottom: '8px',
-                    },
-                  }}
-                >
-                  Проекты
-                </h2>
-                <Link href={`${data.pages.projects}`} passHref>
-                  <a
-                    css={{
-                      ...links.white,
-                      whiteSpace: 'nowrap',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      alignSelf: 'flex-start',
-                      marginBottom: '32px',
-                      [tabletLg]: {
-                        ...typography.txtSm,
-                        marginBottom: '25px',
-                      },
-                    }}
-                  >
-                    Перейти к разделу
-                    <div css={{ ...position.center, marginLeft: '10px' }}>
-                      <Image src={arrowIconWhiteURL} width={12} height={12} />
-                    </div>
-                  </a>
-                </Link>
-              </div>
-              <ParticlesMesh
-                width={3}
-                height={3}
-                css={{
-                  [tabletLgMin]: { display: 'none' },
-                  position: 'absolute',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  right: '4px',
-                }}
-              />
-            </div>
+        {
+            activeLocale === "default" && (
+                <>
+                    <section css={{ ...pageWrapS, backgroundColor: colors.white }}>
+                        <div css={{ display: 'flex', [tabletLg]: { flexDirection: 'column' } }}>
+                            <div
+                                css={{
+                                    backgroundColor: colors.blueDark,
+                                    width: '33.5%',
+                                    position: 'relative',
+                                    [tabletLg]: { width: '100%' },
+                                }}
+                            >
+                                <div css={{ ...pageWrap, paddingTop: '30px' }}>
+                                    <div
+                                        css={{
+                                            [tabletLgMin]: { display: 'none' },
+                                            width: '9px',
+                                            height: '102px',
+                                            backgroundColor: colors.cyan,
+                                            position: 'absolute',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            left: 0,
+                                        }}
+                                    />
+                                    <div>
+                                        <h2
+                                            css={{
+                                                color: colors.white,
+                                                [tabletLg]: {
+                                                    ...typography.h4,
+                                                    fontFamily: "'PT Serif', serif",
+                                                    marginBottom: '8px',
+                                                },
+                                            }}
+                                        >
+                                            Проекты
+                                        </h2>
+                                        <Link href={`${data.pages.projects}`} passHref>
+                                            <a
+                                                css={{
+                                                    ...links.white,
+                                                    whiteSpace: 'nowrap',
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    alignSelf: 'flex-start',
+                                                    marginBottom: '32px',
+                                                    [tabletLg]: {
+                                                        ...typography.txtSm,
+                                                        marginBottom: '25px',
+                                                    },
+                                                }}
+                                            >
+                                                {t('Перейти к разделу')}
+                                                <div css={{ ...position.center, marginLeft: '10px' }}>
+                                                    <Image src={arrowIconWhiteURL} width={12} height={12} />
+                                                </div>
+                                            </a>
+                                        </Link>
+                                    </div>
+                                    <ParticlesMesh
+                                        width={3}
+                                        height={3}
+                                        css={{
+                                            [tabletLgMin]: { display: 'none' },
+                                            position: 'absolute',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            right: '4px',
+                                        }}
+                                    />
+                                </div>
 
-            <div
-              css={{
-                position: 'absolute',
-                left: 0,
-                top: '72px',
-                pointerEvents: 'none',
-                [tabletLg]: { display: 'none' },
-              }}
-            >
-              <div
-                css={{
-                  width: '24px',
-                  height: '250px',
-                  backgroundColor: colors.cyan,
-                }}
-              />
-              <ParticlesMesh width={10} height={6} css={{ marginTop: '48px' }} />
-            </div>
-          </div>
-          <div
-            css={{
-              backgroundColor: colors.white,
-              paddingTop: '48px',
-              paddingBottom: '48px',
-              paddingRight: pageWrap.paddingRight,
-              paddingLeft: '24px',
-              width: '66.5%',
-              [tabletLg]: { width: '100%', paddingTop: '34px', ...pageWrap },
-            }}
-          >
-            <div
-              css={{
-                display: 'grid',
-                gridTemplateRows: '1fr 1fr',
-                gridTemplateColumns: 'auto auto',
-                gap: '24px',
-                [tabletLg]: {
-                  gap: '16px',
-                },
-                [mobileLg]: {
-                  display: 'none',
-                },
-              }}
-            >
-              {projectsCards.map((card, index) => (
-                <div key={projects[index].id}>{card()}</div>
-              ))}
-            </div>
+                                <div
+                                    css={{
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: '72px',
+                                        pointerEvents: 'none',
+                                        [tabletLg]: { display: 'none' },
+                                    }}
+                                >
+                                    <div
+                                        css={{
+                                            width: '24px',
+                                            height: '250px',
+                                            backgroundColor: colors.cyan,
+                                        }}
+                                    />
+                                    <ParticlesMesh width={10} height={6} css={{ marginTop: '48px' }} />
+                                </div>
+                            </div>
+                            <div
+                                css={{
+                                    backgroundColor: colors.white,
+                                    paddingTop: '48px',
+                                    paddingBottom: '48px',
+                                    paddingRight: pageWrap.paddingRight,
+                                    paddingLeft: '24px',
+                                    width: '66.5%',
+                                    [tabletLg]: { width: '100%', paddingTop: '34px', ...pageWrap },
+                                }}
+                            >
+                                <div
+                                    css={{
+                                        display: 'grid',
+                                        gridTemplateRows: '1fr 1fr',
+                                        gridTemplateColumns: 'auto auto',
+                                        gap: '24px',
+                                        [tabletLg]: {
+                                            gap: '16px',
+                                        },
+                                        [mobileLg]: {
+                                            display: 'none',
+                                        },
+                                    }}
+                                >
+                                    {projectsCards.map((card, index) => (
+                                        <div key={projects[index].id}>{card()}</div>
+                                    ))}
+                                </div>
 
-            <div
-              css={{
-                display: 'none',
-                gridTemplateRows: '1fr 1fr',
-                gridTemplateColumns: 'auto auto',
-                gap: '24px',
-                [mobileLg]: {
-                  display: 'grid',
-                  gridRowGap: '16px',
-                  gridTemplateColumns: '1fr',
-                  gridTemplateRows: 'auto auto auto auto',
-                },
-              }}
-            >
-              {projectsCardsMobile.map((card, index) => (
-                <div key={projects[index].id}>{card()}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                                <div
+                                    css={{
+                                        display: 'none',
+                                        gridTemplateRows: '1fr 1fr',
+                                        gridTemplateColumns: 'auto auto',
+                                        gap: '24px',
+                                        [mobileLg]: {
+                                            display: 'grid',
+                                            gridRowGap: '16px',
+                                            gridTemplateColumns: '1fr',
+                                            gridTemplateRows: 'auto auto auto auto',
+                                        },
+                                    }}
+                                >
+                                    {projectsCardsMobile.map((card, index) => (
+                                        <div key={projects[index].id}>{card()}</div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-      <ContentSection
-        title="Медиа"
-        titleLvl={2}
-        cssTitle={{
-          marginBottom: '8px',
-          [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
-        }}
-        css={{
-          backgroundColor: colors.gray100,
-          padding: '32px 0 16px',
-          [tabletLg]: { paddingTop: '24px', paddingBottom: '24px' },
-        }}
-      >
-        <Link href={`${data.pages.media}`} passHref>
-          <a
-            css={{
-              ...links.blue,
-              display: 'inline-flex',
-              alignItems: 'center',
-              alignSelf: 'flex-start',
-              marginBottom: '32px',
-              [tabletLg]: {
-                ...typography.txtSm,
-                marginBottom: '24px',
-              },
-            }}
-          >
-            Перейти к разделу
-            <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
-              <Image src={arrowIconURL} width={12} height={12} />
-            </div>
-          </a>
-        </Link>
-        <Carousel
-          slidesPerView="auto"
-          spaceBetween={16}
-          breakpoints={{
-            1200: {
-              slidesPerView: 3,
-            },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          {mediasCards.map((card, index) => (
-            <div key={medias[index].id}>{card()}</div>
-          ))}
-        </Carousel>
-      </ContentSection>
+                    <ContentSection
+                        title={t('Медиа') as string}
+                        titleLvl={2}
+                        cssTitle={{
+                            marginBottom: '8px',
+                            [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '8px' },
+                        }}
+                        css={{
+                            backgroundColor: colors.gray100,
+                            padding: '32px 0 16px',
+                            [tabletLg]: { paddingTop: '24px', paddingBottom: '24px' },
+                        }}
+                    >
+                        <Link href={`${data.pages.media}`} passHref>
+                            <a
+                                css={{
+                                    ...links.blue,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    alignSelf: 'flex-start',
+                                    marginBottom: '32px',
+                                    [tabletLg]: {
+                                        ...typography.txtSm,
+                                        marginBottom: '24px',
+                                    },
+                                }}
+                            >
+                                {t('Перейти к разделу')}
+                                <div css={{ ...position.center, marginLeft: '10px', transform: 'rotate(90deg)' }}>
+                                    <Image src={arrowIconURL} width={12} height={12} />
+                                </div>
+                            </a>
+                        </Link>
+                        <Carousel
+                            slidesPerView="auto"
+                            spaceBetween={16}
+                            breakpoints={{
+                                1200: {
+                                    slidesPerView: 3,
+                                },
+                                1024: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 16,
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                },
+                            }}
+                        >
+                            {mediasCards.map((card, index) => (
+                                <div key={medias[index].id}>{card()}</div>
+                            ))}
+                        </Carousel>
+                    </ContentSection>
+                </>
+            )
+        }
 
       <section
         id="consultation"
@@ -770,7 +785,7 @@ const Home = () => {
             { [tabletLg]: { ...typography.h4, fontFamily: "'PT Serif', serif", marginBottom: '16px' } },
           ]}
         >
-          Контакты
+          {t('Контакты')}
         </h2>
 
         <ContactsMain openFeedback={setOpenFeedback} />
@@ -815,3 +830,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

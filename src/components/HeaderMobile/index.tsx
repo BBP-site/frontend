@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
@@ -12,6 +13,9 @@ import menuIconURL from '@icons/menu.svg';
 import logoIconURL from '@icons/logo.svg';
 import logoTextIconURL from '@icons/logoText.svg';
 import MenuMobile from '@components/MenuMobile';
+import {LOCALES} from "@scripts/enums/indext";
+import logoIconEnURL from "@icons/logoEn.svg";
+import logoTextIconEnURL from "@icons/logoTextEn.svg";
 
 export const HeaderMobileDataRow: FC<{}> = () => {
   const { data } = useCommon();
@@ -51,9 +55,10 @@ export const HeaderMobileDataRow: FC<{}> = () => {
 };
 
 const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
+  const { pathname, query, asPath, push, locales, locale: activeLocale } = useRouter();
   const { tabletLgMin } = useMedia();
   const [headerRef, setHeaderRef] = useState<HTMLElement | null>(null);
-  const [ruEn, setRuEn] = useState(false);
+  const [ruEn, setRuEn] = useState(activeLocale !== locales?.[0]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuOffset, setMenuOffset] = useState<number | null>(null);
 
@@ -115,10 +120,20 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
                   marginRight: '8px',
                 }}
               >
-                <Image src={logoIconURL} width="44px" height="57px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoIconURL} width="44px" height="57px" />
+                          :
+                          <Image src={logoIconEnURL} width="44px" height="57px" />
+                  }
               </div>
               <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src={logoTextIconURL} width="90px" height="25px" />
+                  {
+                      activeLocale === LOCALES.DEFAULT ?
+                          <Image src={logoTextIconURL} width="90px" height="25px" />
+                          :
+                          <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                  }
               </div>
             </a>
           </Link>
@@ -130,7 +145,10 @@ const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
           >
             <button
               type="button"
-              onClick={() => setRuEn(!ruEn)}
+              onClick={() => {
+                setRuEn(!ruEn);
+                push({ pathname, query }, asPath, { locale: ruEn ? locales?.[0] : locales?.[1] });
+              }}
               css={{
                 ...typography.txtSm,
                 fontWeight: 700,

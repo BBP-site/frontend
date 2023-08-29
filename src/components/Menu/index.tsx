@@ -1,11 +1,13 @@
 import React from 'react';
 import { CSSObject } from '@emotion/react';
+import { useTranslation } from 'next-i18next';
 import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 import Link from 'next/link';
 import { useCommon } from '@context/common';
 import { useMedia } from '@scripts/hooks';
 import whatsappURL from '@icons/whatsapp.svg';
 import Image from 'next/image';
+import {useRouter} from "next/router";
 
 export enum MENU_TYPE {
   HEADER = 'header',
@@ -23,11 +25,13 @@ interface IMenuProps {
 const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   const { data } = useCommon();
   const { tabletLg, tabletLgMin } = useMedia();
+  const { t } = useTranslation();
+  const { locale: activeLocale } = useRouter();
 
   const menuCSS: CSSObject = {
     width: '100%',
     color: type === MENU_TYPE.FOOTER ? colors.white : 'none',
-    justifyContent: type === MENU_TYPE.FOOTER ? 'space-between' : 'start',
+    justifyContent: 'start',
     a: {
       ...(type === MENU_TYPE.FOOTER ? { ...links.white } : { ...links.black }),
       padding: '16px 30px',
@@ -63,31 +67,38 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
   return (
     <nav css={{ ...menuCSS, display: 'flex', [tabletLgMin]: { ...pageWrapCSS } }} className={className}>
       <Link href={`${data.pages.home}`} passHref>
-        <a>Главная</a>
+        <a>{t('Главная')}</a>
       </Link>
 
       <Link href={`${data.pages.collegium}`} passHref>
-        <a>О Коллегии</a>
+        <a>{t('О Коллегии')}</a>
       </Link>
 
       <Link href={`${data.pages.practices}`} passHref>
-        <a>Практики</a>
+        <a>{t('Практики')}</a>
       </Link>
 
       <Link href={`${data.pages.team}`} passHref>
-        <a>Команда</a>
+        <a>{t('Команда')}</a>
       </Link>
 
-      <Link href={`${data.pages.projects}`} passHref>
-        <a>Проекты</a>
-      </Link>
+        {
+            activeLocale === "default" && (
+                <>
+                    <Link href={`${data.pages.projects}`} passHref>
+                        <a>{t('Проекты')}</a>
+                    </Link>
 
-      <Link href={`${data.pages.media}`} passHref>
-        <a>Медиа</a>
-      </Link>
+                    <Link href={`${data.pages.media}`} passHref>
+                        <a>{t('Медиа')}</a>
+                    </Link>
+                </>
+            )
+        }
+
 
       <Link href={`${data.pages.contacts}`} passHref>
-        <a>Контакты</a>
+        <a>{t('Контакты')}</a>
       </Link>
 
       <div
@@ -106,7 +117,7 @@ const Menu = ({ type, css, className, openFeedback, onClose }: IMenuProps) => {
             }
           }}
         >
-          Связаться с нами
+            {t('Связаться с нами')}
         </a>
 
         <Link href={data.contactsData.whatsapp} passHref>

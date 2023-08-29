@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
+import { useTranslation } from 'next-i18next';
 
 import { useCommon } from '@context/common';
 
@@ -10,12 +11,16 @@ import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 
 import logoIconURL from '@icons/whiteLogo.svg';
 import logoTextIconURL from '@icons/whiteLogoText.svg';
+import logoIconEnURL from '@icons/whiteLogoEn.svg';
+import logoTextIconEnURL from '@icons/whiteLogoTextEn.svg';
 import locationURL from '@icons/location.svg';
 import phoneURL from '@icons/phone.svg';
 import emailURL from '@icons/email.svg';
 import fpaURL from '@images/fpa.webp';
 import agURL from '@images/ag.webp';
 import ofURL from '@images/of.webp';
+import { useRouter } from 'next/router';
+import { LOCALES } from '@scripts/enums/indext';
 
 const footerCss: CSSObject = {
   width: '100%',
@@ -42,8 +47,10 @@ const rightsCSS: CSSObject = {
 };
 
 const FooterDesktop: FC = () => {
+  const { t } = useTranslation();
   const { data } = useCommon();
   const { tabletLg } = useMedia();
+  const { locale: activeLocale } = useRouter();
 
   return (
     <div
@@ -80,16 +87,24 @@ const FooterDesktop: FC = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  <Image src={logoIconURL} width="44px" height="57px" />
+                  {activeLocale === LOCALES.DEFAULT ? (
+                    <Image src={logoIconURL} width="44px" height="57px" />
+                  ) : (
+                    <Image src={logoIconEnURL} width="44px" height="57px" />
+                  )}
                 </div>
 
                 <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Image src={logoTextIconURL} width="90px" height="25px" />
+                  {activeLocale === LOCALES.DEFAULT ? (
+                    <Image src={logoTextIconURL} width="90px" height="25px" />
+                  ) : (
+                    <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                  )}
                 </div>
               </a>
             </Link>
 
-            <span css={{ marginLeft: '16px' }}>Коллегия адвокатов города Москвы</span>
+            <span css={{ marginLeft: '16px' }}>{t('Коллегия адвокатов города Москвы')}</span>
           </div>
 
           <div
@@ -188,13 +203,16 @@ const FooterDesktop: FC = () => {
                   fontSize: '18px',
                 }}
               >
-                Политика обработки персональных данных
+                {t('Политика обработки персональных данных')}
               </span>
             </a>
           </Link>
           <div css={{ ...position.start, alignItems: 'start', flexDirection: 'column' }}>
-            <span> © 2003—2022 Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.</span>
-            <span>Официальный сайт.</span>
+            <span>
+              {' '}
+              © 2003—2022 {t('Коллегия адвокатов города Москвы «Барщевский и Партнеры». Все права защищены.')}
+            </span>
+            <span>{t('Официальный сайт.')}</span>
           </div>
         </span>
       </div>
