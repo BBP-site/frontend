@@ -16,6 +16,7 @@ Allow: /team/vdovina
 Allow: /team/lapina
 Allow: /team/puhova
 Allow: /team/aparina
+Allow: /media
 Allow: /projects
 Allow: /contacts
 
