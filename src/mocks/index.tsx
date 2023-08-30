@@ -565,7 +565,7 @@ export const projectsMobile: IContent[] = [
 export const medias: IContentMedia[] = [
   {
     id: '156',
-    name: 'Курортный роман',
+    name: 'Эпизод 13. Курортный роман',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -573,7 +573,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '155',
-    name: 'Нескромный ремонт',
+    name: 'Эпизод 12. Нескромный ремонт',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -581,7 +581,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '154',
-    name: 'Семейная реликвия',
+    name: 'Эпизод 11. Семейная реликвия',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -589,7 +589,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '153',
-    name: 'Былая роскошь',
+    name: 'Эпизод 10. Былая роскошь',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -597,7 +597,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '152',
-    name: 'Цирк в суде',
+    name: 'Эпизод 9. Цирк в суде',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -605,7 +605,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '151',
-    name: 'Три срока подряд – это законно',
+    name: 'Эпизод 8. Три срока подряд – это законно',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -613,7 +613,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '150',
-    name: 'Как случайно обидеть судью',
+    name: 'Эпизод 7. Как случайно обидеть судью',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -621,7 +621,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '149',
-    name: 'Заботливый регистратор',
+    name: 'Эпизод 6. Заботливый регистратор',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -629,7 +629,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '148',
-    name: 'На защите чести и достоинства',
+    name: 'Эпизод 5. На защите чести и достоинства',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -637,7 +637,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '147',
-    name: 'Нежелательное отцовство',
+    name: 'Эпизод 4. Нежелательное отцовство',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -645,7 +645,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '146',
-    name: 'Сладкое правосудие',
+    name: 'Эпизод 3. Сладкое правосудие',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -653,7 +653,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '145',
-    name: 'Отгадайте, кто врет',
+    name: 'Эпизод 2. Отгадайте, кто врет',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -661,7 +661,7 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '144',
-    name: 'Кормящая бортпроводница',
+    name: 'Эпизод 1. Кормящая бортпроводница',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,

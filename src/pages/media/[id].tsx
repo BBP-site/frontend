@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -13,12 +13,21 @@ import { IMediaDetail, mediasDetails } from '@mocks/mediasDetail';
 
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import PageTitle from '@components/PageTitle';
+import { useRouter } from 'next/router';
+import { E_PAGES, useCommon } from '@context/common';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 interface IMediaDetailItem extends IContentMedia, IMediaDetail {}
 
 const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
+  const router = useRouter();
+  const { pagesHistory } = useCommon();
   const { tablet, tabletLg } = useMedia();
+
+  const isBackWithQuery = useMemo(
+    () => pagesHistory.list[pagesHistory.list.length - 1] === E_PAGES.MEDIA,
+    [pagesHistory]
+  );
 
   return (
     <main
@@ -38,21 +47,36 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
       />
 
       <div css={{ ...pageWrap, marginBottom: '16px', width: '100%' }}>
-        <Link href="/media" passHref>
+        {isBackWithQuery ? (
           <a
             css={{
               ...links.blue,
               display: 'inline-flex',
               alignItems: 'center',
               alignSelf: 'flex-start',
+              cursor: 'pointer',
             }}
+            onClick={() => router.back()}
           >
             <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
           </a>
-        </Link>
+        ) : (
+          <Link href="/media" passHref>
+            <a
+              css={{
+                ...links.blue,
+                display: 'inline-flex',
+                alignItems: 'center',
+                alignSelf: 'flex-start',
+              }}
+            >
+              <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
+            </a>
+          </Link>
+        )}
       </div>
 
-      <div css={{ ...position.center, height: '100%', padding: '60px 0' }}>
+      <div css={{ ...position.center, alignItems: 'start', height: '100%', padding: '60px 0' }}>
         <section css={{ ...pageWrap, maxWidth: '842px', width: '100%' }}>
           <div css={{ ...position.spaceBetween, marginBottom: '8px' }}>
             <div css={{ ...position.center }}>
