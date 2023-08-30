@@ -95,7 +95,9 @@ const Projects = () => {
         width: '100%',
       }}
     >
-      <PageTitle title="Проекты" css={{ marginBottom: '24px' }} />
+      <PageTitle title="Проекты" css={{ marginBottom: '24px' }}>
+        <p>В этом разделе собраны наиболее интересные и показательные дела адвокатов нашей Коллегии</p>
+      </PageTitle>
       <div css={{ ...pageWrap }}>
         <section
           css={{
