@@ -23,6 +23,8 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
   const { pagesHistory } = useCommon();
   const { tablet, tabletLg } = useMedia();
 
+    console.log(media)
+
   const isBackWithQuery = useMemo(
     () => pagesHistory.list[pagesHistory.list.length - 1] === E_PAGES.MEDIA,
     [pagesHistory]

@@ -7,6 +7,7 @@ import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
+import {JSXElement} from "@babel/types";
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -53,7 +54,7 @@ export interface IContentMedia extends IContent {
   id: string;
   date: string;
   type: MEDIA_TYPE;
-  name: string;
+  name: React.ReactElement | string;
   titleIcon: string;
 }
 
