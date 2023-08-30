@@ -14,6 +14,7 @@ import { projects } from '@mocks/projects';
 
 import { ReactComponent as SearchIcon } from '@icons/search.svg';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { E_PAGES, useCommon } from '@context/common';
 
 const parseIndustry = (industry: PROJECT_INDUSTRY) => {
   switch (industry) {
@@ -40,8 +41,13 @@ const parseIndustry = (industry: PROJECT_INDUSTRY) => {
 
 const Projects = () => {
   const { asPath } = useRouter();
+  const { pagesHistory } = useCommon();
   const { tabletLg, tablet, mobileLg } = useMedia();
   const [curAnchor, setCurAnchor] = useState<string | null>();
+
+  useEffect(() => {
+    pagesHistory.push(E_PAGES.PROJECTS);
+  }, []);
 
   useEffect(() => setCurAnchor(asPath.split('#')[1]), [asPath]);
 

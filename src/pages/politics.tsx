@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import PageTitle from '@components/PageTitle';
 import ContentSection from '@components/common/contentSection';
 
 import { useMedia } from '@scripts/hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { E_PAGES, useCommon } from '@context/common';
 
 const Politics = () => {
   const { t } = useTranslation();
   const { tabletLg } = useMedia();
+  const { pagesHistory } = useCommon();
+
+  useEffect(() => {
+    pagesHistory.push(E_PAGES.POLITICS);
+  }, []);
 
   return (
     <main>

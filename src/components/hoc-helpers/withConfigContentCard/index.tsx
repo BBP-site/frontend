@@ -7,7 +7,7 @@ import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
-import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -68,7 +68,8 @@ const withConfigContentCard = (
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { tabletLg, mobileLg } = useMedia();
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { t } = useTranslation();
+  const { locale: activeLocale } = useRouter();
+
   const cardConfig: ICardConfig = {};
 
   const projectTitle: React.ReactElement = (
@@ -127,8 +128,8 @@ const withConfigContentCard = (
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: false,
-        text: t('Показать полностью'),
-        textCLose: t('Скрыть') as string,
+        text: activeLocale === 'default' ? 'Показать полностью' : 'Show in full',
+        textCLose: 'Скрыть',
         transform: 'rotate(180deg)',
       };
       cardConfig.cssCard = {
@@ -148,7 +149,7 @@ const withConfigContentCard = (
       cardConfig.btn = {
         isLink: true,
         url: `team/${content.id}`,
-        text: t('Подробнее'),
+        text: activeLocale === 'default' ? 'Подробнее' : 'more info',
         transform: 'rotate(90deg)',
       };
       break;
@@ -157,8 +158,8 @@ const withConfigContentCard = (
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: false,
-        text: t('Показать полностью'),
-        textCLose: t('Скрыть') as string,
+        text: activeLocale === 'default' ? 'Показать полностью' : 'Show in full',
+        textCLose: 'Скрыть',
         transform: 'rotate(180deg)',
       };
       cardConfig.title = projectTitle;

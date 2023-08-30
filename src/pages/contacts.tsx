@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageTitle from '@components/PageTitle';
 import ContactsMain from '@components/ContactsMain';
 import { pageWrap } from '@scripts/theme';
@@ -6,10 +6,16 @@ import FeedbackForm from '@components/FeedbackForm';
 import Modal from '@components/common/Modal';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { E_PAGES, useCommon } from '@context/common';
 
 const Contacts = () => {
   const { t } = useTranslation();
   const [openFeedback, setOpenFeedback] = useState(false);
+  const { pagesHistory } = useCommon();
+
+  useEffect(() => {
+    pagesHistory.push(E_PAGES.CONTACTS);
+  }, []);
 
   return (
     <main css={{ height: '100%' }}>

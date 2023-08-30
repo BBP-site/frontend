@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useCommon } from '@context/common';
+import { E_PAGES, useCommon } from '@context/common';
 
 import { colors, pageWrap, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
@@ -16,14 +16,24 @@ import logoIconEnURL from '@icons/logoEn.svg';
 import logoTextIconEnURL from '@icons/logoTextEn.svg';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import {LOCALES} from "@scripts/enums/indext";
+import { LOCALES } from '@scripts/enums/indext';
 
 const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
   const { tabletLg } = useMedia();
-  const { pathname, query, asPath, push, locales, locale: activeLocale } = useRouter();
+  const { pathname, query, push, locales, locale: activeLocale } = useRouter();
   const { t } = useTranslation();
+  const { data, pagesHistory } = useCommon();
 
-  const { data } = useCommon();
+  const pathnameSmart = useMemo(
+    () =>
+      (pagesHistory.list[pagesHistory.list.length - 1] === E_PAGES.MEDIA ||
+        pagesHistory.list[pagesHistory.list.length - 1] === E_PAGES.PROJECTS) &&
+      activeLocale === 'default'
+        ? '/'
+        : pathname,
+    [activeLocale, pagesHistory.list, pathname]
+  );
+
   const [ruEn, setRuEn] = useState(activeLocale !== locales?.[0]);
 
   return (
@@ -62,20 +72,18 @@ const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
                   justifyContent: 'center',
                 }}
               >
-                  {
-                      activeLocale === LOCALES.DEFAULT ?
-                          <Image src={logoIconURL} width="44px" height="57px" />
-                          :
-                          <Image src={logoIconEnURL} width="44px" height="57px" />
-                  }
+                {activeLocale === LOCALES.DEFAULT ? (
+                  <Image src={logoIconURL} width="44px" height="57px" />
+                ) : (
+                  <Image src={logoIconEnURL} width="44px" height="57px" />
+                )}
               </div>
               <div css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {
-                      activeLocale === LOCALES.DEFAULT ?
-                          <Image src={logoTextIconURL} width="90px" height="25px" />
-                          :
-                          <Image src={logoTextIconEnURL} width="100px" height="30px" />
-                  }
+                {activeLocale === LOCALES.DEFAULT ? (
+                  <Image src={logoTextIconURL} width="90px" height="25px" />
+                ) : (
+                  <Image src={logoTextIconEnURL} width="100px" height="30px" />
+                )}
               </div>
             </a>
           </Link>
@@ -110,7 +118,9 @@ const HeaderDesktop: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
             type="button"
             onClick={() => {
               setRuEn(!ruEn);
-              push({ pathname, query }, asPath, { locale: ruEn ? locales?.[0] : locales?.[1] });
+              delete query.media;
+              delete query.year;
+              push({ pathname: pathnameSmart, query }, '', { locale: ruEn ? locales?.[0] : locales?.[1] });
             }}
             css={{
               ...typography.txtSm,
