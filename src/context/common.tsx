@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useContext } from 'react';
+import { createContext, FC, ReactNode, useContext, useState } from 'react';
 
 export enum E_PAGES {
   HOME = '/',
@@ -26,10 +26,22 @@ export interface IData {
   };
 }
 
-const CommonContext = createContext<Record<string, IData> | null>(null);
+export interface IPagesHistory {
+  list: E_PAGES[];
+  push: (page: E_PAGES) => void;
+}
+
+export interface ICommonContext {
+  data: IData;
+  pagesHistory: IPagesHistory;
+}
+
+const CommonContext = createContext<ICommonContext | null>(null);
 CommonContext.displayName = 'CommonContext';
 
 export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ children }) => {
+  const [pHistory, setPHistory] = useState<E_PAGES[]>([]);
+
   const data = {
     pages: {
       home: E_PAGES.HOME,
@@ -58,7 +70,12 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ chil
     },
   };
 
-  return <CommonContext.Provider value={{ data }}>{children}</CommonContext.Provider>;
+  const pagesHistory = {
+    list: pHistory,
+    push: (page: E_PAGES) => setPHistory([...pHistory, page]),
+  };
+
+  return <CommonContext.Provider value={{ data, pagesHistory }}>{children}</CommonContext.Provider>;
 };
 
 export const useCommon = () => {
