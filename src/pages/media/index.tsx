@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
+import React, {useEffect, useMemo } from 'react';
 
 import { useMedia } from '@scripts/hooks';
 import { colors, pageWrap, time } from '@scripts/theme';
 import { CARD_TYPE, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
 import { parseMediaType, parseMediaTypeQuery, parseMediaTypeQueryReverse } from '@scripts/helpers';
 
-import withConfigContentCard, { IContentMedia } from '@components/hoc-helpers/withConfigContentCard';
+import withConfigContentCard, {IContentMedia} from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
 import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
@@ -27,14 +27,14 @@ const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
     10
   )}`;
 
-  if (mediaADays > mediaBDays) return 1;
-  if (mediaADays < mediaBDays) return -1;
+  if (mediaADays < mediaBDays) return 1;
+  if (mediaADays > mediaBDays) return -1;
   return 0;
 };
 
 const newMedias = [...medias].sort(compareAB);
 const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
-const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort())];
+const years = ['all', ...new Set(medias.map(media => `${media.date.substring(6, 8)}`).sort().reverse())];
 
 const Media = () => {
   const { query, replace } = useRouter();
@@ -50,23 +50,26 @@ const Media = () => {
   }, []);
 
   const mediasCards = useMemo(
-    () =>
-      newMedias
-        .filter(
-          media =>
-            (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||
-            (media.type === typeFilter && new RegExp(`${yearFilter}$`).test(media.date)) ||
-            (media.type === typeFilter && yearFilter === 'all') ||
-            (typeFilter === MEDIA_TYPE.ALL && new RegExp(`${yearFilter}$`).test(media.date))
-        )
-        .map(media =>
-          withConfigContentCard(
-            ContentCard,
-            { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
-            CARD_TYPE.MEDIA
-          )
-        ),
-    [typeFilter, yearFilter]
+    () => {
+        let medias = newMedias.slice();
+        if (typeFilter === MEDIA_TYPE.PODCAST) medias = medias.reverse();
+        return medias
+            .filter(
+                media =>
+                    (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||
+                    (media.type === typeFilter && new RegExp(`${yearFilter}$`).test(media.date)) ||
+                    (media.type === typeFilter && yearFilter === 'all') ||
+                    (typeFilter === MEDIA_TYPE.ALL && new RegExp(`${yearFilter}$`).test(media.date))
+            )
+            .map(media =>
+                withConfigContentCard(
+                    ContentCard,
+                    { ...media, title: parseMediaType(media.type), contentHtml: <p>{media.name}</p> },
+                    CARD_TYPE.MEDIA
+                )
+            )
+    },
+      [typeFilter, yearFilter]
   );
 
   return (
@@ -174,7 +177,7 @@ const Media = () => {
                 </div>
               ))}
             </div>
-            <div css={{ width: '100%', display: 'flex' }}>
+            <div css={{ width: '100%', display: 'flex', height: 35 }}>
               <span css={{ marginRight: '16px', color: colors.gray700, whiteSpace: 'nowrap' }}>
                 Смотреть за период:{' '}
               </span>

@@ -7,7 +7,7 @@ import { CommonProvider } from '@context/common';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 
-import { colors, typography } from '@scripts/theme';
+import {colors, typography} from '@scripts/theme';
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -48,6 +48,18 @@ const App = ({ Component, pageProps }: AppProps) => (
           a: {
             textDecoration: 'none',
             color: colors.black,
+          },
+          '::-webkit-scrollbar': {
+            width: 10,
+            height: 10
+          },
+          '::-webkit-scrollbar-track': {
+            // boxShadow: shadows.bottom,
+            borderRadius: '50px'
+          },
+          '::-webkit-scrollbar-thumb': {
+            background: colors.gray300,
+            borderRadius: '50px'
           },
           h1: typography.h1,
           h2: typography.h2,
