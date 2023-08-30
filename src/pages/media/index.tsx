@@ -16,21 +16,27 @@ import { useRouter } from 'next/router';
 import { E_PAGES, useCommon } from '@context/common';
 
 const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
-  const mediaADaysArr = [...mediaA.date.split('.')];
-  const mediaBDaysArr = [...mediaB.date.split('.')];
+    const mediaADaysArr = [...mediaA.date.split('.')];
+    const mediaBDaysArr = [...mediaB.date.split('.')];
 
-  const mediaADays = `${parseInt(mediaADaysArr[2], 10) * 365}${parseInt(mediaADaysArr[1], 10) * 60}${parseInt(
-    mediaADaysArr[0],
-    10
-  )}`;
-  const mediaBDays = `${parseInt(mediaBDaysArr[2], 10) * 365}${parseInt(mediaBDaysArr[1], 10) * 60}${parseInt(
-    mediaBDaysArr[0],
-    10
-  )}`;
+    const [mediaADays, mediaAMonths, mediaAYears] = mediaADaysArr
 
-  if (mediaADays < mediaBDays) return 1;
-  if (mediaADays > mediaBDays) return -1;
-  return 0;
+    const [mediaBDays, mediaBMonths, mediaBYears] = mediaBDaysArr
+
+    if (+mediaAYears < +mediaBYears) return 1;
+    if (+mediaAYears > +mediaBYears) {
+        return -1
+    } else {
+        if (+mediaAMonths < +mediaBMonths) return 1;
+        if (+mediaAMonths > +mediaBMonths) {
+            return -1;
+        } else {
+            if (+mediaADays < +mediaBDays) return 1;
+            if (+mediaADays > +mediaBDays) return -1;
+        }
+    }
+
+    return 0;
 };
 
 const newMedias = [...medias].sort(compareAB);

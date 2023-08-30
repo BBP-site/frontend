@@ -54,7 +54,7 @@ export interface IContentMedia extends IContent {
   id: string;
   date: string;
   type: MEDIA_TYPE;
-  name: string;
+  name: React.ReactElement | string;
   titleIcon: string;
 }
 
@@ -203,7 +203,7 @@ const withConfigContentCard = (
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
-        url: `comingSoonMedia`,
+        url: `/media/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
