@@ -20,6 +20,21 @@ Allow: /media
 Allow: /projects
 Allow: /contacts
 
+Allow: /en/
+Allow: /en/collegium
+Allow: /en/practices
+Allow: /en/team
+Allow: /en/team/barshevskiy
+Allow: /en/team/karahanyan
+Allow: /en/team/mihalevich
+Allow: /en/team/barkalova
+Allow: /en/team/speranskaya
+Allow: /en/team/vdovina
+Allow: /en/team/lapina
+Allow: /en/team/puhova
+Allow: /en/team/aparina
+Allow: /en/contacts
+
 Host: www.bbp.ru
 
 Sitemap: https://bbp.ru/sitemap.xml
