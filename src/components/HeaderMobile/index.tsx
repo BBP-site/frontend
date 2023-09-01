@@ -55,7 +55,7 @@ export const HeaderMobileDataRow: FC<{}> = () => {
 };
 
 const HeaderMobile: FC<{ openFeedback: Function }> = ({ openFeedback }) => {
-  const { pathname, query, asPath, push, locales, locale: activeLocale } = useRouter();
+  const { pathname, query, push, locales, locale: activeLocale } = useRouter();
   const { tabletLgMin } = useMedia();
   const [headerRef, setHeaderRef] = useState<HTMLElement | null>(null);
   const [ruEn, setRuEn] = useState(activeLocale !== locales?.[0]);
