@@ -565,7 +565,8 @@ export const projectsMobile: IContent[] = [
 export const medias: IContentMedia[] = [
   {
     id: '156',
-    name: 'Эпизод 13. Курортный роман.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 13. Курортный роман.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -573,7 +574,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '155',
-    name: 'Эпизод 12. Нескромный ремонт.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 12. Нескромный ремонт.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -581,7 +583,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '154',
-    name: 'Эпизод 11. Семейная реликвия.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 11. Семейная реликвия.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -589,7 +592,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '153',
-    name: 'Эпизод 10. Былая роскошь.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 10. Былая роскошь.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -597,7 +601,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '152',
-    name: 'Эпизод 9. Цирк в суде.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 9. Цирк в суде.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -605,7 +610,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '151',
-    name: 'Эпизод 8. Три срока подряд – это законно.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 8. Три срока подряд – это законно.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -613,7 +619,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '150',
-    name: 'Эпизод 7. Как случайно обидеть судью.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 7. Как случайно обидеть судью.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -621,7 +628,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '149',
-    name: 'Эпизод 6. Заботливый регистратор.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 6. Заботливый регистратор.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -629,7 +637,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '148',
-    name: 'Эпизод 5. На защите чести и достоинства.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 5. На защите чести и достоинства.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -637,7 +646,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '147',
-    name: 'Эпизод 4. Нежелательное отцовство.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 4. Нежелательное отцовство.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -645,7 +655,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '146',
-    name: 'Эпизод 3. Сладкое правосудие.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 3. Сладкое правосудие.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -653,7 +664,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '145',
-    name: 'Эпизод 2. Отгадайте, кто врет.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 2. Отгадайте, кто врет.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,
@@ -661,7 +673,8 @@ export const medias: IContentMedia[] = [
   },
   {
     id: '144',
-    name: 'Барщевский и Партнеры. Адвокатские истории. Эпизод 1. Кормящая бортпроводница.',
+    name: 'Барщевский и Партнеры. Адвокатские истории.',
+    subName: 'Эпизод 1. Кормящая бортпроводница.',
     contentHtml: <></>,
     titleIcon: headPhonesURL,
     type: MEDIA_TYPE.PODCAST,

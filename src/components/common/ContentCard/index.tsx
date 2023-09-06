@@ -18,6 +18,7 @@ export interface ICardBtn {
 
 export interface IContentCardProps {
   content: React.ReactElement;
+  subContent: string;
   contentCSS?: CSSObject;
   title?: React.ReactElement;
   header?: string;
@@ -39,6 +40,7 @@ export interface IContentCardProps {
 
 const ContentCard: FC<IContentCardProps> = ({
   content,
+  subContent,
   contentCSS,
   title,
   header,
@@ -161,6 +163,7 @@ const ContentCard: FC<IContentCardProps> = ({
             ]}
           >
             {content}
+            {subContent}
           </div>
 
           <span

@@ -103,7 +103,9 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
                 [tablet]: { fontSize: '24px', lineHeight: '28px', marginBottom: '16px' },
               }}
             >
-              {media.name}
+                {media.name}
+                <br/>
+                {media.subName}
             </h1>
           </div>
           <div

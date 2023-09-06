@@ -29,6 +29,7 @@ interface ICardConfig {
 
 export interface IContent {
   contentHtml: React.ReactElement;
+  subContent?: string;
   contentCSS?: CSSObject;
   objectPosition?: string;
   id?: string;
@@ -55,6 +56,7 @@ export interface IContentMedia extends IContent {
   date: string;
   type: MEDIA_TYPE;
   name: React.ReactElement | string;
+  subName?: string;
   titleIcon: string;
 }
 
@@ -226,6 +228,7 @@ const withConfigContentCard = (
       boxShadow={cardConfig.boxShadow}
       cardImg={content.img}
       content={content.contentHtml}
+      subContent={content.subContent as string}
       contentCSS={content.contentCSS}
       btn={cardConfig.btn}
       height={cardConfig.height}
