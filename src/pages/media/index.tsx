@@ -19,24 +19,14 @@ const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
     const mediaADaysArr = [...mediaA.date.split('.')];
     const mediaBDaysArr = [...mediaB.date.split('.')];
 
-    const [mediaADays, mediaAMonths, mediaAYears] = mediaADaysArr
+    const dateA = new Date(+`20${mediaADaysArr[2]}`, +mediaADaysArr[1], +mediaADaysArr[0]);
+    const dateB = new Date(+`20${mediaBDaysArr[2]}`, +mediaBDaysArr[1], +mediaBDaysArr[0]);
 
-    const [mediaBDays, mediaBMonths, mediaBYears] = mediaBDaysArr
+    let index = 0;
 
-    if (+mediaAYears < +mediaBYears) return 1;
-    if (+mediaAYears > +mediaBYears) {
-        return -1
-    } else {
-        if (+mediaAMonths < +mediaBMonths) return 1;
-        if (+mediaAMonths > +mediaBMonths) {
-            return -1;
-        } else {
-            if (+mediaADays < +mediaBDays) return 1;
-            if (+mediaADays > +mediaBDays) return -1;
-        }
-    }
-
-    return 0;
+    if (dateA < dateB) index = 1;
+    else if (dateA > dateB) index = -1;
+    return index;
 };
 
 const newMedias = [...medias].sort(compareAB);
