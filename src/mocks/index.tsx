@@ -117,6 +117,19 @@ export const team = () => {
       img: tatyanaURL.src,
     },
     {
+      id: 'khavkin',
+      contentHtml: (
+        <>
+          <h6>{t('Хавкин Павел Витальевич')}</h6>
+          <p>{t('Адвокат')}</p>
+          <div className="line" />
+        </>
+      ),
+      contentCSS: teamCSS,
+      img: pavelURL.src,
+      objectPosition: '0px -8px',
+    },
+    {
       id: 'vdovina',
       contentHtml: (
         <>
@@ -166,19 +179,6 @@ export const team = () => {
       ),
       contentCSS: teamCSS,
       img: kseniaURL.src,
-      objectPosition: '0px -8px',
-    },
-    {
-      id: 'khavkin',
-      contentHtml: (
-        <>
-          <h6>{t('Хавкин Павел Витальевич')}</h6>
-          <p>{t('Адвокат')}</p>
-          <div className="line" />
-        </>
-      ),
-      contentCSS: teamCSS,
-      img: pavelURL.src,
       objectPosition: '0px -8px',
     },
   ];
