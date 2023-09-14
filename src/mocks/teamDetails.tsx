@@ -9,6 +9,7 @@ import speranskayaDetail from '@images/speranskayaDetail.webp';
 import mihalevichDetail from '@images/mihalevichDetail.webp';
 import vdovinaDetail from '@images/vdovinaDetail.webp';
 import barkalovaDetail from '@images/barkalovaDetail.webp';
+import khavkinDetail from '@images/khavkinDetail.webp';
 
 import best18 from '@images/2018.webp';
 import best19 from '@images/2019.webp';
@@ -151,7 +152,7 @@ export const teamDetails: ITeamDetail[] = [
     email: 'mikhalevich@bbp.ru',
     experienceHTML: (
       <>
-        <p>Стаж юридической практики 17 лет. В Коллегии с 2015 года.</p>
+        <p>Стаж юридической практики с 2005 года.</p>
 
         <p>
           Отмечена в личном рейтинге Право.ру ТОП-300 как рекомендованные юристы в отрасли «Разрешение споров в судах
@@ -194,7 +195,7 @@ export const teamDetails: ITeamDetail[] = [
     email: 'speranskaya@bbp.ru',
     experienceHTML: (
       <>
-        <p>Стаж юридической практики 25 лет.</p>
+        <p>Стаж юридической практики более 25 лет.</p>
       </>
     ),
     practicesHTML: (
@@ -218,7 +219,7 @@ export const teamDetails: ITeamDetail[] = [
     email: 'vdovina@bbp.ru',
     experienceHTML: (
       <>
-        <p>Стаж юридической практики 8 лет. В Коллегии с 2014 года </p>
+        <p>Стаж юридической практики с 2014 года.</p>
       </>
     ),
     practicesHTML: (
@@ -240,7 +241,7 @@ export const teamDetails: ITeamDetail[] = [
     position: 'Старший юрист',
     experienceHTML: (
       <>
-        <p>Общий стаж юридической практики 3 года.</p>
+        <p>Общий стаж юридической практики с 2019 года.</p>
       </>
     ),
     practicesHTML: (
@@ -262,6 +263,11 @@ export const teamDetails: ITeamDetail[] = [
     img: aparinaDetail.src,
     name: 'Апарина Ксения Васильевна',
     position: 'Юрист',
+    experienceHTML: (
+      <>
+        <p>Общий стаж юридической практики с 2020 года.</p>
+      </>
+    ),
     practicesHTML: (
       <>
         <ul>
@@ -272,29 +278,27 @@ export const teamDetails: ITeamDetail[] = [
       </>
     ),
   },
-  // {
-  //   id: 'smirnov',
-  //   img: smirnovDetail.src,
-  //   name: 'Смирнов Владимир Евгеньевич',
-  //   position: 'Юрист',
-  //   practicesHTML: (
-  //     <>
-  //       <ul>
-  //         <li>Уголовное право</li>
-  //         <li>Уголовное судопроизводство</li>
-  //         <li>Административное право</li>
-  //       </ul>
-  //     </>
-  //   ),
-  //   mediaHTML: (
-  //     <>
-  //       <p>
-  //         Автор ряда научных статей, посвященных уголовным и уголовно-процессуальным аспектам выявления и расследования
-  //         преступлений в сфере информационно-телекоммуникационных технологий.
-  //       </p>
-  //     </>
-  //   ),
-  // },
+  {
+    id: 'khavkin',
+    img: khavkinDetail.src,
+    name: 'Хавкин Павел Витальевич',
+    position: 'Адвокат',
+    experienceHTML: (
+      <>
+        <p>Юридический стаж с 2004 года, в статусе адвоката – с 2006 года.</p>
+      </>
+    ),
+    practicesHTML: (
+      <>
+        <ul>
+          <li>корпоративное и банковское право</li>
+          <li>банкротство</li>
+          <li>строительные и земельные споры</li>
+          <li>защита по уголовным делам в сфере экономических преступлений</li>
+        </ul>
+      </>
+    ),
+  },
 ];
 
 export const teamDetailsEn: ITeamDetail[] = [
@@ -539,6 +543,28 @@ export const teamDetailsEn: ITeamDetail[] = [
           <li>Criminal law</li>
           <li>Criminal procedure</li>
           <li>Administrative law</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    id: 'khavkin',
+    img: khavkinDetail.src,
+    name: 'Pavel Khavkin',
+    position: 'Attorney',
+    experienceHTML: (
+      <>
+        <p>Experience of practicing law since 2004. As an attorney since 2006.</p>
+      </>
+    ),
+    practicesHTML: (
+      <>
+        <ul>
+          <li>civil and corporate law</li>
+          <li>litigation</li>
+          <li>dispute resolution and insolvency (bancruptcy)</li>
+          <li>construction and real estate disputes</li>
+          <li>criminal law, including economic crime</li>
         </ul>
       </>
     ),

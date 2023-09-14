@@ -36,7 +36,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
 
   const bannerContentCSS: CSSObject = {
     width: '50%',
-    minWidth: '510px',
+    minWidth: '550px',
     height: '100%',
     padding: '50px 0 50px 0',
     backgroundColor: colors.bannerContent,
@@ -69,6 +69,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
               lineHeight: '48px',
               color: colors.white,
               margin: '0',
+              whiteSpace: 'nowrap',
               [tabletLg]: { ...typography.txt },
             }}
           >
@@ -76,7 +77,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
           </p>
 
           <h1 css={{ color: colors.white, [tabletLg]: { ...typography.h3, fontSize: '47px', color: colors.white } }}>
-              {t('БАРЩЕВСКИЙ И ПАРТНЕРЫ')}
+            {t('БАРЩЕВСКИЙ И ПАРТНЕРЫ')}
           </h1>
 
           <p css={{ fontSize: '20px', [tabletLg]: { ...typography.txtSm, marginBottom: '24px' } }}>
@@ -95,7 +96,7 @@ const Banner: FC<IBannerProps> = ({ css, className, setOpenFeedback }) => {
               [mobile]: { width: '100%' },
             }}
           >
-              {t('Запись на консультацию')}
+            {t('Запись на консультацию')}
           </Button>
         </div>
       </div>

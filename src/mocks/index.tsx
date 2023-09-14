@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react';
 import { useTranslation } from 'next-i18next';
-import { IContent, IContentMedia, IContentPractice } from '@components/hoc-helpers/withConfigContentCard';
+import { IContent, IContentMedia } from '@components/hoc-helpers/withConfigContentCard';
 
 import barshevskiyURL from '@images/barshevskiy.webp';
 import sumvelURL from '@images/sumvel.webp';
@@ -8,6 +8,7 @@ import elenaURL from '@images/elena.webp';
 import tatyanaURL from '@images/tatyana.webp';
 import barkalovaURL from '@images/barkalova.webp';
 import alexandraURL from '@images/alexandra.webp';
+import pavelURL from '@images/pavel.webp';
 // import olgaURL from '@images/olga.webp';
 import mariaURL from '@images/maria.webp';
 import kseniaURL from '@images/ksenia.webp';
@@ -167,19 +168,19 @@ export const team = () => {
       img: kseniaURL.src,
       objectPosition: '0px -8px',
     },
-    // {
-    //     id: 'smirnov',
-    //     contentHtml: (
-    //         <>
-    //             <h6>Смирнов Владимир Евгеньевич</h6>
-    //             <p>Юрист</p>
-    //             <div className="line"/>
-    //         </>
-    //     ),
-    //     contentCSS: teamCSS,
-    //     img: smirnovURL.src,
-    //     objectPosition: '0px -5px'
-    // },
+    {
+      id: 'khavkin',
+      contentHtml: (
+        <>
+          <h6>{t('Хавкин Павел Витальевич')}</h6>
+          <p>{t('Адвокат')}</p>
+          <div className="line" />
+        </>
+      ),
+      contentCSS: teamCSS,
+      img: pavelURL.src,
+      objectPosition: '0px -8px',
+    },
   ];
 };
 export const practicesMain = () => {

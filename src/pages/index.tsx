@@ -330,7 +330,7 @@ const Home = () => {
                 [tabletLg]: { fontSize: '32px', lineHeight: '41px' },
               }}
             >
-              32+
+              33+
             </p>
             <div css={{ width: '55px', height: '4px', backgroundColor: colors.cyan, marginBottom: '4px' }} />
             <p css={{ [tabletLg]: { ...typography.txtSm } }}>

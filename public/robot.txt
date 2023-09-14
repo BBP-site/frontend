@@ -16,6 +16,7 @@ Allow: /team/vdovina
 Allow: /team/lapina
 Allow: /team/puhova
 Allow: /team/aparina
+Allow: /team/khavkin
 Allow: /media
 Allow: /projects
 Allow: /contacts
@@ -33,6 +34,7 @@ Allow: /en/team/vdovina
 Allow: /en/team/lapina
 Allow: /en/team/puhova
 Allow: /en/team/aparina
+Allow: /en/team/khavkin
 Allow: /en/contacts
 
 Host: www.bbp.ru
