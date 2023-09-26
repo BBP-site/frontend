@@ -21,7 +21,7 @@ import ContactsMain from '@components/ContactsMain';
 import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 
 import { achievements } from '@mocks/achievements';
-import { medias, practices, projects, projectsMobile, team } from '@mocks/index';
+import { practices, projects, projectsMobile, team } from '@mocks/index';
 
 import arrowIconURL from '@icons/arrowBlue.svg';
 import arrowIconWhiteURL from '@icons/arrowWhite.svg';
@@ -30,6 +30,7 @@ import mobileBarjevskyURL from '@images/mobileMainB.webp';
 import FeedbackForm from '@components/FeedbackForm';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { useMedias } from '@hooks/useMedias';
 
 const Home = () => {
   const { mobileLg, mobileLgMin, tablet, tabletLg, tabletLgMin } = useMedia();
@@ -49,16 +50,10 @@ const Home = () => {
   const projectsCardsMobile = projectsMobile.map(project =>
     withConfigContentCard(ContentCard, project, CARD_TYPE.PROJECTS_MAIN)
   );
+
+  const { medias } = useMedias();
   const mediasCards = medias
-    .filter(
-      media =>
-        media.id === '11' ||
-        media.id === '9' ||
-        media.id === '14' ||
-        media.id === '10' ||
-        media.id === '17' ||
-        media.id === '15'
-    )
+    .slice(0, 6)
     .map(media =>
       withConfigContentCard(
         ContentCard,
