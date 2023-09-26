@@ -148,6 +148,7 @@ const withConfigContentCard = (
       cardConfig.imageHeight = '191px';
       cardConfig.mobileImageWidth = '266px';
       cardConfig.mobileImageHeight = '299px';
+      cardConfig.height = 'auto';
       cardConfig.btn = {
         isLink: true,
         url: `team/${content.id}`,

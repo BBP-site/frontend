@@ -33,7 +33,7 @@ export * from './teamDetails';
 const teamCSS: CSSObject = {
   p: {
     overflow: 'hidden',
-    whiteSpace: 'nowrap',
+    whiteSpace: 'normal',
     maxWidth: '350px',
   },
 };
