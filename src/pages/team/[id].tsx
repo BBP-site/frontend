@@ -81,8 +81,9 @@ const TeamDetail = () => {
             css={{
               ...pageWrap,
               display: 'grid',
-              gridTemplate: 'auto / 302px 1fr',
+              gridTemplate: 'auto / 224px 1fr',
               marginTop: '24px',
+              gap: 40,
               [tablet]: {
                 gridTemplate: 'auto / 1fr',
               },
@@ -92,6 +93,7 @@ const TeamDetail = () => {
               css={{
                 width: '100%',
                 display: 'grid',
+                alignItems: 'start',
               }}
             >
               <div css={{ ...position.center, flexDirection: 'column' }}>
