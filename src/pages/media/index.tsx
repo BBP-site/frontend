@@ -5,41 +5,15 @@ import { colors, pageWrap, time } from '@scripts/theme';
 import { CARD_TYPE, MEDIA_TYPE } from '@scripts/enums/common/content-card.enum';
 import { parseMediaType, parseMediaTypeQuery, parseMediaTypeQueryReverse } from '@scripts/helpers';
 
-import withConfigContentCard, { IContentMedia } from '@components/hoc-helpers/withConfigContentCard';
+import withConfigContentCard from '@components/hoc-helpers/withConfigContentCard';
 import ContentCard from '@components/common/ContentCard';
 import Select from '@components/common/Select';
 import PageTitle from '@components/PageTitle';
 
-import { medias } from '@mocks/index';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { E_PAGES, useCommon } from '@context/common';
-
-const compareAB = (mediaA: IContentMedia, mediaB: IContentMedia) => {
-    const mediaADaysArr = [...mediaA.date.split('.')];
-    const mediaBDaysArr = [...mediaB.date.split('.')];
-
-    const dateA = new Date(+`20${mediaADaysArr[2]}`, +mediaADaysArr[1], +mediaADaysArr[0]);
-    const dateB = new Date(+`20${mediaBDaysArr[2]}`, +mediaBDaysArr[1], +mediaBDaysArr[0]);
-
-    let index = 0;
-
-    if (dateA < dateB) index = 1;
-    else if (dateA > dateB) index = -1;
-    return index;
-};
-
-const newMedias = [...medias].sort(compareAB);
-const mediaTypes = [MEDIA_TYPE.ALL, ...new Set(medias.map(media => media.type))].sort();
-const years = [
-  'all',
-  ...new Set(
-    medias
-      .map(media => `${media.date.substring(6, 8)}`)
-      .sort()
-      .reverse()
-  ),
-];
+import { useMedias } from '@hooks/useMedias';
 
 const Media = () => {
   const { query, replace } = useRouter();
@@ -54,10 +28,12 @@ const Media = () => {
     pagesHistory.push(E_PAGES.MEDIA);
   }, []);
 
+  const { medias, mediaTypes, years } = useMedias();
+
   const mediasCards = useMemo(() => {
-    let medias = newMedias.slice();
-    if (typeFilter === MEDIA_TYPE.PODCAST) medias = medias.reverse();
-    return medias
+    let sMedias = medias.slice();
+    if (typeFilter === MEDIA_TYPE.PODCAST) sMedias = sMedias.reverse();
+    return sMedias
       .filter(
         media =>
           (typeFilter === MEDIA_TYPE.ALL && yearFilter === 'all') ||

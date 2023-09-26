@@ -160,7 +160,7 @@ export const team = () => {
       contentHtml: (
         <>
           <h6>{t('Пухова Мария Михайловна')} </h6>
-          <p>{t('Старший юрист')}</p>
+          <p>{t('Адвокат')}</p>
           <div className="line" />
         </>
       ),

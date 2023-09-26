@@ -238,7 +238,7 @@ export const teamDetails: ITeamDetail[] = [
     id: 'puhova',
     img: puhovaDetail.src,
     name: 'Пухова Мария Михайловна',
-    position: 'Старший юрист',
+    position: 'Адвокат',
     experienceHTML: (
       <>
         <p>Общий стаж юридической практики с 2019 года.</p>
