@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CSSObject } from '@emotion/react';
 
-import { colors, links, pageWrap, typography } from '@scripts/theme';
+import { colors, links, pageWrap, position, typography } from '@scripts/theme';
 
-import { teamDetails } from '@mocks/index';
+import { teamDetails, teamDetailsEn } from '@mocks/index';
 
 import PageTitle from '@components/PageTitle';
 import Carousel from '@components/common/Carousel';
@@ -14,10 +14,16 @@ import Carousel from '@components/common/Carousel';
 import { ReactComponent as ArrowIcon } from '@icons/arrow.svg';
 import mailIconURL from '@icons/mail.svg';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const TeamDetail = () => {
-  const { query } = useRouter();
-  const detailInfo = useMemo(() => teamDetails.find(detail => detail.id === query.id), [query.id]);
+  const { query, locale, locales } = useRouter();
+  const { t } = useTranslation();
+  const detailInfo = useMemo(
+    () => (locale === locales?.[0] ? teamDetails : teamDetailsEn).find(detail => detail.id === query.id),
+    [locale, locales, query.id]
+  );
   const { tablet, tabletLg } = useMedia();
 
   const blockCSS: CSSObject = {
@@ -61,7 +67,7 @@ const TeamDetail = () => {
                   alignSelf: 'flex-start',
                 }}
               >
-                <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> Назад
+                <ArrowIcon css={{ marginRight: '10px', transform: 'rotate(-90deg)' }} /> {t('Назад')}
               </a>
             </Link>
           </div>
@@ -75,8 +81,9 @@ const TeamDetail = () => {
             css={{
               ...pageWrap,
               display: 'grid',
-              gridTemplate: 'auto / 302px 1fr',
+              gridTemplate: 'auto / 224px 1fr',
               marginTop: '24px',
+              gap: 40,
               [tablet]: {
                 gridTemplate: 'auto / 1fr',
               },
@@ -86,90 +93,99 @@ const TeamDetail = () => {
               css={{
                 width: '100%',
                 display: 'grid',
+                alignItems: 'start',
               }}
             >
-              <div>
+              <div css={{ ...position.center, flexDirection: 'column' }}>
                 <div
                   css={{
-                    ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
-                      [tabletLg]: { display: 'flex', justifyContent: 'center' },
-                    }),
+                    ...position.center,
+                    flexDirection: 'column',
+                    [tabletLg]: { display: 'flex', justifyContent: 'center' },
                   }}
                 >
                   <Image src={detailInfo.img} width={224} height={323} objectFit="cover" />
-                </div>
-                <div
-                  css={{
-                    marginTop: '16px',
-                    marginBottom: '16px',
-                    ...detailInfo.degreeCSS,
-                  }}
-                >
-                  <p
+
+                  <div
                     css={{
-                      color: colors.gray700,
-                      marginBottom: 0,
-                      fontWeight: 'bold',
+                      marginTop: '16px',
+                      marginBottom: '16px',
+                      width: '100%',
+                      ...detailInfo.degreeCSS,
+                      ...((detailInfo.id === 'barshevskiy' || detailInfo.id === 'barkalova') && {
+                        [tabletLg]: { textAlign: 'center' },
+                      }),
                     }}
                   >
-                    {detailInfo.position}
-                  </p>
-                  {detailInfo.degree &&
-                    detailInfo.degree.map(degree => (
-                      <p
-                        key={degree}
-                        css={{
-                          color: colors.gray700,
-                          marginBottom: 0,
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        {degree}
-                      </p>
-                    ))}
-                </div>
-                {detailInfo.email && (
-                  <Link href={`mailto:${detailInfo.email}`} passHref>
-                    <a
+                    <p
                       css={{
-                        ...links.blue,
-                        display: 'flex',
-                        alignItems: 'center',
-                        marginBottom: '24px',
+                        color: colors.gray700,
+                        marginBottom: 0,
+                        fontWeight: 'bold',
                       }}
                     >
-                      <div css={{ width: '24px', height: '24px', marginRight: '14px' }}>
-                        <Image src={mailIconURL} width="24px" height="24px" />
-                      </div>
-                      {detailInfo.email}
-                    </a>
-                  </Link>
-                )}
-                {detailInfo.revardsIcons && (
-                  <Carousel
-                    css={{ maxWidth: '200px' }}
-                    smallArrows
-                    pagination={false}
-                    slidesPerView={3}
-                    spaceBetween={1}
-                    breakpoints={{
-                      900: {
-                        slidesPerView: 3,
-                        spaceBetween: 1,
-                      },
-                    }}
-                  >
-                    {detailInfo.revardsIcons.map(iconData => (
-                      <Image
-                        key={iconData.url}
-                        css={{ position: 'relative', width: '50px' }}
-                        src={iconData.url}
-                        width={iconData.width}
-                        height={iconData.height}
-                      />
-                    ))}
-                  </Carousel>
-                )}
+                      {detailInfo.position}
+                    </p>
+                    {detailInfo.degree &&
+                      detailInfo.degree.map(degree => (
+                        <p
+                          key={degree}
+                          css={{
+                            color: colors.gray700,
+                            marginBottom: 0,
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {degree}
+                        </p>
+                      ))}
+                  </div>
+
+                  {detailInfo.email && (
+                    <Link href={`mailto:${detailInfo.email}`} passHref>
+                      <a
+                        css={{
+                          ...links.blue,
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginBottom: '24px',
+                          width: '100%',
+                        }}
+                      >
+                        <div css={{ width: '24px', height: '24px', marginRight: '14px' }}>
+                          <Image src={mailIconURL} width="24px" height="24px" />
+                        </div>
+                        {detailInfo.email}
+                      </a>
+                    </Link>
+                  )}
+
+                  {detailInfo.revardsIcons && (
+                    <Carousel
+                      css={{ maxWidth: '200px', width: '100%' }}
+                      smallArrows
+                      pagination={false}
+                      slidesPerView={3}
+                      spaceBetween={1}
+                      breakpoints={{
+                        900: {
+                          slidesPerView: 3,
+                          spaceBetween: 1,
+                        },
+                      }}
+                    >
+                      {detailInfo.revardsIcons.map(iconData => (
+                        <Image
+                          key={iconData.url}
+                          css={{ position: 'relative', width: '50px' }}
+                          src={iconData.url}
+                          width={iconData.width}
+                          height={iconData.height}
+                        />
+                      ))}
+                    </Carousel>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -177,19 +193,19 @@ const TeamDetail = () => {
               {detailInfo.experienceHTML && <div css={blockCSS}>{detailInfo.experienceHTML}</div>}
               {detailInfo.revardsHTML && (
                 <div css={blockCSS}>
-                  <span>Награды</span>
+                  <span>{t('Награды')}</span>
                   {detailInfo.revardsHTML}
                 </div>
               )}
               {detailInfo.practicesHTML && (
                 <div css={blockCSS}>
-                  <span>Специализация</span>
+                  <span>{t('Специализация')}</span>
                   {detailInfo.practicesHTML}
                 </div>
               )}
               {detailInfo.mediaHTML && (
                 <div css={blockCSS}>
-                  <span>Публикации</span>
+                  <span>{t('Публикации')}</span>
                   {detailInfo.mediaHTML}
                 </div>
               )}
@@ -206,9 +222,10 @@ export const getStaticPaths = async () => ({
   fallback: 'blocking',
 });
 
-export const getStaticProps = async (context: { params: { id: string } }) => {
+export const getStaticProps = async (context: { params: { id: string }; locale: string }) => {
   const {
     params: { id },
+    locale,
   } = context;
 
   const detailInfo = teamDetails.find(detail => detail.id === id);
@@ -216,7 +233,9 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   return !detailInfo
     ? { notFound: true }
     : {
-        props: {},
+        props: {
+          ...(await serverSideTranslations(locale, ['common'])),
+        },
       };
 };
 

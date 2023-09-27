@@ -2,11 +2,12 @@ import React, { FC, SVGProps } from 'react';
 import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
-import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
-import { position, shadows } from '@scripts/theme';
+import { CARD_TYPE, MEDIA_TYPE, PROJECT_INDUSTRY } from '@scripts/enums/common/content-card.enum';
+import { position, shadows, typography } from '@scripts/theme';
 import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
+import { useRouter } from 'next/router';
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -21,11 +22,14 @@ interface ICardConfig {
   mobileImageWidth?: string;
   mobileImageHeight?: string;
   isOpen?: boolean;
+  header?: string;
   cssCard?: CSSObject;
+  rmRowGap?: boolean;
 }
 
 export interface IContent {
   contentHtml: React.ReactElement;
+  subContent?: string;
   contentCSS?: CSSObject;
   objectPosition?: string;
   id?: string;
@@ -42,14 +46,32 @@ export interface IContentPractice extends IContent {
   title: string;
 }
 
+export interface IContentProject extends IContent {
+  industry: PROJECT_INDUSTRY;
+  header: string;
+}
+
+export interface IContentMedia extends IContent {
+  id: string;
+  date: string;
+  type: MEDIA_TYPE;
+  name: React.ReactElement | string;
+  subName?: string;
+  titleIcon: string;
+}
+
 const withConfigContentCard = (
   WrappedComponent: FC<IContentCardProps>,
   content: IContent,
   cardType: CARD_TYPE,
-  isOpen?: boolean
+  isOpen?: boolean,
+  header?: string
 ) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { tabletLg } = useMedia();
+  const { tabletLg, mobileLg } = useMedia();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { locale: activeLocale } = useRouter();
+
   const cardConfig: ICardConfig = {};
 
   const projectTitle: React.ReactElement = (
@@ -69,6 +91,7 @@ const withConfigContentCard = (
       className="card-title"
       css={{
         ...position.spaceBetween,
+        ...(cardType !== CARD_TYPE.MEDIA_MAIN && { flexWrap: 'wrap' }),
         width: '100%',
         marginBottom: '20px',
       }}
@@ -79,7 +102,7 @@ const withConfigContentCard = (
         }}
       >
         {content.titleIcon && (
-          <div css={{ width: '24px', height: '24px', position: 'relative', marginRight: '8px' }}>
+          <div css={{ minWidth: '24px', width: '24px', height: '24px', position: 'relative', marginRight: '8px' }}>
             <Image
               css={{
                 marginRight: '10px',
@@ -91,10 +114,12 @@ const withConfigContentCard = (
           </div>
         )}
 
-        <span>{content.title}</span>
+        <span css={{ marginRight: '8px' }}>{content.title}</span>
       </div>
 
-      <span>{content.date}</span>
+      <span css={{ ...(cardType !== CARD_TYPE.MEDIA_MAIN && { marginLeft: '32px' }), [mobileLg]: { marginLeft: 0 } }}>
+        {content.date}
+      </span>
     </div>
   );
 
@@ -105,7 +130,7 @@ const withConfigContentCard = (
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: false,
-        text: 'Показать полностью',
+        text: activeLocale === 'default' ? 'Показать полностью' : 'Show in full',
         textCLose: 'Скрыть',
         transform: 'rotate(180deg)',
       };
@@ -123,47 +148,75 @@ const withConfigContentCard = (
       cardConfig.imageHeight = '191px';
       cardConfig.mobileImageWidth = '266px';
       cardConfig.mobileImageHeight = '299px';
+      cardConfig.height = 'auto';
       cardConfig.btn = {
         isLink: true,
         url: `team/${content.id}`,
-        text: 'Подробнее',
+        text: activeLocale === 'default' ? 'Подробнее' : 'more info',
         transform: 'rotate(90deg)',
       };
       break;
     case CARD_TYPE.PROJECTS:
+      cardConfig.isOpen = isOpen;
       cardConfig.borderRadius = '8px';
-      cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: false,
-        url: '/comingSoonProjects',
-        text: 'Показать полностью',
+        text: activeLocale === 'default' ? 'Показать полностью' : 'Show in full',
         textCLose: 'Скрыть',
         transform: 'rotate(180deg)',
       };
       cardConfig.title = projectTitle;
-      cardConfig.height = '35px';
+      cardConfig.height = '0';
+      cardConfig.header = header;
+      cardConfig.cssCard = {
+        [tabletLg]: {
+          p: {
+            fontSize: '16px',
+          },
+          '& > div': {
+            marginBottom: '8px',
+            fontSize: '18px',
+          },
+          h3: {
+            fontSize: '16px',
+            lineHeight: '22px',
+            marginBottom: '8px',
+          },
+        },
+        h2: {
+          ...typography.h5,
+          [tabletLg]: { fontSize: '18px', lineHeight: '27px', marginBottom: '16px' },
+        },
+      };
       break;
     case CARD_TYPE.PROJECTS_MAIN:
       cardConfig.borderRadius = '16px';
       cardConfig.boxShadow = shadows.around.boxShadow;
       cardConfig.btn = {
         isLink: true,
-        url: '/comingSoonProjects',
+        url: `/projects#${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
       cardConfig.heightMobile = '60px';
+      cardConfig.rmRowGap = true;
       break;
     case CARD_TYPE.MEDIA:
+    case CARD_TYPE.MEDIA_MAIN:
       cardConfig.title = mediaTitle;
       cardConfig.borderRadius = '8px';
       cardConfig.btn = {
         isLink: true,
-        url: '/comingSoonMedia',
+        url: `/media/${content.id}`,
         text: 'Подробнее',
         transform: 'rotate(90deg)',
       };
       cardConfig.height = '100px';
+      cardConfig.heightMobile = cardType !== CARD_TYPE.MEDIA_MAIN ? 'auto' : '';
+      cardConfig.rmRowGap = true;
+      cardConfig.cssCard = {
+        height: '100%',
+      };
       break;
     default:
   }
@@ -171,10 +224,12 @@ const withConfigContentCard = (
   return () => (
     <WrappedComponent
       title={cardConfig.title}
+      header={cardConfig.header}
       cardBorderRadius={cardConfig.borderRadius}
       boxShadow={cardConfig.boxShadow}
       cardImg={content.img}
       content={content.contentHtml}
+      subContent={content.subContent as string}
       contentCSS={content.contentCSS}
       btn={cardConfig.btn}
       height={cardConfig.height}
@@ -186,6 +241,7 @@ const withConfigContentCard = (
       defaultOpen={cardConfig.isOpen}
       objectPosition={content.objectPosition}
       cssCard={cardConfig.cssCard}
+      rmRowGap={cardConfig.rmRowGap}
     />
   );
 };

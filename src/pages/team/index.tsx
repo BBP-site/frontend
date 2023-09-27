@@ -11,9 +11,12 @@ import ContentCard from '@components/common/ContentCard';
 
 import { team } from '@mocks/index';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const Team: FC = () => {
-  const teamCards = team.map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
+  const { t } = useTranslation();
+  const teamCards = team().map(teamObj => withConfigContentCard(ContentCard, teamObj, CARD_TYPE.TEAM));
   const { mobile, tablet, tabletLg } = useMedia();
 
   const contentSectionCSS: CSSObject = {
@@ -27,18 +30,18 @@ const Team: FC = () => {
 
   return (
     <main css={{ width: '100%', ...typography.txt }}>
-      <PageTitle title="Команда">
+      <PageTitle title={t('Команда')}>
         <p>
-          Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет
-          успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды
-          Коллегии.
+          {t(
+            'Мы чтим традиции адвокатуры, постоянно совершенствуем свои теоретические знания, что позволяет нам много лет успешно оказывать квалифицированную юридическую помощь. В этом разделе представлены основные члены команды Коллегии.'
+          )}
         </p>
       </PageTitle>
 
       <ContentSection childrenCss={contentSectionCSS} css={{ padding: '48px 0 48px 0' }}>
         {teamCards.map((card, index) => (
           <div
-            key={team[index].id}
+            key={team()[index].id}
             css={{
               paddingTop: '146px',
               marginTop: '-146px',
@@ -49,7 +52,7 @@ const Team: FC = () => {
               },
               [mobile]: { width: '88vw' },
             }}
-            id={team[index].id}
+            id={team()[index].id}
           >
             {card()}
           </div>
@@ -60,3 +63,11 @@ const Team: FC = () => {
 };
 
 export default Team;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}

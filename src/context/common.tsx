@@ -1,14 +1,15 @@
-import { createContext, FC, ReactNode, useContext } from 'react';
+import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 export enum E_PAGES {
-    HOME = '/',
-    COLLEGIUM = '/collegium',
-    PRACTICES = '/practices',
-    TEAM = '/team',
-    PROJECTS = '/comingSoonProjects',
-    MEDIA = '/comingSoonMedia',
-    CONTACTS = '/contacts',
-    POLITICS = '/politics',
+  HOME = '/',
+  COLLEGIUM = '/collegium',
+  PRACTICES = '/practices',
+  TEAM = '/team',
+  PROJECTS = '/projects',
+  MEDIA = '/media',
+  CONTACTS = '/contacts',
+  POLITICS = '/politics',
 }
 
 export interface IData {
@@ -26,10 +27,24 @@ export interface IData {
   };
 }
 
-const CommonContext = createContext<Record<string, IData> | null>(null);
+export interface IPagesHistory {
+  list: E_PAGES[];
+  push: (page: E_PAGES) => void;
+}
+
+export interface ICommonContext {
+  data: IData;
+  pagesHistory: IPagesHistory;
+}
+
+const CommonContext = createContext<ICommonContext | null>(null);
 CommonContext.displayName = 'CommonContext';
 
 export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ children }) => {
+  const { t } = useTranslation();
+
+  const [pHistory, setPHistory] = useState<E_PAGES[]>([]);
+
   const data = {
     pages: {
       home: E_PAGES.HOME,
@@ -42,23 +57,28 @@ export const CommonProvider: FC<{ children: ReactNode | ReactNode[] }> = ({ chil
       politics: E_PAGES.POLITICS,
     },
     contactsData: {
-      address: '119121, г. Москва, Ружейный пер., д. 3',
+      address: `${t('119121, г. Москва, Ружейный пер., д. 3')}`,
       phones: [
         {
           number: '+ 7 (495) 755-93-63',
-          desc: 'пн-пт 10:00-19:00',
+          desc: `${t('пн-пт 10:00-19:00')}`,
         },
         {
           number: '+ 7 (985) 099-93-63',
-          desc: 'круглосуточно',
+          desc: `${t('круглосуточно')}`,
         },
       ],
       email: 'info1@bbp.ru',
-      whatsapp: '/',
+      whatsapp: 'https://wa.me/79850999363',
     },
   };
 
-  return <CommonContext.Provider value={{ data }}>{children}</CommonContext.Provider>;
+  const pagesHistory = {
+    list: pHistory,
+    push: (page: E_PAGES) => setPHistory([...pHistory, page]),
+  };
+
+  return <CommonContext.Provider value={{ data, pagesHistory }}>{children}</CommonContext.Provider>;
 };
 
 export const useCommon = () => {

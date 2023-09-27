@@ -10,15 +10,24 @@ import { CARD_TYPE } from '@scripts/enums/common/content-card.enum';
 import { practices } from '@mocks/index';
 import { useEffect, useState } from 'react';
 import { useMedia } from '@scripts/hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { E_PAGES, useCommon } from '@context/common';
 
 const Practices = () => {
   const { asPath } = useRouter();
+  const { t } = useTranslation();
   const [curAnchor, setCurAnchor] = useState<string | null>();
   const { tabletLg, desktop, desktopLg } = useMedia();
+  const { pagesHistory } = useCommon();
+
+  useEffect(() => {
+    pagesHistory.push(E_PAGES.PRACTICES);
+  }, []);
 
   useEffect(() => setCurAnchor(asPath.split('#')[1]), [asPath]);
 
-  const practiceCards = practices.map(practice =>
+  const practiceCards = practices().map(practice =>
     withConfigContentCard(
       ContentCard,
       {
@@ -37,21 +46,22 @@ const Practices = () => {
 
   return (
     <main css={{ height: '100%' }}>
-      <PageTitle title="Практики" css={{ marginBottom: '32px' }}>
+      <PageTitle title={t('Практики')} css={{ marginBottom: '32px' }}>
         <p>
-          Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является
-          универсальной и не ограничивается представленными в этом разделе направлениями.
+          {t(
+            'Вы можете обратиться к нам практически с любой правовой проблемой, так как наша Коллегия является универсальной и не ограничивается представленными в этом разделе направлениями.'
+          )}
         </p>
         <p>
-          Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие
-          несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд
-          нет выхода.
+          {t(
+            'Мы придерживаемся командного подхода, и в рассмотрении вопроса клиента, как правило, принимает участие несколько специалистов, что позволяет находить нестандартные пути решения даже тогда, когда на первый взгляд нет выхода.'
+          )}
         </p>
       </PageTitle>
       <div css={{ ...pageWrap, marginBottom: '48px', [tabletLg]: { marginTop: '32px' } }}>
         {practiceCards.map((card, index) => (
           <div
-            key={practices[index].id}
+            key={practices()[index].id}
             css={{
               paddingTop: '150px',
               marginTop: '-150px',
@@ -59,7 +69,7 @@ const Practices = () => {
               a: { ...links.blue },
               [tabletLg]: { paddingTop: '126px', marginTop: '-126px' },
             }}
-            id={practices[index].id}
+            id={practices()[index].id}
           >
             {card()}
           </div>
@@ -70,3 +80,11 @@ const Practices = () => {
 };
 
 export default Practices;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
