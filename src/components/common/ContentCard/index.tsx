@@ -7,6 +7,7 @@ import { colors, links, position, time, typography } from '@scripts/theme';
 
 import arrowIconURL from '@icons/arrowBlue.svg';
 import { useMedia } from '@scripts/hooks';
+import {JSX} from "@babel/types";
 
 export interface ICardBtn {
   isLink: boolean;
@@ -17,7 +18,7 @@ export interface ICardBtn {
 }
 
 export interface IContentCardProps {
-  content: React.ReactElement;
+  content: JSX.Element | string;
   subContent: string;
   contentCSS?: CSSObject;
   title?: React.ReactElement;

@@ -109,7 +109,8 @@ const MediaDetail = ({ media }: { media: IMediaDetailItem }) => {
             </h1>
           </div>
           <div
-            dangerouslySetInnerHTML={{ __html: media.content }}
+            // media.contentHtml - контент, который написали в моке карточки медиа (src/mocks/index.tsx), а не в mediasDetails
+            dangerouslySetInnerHTML={{ __html:  media.contentHtml && typeof media.contentHtml === 'string' ? media.contentHtml : media.content }}
             css={{
               a: { ...links.blue },
               [tablet]: { ...typography.txtSm, 'p:not(:last-of-type)': { marginBottom: '16px' } },

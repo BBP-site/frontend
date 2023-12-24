@@ -1,4 +1,4 @@
-import React, { FC, SVGProps } from 'react';
+import React, {FC, SVGProps} from 'react';
 import { CSSObject } from '@emotion/react';
 import Image from 'next/image';
 
@@ -8,6 +8,7 @@ import { useMedia } from '@scripts/hooks';
 
 import { ICardBtn, IContentCardProps } from '@components/common/ContentCard';
 import { useRouter } from 'next/router';
+import {JSX} from "@babel/types";
 
 interface ICardConfig {
   title?: React.ReactElement;
@@ -28,7 +29,7 @@ interface ICardConfig {
 }
 
 export interface IContent {
-  contentHtml: React.ReactElement;
+  contentHtml: JSX.Element | string;
   subContent?: string;
   contentCSS?: CSSObject;
   objectPosition?: string;
