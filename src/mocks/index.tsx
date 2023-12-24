@@ -8,7 +8,7 @@ import elenaURL from '@images/elena.webp';
 import tatyanaURL from '@images/tatyana.webp';
 import barkalovaURL from '@images/barkalova.webp';
 import alexandraURL from '@images/alexandra.webp';
-import pavelURL from '@images/pavel.webp';
+// import pavelURL from '@images/pavel.webp';
 // import olgaURL from '@images/olga.webp';
 import mariaURL from '@images/maria.webp';
 import kseniaURL from '@images/ksenia.webp';
@@ -116,19 +116,19 @@ export const team = () => {
       contentCSS: teamCSS,
       img: tatyanaURL.src,
     },
-    {
-      id: 'khavkin',
-      contentHtml: (
-        <>
-          <h6>{t('Хавкин Павел Витальевич')}</h6>
-          <p>{t('Адвокат')}</p>
-          <div className="line" />
-        </>
-      ),
-      contentCSS: teamCSS,
-      img: pavelURL.src,
-      objectPosition: '0px -8px',
-    },
+    // {
+    //   id: 'khavkin',
+    //   contentHtml: (
+    //     <>
+    //       <h6>{t('Хавкин Павел Витальевич')}</h6>
+    //       <p>{t('Адвокат')}</p>
+    //       <div className="line" />
+    //     </>
+    //   ),
+    //   contentCSS: teamCSS,
+    //   img: pavelURL.src,
+    //   objectPosition: '0px -8px',
+    // },
     {
       id: 'vdovina',
       contentHtml: (
@@ -173,7 +173,7 @@ export const team = () => {
       contentHtml: (
         <>
           <h6>{t('Апарина Ксения Васильевна')}</h6>
-          <p>{t('Юрист')}</p>
+          <p>{t('Адвокат')}</p>
           <div className="line" />
         </>
       ),
@@ -564,6 +564,31 @@ export const projectsMobile: IContent[] = [
 ];
 
 export const medias: IContentMedia[] = [
+  {
+    id: '164',
+    name: ' «Семейный бизнес: как правильно завещать свое состояние». Статья Управляющего партнера Коллегии Елены Михалевич для Forbes.',
+    contentHtml:
+        '<p> На сайте Forbes опубликована статья Управляющего партнера Коллегии Елены Михалевич «Семейный бизнес: как правильно завещать свое состояние». \n' +
+        'Публикация посвящена новому институту российского гражданского права – личному фонду. В статье проведен подробный анализ действующего регулирования личного фонда, особенности управления его деятельностью и правового статуса выгодоприобретателей. Отдельно рассмотрено значение личного фонда, как эффективного механизма передачи крупного бизнеса и дорогостоящих активов наследникам.  ' +
+        '<a href="https://www.forbes.ru/mneniya/503063-semejnyj-biznes-kak-pravil-no-zavesat-svoe-sostoanie">https://www.forbes.ru/mneniya/503063-semejnyj-biznes-kak-pravil-no-zavesat-svoe-sostoanie</a>' +
+        '</p>',
+    titleIcon: bookOpenURL,
+    type: MEDIA_TYPE.PUBLICATION,
+    date: '22.12.23',
+  },
+    {
+        id: '163',
+        name: 'Подведены итоги рейтинга Право-300 в 2023 году.',
+        contentHtml:
+            '<ul>' +
+            '7 декабря были подведены очередные итоги ежегодного рейтинга Право-300. По результатам крупнейшего исследования рынка юридических услуг, Коллегия отмечена в следующих номинациях:\n' +
+            '<li> «Разрешение споров в судах общей юрисдикции» (3-я группа);</li>\n' +
+            '<li> «Топ-50 юридических компаний по выручке» (федеральный рэнкинг).</li>' +
+            ' </ul>',
+        titleIcon: bookOpenURL,
+        type: MEDIA_TYPE.NEWS_EVENT,
+        date: '08.12.23',
+    },
   {
     id: '162',
     name: 'Адвокаты Коллегии – спикеры на XI Петербургском международном юридическом форуме.',
